@@ -11,28 +11,29 @@
                 <p class="text-lg">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum id soluta odit voluptatibus, enim provident nemo ullam? Eaque soluta quam natus vel ullam officiis suscipit, doloremque a vitae, voluptas ratione.</p>
             </div>
         </div>
-        <div class="my-8 max-w-xs sm:max-w-xl md:max-w-xl lg:max-w-3xl mx-auto">
+        <div id="courses" class="py-8 max-w-xs sm:max-w-xl md:max-w-xl lg:max-w-3xl mx-auto">
             <div class="flex justify-between items-center px-6 pb-8">
                 <div>
                     <p class="text-2xl text-primary-500 font-semibold">Courses</p>
                 </div>
                 <div>
-                    <img src="{{ asset('pictures/logo.png') }}" class="h-10" alt=""/>
+                    <img src="{{ asset('pictures/global/logo.png') }}" class="h-10" alt=""/>
                 </div>
             </div>
             <div class="flex justify-center">
                 <div class="xs:columns-1 md:columns-3 md:gap-4 lg:gap-8">
-                    <div class="h-72 w-72 md:h-52 md:w-52 lg:h-72 lg:w-72 my-6 md:my-0 cat-circle p-6 md:p-4 lg:p-6 text-center">
-                        <div class="h-1/3 text-center px-2">
-                            <p class="text-2xl md:text-lg lg:text-2xl font-bold text-gray-700">Religious Perspective</p>
+                @foreach($fields as $field)
+                    <div class="h-72 w-72 md:h-52 md:w-52 lg:h-72 lg:w-72 my-6 md:my-0 cat-circle">  
+                        <div class="h-2/5 flex items-center justify-center text-center">
+                            <div class="w-48">
+                                <p class="text-xl md:text-lg lg:text-xl text-gray-700 font-ibm font-semibold">{{ $field->getTranslation('title', 'en') }}</p>
+                            </div>
                         </div>
-                        <div class="h-2/3 text-center px-2 mt-10 md:mt-8 lg:mt-10">
-                            <p class="text-2xl md:text-lg lg:text-2xl font-medium text-gray-400">Religious View Section</p>
-                        </div>
+                        <div class="h-3/5 flex p-8 text-center">
+                            <p class="text-xl md:text-lg lg:text-xl font-ibm font-normal text-gray-400">{{ $field->getTranslation('subtitle', 'en') }}</p>
+                        </div> 
                     </div>
-                    <div class="h-72 w-72 md:h-52 md:w-52 lg:h-72 lg:w-72 my-6 md:my-0 cat-circle">   
-                    </div>
-                    <div class="h-72 w-72 md:h-52 md:w-52 lg:h-72 lg:w-72 my-6 md:my-0 cat-circle"></div>
+                @endforeach
                 </div>
             </div>
         </div>
@@ -45,9 +46,12 @@
             height: 188px
         }
         .cat-circle {
-            background-image: url('{{ asset('pictures/cat-circle.png') }}');
-            background-size: cover;
+            background-image: url('{{ asset('pictures/global/cat-circle.png') }}');
+            background-size: contain;
             background-position: center;
         }
+        /* .cat-title {
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+        } */
     </style>
 </x-app-layout>

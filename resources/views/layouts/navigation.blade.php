@@ -12,7 +12,7 @@
                         type="text"
                         name="search"
                         id="search"
-                        class="block w-full rounded-full border-0 py-0.5 pl-8 text-gray-700 bg-white ring-1 ring-primary-500 placeholder:text-gray-400 focus:ring-2 focus:ring-primary-700 sm:text-sm sm:leading-6"
+                        class="block w-full rounded-full border-0 py-0.5 pl-8 text-gray-700 bg-white ring-1 ring-primary-200 placeholder:text-gray-400 focus:ring-primary-500 sm:text-sm sm:leading-6"
                         placeholder="Search"
                     />
                 </div>
@@ -25,7 +25,7 @@
                         <div class="hidden sm:flex sm:items-center sm:ml-6">
                             <x-dropdown align="right" width="48">
                                 <x-slot name="trigger">
-                                    <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
+                                    <button class="inline-flex items-center px-3 py-2 text-sm leading-4 font-medium rounded-lg text-gray-500 dark:text-gray-400 dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 hover:bg-primary-200 focus:outline-none transition ease-in-out duration-150">
                                         <div class="flex items-center">
                                             @if(Auth::user()->image) 
                                                 <img src="{{asset(Auth::user()->image)}}" alt="{{ Auth::user()->firstname }}" class="w-7 h-7 rounded-full object-cover mr-2"/>
@@ -71,14 +71,14 @@
         </div>
         @if (Request::path() == '/')
         <div class="flex justify-center">
-            <img src="{{ asset('pictures/logo-main.png') }}" class="h-32" alt=""/>
+            <img src="{{ asset('pictures/global/logo-main.png') }}" class="h-32" alt=""/>
         </div>
         @endif
         <div class="flex justify-center">
             <div class="flex-wrap my-4 space-x-2 text-primary-700 font-semibold">
-                <a href="" class="hover:bg-primary-200 px-2 py-0.5 rounded-lg">{{ __('Home') }}</a>
+                <a href="/" class="hover:bg-primary-200 px-2 py-0.5 rounded-lg">{{ __('Home') }}</a>
                 <a href="" class="hover:bg-primary-200 px-2 py-0.5 rounded-lg">{{ __('About us') }}</a>
-                <a href="" class="hover:bg-primary-200 px-2 py-0.5 rounded-lg">{{ __('Courses') }}</a>
+                <a href="/#courses" class="hover:bg-primary-200 px-2 py-0.5 rounded-lg">{{ __('Courses') }}</a>
                 <a href="" class="hover:bg-primary-200 px-2 py-0.5 rounded-lg">{{ __('Instructors') }}</a>
                 <a href="" class="hover:bg-primary-200 px-2 py-0.5 rounded-lg">{{ __('Plans') }}</a>
                 <a href="" class="hover:bg-primary-200 px-2 py-0.5 rounded-lg">{{ __('Partners') }}</a>
