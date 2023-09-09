@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\FieldController;
+use App\Http\Controllers\InstructorController;
 use App\Http\Controllers\WelcomeController;
 
 /*
@@ -34,10 +35,18 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/dashboard', function() {
         return view('admin.dashboard');
     })->name('admin.dashboard');
-    // Add more admin routes as needed
+
+    // Admin fields routes
     Route::get('/admin/field/create', [FieldController::class, 'create'])->name('field.create');
     Route::post('/admin/field', [FieldController::class, 'store'])->name('field.store');
     Route::get('/admin/fields', [FieldController::class, 'index'])->name('fields');
+
+    //Admin instructor routes
+    Route::get('/admin/instructor/create', [InstructorController::class, 'create'])->name('instructor.create');
+    Route::post('/admin/instructor', [InstructorController::class, 'store'])->name('instructor.store');
+    Route::get('/admin/instructors', [InstructorController::class, 'index'])->name('admin.instructors');
+    Route::get('/admin/instructor/edit/{instructor}', [InstructorController::class, 'edit'])->name('admin.instructor.edit');
+    Route::put('/admin/instructor/update', [InstructorController::class, 'update'])->name('admin.instructor.update');
 });
 
 require __DIR__.'/auth.php';
