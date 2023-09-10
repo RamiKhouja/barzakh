@@ -1,9 +1,17 @@
 <div class="flex items-center space-x-4" x-data="picturePreview()">
     <div class="rounded-full bg-gray-200">
         @if($image == null)
-            <img id="preview" src="{{ asset('pictures/global/default.jpg') }}" alt="" class="w-24 h-24 rounded-full object-cover"/>
+            @if($circle == "true")
+                <img id="preview" src="{{ asset('pictures/global/default.jpg') }}" alt="" class="w-24 h-24 rounded-full object-cover"/>
+            @else
+                <img id="preview" src="{{ asset('pictures/global/default.jpg') }}" alt="" class="w-24 h-24 rounded-lg object-cover"/>
+            @endif
         @else
-            <img id="preview" src="{{ asset($image) }}" alt="" class="w-24 h-24 rounded-full object-cover"/>
+            @if($circle == "true")
+                <img id="preview" src="{{ asset($image) }}" alt="" class="w-24 h-24 rounded-full object-cover"/>
+            @else
+                <img id="preview" src="{{ asset($image) }}" alt="" class="w-24 h-24 rounded-lg object-cover"/>
+            @endif
         @endif
     </div>
     <div>

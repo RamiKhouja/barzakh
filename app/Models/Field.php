@@ -13,4 +13,9 @@ class Field extends Model
 
     public $translatable = ['title', 'subtitle', 'description'];
     protected $fillable = ['title', 'subtitle', 'description','url'];
+
+    public function categories()
+    {
+        return $this->hasMany(Category::class);
+    }
 }

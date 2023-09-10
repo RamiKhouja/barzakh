@@ -14,7 +14,7 @@
                             <label htmlFor="title" class="form-label mb-2">
                                 Profile Picture
                             </label>
-                            <x-picture-input :image=null />
+                            <x-picture-input :image=null :circle="true" />
                         </div>
                     </div>
                     <div>

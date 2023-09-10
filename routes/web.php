@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\FieldController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\InstructorController;
 use App\Http\Controllers\WelcomeController;
 
@@ -47,6 +48,14 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/instructors', [InstructorController::class, 'index'])->name('admin.instructors');
     Route::get('/admin/instructor/edit/{instructor}', [InstructorController::class, 'edit'])->name('admin.instructor.edit');
     Route::put('/admin/instructor/update', [InstructorController::class, 'update'])->name('admin.instructor.update');
+
+    // Admin categories routes
+    Route::get('/admin/category/create', [CategoryController::class, 'create'])->name('admin.category.create');
+    Route::post('/admin/category', [CategoryController::class, 'store'])->name('admin.category.store');
+    Route::get('/admin/categories', [CategoryController::class, 'index'])->name('admin.categories');
+    Route::get('/admin/category/edit/{category}', [CategoryController::class, 'edit'])->name('admin.category.edit');
+    Route::put('/admin/category/{category}', [CategoryController::class, 'update'])->name('admin.category.update');
+    Route::delete('/admin/category/{category}', [CategoryController::class, 'delete'])->name('admin.category.delete');
 });
 
 require __DIR__.'/auth.php';
