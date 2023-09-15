@@ -21,3 +21,6 @@
 .table-text {
     @apply px-3 py-4 text-sm text-gray-700;
 }
+.resp-menu-item {
+    @apply block py-1 font-semibold text-sm text-primary-700 focus:bg-primary-500 focus:text-white;
+}

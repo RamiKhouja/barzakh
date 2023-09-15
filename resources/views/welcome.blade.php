@@ -1,7 +1,8 @@
 <x-app-layout>
     <div class="bg-primary-100">
+        <div class="md:hidden h-20"></div>
         <div class="max-w-xs sm:max-w-sm md:max-w-xl lg:max-w-3xl mx-auto flex justify-center">
-            <video class="h-[27rem]" muted autoplay controls>
+            <video class="md:h-[27rem]" muted autoplay controls>
                 <source src="{{ asset('pictures/main-vid.mp4') }}" type="video/mp4">
             </video>
         </div>

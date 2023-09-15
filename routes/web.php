@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\FieldController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\InstructorController;
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\WelcomeController;
 
 /*
@@ -40,7 +41,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     // Admin fields routes
     Route::get('/admin/field/create', [FieldController::class, 'create'])->name('field.create');
     Route::post('/admin/field', [FieldController::class, 'store'])->name('field.store');
-    Route::get('/admin/fields', [FieldController::class, 'index'])->name('fields');
+    Route::get('/admin/fields', [FieldController::class, 'index'])->name('admin.fields');
 
     //Admin instructor routes
     Route::get('/admin/instructor/create', [InstructorController::class, 'create'])->name('instructor.create');
@@ -56,6 +57,15 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/category/edit/{category}', [CategoryController::class, 'edit'])->name('admin.category.edit');
     Route::put('/admin/category/{category}', [CategoryController::class, 'update'])->name('admin.category.update');
     Route::delete('/admin/category/{category}', [CategoryController::class, 'delete'])->name('admin.category.delete');
+
+    // Admin courses routes
+    Route::get('/admin/course/create', [CourseController::class, 'create'])->name('admin.course.create');
+    Route::post('/admin/course', [CourseController::class, 'store'])->name('admin.course.store');
+    Route::get('/admin/courses', [CourseController::class, 'index'])->name('admin.courses');
+    Route::get('/admin/courses/search', [CourseController::class, 'search'])->name('admin.courses.search');
+    Route::get('/admin/course/edit/{course}', [CourseController::class, 'edit'])->name('admin.course.edit');
+    Route::put('/admin/course/{course}', [CourseController::class, 'update'])->name('admin.course.update');
+    Route::delete('/admin/course/{course}', [CourseController::class, 'delete'])->name('admin.course.delete');
 });
 
 require __DIR__.'/auth.php';

@@ -23,4 +23,9 @@ class Category extends Model
     {
         return $this->belongsTo(Field::class);
     }
+
+    public function courses()
+    {
+        return $this->belongsToMany(Course::class, 'category_courses', 'category_id', 'course_id');
+    }
 }

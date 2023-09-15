@@ -31,6 +31,6 @@ class FieldController extends Controller
         $field->url=strtolower(str_replace(' ', '-', trim($request->input('title_en'))));
         $field->save();
 
-        return Redirect::route('fields')->with('success','Study axe has been created successfully.'); 
+        return Redirect::route('admin.fields')->with('success','Study axe has been created successfully.'); 
     }
 }

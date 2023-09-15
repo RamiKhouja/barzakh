@@ -18,4 +18,9 @@ class Instructor extends Model
         'email', 'phone', 'country',
         'image', 'sex'
     ];
+
+    public function courses()
+    {
+        return $this->hasMany(Course::class);
+    }
 }
