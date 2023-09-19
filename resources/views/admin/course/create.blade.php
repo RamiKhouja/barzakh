@@ -1,5 +1,6 @@
 <x-app-layout>
     <div class="bg-primary-100 py-12">
+    <div class="md:hidden h-20"></div>
         <div class="max-w-xs sm:max-w-sm md:max-w-xl lg:w-7xl mx-auto flex justify-center">
             <div class="w-full">
                 <div class="flex justify-center">
@@ -64,8 +65,8 @@
                             </select>
                         </div>
                     </div>
-                    <div class="flex justify-between space-x-4 mt-8">
-                        <div class="w-full">
+                    <div class="flex justify-between space-x-4 mt-8 items-end">
+                        <div class="w-1/2">
                             <label htmlFor="title" class="form-label">
                                 Price
                             </label>
@@ -89,6 +90,15 @@
                                 </div>
                             </div>
                         </div>
+                        <div>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" name="is_discount" id="is_discount" value="1" class="sr-only peer" onchange="toggleDiscountArea()" >
+                                <div class="w-11 h-6 bg-gray-200 ring-1 ring-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary-500 dark:peer-focus:ring-primary-700 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-white after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary-500"></div>
+                                <span class="ml-3 form-label">Discount</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="justify-between space-x-4 mt-8 hidden" id="discount_area">
                         <div class="w-full">
                             <label htmlFor="title" class="form-label">
                                 Discount Price
@@ -111,6 +121,32 @@
                                         USD
                                     </span>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="w-full">
+                            <label htmlFor="title" class="form-label">
+                                Start Discount
+                            </label>
+                            <div class="mt-2">
+                                <input
+                                type="date"
+                                name="discount_start"
+                                id="discount_start"
+                                class="form-input"
+                                />
+                            </div>
+                        </div>
+                        <div class="w-full">
+                            <label htmlFor="title" class="form-label">
+                                End Discount
+                            </label>
+                            <div class="mt-2">
+                                <input
+                                type="date"
+                                name="discount_end"
+                                id="discount_end"
+                                class="form-input"
+                                />
                             </div>
                         </div>
                     </div>
@@ -255,6 +291,19 @@
     <script>
         function clearForm() {
             document.getElementById('myForm').reset();
+        }
+
+        function toggleDiscountArea() {
+            var checkbox = document.getElementById('is_discount');
+            var discountArea = document.getElementById('discount_area');
+            
+            if (checkbox.checked) {
+                discountArea.classList.remove('hidden');
+                discountArea.classList.add('flex');
+            } else {
+                discountArea.classList.remove('flex');
+                discountArea.classList.add('hidden');
+            }
         }
 
         document.addEventListener("DOMContentLoaded", function () {

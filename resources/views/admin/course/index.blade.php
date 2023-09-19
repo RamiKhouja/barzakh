@@ -1,5 +1,6 @@
 <x-app-layout>
     <div class="bg-primary-100 py-12" id="page-container">
+    <div class="md:hidden h-20"></div>
         @if ($message = Session::get('success'))
         <div class="max-w-xs sm:max-w-sm md:max-w-xl lg:max-w-4xl mx-auto">
             <div id="successMessage" class="rounded-md bg-green-50 p-4 mb-6 shadow">
@@ -10,7 +11,7 @@
         </div>
         @endif
 
-        <div class="max-w-xs sm:max-w-sm md:max-w-xl lg:max-w-full lg:px-12 mx-auto flex justify-center">
+        <div class="max-w-xs sm:max-w-sm md:max-w-xl lg:max-w-full lg:px-12 mx-auto">
             <div class="px-4 sm:px-6 lg:px-8">
                 <div class="sm:flex sm:items-center">
                     <div class="sm:flex-auto">
@@ -48,6 +49,9 @@
                                         Discount
                                     </th>
                                     <th scope="col" class="table-th">
+                                        Lessons
+                                    </th>
+                                    <th scope="col" class="table-th">
                                         Created
                                     </th>
                                     <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-0">
@@ -81,9 +85,18 @@
                                     @endif
                                     </td>
                                     <td class="table-text">
+                                        {{ $course->nb_lessons }}
+                                    </td>
+                                    <td class="table-text">
                                         {{ substr($course->created_at, 0, 10) }}
                                     </td>
-                                    <td class="relative py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0 space-x-4 flex items-center">
+                                    <td class="relative p-4 text-right text-sm font-medium sm:pr-0 space-x-2 flex items-center">
+                                        <a href="{{ route('admin.course.show', ['course' => $course->id]) }}">
+                                            <x-heroicon-s-eye class="w-4 h-4 text-primary-700" />
+                                        </a>
+                                        <a href="{{ route('admin.lesson.create', ['course' => $course->id]) }}">
+                                            <x-zondicon-add-solid class="w-4 h-4 text-green-700" />
+                                        </a>
                                         <a href="{{ route('admin.course.edit', ['course' => $course->id]) }}">
                                             <x-zondicon-edit-pencil class="w-4 h-4 text-primary-500" />
                                         </a>
@@ -138,8 +151,8 @@
         navigation.classList.remove('opacity-20');
     }
 
-    // setTimeout(() => {
-    //     const successMessage = document.getElementById('successMessage');
-    //     successMessage.style.display = 'none';
-    // }, 3000);
+    setTimeout(() => {
+        const successMessage = document.getElementById('successMessage');
+        successMessage.style.display = 'none';
+    }, 3000);
 </script>

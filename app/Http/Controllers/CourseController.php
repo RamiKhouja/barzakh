@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\Lesson;
 use App\Models\Category;
 use App\Models\CategoryCourse;
 use App\Models\Instructor;
@@ -47,7 +48,10 @@ class CourseController extends Controller
             'featured_vid' => 'nullable',
             'categories' => 'required',
             'is_free' => 'nullable',
-            'is_chosen' => 'nullable'
+            'is_chosen' => 'nullable',
+            'is_discount' => 'nullable',
+            'discount_start' => 'nullable',
+            'discount_end' => 'nullable'
         ]);
         
         $path = null;
@@ -62,13 +66,16 @@ class CourseController extends Controller
         $course->description_ar = $request->input('description_ar');
         $course->instructor_id = $request->input('instructor_id');
         $course->price = $request->input('price');
-        $isFree = $request->has('is_free');
-        $isChosen = $request->has('is_chosen');
-        $course->is_free = $isFree;
-        $course->is_chosen = $isChosen;
-        $course->discount_price = $request->input('discount_price');
-        if($course->discount_price != null && $course->discount_price > 0) {
-            $course->discount = round((($course->price - $course->discount_price) / $course->price) * 100, 1);
+        $course->is_free = $request->has('is_free');
+        $course->is_chosen = $request->has('is_chosen');
+        $course->is_discount = $request->has('is_discount');
+        if($request->has('is_discount')) {
+            $course->discount_price = $request->input('discount_price');
+            if($course->discount_price != null && $course->discount_price > 0) {
+                $course->discount = round((($course->price - $course->discount_price) / $course->price) * 100, 1);
+                $course->discount_start = \Carbon\Carbon::createFromFormat('Y-m-d', $request->input('discount_start'));
+                $course->discount_end = \Carbon\Carbon::createFromFormat('Y-m-d', $request->input('discount_end'));
+            }
         }
         $course->featured_vid = $request->input('featured_vid');
         $course->image = $path;
@@ -113,7 +120,8 @@ class CourseController extends Controller
      */
     public function show(Course $course)
     {
-        //
+        $lessons = Lesson::where('course_id', $course->id)->orderBy('number')->get();
+        return view('admin.course.show', compact(['course','lessons']));
     }
 
     /**

@@ -7,6 +7,7 @@ use App\Http\Controllers\FieldController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\InstructorController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\LessonController;
 use App\Http\Controllers\WelcomeController;
 
 /*
@@ -63,9 +64,18 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::post('/admin/course', [CourseController::class, 'store'])->name('admin.course.store');
     Route::get('/admin/courses', [CourseController::class, 'index'])->name('admin.courses');
     Route::get('/admin/courses/search', [CourseController::class, 'search'])->name('admin.courses.search');
+    Route::get('/admin/course/{course}', [CourseController::class, 'show'])->name('admin.course.show');
     Route::get('/admin/course/edit/{course}', [CourseController::class, 'edit'])->name('admin.course.edit');
     Route::put('/admin/course/{course}', [CourseController::class, 'update'])->name('admin.course.update');
     Route::delete('/admin/course/{course}', [CourseController::class, 'delete'])->name('admin.course.delete');
+
+    // Admin lessons routes
+    Route::get('/admin/course/{course}/lesson/create', [LessonController::class, 'create'])->name('admin.lesson.create');
+    Route::post('/admin/lesson', [LessonController::class, 'store'])->name('admin.lesson.store');
+    Route::get('/admin/lessons', [LessonController::class, 'index'])->name('admin.lessons');
+    Route::get('/admin/lesson/edit/{lesson}', [LessonController::class, 'edit'])->name('admin.lesson.edit');
+    Route::put('/admin/lesson/{lesson}', [LessonController::class, 'update'])->name('admin.lesson.update');
+    Route::delete('/admin/lesson/{lesson}', [LessonController::class, 'delete'])->name('admin.lesson.delete');
 });
 
 require __DIR__.'/auth.php';

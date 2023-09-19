@@ -1,5 +1,6 @@
 <x-app-layout>
     <div class="bg-primary-100 py-12 h-screen">
+    <div class="md:hidden h-20"></div>
         @if ($message = Session::get('success'))
             <div id="successMessage" class="rounded-md bg-green-50 p-4 mb-6 shadow">
                 <div class="ml-3">
@@ -7,7 +8,7 @@
                 </div>
             </div>
         @endif
-        <div class="max-w-xs sm:max-w-sm md:max-w-xl lg:max-w-full lg:px-12 mx-auto flex justify-center">
+        <div class="max-w-xs sm:max-w-sm md:max-w-xl lg:max-w-full lg:px-12 mx-auto">
             <div class="px-4 sm:px-6 lg:px-8">
                 <div class="sm:flex sm:items-center">
                     <div class="sm:flex-auto">

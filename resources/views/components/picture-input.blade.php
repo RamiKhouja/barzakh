@@ -1,17 +1,9 @@
 <div class="flex items-center space-x-4" x-data="picturePreview()">
     <div class="rounded-full bg-gray-200">
         @if($image == null)
-            @if($circle == "true")
-                <img id="preview" src="{{ asset('pictures/global/default.jpg') }}" alt="" class="w-24 h-24 rounded-full object-cover"/>
-            @else
-                <img id="preview" src="{{ asset('pictures/global/default.jpg') }}" alt="" class="w-24 h-24 rounded-lg object-cover"/>
-            @endif
+        <img id="preview" src="{{ asset('pictures/global/default.jpg') }}" alt="" class="{{ $circle == 'true' ? ('w-24 rounded-full') : ('w-42 rounded-lg')}} h-24 object-cover"/>
         @else
-            @if($circle == "true")
-                <img id="preview" src="{{ asset($image) }}" alt="" class="w-24 h-24 rounded-full object-cover"/>
-            @else
-                <img id="preview" src="{{ asset($image) }}" alt="" class="w-24 h-24 rounded-lg object-cover"/>
-            @endif
+        <img id="preview" src="{{ asset($image) }}" alt="" class="{{ $circle == 'true' ? ('w-24 rounded-full') : ('w-42 rounded-lg')}} h-24 object-cover"/>
         @endif
     </div>
     <div>
