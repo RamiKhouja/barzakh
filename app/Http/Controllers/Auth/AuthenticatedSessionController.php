@@ -25,9 +25,13 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
+        $clientIP = request()->ip();
+
         $request->authenticate();
 
         $request->session()->regenerate();
+        
+        $user = auth()->user();
 
         return redirect()->intended(RouteServiceProvider::HOME);
     }
