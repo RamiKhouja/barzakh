@@ -8,7 +8,7 @@
                         Update Instructor Informations
                     </p>
                 </div>
-                <form method="POST" action="{{ route('admin.instructor.update', ['instructor' => $instructor->id]) }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('admin.instructor.update', $instructor->id) }}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="flex justify-between space-x-4 mt-8">
@@ -16,7 +16,7 @@
                             <label htmlFor="title" class="form-label mb-2">
                                 Profile Picture
                             </label>
-                            <x-picture-input :image="old('picture', $instructor->image)" />
+                            <x-picture-input :image="old('picture', $instructor->image)" :circle="true"/>
                         </div>
                     </div>
                     <div>

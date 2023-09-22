@@ -1,7 +1,7 @@
 <nav x-data="{ open: false }" class="bg-primary-100 dark:bg-gray-800 border-0 dark:border-gray-700 fixed top-0 z-50 w-full md:relative md:shadow-none" id="navigation">
     <!-- Primary Navigation Menu -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-        <div class="flex justify-between {{ Request::path() == '/' ? 'items-start' : 'items-center'}}">
+    <div class="mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-0 w-full bg-primary-100 group" id="navbar">
+        <div class="flex justify-between {{ Request::path() == '/' ? 'items-start' : 'items-center'}} nav-content">
             <div>
                 <button @click="open = !open" class="md:hidden block text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
@@ -28,7 +28,7 @@
             </div>
             <div class="nav-center md:w-3/5 lg:w-1/2 hidden md:block">
                 @if (Request::path() == '/')
-                <div class="flex justify-center mt-12">
+                <div class="flex justify-center mt-12 logo">
                     <img src="{{ asset('pictures/global/logo-main.png') }}" class="h-32" alt=""/>
                 </div>
                 @endif
@@ -185,6 +185,15 @@
     </div>
 </nav>
 
+<style>
+    #navbar.fixed .nav-content {
+        align-items: center;
+    }
+    #navbar.fixed .logo {
+    display: none; /* Remove the logo when fixed */
+}
+</style>
+
 <script>
     window.addEventListener("scroll", function () {
         const navigation = document.getElementById("navigation");
@@ -197,4 +206,17 @@
             navigation.classList.remove("shadow");
         }
     });
+
+    const navbar = document.getElementById('navbar');
+    const logo = document.querySelector('.logo');
+    const threshold = 200; // Adjust this value as needed
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > threshold) {
+            navbar.classList.add('fixed');
+        } else {
+            navbar.classList.remove('fixed');
+        }
+    });
+
 </script>

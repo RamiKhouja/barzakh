@@ -49,7 +49,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::post('/admin/instructor', [InstructorController::class, 'store'])->name('instructor.store');
     Route::get('/admin/instructors', [InstructorController::class, 'index'])->name('admin.instructors');
     Route::get('/admin/instructor/edit/{instructor}', [InstructorController::class, 'edit'])->name('admin.instructor.edit');
-    Route::put('/admin/instructor/update', [InstructorController::class, 'update'])->name('admin.instructor.update');
+    Route::put('/admin/instructor/{instructor}', [InstructorController::class, 'update'])->name('admin.instructor.update');
 
     // Admin categories routes
     Route::get('/admin/category/create', [CategoryController::class, 'create'])->name('admin.category.create');
