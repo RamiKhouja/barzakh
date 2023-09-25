@@ -13,7 +13,7 @@ export default {
         extend: {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
-                ibm: "'IBM Plex Sans Arabic', serif"
+                ibm: "'IBM Plex Sans Arabic', serif",
             },
         },
         colors: {

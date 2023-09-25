@@ -9,6 +9,7 @@ use App\Http\Controllers\InstructorController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\LocaleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,8 @@ use App\Http\Controllers\WelcomeController;
 */
 
 Route::get('/', [WelcomeController::class, 'index']);
+
+Route::post('/set-locale', [LocaleController::class, 'setLocale'])->name('setLocale');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

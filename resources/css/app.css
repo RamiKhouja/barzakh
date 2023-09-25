@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+    font-family: 'RbFont'; /* Choose a unique name for your font */
+    src: url('../fonts/arb-regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'RbFontBolf'; /* Choose a unique name for your font */
+    src: url('../fonts/arb-bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
 
 .form-input {
     @apply block w-full rounded-md border-0 py-1.5 text-gray-700 shadow-sm ring-1 ring-inset ring-primary-200 placeholder:text-gray-300 focus:ring-inset focus:ring-primary-500 sm:text-sm sm:leading-6;

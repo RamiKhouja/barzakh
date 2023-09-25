@@ -1,4 +1,5 @@
 <x-app-layout>
+    <?php $lang = app()->getLocale(); ?>
     <div class="bg-primary-100">
         <div class="md:hidden h-20"></div>
         <div class="max-w-xs sm:max-w-sm md:max-w-xl lg:max-w-3xl mx-auto flex justify-center">
@@ -8,8 +9,8 @@
         </div>
         <div class="flex justify-center">
             <div class="sm:px-6 lg:px-8 my-8 py-8 text-center max-w-xs sm:max-w-sm md:max-w-xl lg:max-w-3xl border-b-2 border-b-primary-500">
-                <p class="text-2xl mb-4 text-gray-700 font-semibold">Charter</p>
-                <p class="text-lg">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum id soluta odit voluptatibus, enim provident nemo ullam? Eaque soluta quam natus vel ullam officiis suscipit, doloremque a vitae, voluptas ratione.</p>
+                <p class="text-2xl mb-4 text-gray-700 font-semibold">{{__('welcome.Charter')}}</p>
+                <p class="text-lg">{{__('welcome.Charter-content')}}</p>
             </div>
         </div>
         <div id="courses" class="py-8 max-w-xs sm:max-w-xl md:max-w-xl lg:max-w-3xl mx-auto my-32">
@@ -19,11 +20,11 @@
                     <div class="h-72 w-72 md:h-52 md:w-52 lg:h-72 lg:w-72 my-6 md:my-0 cat-circle hover:shadow-lg rounded-full">  
                         <div class="h-2/5 flex items-center justify-center text-center">
                             <div class="w-48">
-                                <p class="text-xl md:text-lg lg:text-xl text-gray-700 font-ibm font-semibold">{{ $field->getTranslation('title', 'ar') }}</p>
+                                <p class="text-xl md:text-lg lg:text-xl text-gray-700 font-ibm font-semibold">{{ $field->title }}</p>
                             </div>
                         </div>
                         <div class="h-3/5 p-8 text-center">
-                            <p class="text-xl md:text-lg lg:text-xl font-ibm font-normal text-gray-400">{{ $field->getTranslation('subtitle', 'ar') }}</p>
+                            <p class="text-xl md:text-lg lg:text-xl font-ibm font-normal text-gray-400">{{ $field->subtitle }}</p>
                         </div> 
                     </div>
                 @endforeach
@@ -32,13 +33,13 @@
         </div>
         <div class="my-28">
             <div class="tabs container py-8 max-w-xs sm:max-w-xl md:max-w-7xl mx-auto">
-                <p class="text-2xl md:text-3xl lg:text-5xl text-primary-700 font-black px-4 md:px-8 lg:px-16 mb-4">
-                    We chose for you
+                <p class="text-2xl md:text-3xl lg:text-5xl text-primary-700 font-black px-4 md:px-8 lg:px-16 mb-4 {{$lang=='ar'?('text-right'):('')}}">
+                    {{__('welcome.chose-for-you')}}
                 </p>
-                <ul class="tab-links px-4 md:px-8 lg:px-16">
-                    <li class="tab-link active" data-tab="tab-1">Chosen Courses</li>
-                    <li class="tab-link" data-tab="tab-2">Most Watched</li>
-                    <li class="tab-link" data-tab="tab-3">Most Recent</li>
+                <ul class="tab-links px-4 md:px-8 lg:px-16 {{$lang=='ar'?('flex-row-reverse'):('')}}">
+                    <li class="tab-link active" data-tab="tab-1">{{__('welcome.chosen-courses')}}</li>
+                    <li class="tab-link" data-tab="tab-2">{{__('welcome.most-watched')}}</li>
+                    <li class="tab-link" data-tab="tab-3">{{__('welcome.most-recent')}}</li>
                     <!-- Add more tab links as needed -->
                 </ul>
                 @foreach ($courses as $key => $courseType)
@@ -53,7 +54,7 @@
                             <div class="rounded-3xl group">
                                 <img src="{{ asset($course->image) }}" alt="Slide 1" class="max-h-32 rounded-t-3xl">
                                 <div class="group-hover:visible group-hover:translate-y-0 course-duration-band bg-stone text-white py-2 px-4 bg-opacity-70">
-                                        <div class="flex items-center space-x-2">
+                                        <div class="flex items-center space-x-2 {{$lang == 'ar' ? ('flex-row-reverse') : ('')}}">
                                             <x-heroicon-o-clock class="w-4 h-4"/>
                                             <p class="text-sm font-semibold">
                                                 <?php
@@ -61,20 +62,20 @@
                                                     $minutes = floor(($course->duration % 3600) / 60);
                                                     $seconds = $course->duration % 60;
                                                 ?>
-                                                {{$hours>0 ? ($hours==1 ? ('1h ') : ($hours.'h ')): ('')}}
-                                                {{$minutes>0 ? ($minutes==1 ? ('1m') : ($minutes.'m')): ('')}}
+                                                {{$hours>0 ? ($hours==1 ? (__('welcome.1h').' ') : ($hours.__('welcome.h').' ')): ('')}}
+                                                {{$minutes>0 ? ($minutes==1 ? __('welcome.1m') : ($minutes.__('welcome.m'))): ('')}}
                                             </p> 
                                             <p class="text-sm font-black">|</p>
                                             <p class="text-sm font-semibold">
-                                                {{$course->nb_lessons> 0 ? ($course->nb_lessons==1 ? ('1 Lesson') : ($course->nb_lessons.' Lessons')): ('No Lessons')}}
+                                                {{$course->nb_lessons> 0 ? ($course->nb_lessons==1 ? __('welcome.1Lesson') : ($course->nb_lessons.' '.__('welcome.Lessons'))): __('welcome.No-Lessons')}}
                                             </p>
                                         </div>
                                 </div>
                                 <div class="group-hover:bg-gray-400 rounded-b-3xl p-4 bg-stone">
-                                    <p class="text-xl text-gray-50 font-semibold mb-4">
-                                        {{$course->title_en}}
+                                    <p class="text-xl text-gray-50 font-semibold mb-4 {{$lang == 'ar' ? ('text-right') : ('')}}">
+                                        {{$lang == 'ar' ? $course->title_ar : $course->title_en}}
                                     </p>
-                                    <div class="flex justify-between items-center">
+                                    <div class="flex justify-between items-center {{$lang == 'ar' ? ('flex-row-reverse') : ('')}}">
                                         <p class="text-base text-gray-200">
                                             {{$course->instructor->firstname}} {{$course->instructor->lastname}}
                                         </p>
@@ -96,14 +97,14 @@
                 <!-- Add more tab content containers as needed -->
             </div>
         </div>
-        <div class="border-y-2 border-y-primary-500 p-12 sm:p-32">
+        <div class=" p-12 sm:p-32">
             
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-10">
                 @foreach($instructors as $instructor)
                 <div class="group relative">
                     <img class="h-auto max-w-full" src="{{ asset($instructor->image) }}" alt="">
                     <div class="group-hover:visible group-hover:translate-y-0 instructor-details bg-stone text-white py-4 px-4 bg-opacity-70">
-                        <div>
+                        <div class="{{$lang == 'ar' ? ('text-right') : ('')}}">
                             <p class="text-xl font-semibold">{{$instructor->firstname}} {{$instructor->lastname}}</p>
                             <p class="text-base font-medium text-gray-50">{{$instructor->email}}</p>
                         </div>
@@ -112,6 +113,51 @@
                 @endforeach
             </div>
 
+        </div>
+        <div class="footer px-8 sm:px-20 md:px-16 lg:px-44 pb-6">
+            <div class="flex justify-center space-x-16 pb-32">
+                <img src="{{ asset('pictures/global/barzakh-freelance.png') }}" class="h-28 sm:h-52" alt=""/>
+                <img src="{{ asset('pictures/global/barzakh-store.png') }}" class="h-28 sm:h-52" alt=""/>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-16" dir="{{$lang == 'ar' ? ('rtl') : ('ltr')}}">
+                <div class="text-center {{$lang == 'ar' ? ('sm:text-right') : ('sm:text-left')}} space-y-2 mx-auto sm:mx-0">
+                    <img src="{{ asset('pictures/global/logo.png') }}" class="h-16" alt=""/>
+                    <p class="text-primary-700 font-black text-xl px-2">{{__('welcome.about-barzakh')}}</p>
+                    <p class="text-primary-700 {{$lang == 'ar' ? ('font-midium') : ('font-semibold')}} text-lg px-2">{{__('welcome.our-news')}}</p>
+                    <p class="text-primary-700 {{$lang == 'ar' ? ('font-midium') : ('font-semibold')}} text-lg px-2">{{__('welcome.the-team')}}</p>
+                    <p class="text-primary-700 {{$lang == 'ar' ? ('font-midium') : ('font-semibold')}} text-lg px-2">{{__('welcome.contact-us')}}</p>
+                </div>
+                <div class="text-center {{$lang == 'ar' ? ('sm:text-right') : ('sm:text-left')}} space-y-2 mx-auto sm:mx-0">
+                    <p class="text-primary-700 font-black text-xl">{{__('welcome.discover-more')}}</p>
+                    <p class="text-gray-700 {{$lang == 'ar' ? ('font-midium') : ('font-semibold')}} text-lg">{{__('welcome.our-courses')}}</p>
+                    <p class="text-gray-700 {{$lang == 'ar' ? ('font-midium') : ('font-semibold')}} text-lg">{{__('welcome.most-popular-courses')}}</p>
+                    <p class="text-gray-700 {{$lang == 'ar' ? ('font-midium') : ('font-semibold')}} text-lg">{{__('welcome.subscription-plans')}}</p>
+                    <p class="text-gray-700 {{$lang == 'ar' ? ('font-midium') : ('font-semibold')}} text-lg">{{__('welcome.our-experts')}}</p>
+                    <p class="text-gray-700 {{$lang == 'ar' ? ('font-midium') : ('font-semibold')}} text-lg">{{__('welcome.learning-partners')}}</p>
+                </div>
+                <div class="text-center {{$lang == 'ar' ? ('sm:text-right') : ('sm:text-left')}} space-y-2 mx-auto sm:mx-0">
+                    <p class="text-primary-700 font-black text-xl">{{__('welcome.barzakh-for-business')}}</p>
+                    <p class="text-gray-700 {{$lang == 'ar' ? ('font-midium') : ('font-semibold')}} text-lg">{{__('welcome.join-our-experts')}}</p>
+                    <p class="text-gray-700 {{$lang == 'ar' ? ('font-midium') : ('font-semibold')}} text-lg">{{__('welcome.train-your-team')}}</p>
+                </div>
+                <div class="text-center space-y-4 mx-auto">
+                    <p class="text-gray-700 font-black text-xl">{{__('welcome.download-app')}}</p>
+                    <img src="{{ asset('pictures/global/mobile-apps-buttons.png') }}" class="w-64 sm:w-full" alt=""/>
+                </div>
+            </div>
+            <div class="pt-24 md:flex md:justify-between md:items-center space-y-4 md:space-y-0 {{$lang == 'ar' ? ('md:flex-row-reverse') : ('')}}">
+                <div class="sm:flex sm:space-x-6 space-y-2 sm:space-y-0 sm:justify-center md:justify-normal text-center">
+                    <p class="text-primary-700 {{$lang == 'ar' ? ('font-midium') : ('font-semibold')}}">{{__('welcome.terms-of-use')}}</p>
+                    <p class="text-primary-700 {{$lang == 'ar' ? ('font-midium') : ('font-semibold')}}">{{__('welcome.privacy-policy')}}</p>
+                    <p class="text-primary-700 {{$lang == 'ar' ? ('font-midium') : ('font-semibold')}}">{{__('welcome.help-center')}}</p>
+                </div>
+                <div class="flex space-x-2 justify-center md:justify-normal">
+                    <img src="{{ asset('pictures/global/yt.png') }}" class="w-8" alt=""/>
+                    <img src="{{ asset('pictures/global/fb.png') }}" class="w-8" alt=""/>
+                    <img src="{{ asset('pictures/global/tw.png') }}" class="w-8" alt=""/>
+                    <img src="{{ asset('pictures/global/li.png') }}" class="w-8" alt=""/>
+                </div>
+            </div>
         </div>
     </div>
     <style>
@@ -158,7 +204,6 @@
             transform: translateY(100%);
             transition: transform .25s linear;
         }
-        
     </style>
 </x-app-layout>
 
