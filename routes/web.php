@@ -81,4 +81,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::delete('/admin/lesson/{lesson}', [LessonController::class, 'delete'])->name('admin.lesson.delete');
 });
 
+// Guest Routes
+Route::get('/categories/{url}', [FieldController::class, 'showByUrl'])->name('fields.showUrl');
+Route::get('/courses/{url}', [CategoryController::class, 'showByUrl'])->name('category.showUrl');
+Route::get('/course/{url}', [CourseController::class, 'showByUrl'])->name('course.showUrl');
+
 require __DIR__.'/auth.php';

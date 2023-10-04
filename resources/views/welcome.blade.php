@@ -2,9 +2,9 @@
     <?php $lang = app()->getLocale(); ?>
     <div class="bg-primary-100">
         <div class="md:hidden h-20"></div>
-        <div class="max-w-xs sm:max-w-sm md:max-w-xl lg:max-w-3xl mx-auto flex justify-center">
-            <video class="md:h-[27rem]" muted autoplay>
-                <source src="{{ asset('pictures/main-vid.mp4') }}" type="video/mp4">
+        <div class="mx-auto flex justify-center">
+            <video class="md:h-[30rem]" muted autoplay>
+                <source src="{{ asset('pictures/barzakh.mp4') }}" type="video/mp4">
             </video>
         </div>
         <div class="flex justify-center">
@@ -13,10 +13,11 @@
                 <p class="text-lg">{{__('welcome.Charter-content')}}</p>
             </div>
         </div>
-        <div id="courses" class="py-8 max-w-xs sm:max-w-xl md:max-w-xl lg:max-w-3xl mx-auto my-32">
+        <div id="courses" class="max-w-xs sm:max-w-xl md:max-w-xl lg:max-w-3xl mx-auto my-32">
             <div class="flex justify-center">
                 <div class="xs:columns-1 md:columns-3 md:gap-4 lg:gap-8">
                 @foreach($fields as $field)
+                <a href="{{ route('fields.showUrl', ['url' => $field->url]) }}">
                     <div class="h-72 w-72 md:h-52 md:w-52 lg:h-72 lg:w-72 my-6 md:my-0 cat-circle hover:shadow-lg rounded-full">  
                         <div class="h-2/5 flex items-center justify-center text-center">
                             <div class="w-48">
@@ -27,11 +28,12 @@
                             <p class="text-xl md:text-lg lg:text-xl font-ibm font-normal text-gray-400">{{ $field->subtitle }}</p>
                         </div> 
                     </div>
+                </a>
                 @endforeach
                 </div>
             </div>
         </div>
-        <div class="my-28">
+        <div class="mt-28">
             <div class="tabs container py-8 max-w-xs sm:max-w-xl md:max-w-7xl mx-auto">
                 <p class="text-2xl md:text-3xl lg:text-5xl text-primary-700 font-black px-4 md:px-8 lg:px-16 mb-4 {{$lang=='ar'?('text-right'):('')}}">
                     {{__('welcome.chose-for-you')}}
@@ -53,7 +55,7 @@
                         <div class="item">
                             <div class="rounded-3xl group">
                                 <img src="{{ asset($course->image) }}" alt="Slide 1" class="max-h-32 rounded-t-3xl">
-                                <div class="group-hover:visible group-hover:translate-y-0 course-duration-band bg-stone text-white py-2 px-4 bg-opacity-70">
+                                <div class="group-hover:visible group-hover:translate-y-0 course-duration-band bg-stone text-white py-1 px-4 bg-opacity-70">
                                         <div class="flex items-center space-x-2 {{$lang == 'ar' ? ('flex-row-reverse') : ('')}}">
                                             <x-heroicon-o-clock class="w-4 h-4"/>
                                             <p class="text-sm font-semibold">
@@ -114,51 +116,11 @@
             </div>
 
         </div>
-        <div class="footer px-8 sm:px-20 md:px-16 lg:px-44 pb-6">
-            <div class="flex justify-center space-x-16 pb-32">
-                <img src="{{ asset('pictures/global/barzakh-freelance.png') }}" class="h-28 sm:h-52" alt=""/>
-                <img src="{{ asset('pictures/global/barzakh-store.png') }}" class="h-28 sm:h-52" alt=""/>
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-16" dir="{{$lang == 'ar' ? ('rtl') : ('ltr')}}">
-                <div class="text-center {{$lang == 'ar' ? ('sm:text-right') : ('sm:text-left')}} space-y-2 mx-auto sm:mx-0">
-                    <img src="{{ asset('pictures/global/logo.png') }}" class="h-16" alt=""/>
-                    <p class="text-primary-700 font-black text-xl px-2">{{__('welcome.about-barzakh')}}</p>
-                    <p class="text-primary-700 {{$lang == 'ar' ? ('font-midium') : ('font-semibold')}} text-lg px-2">{{__('welcome.our-news')}}</p>
-                    <p class="text-primary-700 {{$lang == 'ar' ? ('font-midium') : ('font-semibold')}} text-lg px-2">{{__('welcome.the-team')}}</p>
-                    <p class="text-primary-700 {{$lang == 'ar' ? ('font-midium') : ('font-semibold')}} text-lg px-2">{{__('welcome.contact-us')}}</p>
-                </div>
-                <div class="text-center {{$lang == 'ar' ? ('sm:text-right') : ('sm:text-left')}} space-y-2 mx-auto sm:mx-0">
-                    <p class="text-primary-700 font-black text-xl">{{__('welcome.discover-more')}}</p>
-                    <p class="text-gray-700 {{$lang == 'ar' ? ('font-midium') : ('font-semibold')}} text-lg">{{__('welcome.our-courses')}}</p>
-                    <p class="text-gray-700 {{$lang == 'ar' ? ('font-midium') : ('font-semibold')}} text-lg">{{__('welcome.most-popular-courses')}}</p>
-                    <p class="text-gray-700 {{$lang == 'ar' ? ('font-midium') : ('font-semibold')}} text-lg">{{__('welcome.subscription-plans')}}</p>
-                    <p class="text-gray-700 {{$lang == 'ar' ? ('font-midium') : ('font-semibold')}} text-lg">{{__('welcome.our-experts')}}</p>
-                    <p class="text-gray-700 {{$lang == 'ar' ? ('font-midium') : ('font-semibold')}} text-lg">{{__('welcome.learning-partners')}}</p>
-                </div>
-                <div class="text-center {{$lang == 'ar' ? ('sm:text-right') : ('sm:text-left')}} space-y-2 mx-auto sm:mx-0">
-                    <p class="text-primary-700 font-black text-xl">{{__('welcome.barzakh-for-business')}}</p>
-                    <p class="text-gray-700 {{$lang == 'ar' ? ('font-midium') : ('font-semibold')}} text-lg">{{__('welcome.join-our-experts')}}</p>
-                    <p class="text-gray-700 {{$lang == 'ar' ? ('font-midium') : ('font-semibold')}} text-lg">{{__('welcome.train-your-team')}}</p>
-                </div>
-                <div class="text-center space-y-4 mx-auto">
-                    <p class="text-gray-700 font-black text-xl">{{__('welcome.download-app')}}</p>
-                    <img src="{{ asset('pictures/global/mobile-apps-buttons.png') }}" class="w-64 sm:w-full" alt=""/>
-                </div>
-            </div>
-            <div class="pt-24 md:flex md:justify-between md:items-center space-y-4 md:space-y-0 {{$lang == 'ar' ? ('md:flex-row-reverse') : ('')}}">
-                <div class="sm:flex sm:space-x-6 space-y-2 sm:space-y-0 sm:justify-center md:justify-normal text-center">
-                    <p class="text-primary-700 {{$lang == 'ar' ? ('font-midium') : ('font-semibold')}}">{{__('welcome.terms-of-use')}}</p>
-                    <p class="text-primary-700 {{$lang == 'ar' ? ('font-midium') : ('font-semibold')}}">{{__('welcome.privacy-policy')}}</p>
-                    <p class="text-primary-700 {{$lang == 'ar' ? ('font-midium') : ('font-semibold')}}">{{__('welcome.help-center')}}</p>
-                </div>
-                <div class="flex space-x-2 justify-center md:justify-normal">
-                    <img src="{{ asset('pictures/global/yt.png') }}" class="w-8" alt=""/>
-                    <img src="{{ asset('pictures/global/fb.png') }}" class="w-8" alt=""/>
-                    <img src="{{ asset('pictures/global/tw.png') }}" class="w-8" alt=""/>
-                    <img src="{{ asset('pictures/global/li.png') }}" class="w-8" alt=""/>
-                </div>
-            </div>
+        <div class="flex justify-center space-x-16 pb-32">
+            <img src="{{ asset('pictures/global/barzakh-freelance.png') }}" class="h-28 sm:h-52" alt=""/>
+            <img src="{{ asset('pictures/global/barzakh-store.png') }}" class="h-28 sm:h-52" alt=""/>
         </div>
+        <x-footer/>
     </div>
     <style>
         @tailwind base;
@@ -189,8 +151,8 @@
         .course-duration-band {
             position: absolute;
             visibility: hidden;
-            top: 94px;
-            height: 35px;
+            top: 100px;
+            height: 28px;
             width: 100%;
             transform: translateY(100%);
             transition: transform .25s linear;

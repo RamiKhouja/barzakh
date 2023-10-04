@@ -107,4 +107,13 @@ class CategoryController extends Controller
 
         return redirect()->route('admin.categories')->with('success', 'Category deleted successfully');
     }
+
+    public function showByUrl($url)
+    {
+        $category = Category::where('url', $url)->first();
+        if (!$category) { abort(404); }
+        $courses = $category->courses()->paginate(12);
+
+        return view('client.category', compact(['category','courses']));
+    }
 }

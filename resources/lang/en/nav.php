@@ -14,5 +14,8 @@ return [
     'Login' => 'Log in',
     'Register' => 'Register',
     'Search' => 'Search',
+    'religious-vision'=> 'Religious Vision',
+    'beauty-vision' => 'Beauty Vision',
+    'scientific-and-philosophical-vision' => 'Scientific and Philosophical Vision',
 ];
 ?>

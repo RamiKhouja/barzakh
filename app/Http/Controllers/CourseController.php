@@ -227,4 +227,13 @@ class CourseController extends Controller
         $instructor->save();
         return redirect()->route('admin.courses')->with('success', 'Course deleted successfully');
     }
+
+    public function showByUrl($url)
+    {
+        $course = Course::where('url', $url)->first();
+        if (!$course) { abort(404); }
+        $categories = $course->categories;
+
+        return view('client.courses.show', compact(['course', 'categories']));
+    }
 }

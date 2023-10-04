@@ -1,6 +1,8 @@
 <nav x-data="{ open: false }" class="bg-primary-100 dark:bg-gray-700 border-0 dark:border-gray-700 fixed top-0 z-50 w-full md:relative md:shadow-none" id="navigation">
     <!-- Primary Navigation Menu -->
-    <?php $lang = app()->getLocale(); ?>
+    <?php 
+        $lang = app()->getLocale(); 
+    ?>
     <div class="mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-0 w-full bg-primary-100 group" id="navbar">
         <div class="flex justify-between {{ Request::path() == '/' ? 'items-start' : 'items-center'}} nav-content">
             <div>
@@ -17,7 +19,7 @@
                             @csrf
                             <select name="locale" onchange="this.form.submit()" class="border-0 bg-primary-100 focus:outline-0" >
                                 <option value="en" {{ $lang == 'en' ? 'selected' : '' }}>English</option>
-                                <option value="ar" {{ $lang == 'ar' ? 'selected' : '' }}>عربية</option>
+                                <option value="ar" {{ $lang == 'ar' ? 'selected' : '' }}>العربية</option>
                             </select>
                         </form>
                     </div>
@@ -44,31 +46,57 @@
                 <div class="flex justify-center">
                 @auth
                     @if(Auth::user()->role == 'admin') 
-                    <div class="flex-wrap my-4 space-x-2 text-primary-700 font-semibold">
-                        <a href="{{ route('admin.dashboard') }}" class="hover:bg-primary-200 px-2 py-0.5 rounded-lg">{{ __('nav.Dashboard') }}</a>
-                        <a href="{{ route('admin.fields') }}" class="hover:bg-primary-200 px-2 py-0.5 rounded-lg">{{ __('nav.Axes') }}</a>
-                        <a href="{{ route('admin.categories') }}" class="hover:bg-primary-200 px-2 py-0.5 rounded-lg">{{ __('nav.Categories') }}</a>
-                        <a href="{{ route('admin.courses') }}" class="hover:bg-primary-200 px-2 py-0.5 rounded-lg">{{ __('nav.Courses') }}</a>
-                        <a href="{{ route('admin.instructors') }}" class="hover:bg-primary-200 px-2 py-0.5 rounded-lg">{{ __('nav.Instructors') }}</a>
+                    <div class="flex-wrap my-4 space-x-2 text-primary-700 font-medium">
+                        <a href="{{ route('admin.dashboard') }}" class="hover:bg-primary-200 px-2 py-1">{{ __('nav.Dashboard') }}</a>
+                        <a href="{{ route('admin.fields') }}" class="hover:bg-primary-200 px-2 py-1">{{ __('nav.Axes') }}</a>
+                        <a href="{{ route('admin.categories') }}" class="hover:bg-primary-200 px-2 py-1">{{ __('nav.Categories') }}</a>
+                        <a href="{{ route('admin.courses') }}" class="hover:bg-primary-200 px-2 py-1">{{ __('nav.Courses') }}</a>
+                        <a href="{{ route('admin.instructors') }}" class="hover:bg-primary-200 px-2 py-1">{{ __('nav.Instructors') }}</a>
                     </div>
                     @else
-                    <div class="flex-wrap my-4 space-x-2 text-primary-700 font-semibold">
-                        <a href="/" class="hover:bg-primary-200 px-2 py-0.5 rounded-lg">{{ __('nav.Home') }}</a>
-                        <a href="" class="hover:bg-primary-200 px-2 py-0.5 rounded-lg">{{ __('nav.About-us') }}</a>
-                        <a href="/#courses" class="hover:bg-primary-200 px-2 py-0.5 rounded-lg">{{ __('nav.Courses') }}</a>
-                        <a href="" class="hover:bg-primary-200 px-2 py-0.5 rounded-lg">{{ __('nav.Instructors') }}</a>
-                        <a href="" class="hover:bg-primary-200 px-2 py-0.5 rounded-lg">{{ __('nav.Plans') }}</a>
-                        <a href="" class="hover:bg-primary-200 px-2 py-0.5 rounded-lg">{{ __('nav.Partners') }}</a>
+                    <div class="flex-wrap my-4 space-x-2 text-primary-700 font-medium">
+                        <a href="/" class="hover:bg-primary-200 px-2 py-1 {{ request()->is('/') ? 'font-bold' : '' }}">{{ __('nav.Home') }}</a>
+                        <a href="" class="hover:bg-primary-200 px-2 py-1">{{ __('nav.About-us') }}</a>
+                        <div class="dropdown">
+                            <button class="hover:bg-primary-200 px-2 py-1 flex space-x-2 items-center {{ (request()->is('course/*') || request()->is('categories/*')) ? 'font-bold' : '' }}">{{ __('nav.Courses') }} <x-heroicon-m-chevron-down class="w-5 h-5 mt-0.5" /></button>
+                            <div class="dropdown-content bg-primary-50 {{$lang=='ar' ? ('text-right right-0'):('')}}">
+                                <a href="{{ route('fields.showUrl', ['url' => 'religious-vision']) }}" class="hover:bg-primary-200">
+                                    {{__('nav.religious-vision')}}
+                                </a>
+                                <a href="{{ route('fields.showUrl', ['url' => 'beauty-vision']) }}" class="hover:bg-primary-200">
+                                    {{__('nav.beauty-vision')}}
+                                </a>
+                                <a href="{{ route('fields.showUrl', ['url' => 'scientific-and-philosophical-vision']) }}" class="hover:bg-primary-200">
+                                    {{__('nav.scientific-and-philosophical-vision')}}
+                                </a>
+                            </div>
+                        </div>
+                        <a href="" class="hover:bg-primary-200 px-2 py-1">{{ __('nav.Instructors') }}</a>
+                        <a href="" class="hover:bg-primary-200 px-2 py-1">{{ __('nav.Plans') }}</a>
+                        <a href="" class="hover:bg-primary-200 px-2 py-1">{{ __('nav.Partners') }}</a>
                     </div>
                     @endif
                 @else
-                    <div class="flex-wrap my-4 space-x-2 text-primary-700 font-semibold">
-                        <a href="/" class="hover:bg-primary-200 px-2 py-0.5 rounded-lg">{{ __('nav.Home') }}</a>
-                        <a href="" class="hover:bg-primary-200 px-2 py-0.5 rounded-lg">{{ __('nav.About-us') }}</a>
-                        <a href="/#courses" class="hover:bg-primary-200 px-2 py-0.5 rounded-lg">{{ __('nav.Courses') }}</a>
-                        <a href="" class="hover:bg-primary-200 px-2 py-0.5 rounded-lg">{{ __('nav.Instructors') }}</a>
-                        <a href="" class="hover:bg-primary-200 px-2 py-0.5 rounded-lg">{{ __('nav.Plans') }}</a>
-                        <a href="" class="hover:bg-primary-200 px-2 py-0.5 rounded-lg">{{ __('nav.Partners') }}</a>
+                    <div class="flex-wrap my-4 space-x-2 text-primary-700 font-medium">
+                        <a href="/" class="hover:bg-primary-200 px-2 py-1 {{ request()->is('/') ? 'font-bold' : '' }}">{{ __('nav.Home') }}</a>
+                        <a href="" class="hover:bg-primary-200 px-2 py-1">{{ __('nav.About-us') }}</a>
+                        <div class="dropdown">
+                            <button class="hover:bg-primary-200 px-2 py-1 flex space-x-2 items-center {{ (request()->is('course/*') || request()->is('categories/*') ) ? 'font-bold' : '' }}">{{ __('nav.Courses') }} <x-heroicon-m-chevron-down class="w-5 h-5 mt-0.5" /></button>
+                            <div class="dropdown-content bg-primary-50 {{$lang=='ar' ? ('text-right right-0'):('')}}">
+                                <a href="{{ route('fields.showUrl', ['url' => 'religious-vision']) }}" class="hover:bg-primary-200">
+                                    {{__('nav.religious-vision')}}
+                                </a>
+                                <a href="{{ route('fields.showUrl', ['url' => 'beauty-vision']) }}" class="hover:bg-primary-200">
+                                    {{__('nav.beauty-vision')}}
+                                </a>
+                                <a href="{{ route('fields.showUrl', ['url' => 'scientific-and-philosophical-vision']) }}" class="hover:bg-primary-200">
+                                    {{__('nav.scientific-and-philosophical-vision')}}
+                                </a>
+                            </div>
+                        </div>
+                        <a href="" class="hover:bg-primary-200 px-2 py-1">{{ __('nav.Instructors') }}</a>
+                        <a href="" class="hover:bg-primary-200 px-2 py-1">{{ __('nav.Plans') }}</a>
+                        <a href="" class="hover:bg-primary-200 px-2 py-1">{{ __('nav.Partners') }}</a>
                     </div>
                 @endauth
                 </div>
@@ -114,10 +142,10 @@
                             </x-dropdown>
                         </div>
                     @else
-                        <a href="{{ route('login') }}" class="font-semibold text-primary-700 hover:bg-primary-200 px-2 py-0.5 rounded-lg dark:text-gray-50 dark:hover:text-white">{{__('nav.Login')}}</a>
+                        <a href="{{ route('login') }}" class="font-medium text-primary-700 hover:bg-primary-200 px-2 py-1 dark:text-gray-50 dark:hover:text-white">{{__('nav.Login')}}</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 font-semibold text-primary-700 hover:bg-primary-200 px-2 py-0.5 rounded-lg dark:text-gray-50 dark:hover:text-white">{{__('nav.Register')}}</a>
+                            <a href="{{ route('register') }}" class="ml-4 font-medium text-primary-700 hover:bg-primary-200 px-2 py-1 dark:text-gray-50 dark:hover:text-white">{{__('nav.Register')}}</a>
                         @endif
                     @endauth
                 </div>
@@ -145,7 +173,7 @@
                             @csrf
                             <select name="locale" onchange="this.form.submit()" class="border-0 bg-primary-200 focus:outline-0" >
                                 <option value="en" {{ $lang == 'en' ? 'selected' : '' }}>English</option>
-                                <option value="ar" {{ $lang == 'ar' ? 'selected' : '' }}>عربية</option>
+                                <option value="ar" {{ $lang == 'ar' ? 'selected' : '' }}>العربية</option>
                             </select>
                         </form>
                     </div>
@@ -210,7 +238,28 @@
     display: none; /* Remove the logo when fixed */
 }
 </style>
-
+<style>
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+</style>
 <script>
     window.addEventListener("scroll", function () {
         const navigation = document.getElementById("navigation");
