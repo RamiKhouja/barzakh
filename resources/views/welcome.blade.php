@@ -1,6 +1,6 @@
 <x-app-layout>
     <?php $lang = app()->getLocale(); ?>
-    <div class="bg-primary-100">
+    <div class="bg-primary-100 dark:bg-gray-700">
         <div class="md:hidden h-20"></div>
         <div class="mx-auto flex justify-center">
             <video class="md:h-[30rem]" muted autoplay>
@@ -8,9 +8,9 @@
             </video>
         </div>
         <div class="flex justify-center">
-            <div class="sm:px-6 lg:px-8 my-8 py-8 text-center max-w-xs sm:max-w-sm md:max-w-xl lg:max-w-3xl border-b-2 border-b-primary-500">
-                <p class="text-2xl mb-4 text-gray-700 font-semibold">{{__('welcome.Charter')}}</p>
-                <p class="text-lg">{{__('welcome.Charter-content')}}</p>
+            <div class="sm:px-6 lg:px-8 my-8 py-8 text-center max-w-xs sm:max-w-sm md:max-w-xl lg:max-w-3xl border-b-2 border-b-primary-500 dark:border-b-gray-50">
+                <p class="text-2xl mb-4 text-gray-700 font-semibold dark:text-white">{{__('welcome.Charter')}}</p>
+                <p class="text-lg dark:text-gray-50">{{__('welcome.Charter-content')}}</p>
             </div>
         </div>
         <div id="courses" class="max-w-xs sm:max-w-xl md:max-w-xl lg:max-w-3xl mx-auto my-32">
@@ -35,7 +35,7 @@
         </div>
         <div class="mt-28">
             <div class="tabs container py-8 max-w-xs sm:max-w-xl md:max-w-7xl mx-auto">
-                <p class="text-2xl md:text-3xl lg:text-5xl text-primary-700 font-black px-4 md:px-8 lg:px-16 mb-4 {{$lang=='ar'?('text-right'):('')}}">
+                <p class="text-2xl md:text-3xl lg:text-5xl text-primary-700 dark:text-white font-black px-4 md:px-8 lg:px-16 mb-4 {{$lang=='ar'?('text-right'):('')}}">
                     {{__('welcome.chose-for-you')}}
                 </p>
                 <ul class="tab-links px-4 md:px-8 lg:px-16 {{$lang=='ar'?('flex-row-reverse'):('')}}">
@@ -117,8 +117,10 @@
 
         </div>
         <div class="flex justify-center space-x-16 pb-32">
-            <img src="{{ asset('pictures/global/barzakh-freelance.png') }}" class="h-28 sm:h-52" alt=""/>
-            <img src="{{ asset('pictures/global/barzakh-store.png') }}" class="h-28 sm:h-52" alt=""/>
+            <img src="{{ asset('pictures/global/barzakh-freelance.png') }}" class="h-28 sm:h-52 dark:hidden" alt=""/>
+            <img src="{{ asset('pictures/global/barzakh-freelance-white.png') }}" class="h-28 sm:h-52 hidden dark:block" alt=""/>
+            <img src="{{ asset('pictures/global/barzakh-store.png') }}" class="h-28 sm:h-52 dark:hidden" alt=""/>
+            <img src="{{ asset('pictures/global/barzakh-store-white.png') }}" class="h-28 sm:h-52 hidden dark:block" alt=""/>
         </div>
         <x-footer/>
     </div>

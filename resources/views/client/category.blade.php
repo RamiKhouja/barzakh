@@ -1,23 +1,23 @@
 <x-app-layout>
     <?php $lang = app()->getLocale(); ?>
-    <div class="bg-primary-100">
+    <div class="bg-primary-100 dark:bg-gray-700">
         <div class="h-20"></div>
         <div class="max-w-xs sm:max-w-sm md:max-w-xl lg:max-w-4xl xl:max-w-5xl mx-auto mt-8 md:-mt-20 mb-72">
             <div class="flex {{$lang == 'ar' ? ('flex-row-reverse') : ('')}}  md:mt-20 mb-20">
                 <p class="text-sm md:text-base lg:text-lg">
                     <a href="{{ route('fields.showUrl', ['url' => $category->field->url]) }}" 
-                        class="text-gray-400 hover:text-gray-700"
+                        class="text-gray-400 hover:text-gray-700 dark:text-gray-50 dark:hover:text-white"
                     >
                         {{$category->field->title}}
                     </a>
                 </p>
                 @if($lang == 'ar') 
-                <x-heroicon-s-chevron-left class="w-4 mx-2"/>
+                <x-heroicon-s-chevron-left class="w-4 mx-2 dark:text-white"/>
                 @else
-                <x-heroicon-s-chevron-right class="w-4 mx-2" />
+                <x-heroicon-s-chevron-right class="w-4 mx-2 dark:text-white" />
                 @endif
                     
-                <p class="text-sm md:text-base lg:text-lg text-gray-700 font-semibold">
+                <p class="text-sm md:text-base lg:text-lg text-gray-700 dark:text-white font-semibold">
                     {{$lang == 'ar' ? $category->title_ar : $category->title_en}}
                 </p>
             </div>

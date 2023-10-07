@@ -3,10 +3,10 @@
     <?php 
         $lang = app()->getLocale(); 
     ?>
-    <div class="mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-0 w-full bg-primary-100 group" id="navbar">
+    <div class="mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-0 w-full bg-primary-100 dark:bg-gray-700 group dark:shadow-none" id="navbar">
         <div class="flex justify-between {{ Request::path() == '/' ? 'items-start' : 'items-center'}} nav-content">
             <div>
-                <button @click="open = !open" class="md:hidden block text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
+                <button @click="open = !open" class="md:hidden block text-gray-600 hover:text-gray-900 dark:text-gray-50 dark:hover:text-white">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
@@ -14,10 +14,14 @@
             </div>
             <div class="md:w-1/5 lg:w-1/4">
                 <div class="items-center p-6 hidden md:flex md:flex-wrap lg:flex-nowrap md:space-y-2 lg:space-y-0 justify-center">
+                    <button id="theme-toggle-button" class="mr-2">
+                        <x-heroicon-s-moon class="w-6 h-6 text-gray-700 dark:hidden" />
+                        <x-heroicon-s-sun class="w-6 h-6 text-white hidden dark:block" />
+                    </button>
                     <div class="language-switcher">
                         <form action="{{ route('setLocale') }}" method="POST">
                             @csrf
-                            <select name="locale" onchange="this.form.submit()" class="border-0 bg-primary-100 focus:outline-0" >
+                            <select name="locale" onchange="this.form.submit()" class="border-0 bg-primary-100 dark:bg-gray-700 dark:text-white focus:outline-0" >
                                 <option value="en" {{ $lang == 'en' ? 'selected' : '' }}>English</option>
                                 <option value="ar" {{ $lang == 'ar' ? 'selected' : '' }}>العربية</option>
                             </select>
@@ -31,7 +35,7 @@
                             type="text"
                             name="search"
                             id="search"
-                            class="block w-full rounded-full border-0 py-0.5 pl-8 text-gray-700 bg-white ring-1 ring-primary-200 placeholder:text-gray-400 focus:ring-primary-500 sm:text-sm sm:leading-6"
+                            class="block w-full rounded-full border-0 py-0.5 pl-8 text-gray-700 bg-white dark:bg-gray-200 ring-1 ring-primary-200 placeholder:text-gray-400 focus:ring-primary-500 sm:text-sm sm:leading-6"
                             placeholder="{{__('nav.Search')}}"
                         />
                     </div>
@@ -46,57 +50,57 @@
                 <div class="flex justify-center">
                 @auth
                     @if(Auth::user()->role == 'admin') 
-                    <div class="flex-wrap my-4 space-x-2 text-primary-700 font-medium">
-                        <a href="{{ route('admin.dashboard') }}" class="hover:bg-primary-200 px-2 py-1">{{ __('nav.Dashboard') }}</a>
-                        <a href="{{ route('admin.fields') }}" class="hover:bg-primary-200 px-2 py-1">{{ __('nav.Axes') }}</a>
-                        <a href="{{ route('admin.categories') }}" class="hover:bg-primary-200 px-2 py-1">{{ __('nav.Categories') }}</a>
-                        <a href="{{ route('admin.courses') }}" class="hover:bg-primary-200 px-2 py-1">{{ __('nav.Courses') }}</a>
-                        <a href="{{ route('admin.instructors') }}" class="hover:bg-primary-200 px-2 py-1">{{ __('nav.Instructors') }}</a>
+                    <div class="flex-wrap my-4 space-x-2 text-primary-700 dark:text-gray-50 font-medium">
+                        <a href="{{ route('admin.dashboard') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1">{{ __('nav.Dashboard') }}</a>
+                        <a href="{{ route('admin.fields') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1">{{ __('nav.Axes') }}</a>
+                        <a href="{{ route('admin.categories') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1">{{ __('nav.Categories') }}</a>
+                        <a href="{{ route('admin.courses') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1">{{ __('nav.Courses') }}</a>
+                        <a href="{{ route('admin.instructors') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1">{{ __('nav.Instructors') }}</a>
                     </div>
                     @else
-                    <div class="flex-wrap my-4 space-x-2 text-primary-700 font-medium">
-                        <a href="/" class="hover:bg-primary-200 px-2 py-1 {{ request()->is('/') ? 'font-bold' : '' }}">{{ __('nav.Home') }}</a>
-                        <a href="" class="hover:bg-primary-200 px-2 py-1">{{ __('nav.About-us') }}</a>
+                    <div class="flex-wrap my-4 space-x-2 text-primary-700 dark:text-gray-50 font-medium">
+                        <a href="/" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 {{ request()->is('/') ? 'font-bold dark:text-white' : '' }}">{{ __('nav.Home') }}</a>
+                        <a href="" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1">{{ __('nav.About-us') }}</a>
                         <div class="dropdown">
-                            <button class="hover:bg-primary-200 px-2 py-1 flex space-x-2 items-center {{ (request()->is('course/*') || request()->is('categories/*')) ? 'font-bold' : '' }}">{{ __('nav.Courses') }} <x-heroicon-m-chevron-down class="w-5 h-5 mt-0.5" /></button>
-                            <div class="dropdown-content bg-primary-50 {{$lang=='ar' ? ('text-right right-0'):('')}}">
-                                <a href="{{ route('fields.showUrl', ['url' => 'religious-vision']) }}" class="hover:bg-primary-200">
+                            <button class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 flex space-x-2 items-center {{ (request()->is('course/*') || request()->is('categories/*')) ? 'font-bold dark:text-white' : '' }}">{{ __('nav.Courses') }} <x-heroicon-m-chevron-down class="w-5 h-5 mt-0.5" /></button>
+                            <div class="dropdown-content bg-primary-50 dark:bg-gray-400 dark:text-gray-50 {{$lang=='ar' ? ('text-right right-0'):('')}}">
+                                <a href="{{ route('fields.showUrl', ['url' => 'religious-vision']) }}" class="hover:bg-primary-200 dark:hover:bg-gray-400">
                                     {{__('nav.religious-vision')}}
                                 </a>
-                                <a href="{{ route('fields.showUrl', ['url' => 'beauty-vision']) }}" class="hover:bg-primary-200">
+                                <a href="{{ route('fields.showUrl', ['url' => 'beauty-vision']) }}" class="hover:bg-primary-200 dark:hover:bg-gray-400">
                                     {{__('nav.beauty-vision')}}
                                 </a>
-                                <a href="{{ route('fields.showUrl', ['url' => 'scientific-and-philosophical-vision']) }}" class="hover:bg-primary-200">
+                                <a href="{{ route('fields.showUrl', ['url' => 'scientific-and-philosophical-vision']) }}" class="hover:bg-primary-200 dark:hover:bg-gray-400">
                                     {{__('nav.scientific-and-philosophical-vision')}}
                                 </a>
                             </div>
                         </div>
-                        <a href="" class="hover:bg-primary-200 px-2 py-1">{{ __('nav.Instructors') }}</a>
-                        <a href="" class="hover:bg-primary-200 px-2 py-1">{{ __('nav.Plans') }}</a>
-                        <a href="" class="hover:bg-primary-200 px-2 py-1">{{ __('nav.Partners') }}</a>
+                        <a href="" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1">{{ __('nav.Instructors') }}</a>
+                        <a href="" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1">{{ __('nav.Plans') }}</a>
+                        <a href="" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1">{{ __('nav.Partners') }}</a>
                     </div>
                     @endif
                 @else
-                    <div class="flex-wrap my-4 space-x-2 text-primary-700 font-medium">
-                        <a href="/" class="hover:bg-primary-200 px-2 py-1 {{ request()->is('/') ? 'font-bold' : '' }}">{{ __('nav.Home') }}</a>
-                        <a href="" class="hover:bg-primary-200 px-2 py-1">{{ __('nav.About-us') }}</a>
+                    <div class="flex-wrap my-4 space-x-2 text-primary-700 dark:text-gray-50 font-medium">
+                        <a href="/" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 {{ request()->is('/') ? 'font-bold dark:text-white' : '' }}">{{ __('nav.Home') }}</a>
+                        <a href="" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1">{{ __('nav.About-us') }}</a>
                         <div class="dropdown">
-                            <button class="hover:bg-primary-200 px-2 py-1 flex space-x-2 items-center {{ (request()->is('course/*') || request()->is('categories/*') ) ? 'font-bold' : '' }}">{{ __('nav.Courses') }} <x-heroicon-m-chevron-down class="w-5 h-5 mt-0.5" /></button>
-                            <div class="dropdown-content bg-primary-50 {{$lang=='ar' ? ('text-right right-0'):('')}}">
-                                <a href="{{ route('fields.showUrl', ['url' => 'religious-vision']) }}" class="hover:bg-primary-200">
+                            <button class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 flex space-x-2 items-center {{ (request()->is('course/*') || request()->is('categories/*') ) ? 'font-bold dark:text-white' : '' }}">{{ __('nav.Courses') }} <x-heroicon-m-chevron-down class="w-5 h-5 mt-0.5" /></button>
+                            <div class="dropdown-content bg-primary-50 dark:bg-gray-400 dark:text-gray-50 {{$lang=='ar' ? ('text-right right-0'):('')}}">
+                                <a href="{{ route('fields.showUrl', ['url' => 'religious-vision']) }}" class="hover:bg-primary-200 dark:hover:bg-gray-300">
                                     {{__('nav.religious-vision')}}
                                 </a>
-                                <a href="{{ route('fields.showUrl', ['url' => 'beauty-vision']) }}" class="hover:bg-primary-200">
+                                <a href="{{ route('fields.showUrl', ['url' => 'beauty-vision']) }}" class="hover:bg-primary-200 dark:hover:bg-gray-300">
                                     {{__('nav.beauty-vision')}}
                                 </a>
-                                <a href="{{ route('fields.showUrl', ['url' => 'scientific-and-philosophical-vision']) }}" class="hover:bg-primary-200">
+                                <a href="{{ route('fields.showUrl', ['url' => 'scientific-and-philosophical-vision']) }}" class="hover:bg-primary-200 dark:hover:bg-gray-300">
                                     {{__('nav.scientific-and-philosophical-vision')}}
                                 </a>
                             </div>
                         </div>
-                        <a href="" class="hover:bg-primary-200 px-2 py-1">{{ __('nav.Instructors') }}</a>
-                        <a href="" class="hover:bg-primary-200 px-2 py-1">{{ __('nav.Plans') }}</a>
-                        <a href="" class="hover:bg-primary-200 px-2 py-1">{{ __('nav.Partners') }}</a>
+                        <a href="" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1">{{ __('nav.Instructors') }}</a>
+                        <a href="" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1">{{ __('nav.Plans') }}</a>
+                        <a href="" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1">{{ __('nav.Partners') }}</a>
                     </div>
                 @endauth
                 </div>
@@ -109,7 +113,7 @@
                         <div class="sm:flex sm:items-center sm:ml-6">
                             <x-dropdown align="right" width="48">
                                 <x-slot name="trigger">
-                                    <button class="inline-flex items-center sm:px-3 sm:py-2 text-sm leading-4 font-medium rounded-lg text-gray-500 dark:text-gray-400 dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 hover:bg-primary-200 focus:outline-none transition ease-in-out duration-150">
+                                    <button class="inline-flex items-center sm:px-3 sm:py-2 text-sm leading-4 font-medium rounded-lg text-gray-500 dark:text-gray-400 dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 hover:bg-primary-200 dark:hover:bg-gray-400 focus:outline-none transition ease-in-out duration-150">
                                         <div class="flex items-center">
                                             @if(Auth::user()->image) 
                                                 <img src="{{asset(Auth::user()->image)}}" alt="{{ Auth::user()->firstname }}" class="w-7 h-7 rounded-full object-cover md:mr-2"/>
@@ -142,10 +146,10 @@
                             </x-dropdown>
                         </div>
                     @else
-                        <a href="{{ route('login') }}" class="font-medium text-primary-700 hover:bg-primary-200 px-2 py-1 dark:text-gray-50 dark:hover:text-white">{{__('nav.Login')}}</a>
+                        <a href="{{ route('login') }}" class="font-medium text-primary-700 hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 dark:text-gray-50 dark:hover:text-white">{{__('nav.Login')}}</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 font-medium text-primary-700 hover:bg-primary-200 px-2 py-1 dark:text-gray-50 dark:hover:text-white">{{__('nav.Register')}}</a>
+                            <a href="{{ route('register') }}" class="ml-4 font-medium text-primary-700 hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 dark:text-gray-50 dark:hover:text-white">{{__('nav.Register')}}</a>
                         @endif
                     @endauth
                 </div>
@@ -158,20 +162,24 @@
     <!-- Responsive Navigation Menu -->
     
 
-    <div x-show="open" class="md:hidden fixed top-0 left-0 h-full w-3/4 bg-primary-200 dark:bg-gray-900 shadow-lg z-20">
+    <div x-show="open" class="md:hidden fixed top-0 left-0 h-full w-3/4 bg-primary-200 dark:bg-gray-400 shadow-lg z-20">
         <!-- Menu content goes here -->
         <div class="p-4 space-y-4 h-screen">
             <div class="flex justify-end">
-                <button @click="open = !open" class="md:hidden block text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
+                <button @click="open = !open" class="md:hidden block text-gray-600 hover:text-gray-900 dark:text-gray-50 dark:hover:text-white">
                     <x-zondicon-close class="w-4 h-4" />
                 </button>
             </div>
             <div class="flex flex-col h-full justify-between">
                 <div class="text-center mt-4">
+                    <button id="theme-toggle-button-resp" class="mb-4">
+                        <x-heroicon-s-moon class="w-6 h-6 text-gray-700 dark:hidden" />
+                        <x-heroicon-s-sun class="w-6 h-6 text-white hidden dark:block" />
+                    </button>
                     <div class="language-switcher mb-4">
                         <form action="{{ route('setLocale') }}" method="POST">
                             @csrf
-                            <select name="locale" onchange="this.form.submit()" class="border-0 bg-primary-200 focus:outline-0" >
+                            <select name="locale" onchange="this.form.submit()" class="border-0 bg-primary-200 dark:bg-gray-400 dark:text-white focus:outline-0" >
                                 <option value="en" {{ $lang == 'en' ? 'selected' : '' }}>English</option>
                                 <option value="ar" {{ $lang == 'ar' ? 'selected' : '' }}>العربية</option>
                             </select>
@@ -185,7 +193,7 @@
                             type="text"
                             name="search"
                             id="search"
-                            class="block w-full rounded-full border-0 py-0.5 pl-8 text-gray-700 bg-white ring-1 ring-primary-200 placeholder:text-gray-400 focus:ring-primary-500 sm:text-sm sm:leading-6"
+                            class="block w-full rounded-full border-0 py-0.5 pl-8 text-gray-700 bg-white dark:bg-gray-200 ring-1 ring-primary-200 placeholder:text-gray-400 focus:ring-primary-500 sm:text-sm sm:leading-6"
                             placeholder="{{__('nav.Search')}}"
                         />
                     </div>
@@ -196,19 +204,19 @@
                     <!-- Menu items -->
                     @auth
                         @if(Auth::user()->role == 'admin') 
-                            <div><a href="{{ route('admin.dashboard') }}" class="hover:bg-primary-200 px-2 py-0.5 rounded-lg">{{ __('nav.Dashboard') }}</a></div>
-                            <div><a href="{{ route('admin.fields') }}" class="hover:bg-primary-200 px-2 py-0.5 rounded-lg">{{ __('nav.Axes') }}</a></div>
-                            <div><a href="{{ route('admin.categories') }}" class="hover:bg-primary-200 px-2 py-0.5 rounded-lg">{{ __('nav.Categories') }}</a></div>
-                            <div><a href="{{ route('admin.courses') }}" class="hover:bg-primary-200 px-2 py-0.5 rounded-lg">{{ __('nav.Courses') }}</a></div>
-                            <div><a href="{{ route('admin.instructors') }}" class="hover:bg-primary-200 px-2 py-0.5 rounded-lg">{{ __('nav.Instructors') }}</a></div>
+                            <div><a href="{{ route('admin.dashboard') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-0.5 rounded-lg">{{ __('nav.Dashboard') }}</a></div>
+                            <div><a href="{{ route('admin.fields') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-0.5 rounded-lg">{{ __('nav.Axes') }}</a></div>
+                            <div><a href="{{ route('admin.categories') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-0.5 rounded-lg">{{ __('nav.Categories') }}</a></div>
+                            <div><a href="{{ route('admin.courses') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-0.5 rounded-lg">{{ __('nav.Courses') }}</a></div>
+                            <div><a href="{{ route('admin.instructors') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-0.5 rounded-lg">{{ __('nav.Instructors') }}</a></div>
                         
                         @else
-                            <div><a href="/" class="hover:bg-primary-200 px-2 py-0.5 rounded-lg">{{ __('nav.Home') }}</a></div>
-                            <div><a href="" class="hover:bg-primary-200 px-2 py-0.5 rounded-lg">{{ __('nav.About-us') }}</a></div>
-                            <div><a href="/#courses" class="hover:bg-primary-200 px-2 py-0.5 rounded-lg">{{ __('nav.Courses') }}</a></div>
-                            <div><a href="" class="hover:bg-primary-200 px-2 py-0.5 rounded-lg">{{ __('nav.Instructors') }}</a></div>
-                            <div><a href="" class="hover:bg-primary-200 px-2 py-0.5 rounded-lg">{{ __('nav.Plans') }}</a></div>
-                            <div><a href="" class="hover:bg-primary-200 px-2 py-0.5 rounded-lg">{{ __('nav.Partners') }}</a></div>
+                            <div><a href="/" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-0.5 rounded-lg">{{ __('nav.Home') }}</a></div>
+                            <div><a href="" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-0.5 rounded-lg">{{ __('nav.About-us') }}</a></div>
+                            <div><a href="/#courses" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-0.5 rounded-lg">{{ __('nav.Courses') }}</a></div>
+                            <div><a href="" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-0.5 rounded-lg">{{ __('nav.Instructors') }}</a></div>
+                            <div><a href="" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-0.5 rounded-lg">{{ __('nav.Plans') }}</a></div>
+                            <div><a href="" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-0.5 rounded-lg">{{ __('nav.Partners') }}</a></div>
                         
                         @endif
                     @else
@@ -251,7 +259,6 @@
   z-index: 1;
 }
 .dropdown-content a {
-  color: black;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
@@ -280,9 +287,35 @@
     window.addEventListener('scroll', () => {
         if (window.scrollY > threshold) {
             navbar.classList.add('fixed');
+            navbar.classList.add('dark:border-b');
+            navbar.classList.add('dark:border-b-gray-100');
         } else {
             navbar.classList.remove('fixed');
+            navbar.classList.remove('dark:border-b');
+            navbar.classList.remove('dark:border-b-gray-100');
         }
     });
+
+    // Get the theme preference from localStorage or default to 'light'
+    // const savedTheme = localStorage.getItem('theme') || 'light';
+    // document.documentElement.classList.add(savedTheme);
+
+    // Function to toggle the theme
+    function toggleTheme() {
+        console.log('old theme : ', localStorage.getItem('theme'));
+        const currentTheme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+        document.documentElement.classList.remove(currentTheme);
+        document.documentElement.classList.add(newTheme);
+
+        // Save the theme preference to localStorage
+        localStorage.setItem('theme', newTheme);
+        console.log('new theme : ', localStorage.getItem('theme'));
+    }
+
+    // Add click event listener to the theme toggle button
+    document.getElementById('theme-toggle-button').addEventListener('click', toggleTheme);
+    document.getElementById('theme-toggle-button-resp').addEventListener('click', toggleTheme);
 
 </script>

@@ -85,5 +85,6 @@ Route::middleware(['auth', 'admin'])->group(function () {
 Route::get('/categories/{url}', [FieldController::class, 'showByUrl'])->name('fields.showUrl');
 Route::get('/courses/{url}', [CategoryController::class, 'showByUrl'])->name('category.showUrl');
 Route::get('/course/{url}', [CourseController::class, 'showByUrl'])->name('course.showUrl');
+Route::get('/course/{url}/{number}', [LessonController::class, 'showByCourse'])->name('lesson.showCourse');
 
 require __DIR__.'/auth.php';

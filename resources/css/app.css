@@ -34,22 +34,22 @@
     @apply px-3 py-4 text-sm text-gray-700;
 }
 .resp-menu-item {
-    @apply block py-1 font-semibold text-sm text-primary-700 focus:bg-primary-500 focus:text-white;
+    @apply block py-1 font-semibold text-sm text-primary-700 dark:text-gray-50 focus:bg-primary-500 focus:text-white;
 }
 #navbar.fixed {
     @apply shadow;
 }
 
 body {
-    @apply bg-primary-100;
+    @apply bg-primary-100 dark:bg-gray-700;
 }
 
 .tab-link {
-    @apply cursor-pointer py-0.5 px-1 text-gray-400 font-semibold text-sm md:text-lg border-b-2 border-b-gray-100;
+    @apply cursor-pointer py-0.5 px-1 text-gray-400 dark:text-gray-300 font-semibold text-sm md:text-lg border-b-2 border-b-gray-300;
 }
 
 .tab-link.active {
-    @apply border-b-2 border-b-primary-700 text-primary-700;
+    @apply border-b-2 border-b-primary-700 text-primary-700 dark:text-white dark:border-b-white;
 }
 .field-det-hov {
     @apply group-hover:bg-gray-400 group-hover:translate-y-0 group-hover:h-[140%] group-hover:top-0 group-hover:rounded-t-xl;

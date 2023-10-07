@@ -1,10 +1,10 @@
 <x-app-layout>
     <?php $lang = app()->getLocale(); ?>
-    <div class="bg-primary-100">
+    <div class="bg-primary-100 dark:bg-gray-700">
         <div class="h-20"></div>
         <div class="max-w-xs sm:max-w-sm md:max-w-xl lg:max-w-5xl mx-auto mt-8 md:-mt-20 mb-72">
             <div class="flex justify-center md:mt-20 mb-20">
-                <p class="text-lg md:text-xl lg:text-3xl text-primary-700 font-bold">{{ $field->title }}</p>
+                <p class="text-lg md:text-xl lg:text-3xl text-primary-700 dark:text-white font-bold">{{ $field->title }}</p>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-20" dir="{{$lang == 'ar' ? ('rtl') : ('ltr')}}">
                 @foreach($field->categories as $category)

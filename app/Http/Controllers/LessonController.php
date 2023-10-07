@@ -82,9 +82,21 @@ class LessonController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Lesson $lesson)
+    public function showByCourse($url, $number)
     {
-        //
+        $course = Course::where('url', $url)->firstOrFail();
+        if (!$course) { abort(404); }
+        
+        $lesson = Lesson::where('course_id', $course->id)
+                    ->where('number', $number)
+                    ->firstOrFail();
+        if (!$lesson) { abort(404); }
+
+        $lessons = Lesson::where('course_id', $course->id)
+                     ->orderBy('number')
+                     ->get();
+
+        return view('client.courses.lessons', compact(['course','lessons', 'lesson']));
     }
 
     /**

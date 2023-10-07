@@ -24,7 +24,7 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="antialiased light" x-data="{darkMode: true}" style="font-family:{{app()->getLocale()=='ar' ? ('RbFont') : ('Nunito')}}">
-        <div class="min-h-screen bg-primary-100 dark:bg-gray-900">
+        <div class="min-h-screen bg-primary-100 dark:bg-gray-700">
             @include('layouts.navigation')
 
             <!-- Page Heading -->
@@ -43,5 +43,10 @@
         </div>
         <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+        <script>
+            const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            document.documentElement.classList.add(savedTheme);
+
+        </script>
     </body>
 </html>
