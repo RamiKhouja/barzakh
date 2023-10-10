@@ -33,4 +33,13 @@ class FieldController extends Controller
 
         return Redirect::route('admin.fields')->with('success','Study axe has been created successfully.'); 
     }
+
+    public function showByUrl($url)
+    {
+        $field = Field::where('url', $url)->first();
+
+        if (!$field) { abort(404); }
+
+        return view('client.field', compact('field'));
+    }
 }

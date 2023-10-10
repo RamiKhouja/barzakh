@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+    font-family: 'RbFont'; /* Choose a unique name for your font */
+    src: url('../fonts/arb-regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'RbFontBolf'; /* Choose a unique name for your font */
+    src: url('../fonts/arb-bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
 
 .form-input {
     @apply block w-full rounded-md border-0 py-1.5 text-gray-700 shadow-sm ring-1 ring-inset ring-primary-200 placeholder:text-gray-300 focus:ring-inset focus:ring-primary-500 sm:text-sm sm:leading-6;
@@ -22,5 +34,23 @@
     @apply px-3 py-4 text-sm text-gray-700;
 }
 .resp-menu-item {
-    @apply block py-1 font-semibold text-sm text-primary-700 focus:bg-primary-500 focus:text-white;
+    @apply block py-1 font-semibold text-sm text-primary-700 dark:text-gray-50 focus:bg-primary-500 focus:text-white;
+}
+#navbar.fixed {
+    @apply shadow;
+}
+
+body {
+    @apply bg-primary-100 dark:bg-gray-700;
+}
+
+.tab-link {
+    @apply cursor-pointer py-0.5 px-1 text-gray-400 dark:text-gray-300 font-semibold text-sm md:text-lg border-b-2 border-b-gray-300;
+}
+
+.tab-link.active {
+    @apply border-b-2 border-b-primary-700 text-primary-700 dark:text-white dark:border-b-white;
+}
+.field-det-hov {
+    @apply group-hover:bg-gray-400 group-hover:translate-y-0 group-hover:h-[140%] group-hover:top-0 group-hover:rounded-t-xl;
 }

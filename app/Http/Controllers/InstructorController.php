@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Validation\Rule;
 use App\Models\Instructor;
 
 class InstructorController extends Controller
@@ -54,7 +55,7 @@ class InstructorController extends Controller
 
     public function update(Request $request, Instructor $instructor)
     {
-        $validatedData = $request->validate([
+        $request->validate([
             'firstname_en' => 'required|string',
             'lastname_en' => 'required|string',
             'firstname_ar' => 'required|string',
@@ -63,24 +64,29 @@ class InstructorController extends Controller
             'short_desc_ar' => 'nullable',
             'description_en' => 'nullable',
             'description_ar' => 'nullable',
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.Instructor::class],
+            'email' => [
+                'required', 'string', 'email', 'max:255',
+                Rule::unique('instructors')->ignore($instructor->id)
+            ],
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
         
-        $instructor->setTranslation('firstname', 'en', $validatedData['firstname_en']);
-        $instructor->setTranslation('firstname', 'ar', $validatedData['firstname_ar']);
-        $instructor->setTranslation('lastname', 'en', $validatedData['lastname_en']);
-        $instructor->setTranslation('lastname', 'ar', $validatedData['lastname_ar']);
-        $instructor->setTranslation('short_desc', 'en', $validatedData['short_desc_en']);
-        $instructor->setTranslation('short_desc', 'ar', $validatedData['short_desc_ar']);
-        $instructor->setTranslation('description', 'en', $validatedData['description_en']);
-        $instructor->setTranslation('description', 'ar', $validatedData['description_ar']);
-        $instructor->email = $validatedData['email'];
+        $instructor->setTranslation('firstname', 'en', $request->input('firstname_en'));
+        $instructor->setTranslation('firstname', 'ar', $request->input('firstname_ar'));
+        $instructor->setTranslation('lastname', 'en', $request->input('lastname_en'));
+        $instructor->setTranslation('lastname', 'ar', $request->input('lastname_ar'));
+        $instructor->setTranslation('short_desc', 'en', $request->input('short_desc_en'));
+        $instructor->setTranslation('short_desc', 'ar', $request->input('short_desc_ar'));
+        $instructor->setTranslation('description', 'en', $request->input('description_en'));
+        $instructor->setTranslation('description', 'ar', $request->input('description_ar'));
+        $instructor->email = $request->input('email');
         
+        $path = $instructor->image;
         if ($request->hasFile('picture')) {
+            // If a new image is uploaded, replace the existing one
             $path = $request->file('picture')->storePublicly('pictures/instructors');
-            $instructor->image = $path;
         }
+        $instructor->image=$path;
         
         $instructor->save();
 

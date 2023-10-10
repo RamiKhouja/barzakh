@@ -6,6 +6,7 @@ use App\Models\Lesson;
 use App\Models\Course;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Auth;
 
 class LessonController extends Controller
 {
@@ -82,9 +83,38 @@ class LessonController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Lesson $lesson)
+    public function showByCourse($url, $number)
     {
-        //
+        $course = Course::where('url', $url)->firstOrFail();
+        if (!$course) { abort(404); }
+        
+        if (Auth::check()) {
+
+            $user = auth()->user();
+            $successfulPayment = $user->courses()
+                ->where('course_id', $course->id)
+                ->where('status', 'successful')
+                ->first();
+
+            if ($successfulPayment) {
+                $lesson = Lesson::where('course_id', $course->id)
+                            ->where('number', $number)
+                            ->firstOrFail();
+                if (!$lesson) { abort(404); }
+
+                $lessons = Lesson::where('course_id', $course->id)
+                            ->orderBy('number')
+                            ->get();
+
+                return view('client.courses.lessons', compact(['course','lessons', 'lesson']));
+            }
+            else {
+                return redirect()->route('checkout.show', ['course' => $course]);
+            }
+
+        } else {
+            return redirect()->route('login', ['redirect_to' => route('lesson.showCourse', ['url' => $course->url, 'number' => $number])]);
+        }
     }
 
     /**

@@ -9,6 +9,8 @@ use App\Http\Controllers\InstructorController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\LocaleController;
+use App\Http\Controllers\CheckoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +24,8 @@ use App\Http\Controllers\WelcomeController;
 */
 
 Route::get('/', [WelcomeController::class, 'index']);
+
+Route::post('/set-locale', [LocaleController::class, 'setLocale'])->name('setLocale');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -49,7 +53,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::post('/admin/instructor', [InstructorController::class, 'store'])->name('instructor.store');
     Route::get('/admin/instructors', [InstructorController::class, 'index'])->name('admin.instructors');
     Route::get('/admin/instructor/edit/{instructor}', [InstructorController::class, 'edit'])->name('admin.instructor.edit');
-    Route::put('/admin/instructor/update', [InstructorController::class, 'update'])->name('admin.instructor.update');
+    Route::put('/admin/instructor/{instructor}', [InstructorController::class, 'update'])->name('admin.instructor.update');
 
     // Admin categories routes
     Route::get('/admin/category/create', [CategoryController::class, 'create'])->name('admin.category.create');
@@ -77,5 +81,15 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::put('/admin/lesson/{lesson}', [LessonController::class, 'update'])->name('admin.lesson.update');
     Route::delete('/admin/lesson/{lesson}', [LessonController::class, 'delete'])->name('admin.lesson.delete');
 });
+
+Route::middleware(['auth', 'student'])->group(function () {
+    Route::get('/checkout/{course}', [CheckoutController::class, 'show'])->name('checkout.show');
+});
+
+// Guest Routes
+Route::get('/categories/{url}', [FieldController::class, 'showByUrl'])->name('fields.showUrl');
+Route::get('/courses/{url}', [CategoryController::class, 'showByUrl'])->name('category.showUrl');
+Route::get('/course/{url}', [CourseController::class, 'showByUrl'])->name('course.showUrl');
+Route::get('/course/{url}/{number}', [LessonController::class, 'showByCourse'])->name('lesson.showCourse');
 
 require __DIR__.'/auth.php';

@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use App\Models\Lesson;
+use App\Models\Payment;
 use App\Models\Category;
 use App\Models\CategoryCourse;
 use App\Models\Instructor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Auth;    
 
 class CourseController extends Controller
 {
@@ -226,5 +228,23 @@ class CourseController extends Controller
         $instructor->nb_courses = max(0, $instructor->nb_courses - 1);
         $instructor->save();
         return redirect()->route('admin.courses')->with('success', 'Course deleted successfully');
+    }
+
+    public function showByUrl($url)
+    {
+        $course = Course::where('url', $url)->first();
+        if (!$course) { abort(404); }
+        $categories = $course->categories;
+        
+        $payment = null;
+        if (Auth::check()) {
+            $p=Payment::where('student_id', auth()->user()->id)
+                        ->where('course_id',$course->id)->first();
+            if($p) {
+                $payment = $p;
+            }
+        }
+
+        return view('client.courses.show', compact(['course', 'categories', 'payment']));
     }
 }

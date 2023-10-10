@@ -8,12 +8,12 @@ export default {
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
     ],
-
+    darkMode: 'class',
     theme: {
         extend: {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
-                ibm: "'IBM Plex Sans Arabic', serif"
+                ibm: "'IBM Plex Sans Arabic', serif",
             },
         },
         colors: {
@@ -33,6 +33,7 @@ export default {
             'green' : {
                 50  : '#f0fdf4',
                 100 : '#dcfce7',
+                200 : '#9EB384',
                 500 : '#22c55e',
                 700 : '#15803d'
             },
@@ -42,11 +43,13 @@ export default {
             },
             'gray' : {
                 50 : '#eeeeee',
+                100 : '#d1d5db',
                 200 : '#cccccc',
                 300: '#777777',
                 400 : '#333333',
                 700 : '#141717',
             },
+            'stone' : '#292524',
             'black' : '#000000',
             'white' : '#ffffff'
         }
