@@ -63,6 +63,13 @@ class User extends Authenticatable
 
     public function courses()
     {
-        return $this->belongsToMany(Course::class, 'payments');
+        return $this->belongsToMany(Course::class, 'payments', 'student_id', 'course_id');
+    }
+
+    public function lessons()
+    {
+        return $this->belongsToMany(Lesson::class, 'lesson_users')
+            ->withPivot(['viewed', 'time_stopped_watching', 'date_viewed'])
+            ->withTimestamps();
     }
 }

@@ -10,6 +10,7 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\LocaleController;
+use App\Http\Controllers\CheckoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -79,6 +80,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/lesson/edit/{lesson}', [LessonController::class, 'edit'])->name('admin.lesson.edit');
     Route::put('/admin/lesson/{lesson}', [LessonController::class, 'update'])->name('admin.lesson.update');
     Route::delete('/admin/lesson/{lesson}', [LessonController::class, 'delete'])->name('admin.lesson.delete');
+});
+
+Route::middleware(['auth', 'student'])->group(function () {
+    Route::get('/checkout/{course}', [CheckoutController::class, 'show'])->name('checkout.show');
 });
 
 // Guest Routes

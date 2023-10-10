@@ -3,7 +3,7 @@
     <div class="bg-primary-100 dark:bg-gray-700">
         <div class="md:hidden h-20"></div>
         <div class="mx-auto flex justify-center">
-            <video class="md:h-[30rem]" muted autoplay>
+            <video class="md:h-[30rem]" muted autoplay controls>
                 <source src="{{ asset('pictures/barzakh.mp4') }}" type="video/mp4">
             </video>
         </div>
@@ -53,6 +53,7 @@
                         <!-- Carousel Items -->
                         @foreach($courseType as $course)
                         <div class="item">
+                            <a href="{{ route('course.showUrl', ['url' => $course->url]) }}">
                             <div class="rounded-3xl group">
                                 <img src="{{ asset($course->image) }}" alt="Slide 1" class="max-h-32 rounded-t-3xl">
                                 <div class="group-hover:visible group-hover:translate-y-0 course-duration-band bg-stone text-white py-1 px-4 bg-opacity-70">
@@ -81,12 +82,15 @@
                                         <p class="text-base text-gray-200">
                                             {{$course->instructor->firstname}} {{$course->instructor->lastname}}
                                         </p>
-                                        <div class=" text-gray-50 px-1.5 py-1 border border-gray-50 rounded-full bg-gray-400">
-                                        <x-heroicon-s-bookmark  class="h-6 w-5"/>
-                                        </div>
+                                        <a href="#" class="z-50">
+                                            <div class=" text-gray-50 px-1.5 py-1 border border-gray-50 rounded-full bg-gray-400">
+                                            <x-heroicon-s-bookmark  class="h-6 w-5"/>
+                                            </div> 
+                                        </a>
                                     </div>
                                 </div>
                             </div>
+                            </a>
                         </div>
                         @endforeach
                         <!-- Add more items as needed -->

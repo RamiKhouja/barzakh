@@ -34,6 +34,7 @@ return [
     'learn-own-pace' => 'تعلّم على وتيرتك الخاصّة',
     'completion-certificate' => 'شهادة إتمام الدورة',
     'ask-instructor' => 'اسأل المحاضر',
-    'course-req' => 'متطلبات الدورة التدريبية'
+    'course-req' => 'متطلبات الدورة التدريبية',
+    'go-to-course' => 'ادخل الدرس'
 ];
 ?>

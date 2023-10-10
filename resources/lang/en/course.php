@@ -34,6 +34,7 @@ return [
     'learn-own-pace' => 'Learn at your own pace',
     'completion-certificate' => 'Course completion certificate',
     'ask-instructor' => 'Ask the instructor',
-    'course-req' => 'Course Requirements'
+    'course-req' => 'Course Requirements',
+    'go-to-course' => 'Access the Course'
 ];
 ?>

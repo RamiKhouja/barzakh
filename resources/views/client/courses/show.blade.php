@@ -87,11 +87,21 @@
                             </div>
                         </div>
                     </div>
-                    <a href="{{ route('lesson.showCourse', ['url' => $course->url, 'number' => 1]) }}">
-                        <button class="w-full mt-8 bg-red-500 text-white text-center py-1 rounded-md hover:shadow hover:bg-red-700">
-                            {{__('course.buy-course')}}
-                        </button>
-                    </a>
+                    @if($payment != null)
+                        @if($payment->status == 'successful')
+                        <a href="{{ route('lesson.showCourse', ['url' => $course->url, 'number' => $payment->lesson_nb]) }}">
+                            <button class="w-full mt-8 bg-red-500 text-white text-center py-1 rounded-md hover:shadow hover:bg-red-700">
+                                {{__('course.go-to-course')}}
+                            </button>
+                        </a>
+                        @endif
+                    @else
+                        <a href="{{ route('lesson.showCourse', ['url' => $course->url, 'number' => 1]) }}">
+                            <button class="w-full mt-8 bg-red-500 text-white text-center py-1 rounded-md hover:shadow hover:bg-red-700">
+                                {{__('course.buy-course')}}
+                            </button>
+                        </a>
+                    @endif
                 </div>
             </div>
 
