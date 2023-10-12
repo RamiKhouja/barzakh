@@ -1,0 +1,20 @@
+{
+  "resources/css/app.css": {
+    "file": "assets/app-bf32ac06.css",
+    "isEntry": true,
+    "src": "resources/css/app.css"
+  },
+  "resources/fonts/arb-bold.ttf": {
+    "file": "assets/arb-bold-7a7d2ff2.ttf",
+    "src": "resources/fonts/arb-bold.ttf"
+  },
+  "resources/fonts/arb-regular.ttf": {
+    "file": "assets/arb-regular-40617281.ttf",
+    "src": "resources/fonts/arb-regular.ttf"
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-6e0eadfb.js",
+    "isEntry": true,
+    "src": "resources/js/app.js"
+  }
+}
