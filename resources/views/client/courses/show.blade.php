@@ -117,7 +117,9 @@
             <div class="flex my-10 items-center {{$lang == 'ar' ? ('flex-row-reverse') : ('')}}">
                 <img src="{{asset($course->instructor->image)}}" class="rounded-full w-20 h-20" alt="">
                 <div class="{{$lang == 'ar' ? ('text-right mr-5') : ('ml-5')}}">
-                    <p class="font-bold text-xl text-gray-400 dark:text-gray-50 mb-1">{{$course->instructor->firstname}} {{$course->instructor->lastname}}</p>
+                    <a href="{{ route('instructor.showUrl', ['url' => $course->instructor->url]) }}">
+                        <p class="font-bold text-xl text-gray-400 dark:text-gray-50 mb-1">{{$course->instructor->firstname}} {{$course->instructor->lastname}}</p>
+                    </a>
                     <p class="font-medium text-base text-gray-300 dark:text-gray-100">{{$course->instructor->short_desc}}</p>
                 </div>
             </div>

@@ -2,7 +2,7 @@
     <?php $lang = app()->getLocale(); ?>
     <div class="bg-primary-100 dark:bg-gray-700">
         <div class="h-20"></div>
-        <div class="max-w-xs sm:max-w-sm md:max-w-xl lg:max-w-4xl xl:max-w-5xl mx-auto mt-8 md:-mt-20 mb-72">
+        <div class="max-w-xs sm:max-w-sm md:max-w-xl lg:max-w-4xl xl:max-w-5xl mx-auto mt-8 md:-mt-20 mb-36">
             <div class="flex {{$lang == 'ar' ? ('flex-row-reverse') : ('')}}  md:mt-20 mb-20">
                 <p class="text-sm md:text-base lg:text-lg">
                     <a href="{{ route('fields.showUrl', ['url' => $category->field->url]) }}" 

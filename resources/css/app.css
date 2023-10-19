@@ -54,3 +54,6 @@ body {
 .field-det-hov {
     @apply group-hover:bg-gray-400 group-hover:translate-y-0 group-hover:h-[140%] group-hover:top-0 group-hover:rounded-t-xl;
 }
+.social-icon {
+    @apply p-2 rounded-full hover:bg-primary-50 text-primary-700 dark:hover:bg-gray-400 hover:shadow dark:text-gray-50;
+}

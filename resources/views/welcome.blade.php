@@ -108,13 +108,15 @@
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-10">
                 @foreach($instructors as $instructor)
                 <div class="group relative">
-                    <img class="h-auto max-w-full" src="{{ asset($instructor->image) }}" alt="">
-                    <div class="group-hover:visible group-hover:translate-y-0 instructor-details bg-stone text-white py-4 px-4 bg-opacity-70">
-                        <div class="{{$lang == 'ar' ? ('text-right') : ('')}}">
-                            <p class="text-xl font-semibold">{{$instructor->firstname}} {{$instructor->lastname}}</p>
-                            <p class="text-base font-medium text-gray-50">{{$instructor->email}}</p>
+                    <a href="{{ route('instructor.showUrl', ['url' => $instructor->url]) }}">
+                        <img class="h-auto max-w-full" src="{{ asset($instructor->image) }}" alt="">
+                        <div class="group-hover:visible group-hover:translate-y-0 instructor-details bg-stone text-white py-4 px-4 bg-opacity-70">
+                            <div class="{{$lang == 'ar' ? ('text-right') : ('')}}">
+                                <p class="text-xl font-semibold">{{$instructor->firstname}} {{$instructor->lastname}}</p>
+                                <p class="text-base font-medium text-gray-50">{{$instructor->email}}</p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 @endforeach
             </div>

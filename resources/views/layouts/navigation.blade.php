@@ -14,14 +14,14 @@
             </div>
             <div class="md:w-1/5 lg:w-1/4">
                 <div class="items-center p-6 hidden md:flex md:flex-wrap lg:flex-nowrap md:space-y-2 lg:space-y-0 justify-center">
-                    <button id="theme-toggle-button" class="mr-2">
+                    <button id="theme-toggle-button" class="mr-4 bg-primary-200 rounded-full p-2 dark:bg-gray-400">
                         <x-heroicon-s-moon class="w-6 h-6 text-gray-700 dark:hidden" />
                         <x-heroicon-s-sun class="w-6 h-6 text-white hidden dark:block" />
                     </button>
                     <div class="language-switcher">
                         <form action="{{ route('setLocale') }}" method="POST">
                             @csrf
-                            <select name="locale" onchange="this.form.submit()" class="border-0 bg-primary-100 dark:bg-gray-700 dark:text-white focus:outline-0" >
+                            <select name="locale" onchange="this.form.submit()" class="border-0 bg-primary-200 rounded-lg cursor-pointer dark:bg-gray-400 dark:text-white focus:outline-0" >
                                 <option value="en" {{ $lang == 'en' ? 'selected' : '' }}>English</option>
                                 <option value="ar" {{ $lang == 'ar' ? 'selected' : '' }}>العربية</option>
                             </select>

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Validation\Rule;
 use App\Models\Instructor;
+use App\Models\Course;
 
 class InstructorController extends Controller
 {
@@ -91,5 +92,13 @@ class InstructorController extends Controller
         $instructor->save();
 
         return redirect()->route('admin.instructors')->with('success','Instructor Has Been updated successfully');
+    }
+
+    public function showByUrl($url)
+    {
+        $instructor = Instructor::where('url', $url)->first();
+        if (!$instructor) { abort(404); }
+
+        return view('client.instructor', compact('instructor'));
     }
 }
