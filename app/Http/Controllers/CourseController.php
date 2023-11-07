@@ -247,4 +247,12 @@ class CourseController extends Controller
 
         return view('client.courses.show', compact(['course', 'categories', 'payment']));
     }
+
+    public function myCourses()
+    {
+        $user = Auth::user();
+        if (!$user) { abort(404); }
+        $courses = $user->courses;
+        return view('client.profile.courses', compact(['courses']));
+    }
 }

@@ -19,14 +19,19 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
                 ibm: "'IBM Plex Sans Arabic', serif",
+                noto: "'Noto Nastaliq Urdu', serif",
+                brando: "'Brando Regular'"
             },
         },
         colors: {
             'primary' :{
                 50 : '#faf7f0',
                 100 : '#f7f1e4',
+                150 : '#EFE9DF',
                 200 : '#ebe3d6',
+                300 : '#d3ccc0',
                 500 : '#74411c',
+                600 : '#581D17',
                 700 : '#42210b'
             },
             'red' : {
@@ -52,11 +57,18 @@ export default {
                 200 : '#cccccc',
                 300: '#777777',
                 400 : '#333333',
+                500 : '#222222',
                 700 : '#141717',
             },
             'stone' : '#292524',
             'black' : '#000000',
-            'white' : '#ffffff'
+            'white' : '#ffffff',
+            'cancan' : '#E4CEC2',
+            'stoned' : {
+                500 : '#78716c',
+                900 : '#1c1917'
+            },
+            'bordo' : '#550304'
         }
     },
 

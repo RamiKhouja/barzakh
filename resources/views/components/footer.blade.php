@@ -4,10 +4,10 @@
         <div class="text-center {{$lang == 'ar' ? ('sm:text-right') : ('sm:text-left')}} space-y-2 mx-auto sm:mx-0">
             <img src="{{ asset('pictures/global/logo.png') }}" class="h-16 dark:hidden" alt=""/>
             <img src="{{ asset('pictures/global/logo-white.png') }}" class="h-16 hidden dark:block" alt=""/>
-            <p class="text-primary-700 dark:text-white font-black text-xl px-2">{{__('welcome.about-barzakh')}}</p>
-            <p class="text-primary-700 dark:text-white {{$lang == 'ar' ? ('font-midium') : ('font-semibold')}} text-lg px-2">{{__('welcome.our-news')}}</p>
-            <p class="text-primary-700 dark:text-white {{$lang == 'ar' ? ('font-midium') : ('font-semibold')}} text-lg px-2">{{__('welcome.the-team')}}</p>
-            <p class="text-primary-700 dark:text-white {{$lang == 'ar' ? ('font-midium') : ('font-semibold')}} text-lg px-2">{{__('welcome.contact-us')}}</p>
+            <p class="text-gray-700 dark:text-gray-50 {{$lang == 'ar' ? ('font-midium') : ('font-semibold')}} text-lg px-2">{{__('welcome.about-barzakh')}}</p>
+            <p class="text-gray-700 dark:text-gray-50 {{$lang == 'ar' ? ('font-midium') : ('font-semibold')}} text-lg px-2">{{__('welcome.our-news')}}</p>
+            <p class="text-gray-700 dark:text-gray-50 {{$lang == 'ar' ? ('font-midium') : ('font-semibold')}} text-lg px-2">{{__('welcome.the-team')}}</p>
+            <p class="text-gray-700 dark:text-gray-50 {{$lang == 'ar' ? ('font-midium') : ('font-semibold')}} text-lg px-2">{{__('welcome.contact-us')}}</p>
         </div>
         <div class="text-center {{$lang == 'ar' ? ('sm:text-right') : ('sm:text-left')}} space-y-2 mx-auto sm:mx-0">
             <p class="text-primary-700 dark:text-white font-black text-xl">{{__('welcome.discover-more')}}</p>

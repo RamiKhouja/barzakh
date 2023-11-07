@@ -13,6 +13,7 @@ return [
     'h' => 'h',
     '1m' => '1m',
     'm' => 'm',
+    's' => 'seconds',
     'about-barzakh' => 'About us',
     'our-news' => 'Our News',
     'the-team' => 'The Team',
@@ -29,6 +30,11 @@ return [
     'download-app' => 'Download App',
     'terms-of-use' => 'Terms of Use',
     'privacy-policy' => 'Privacy Policy',
-    'help-center' => 'Help Center'
+    'help-center' => 'Help Center',
+    'our-instructors' => 'Our Instructors',
+    'our-content' => 'Our Content',
+    'free-courses' => 'Our Free Courses',
+    'your-courses' => 'Your Courses',
+    'finish-started' => 'Finish What You Started'
 ];
 ?>

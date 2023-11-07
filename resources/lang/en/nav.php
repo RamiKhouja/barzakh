@@ -10,6 +10,7 @@ return [
     'Plans' => 'Plans',
     'Partners' => 'Partners',
     'Profile' => 'Profile',
+    'my-courses' => 'My Courses',
     'Log-Out' => 'Log Out',
     'Login' => 'Log in',
     'Register' => 'Register',

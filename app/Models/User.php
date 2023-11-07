@@ -69,7 +69,7 @@ class User extends Authenticatable
     public function lessons()
     {
         return $this->belongsToMany(Lesson::class, 'lesson_users')
-            ->withPivot(['viewed', 'time_stopped_watching', 'date_viewed'])
+            ->withPivot(['viewed', 'time_stopped_watching', 'date_viewed', 'complete'])
             ->withTimestamps();
     }
 }

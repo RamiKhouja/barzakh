@@ -23,7 +23,8 @@ use App\Http\Controllers\CheckoutController;
 |
 */
 
-Route::get('/', [WelcomeController::class, 'index']);
+Route::get('/public', [WelcomeController::class, 'index']);
+Route::get('/', [WelcomeController::class, 'index'])->name('home');
 
 Route::post('/set-locale', [LocaleController::class, 'setLocale'])->name('setLocale');
 
@@ -35,6 +36,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/profile/courses', [CourseController::class, 'myCourses'])->name('profile.courses');
 });
 
 // Admin Routes
@@ -84,6 +86,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
 Route::middleware(['auth', 'student'])->group(function () {
     Route::get('/checkout/{course}', [CheckoutController::class, 'show'])->name('checkout.show');
+    Route::post('/lesson/addView', [LessonController::class, 'addView'])->name('lesson.addview');
+    Route::post('/lesson/updateTime', [LessonController::class, 'updateTime'])->name('lesson.updateTime');
 });
 
 // Guest Routes

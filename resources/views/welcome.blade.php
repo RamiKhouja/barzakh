@@ -1,31 +1,59 @@
 <x-app-layout>
     <?php $lang = app()->getLocale(); ?>
+    <?php
+        function checkCount($arr) {
+            $count = count($arr);
+
+            if ($count < 2) {
+                return 'sm:hidden';
+            } elseif ($count < 3) {
+                return 'md:hidden';
+            } elseif ($count < 4) {
+                return 'lg:hidden';
+            } elseif ($count < 5) {
+                return 'xl:hidden';
+            } else {
+                return 'block';
+            }
+        }
+    ?>
     <div class="bg-primary-100 dark:bg-gray-700">
         <div class="md:hidden h-20"></div>
+        <input id="lang" type="hidden" value="{{$lang}}" />
         <div class="mx-auto flex justify-center">
             <video class="md:h-[30rem]" muted autoplay controls>
                 <source src="{{ asset('pictures/barzakh.mp4') }}" type="video/mp4">
             </video>
         </div>
         <div class="flex justify-center">
+        
             <div class="sm:px-6 lg:px-8 my-8 py-8 text-center max-w-xs sm:max-w-sm md:max-w-xl lg:max-w-3xl border-b-2 border-b-primary-500 dark:border-b-gray-50">
-                <p class="text-2xl mb-4 text-gray-700 font-semibold dark:text-white">{{__('welcome.Charter')}}</p>
-                <p class="text-lg dark:text-gray-50">{{__('welcome.Charter-content')}}</p>
+                <x-bi-quote class="w-16 h-16 text-bordo mb-4 mx-auto" />
+                <p class="text-xl text-bordo tracking-wider leading-10 dark:text-primary-100" style="font-family:{{$lang=='ar' ? ('Noto') : ('Nunito')}}">
+                    {{__('welcome.Charter-content')}}
+                </p>
             </div>
         </div>
-        <div id="courses" class="max-w-xs sm:max-w-xl md:max-w-xl lg:max-w-3xl mx-auto my-32">
+        <div id="courses" class="max-w-xs sm:max-w-xl md:max-w-xl lg:max-w-3xl mx-auto py-32 ">
             <div class="flex justify-center">
-                <div class="xs:columns-1 md:columns-3 md:gap-4 lg:gap-8">
+                <p class="text-2xl md:text-3xl lg:text-5xl text-bordo dark:text-white font-black mb-16 {{$lang=='ar'?('text-right'):('')}}">
+                    {{__('welcome.our-content')}}
+                </p>
+            </div>
+            <div class="flex justify-center">
+                <div class="xs:columns-1 md:columns-3 md:gap-4 lg:gap-8" dir="{{$lang=='ar' ? ('rtl') : ('ltr')}}">
                 @foreach($fields as $field)
                 <a href="{{ route('fields.showUrl', ['url' => $field->url]) }}">
                     <div class="h-72 w-72 md:h-52 md:w-52 lg:h-72 lg:w-72 my-6 md:my-0 cat-circle hover:shadow-lg rounded-full">  
                         <div class="h-2/5 flex items-center justify-center text-center">
                             <div class="w-48">
-                                <p class="text-xl md:text-lg lg:text-xl text-gray-700 font-ibm font-semibold">{{ $field->title }}</p>
+                                <p class="text-xl md:text-lg lg:text-xl text-bordo font-semibold" style="font-family:{{$lang=='ar' ? ('Noto') : ('Nunito')}}">
+                                    {{ $field->title }}
+                                </p>
                             </div>
                         </div>
                         <div class="h-3/5 p-8 text-center">
-                            <p class="text-xl md:text-lg lg:text-xl font-ibm font-normal text-gray-400">{{ $field->subtitle }}</p>
+                            <p class="text-xl md:text-lg lg:text-xl font-normal text-gray-400">{{ $field->subtitle }}</p>
                         </div> 
                     </div>
                 </a>
@@ -33,8 +61,35 @@
                 </div>
             </div>
         </div>
-        <div class="mt-28">
-            <div class="tabs container py-8 max-w-xs sm:max-w-xl md:max-w-7xl mx-auto">
+        @if(Auth::user())
+        <div id="free" class="container pt-16 pb-8 sm:max-w-xl md:max-w-2xl lg:max-w-screen-lg xl:max-w-screen-2xl mx-auto">
+            <p class="text-2xl md:text-3xl lg:text-5xl text-primary-700 dark:text-white font-black px-4 md:px-8 lg:px-16 mb-4 {{$lang=='ar'?('text-right'):('')}}">
+                {{__('welcome.finish-started')}}
+            </p>
+            <div class="items-center container py-8  sm:max-w-xl md:max-w-2xl lg:max-w-screen-lg xl:max-w-screen-2xl  mx-auto mt-4 flex space-x-4 justify-center">
+                <button class="myPrevBtn h-56 bg-primary-150 text-stone dark:bg-gray-400 dark:hover:text-gray-700 dark:hover:bg-primary-200 dark:text-primary-50
+                     rounded-xl hover:bg-primary-300 shadow-md px-2 hidden sm:block 
+                     {{checkCount($myCourses)}}">
+                    <x-heroicon-s-chevron-left class="w-4 h-4"/>
+                </button>
+                <div class="owl-carousel my-owl owl-theme w-10/12">
+                    <!-- Carousel Items -->
+                    @foreach($myCourses as $course)
+                    <div class="item">
+                        <x-course :course="$course" />
+                    </div>
+                    @endforeach
+                    <div class="item"></div>
+                    <!-- Add more items as needed -->
+                </div>
+                <button class="myNextBtn h-56 bg-primary-150 text-stone dark:bg-gray-400 dark:hover:text-gray-700 dark:hover:bg-primary-200 dark:text-primary-50 rounded-xl hover:bg-primary-300 shadow-md px-2 hidden sm:block {{checkCount($myCourses)}}">
+                    <x-heroicon-s-chevron-right class="w-4 h-4"/>
+                </button>
+            </div>
+        </div>
+        @endif
+        <div class="">
+            <div class="tabs container py-16 sm:max-w-xl md:max-w-2xl lg:max-w-screen-lg xl:max-w-screen-2xl mx-auto">
                 <p class="text-2xl md:text-3xl lg:text-5xl text-primary-700 dark:text-white font-black px-4 md:px-8 lg:px-16 mb-4 {{$lang=='ar'?('text-right'):('')}}">
                     {{__('welcome.chose-for-you')}}
                 </p>
@@ -45,57 +100,20 @@
                     <!-- Add more tab links as needed -->
                 </ul>
                 @foreach ($courses as $key => $courseType)
-                <div id="tab-{{$key}}-content" class="tab-content {{$key!='1' ? ('hidden') : ('')}} container py-8 max-w-xs sm:max-w-xl md:max-w-7xl mx-auto mt-4 flex space-x-4 justify-center">
-                    <button class="prevBtn bg-stone text-white rounded-xl hover:bg-gray-400 px-2 hidden sm:block">
+                <div id="tab-{{$key}}-content" class="tab-content items-center {{$key!='1' ? ('hidden') : ('')}} container py-8 sm:max-w-xl md:max-w-2xl lg:max-w-screen-lg xl:max-w-screen-2xl  mx-auto mt-4 flex space-x-4 justify-center">
+                    <button class="prevBtn h-56 bg-primary-150 text-stone dark:bg-gray-400 dark:hover:text-gray-700 dark:hover:bg-primary-200 dark:text-primary-50 rounded-xl hover:bg-primary-300 shadow-md px-2 hidden sm:block">
                         <x-heroicon-s-chevron-left class="w-4 h-4"/>
                     </button>
-                    <div class="owl-carousel owl-theme w-10/12">
+                    <div class="owl-carousel owl-tabs owl-theme w-10/12">
                         <!-- Carousel Items -->
                         @foreach($courseType as $course)
                         <div class="item">
-                            <a href="{{ route('course.showUrl', ['url' => $course->url]) }}">
-                            <div class="rounded-3xl group">
-                                <img src="{{ asset($course->image) }}" alt="Slide 1" class="max-h-32 rounded-t-3xl">
-                                <div class="group-hover:visible group-hover:translate-y-0 course-duration-band bg-stone text-white py-1 px-4 bg-opacity-70">
-                                        <div class="flex items-center space-x-2 {{$lang == 'ar' ? ('flex-row-reverse') : ('')}}">
-                                            <x-heroicon-o-clock class="w-4 h-4"/>
-                                            <p class="text-sm font-semibold">
-                                                <?php
-                                                    $hours = floor($course->duration / 3600);
-                                                    $minutes = floor(($course->duration % 3600) / 60);
-                                                    $seconds = $course->duration % 60;
-                                                ?>
-                                                {{$hours>0 ? ($hours==1 ? (__('welcome.1h').' ') : ($hours.__('welcome.h').' ')): ('')}}
-                                                {{$minutes>0 ? ($minutes==1 ? __('welcome.1m') : ($minutes.__('welcome.m'))): ('')}}
-                                            </p> 
-                                            <p class="text-sm font-black">|</p>
-                                            <p class="text-sm font-semibold">
-                                                {{$course->nb_lessons> 0 ? ($course->nb_lessons==1 ? __('welcome.1Lesson') : ($course->nb_lessons.' '.__('welcome.Lessons'))): __('welcome.No-Lessons')}}
-                                            </p>
-                                        </div>
-                                </div>
-                                <div class="group-hover:bg-gray-400 rounded-b-3xl p-4 bg-stone">
-                                    <p class="text-xl text-gray-50 font-semibold mb-4 {{$lang == 'ar' ? ('text-right') : ('')}}">
-                                        {{$lang == 'ar' ? $course->title_ar : $course->title_en}}
-                                    </p>
-                                    <div class="flex justify-between items-center {{$lang == 'ar' ? ('flex-row-reverse') : ('')}}">
-                                        <p class="text-base text-gray-200">
-                                            {{$course->instructor->firstname}} {{$course->instructor->lastname}}
-                                        </p>
-                                        <a href="#" class="z-50">
-                                            <div class=" text-gray-50 px-1.5 py-1 border border-gray-50 rounded-full bg-gray-400">
-                                            <x-heroicon-s-bookmark  class="h-6 w-5"/>
-                                            </div> 
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            </a>
+                            <x-course :course="$course" />
                         </div>
                         @endforeach
                         <!-- Add more items as needed -->
                     </div>
-                    <button class="nextBtn bg-stone text-white rounded-xl hover:bg-gray-400 px-2 hidden sm:block">
+                    <button class="nextBtn h-56 bg-primary-150 text-stone dark:bg-gray-400 dark:hover:text-gray-700 dark:hover:bg-primary-200 dark:text-primary-50 rounded-xl hover:bg-primary-300 shadow-md px-2 hidden sm:block">
                         <x-heroicon-s-chevron-right class="w-4 h-4"/>
                     </button>
                 </div>
@@ -103,25 +121,52 @@
                 <!-- Add more tab content containers as needed -->
             </div>
         </div>
-        <div class=" p-12 sm:p-32">
-            
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-10">
-                @foreach($instructors as $instructor)
-                <div class="group relative">
-                    <a href="{{ route('instructor.showUrl', ['url' => $instructor->url]) }}">
-                        <img class="h-auto max-w-full" src="{{ asset($instructor->image) }}" alt="">
-                        <div class="group-hover:visible group-hover:translate-y-0 instructor-details bg-stone text-white py-4 px-4 bg-opacity-70">
-                            <div class="{{$lang == 'ar' ? ('text-right') : ('')}}">
-                                <p class="text-xl font-semibold">{{$instructor->firstname}} {{$instructor->lastname}}</p>
-                                <p class="text-base font-medium text-gray-50">{{$instructor->email}}</p>
-                            </div>
-                        </div>
-                    </a>
+        <div id="free" class="container pt-16 pb-8 sm:max-w-xl md:max-w-2xl lg:max-w-screen-lg xl:max-w-screen-2xl mx-auto">
+            <p class="text-2xl md:text-3xl lg:text-5xl text-primary-700 dark:text-white font-black px-4 md:px-8 lg:px-16 mb-4 {{$lang=='ar'?('text-right'):('')}}">
+                {{__('welcome.free-courses')}}
+            </p>
+            <div class="items-center container py-8  sm:max-w-xl md:max-w-2xl lg:max-w-screen-lg xl:max-w-screen-2xl  mx-auto mt-4 flex space-x-4 justify-center">
+                <button class="prevBtnFree h-56 bg-primary-150 text-stone dark:bg-gray-400 dark:hover:text-gray-700 dark:hover:bg-primary-200 dark:text-primary-50 rounded-xl hover:bg-primary-300 shadow-md px-2 hidden sm:block {{checkCount($freeCourses)}}">
+                    <x-heroicon-s-chevron-left class="w-4 h-4"/>
+                </button>
+                <div class="owl-carousel owl-free owl-theme w-10/12">
+                    <!-- Carousel Items -->
+                    @foreach($freeCourses as $course)
+                    <div class="item">
+                        <x-course :course="$course" />
+                    </div>
+                    @endforeach
+                    <div class="item"></div>
+                    <!-- Add more items as needed -->
                 </div>
-                @endforeach
+                <button class="nextBtnFree h-56 bg-primary-150 text-stone dark:bg-gray-400 dark:hover:text-gray-700 dark:hover:bg-primary-200 dark:text-primary-50 rounded-xl hover:bg-primary-300 shadow-md px-2 hidden sm:block {{checkCount($freeCourses)}}">
+                    <x-heroicon-s-chevron-right class="w-4 h-4"/>
+                </button>
             </div>
-
         </div>
+        <div id="instructors" class="px-8 py-32 max-w-xs sm:max-w-xl md:max-w-2xl lg:max-w-4xl mx-auto">
+            <p class="text-2xl md:text-3xl lg:text-5xl text-gray-500 dark:text-white font-black  mb-12 text-center">
+                {{__('welcome.our-instructors')}}
+            </p>
+            <div class="mt-4">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    @foreach($instructors as $instructor)
+                    <div class="group relative instructor">
+                        <a href="{{ route('instructor.showUrl', ['url' => $instructor->url]) }}">
+                            <img class="h-auto max-w-full" src="{{ asset($instructor->image) }}" alt="">
+                            <div class="group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 instructor-details bg-stone text-white py-4 px-4 bg-opacity-70">
+                                <div class="{{$lang == 'ar' ? ('text-right') : ('')}}">
+                                    <p class="text-xl font-semibold">{{$instructor->firstname}} {{$instructor->lastname}}</p>
+                                    <p class="text-sm font-medium text-gray-50" style="font-family:'Nunito'">{{$instructor->email}}</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+        
         <div class="flex justify-center space-x-16 pb-32">
             <img src="{{ asset('pictures/global/barzakh-freelance.png') }}" class="h-28 sm:h-52 dark:hidden" alt=""/>
             <img src="{{ asset('pictures/global/barzakh-freelance-white.png') }}" class="h-28 sm:h-52 hidden dark:block" alt=""/>
@@ -171,23 +216,25 @@
             top: 60%;
             height: 40%;
             width: 100%;
-            transform: translateY(100%);
-            transition: transform .25s linear;
+            opacity: 0;
+            transition: opacity 0.25s ease-in-out;
         }
     </style>
 </x-app-layout>
 
 <script>
+    const lang = document.getElementById('lang').value;
     $(document).ready(function() {
-        $(".owl-carousel").owlCarousel({
+        $(".owl-tabs").owlCarousel({
             items: 4, // Number of items to display
             loop: true, // Infinite loop
+            rtl: lang=='ar',
             margin: 20, // Margin between items
             nav: false, // Display navigation buttons
             dots: false, // Hide navigation dots
             responsive: {
                 0: {
-                    items: 1
+                    items: 1.5
                 },
                 640: {
                     items: 2
@@ -197,17 +244,91 @@
                 },
                 1024: {
                     items: 4
+                },
+                1280: {
+                    items: 4.5
                 }
             }
         });
 
         // Custom navigation button actions
         $(".prevBtn").click(function () {
-            $(".owl-carousel").trigger("prev.owl.carousel");
+            if(lang=='ar'){
+                $(".owl-tabs").trigger("next.owl.carousel");
+            } else {
+                $(".owl-tabs").trigger("prev.owl.carousel");
+            }
         });
 
         $(".nextBtn").click(function () {
-            $(".owl-carousel").trigger("next.owl.carousel");
+            if(lang=='ar'){
+                $(".owl-tabs").trigger("prev.owl.carousel");
+            } else {
+                $(".owl-tabs").trigger("next.owl.carousel");
+            }
+        });
+
+        $(".owl-free").owlCarousel({
+            loop: false,
+            margin: 20,
+            nav: false,
+            dots: false,
+            rtl: lang=='ar',
+            responsive: {
+                0: { items: 1.5 },
+                640: { items: 2 },
+                768: { items: 3 },
+                1024: { items: 4 },
+                1280: { items: 4.5 }
+            }
+        });
+
+        $(".prevBtnFree").click(function () {
+            if(lang=='ar'){
+                $(".owl-free").trigger("next.owl.carousel");
+            } else {
+                $(".owl-free").trigger("prev.owl.carousel");
+            }
+        });
+
+        $(".nextBtnFree").click(function () {
+            if(lang=='ar'){
+                $(".owl-free").trigger("prev.owl.carousel");
+            } else {
+                $(".owl-free").trigger("next.owl.carousel");
+            }
+        });
+
+        $(".my-owl").owlCarousel({
+            items: 4,
+            loop: false,
+            margin: 20,
+            nav: false,
+            dots: false,
+            rtl: lang=='ar',
+            responsive: {
+                0: { items: 1.5 },
+                640: { items: 2 },
+                768: { items: 3 },
+                1024: { items: 4 },
+                1280: { items: 4.5 }
+            }
+        });
+
+        $(".myPrevBtn").click(function () {
+            if(lang=='ar'){
+                $(".my-owl").trigger("next.owl.carousel");
+            } else {
+                $(".my-owl").trigger("prev.owl.carousel");
+            }
+        });
+
+        $(".myNextBtn").click(function () {
+            if(lang=='ar'){
+                $(".my-owl").trigger("prev.owl.carousel");
+            } else {
+                $(".my-owl").trigger("next.owl.carousel");
+            }
         });
     });
 </script>

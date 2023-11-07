@@ -17,7 +17,7 @@ class Lesson extends Model
     public function users()
     {
         return $this->belongsToMany(User::class, 'lesson_users')
-            ->withPivot(['viewed', 'time_stopped_watching', 'date_viewed'])
+            ->withPivot(['viewed', 'time_stopped_watching', 'date_viewed', 'complete'])
             ->withTimestamps();
     }
 }

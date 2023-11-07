@@ -12,18 +12,18 @@
                     </svg>
                 </button>
             </div>
-            <div class="md:w-1/5 lg:w-1/4">
+            <div id="leftNav" class="md:w-1/5 lg:w-1/4">
                 <div class="items-center p-6 hidden md:flex md:flex-wrap lg:flex-nowrap md:space-y-2 lg:space-y-0 justify-center">
-                    <button id="theme-toggle-button" class="mr-4 bg-primary-200 rounded-full p-2 dark:bg-gray-400">
+                    <button id="theme-toggle-button" class="mr-4 bg-primary-200 rounded-full p-1 dark:bg-gray-400">
                         <x-heroicon-s-moon class="w-6 h-6 text-gray-700 dark:hidden" />
                         <x-heroicon-s-sun class="w-6 h-6 text-white hidden dark:block" />
                     </button>
                     <div class="language-switcher">
                         <form action="{{ route('setLocale') }}" method="POST">
                             @csrf
-                            <select name="locale" onchange="this.form.submit()" class="border-0 bg-primary-200 rounded-lg cursor-pointer dark:bg-gray-400 dark:text-white focus:outline-0" >
-                                <option value="en" {{ $lang == 'en' ? 'selected' : '' }}>English</option>
-                                <option value="ar" {{ $lang == 'ar' ? 'selected' : '' }}>العربية</option>
+                            <select name="locale" onchange="this.form.submit()" class="border-0 bg-primary-200 rounded-lg cursor-pointer dark:bg-gray-400 dark:text-white focus:outline-0 text-sm h-8 py-1" >
+                                <option value="ar" {{ $lang == 'ar' ? 'selected' : '' }} style="font-family:'Brando';">العربية</option>
+                                <option value="en" {{ $lang == 'en' ? 'selected' : '' }} style="font-family:'Nunito';">English</option>
                             </select>
                         </form>
                     </div>
@@ -35,7 +35,7 @@
                             type="text"
                             name="search"
                             id="search"
-                            class="block w-full rounded-full border-0 py-0.5 pl-8 text-gray-700 bg-white dark:bg-gray-200 ring-1 ring-primary-200 placeholder:text-gray-400 focus:ring-primary-500 sm:text-sm sm:leading-6"
+                            class="block w-full rounded-full border-0 py-0.5 pl-8 h-8 text-gray-700 bg-white dark:bg-gray-200 ring-1 ring-primary-200 placeholder:text-gray-400 focus:ring-primary-500 sm:text-sm sm:leading-6"
                             placeholder="{{__('nav.Search')}}"
                         />
                     </div>
@@ -47,22 +47,25 @@
                     <img src="{{ asset('pictures/global/logo-main.png') }}" class="h-32" alt=""/>
                 </div>
                 @endif
-                <div class="flex justify-center">
+                <div class="flex justify-center items-center my-3">
                 @auth
                     @if(Auth::user()->role == 'admin') 
                     <div class="flex-wrap my-4 space-x-2 text-primary-700 dark:text-gray-50 font-medium">
-                        <a href="{{ route('admin.dashboard') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1">{{ __('nav.Dashboard') }}</a>
-                        <a href="{{ route('admin.fields') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1">{{ __('nav.Axes') }}</a>
-                        <a href="{{ route('admin.categories') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1">{{ __('nav.Categories') }}</a>
-                        <a href="{{ route('admin.courses') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1">{{ __('nav.Courses') }}</a>
-                        <a href="{{ route('admin.instructors') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1">{{ __('nav.Instructors') }}</a>
+                        <a href="{{ route('admin.dashboard') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 p-2 rounded-lg">{{ __('nav.Dashboard') }}</a>
+                        <a href="{{ route('admin.fields') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 p-2 rounded-lg">{{ __('nav.Axes') }}</a>
+                        <a href="{{ route('admin.categories') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 p-2 rounded-lg">{{ __('nav.Categories') }}</a>
+                        <a href="{{ route('admin.courses') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 p-2 rounded-lg">{{ __('nav.Courses') }}</a>
+                        <a href="{{ route('admin.instructors') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 p-2 rounded-lg">{{ __('nav.Instructors') }}</a>
                     </div>
                     @else
                     <div class="flex-wrap my-4 space-x-2 text-primary-700 dark:text-gray-50 font-medium">
-                        <a href="/" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 {{ request()->is('/') ? 'font-bold dark:text-white' : '' }}">{{ __('nav.Home') }}</a>
-                        <a href="" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1">{{ __('nav.About-us') }}</a>
+                        <a href="{{route('home')}}" class="hover:bg-primary-200 dark:hover:bg-gray-400 p-2 rounded-lg {{ request()->is('/') ? 'font-bold dark:text-white' : '' }}">{{ __('nav.Home') }}</a>
+                        <a href="" class="hover:bg-primary-200 dark:hover:bg-gray-400 p-2 rounded-lg">{{ __('nav.About-us') }}</a>
+                        @if (Request::path() == '/')
+                        <a href="{{ url(route('home') . '#courses') }}" onclick="smallNav()" class="hover:bg-primary-200 dark:hover:bg-gray-400 p-2 rounded-lg">{{ __('nav.Courses') }}</a>
+                        @else
                         <div class="dropdown">
-                            <button class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 flex space-x-2 items-center {{ (request()->is('course/*') || request()->is('categories/*')) ? 'font-bold dark:text-white' : '' }}">{{ __('nav.Courses') }} <x-heroicon-m-chevron-down class="w-5 h-5 mt-0.5" /></button>
+                            <button class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-t-lg flex space-x-2 items-center {{ (request()->is('course/*') || request()->is('categories/*')) ? 'font-bold dark:text-white' : '' }}">{{ __('nav.Courses') }}</button>
                             <div class="dropdown-content bg-primary-50 dark:bg-gray-400 dark:text-gray-50 {{$lang=='ar' ? ('text-right right-0'):('')}}">
                                 <a href="{{ route('fields.showUrl', ['url' => 'religious-vision']) }}" class="hover:bg-primary-200 dark:hover:bg-gray-400">
                                     {{__('nav.religious-vision')}}
@@ -75,18 +78,24 @@
                                 </a>
                             </div>
                         </div>
-                        <a href="" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1">{{ __('nav.Instructors') }}</a>
-                        <a href="" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1">{{ __('nav.Plans') }}</a>
-                        <a href="" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1">{{ __('nav.Partners') }}</a>
+                        @endif
+                        
+                        <a href="{{ url(route('home') . '#instructors') }}" onclick="smallNav()" class="hover:bg-primary-200 dark:hover:bg-gray-400 p-2 rounded-lg">{{ __('nav.Instructors') }}</a>
+                        <a href="" class="hover:bg-primary-200 dark:hover:bg-gray-400 p-2 rounded-lg">{{ __('nav.Plans') }}</a>
+                        <a href="" class="hover:bg-primary-200 dark:hover:bg-gray-400 p-2 rounded-lg">{{ __('nav.Partners') }}</a>
                     </div>
                     @endif
                 @else
-                    <div class="flex-wrap my-4 space-x-2 text-primary-700 dark:text-gray-50 font-medium">
-                        <a href="/" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 {{ request()->is('/') ? 'font-bold dark:text-white' : '' }}">{{ __('nav.Home') }}</a>
-                        <a href="" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1">{{ __('nav.About-us') }}</a>
+                    <div class="flex-wrap space-x-2 text-primary-700 dark:text-gray-50 font-medium">
+                        <a href="{{route('home')}}" class="hover:bg-primary-200 dark:hover:bg-gray-400 p-2 rounded-lg {{ request()->is('/') ? 'font-bold dark:text-white' : '' }}">{{ __('nav.Home') }}</a>
+                        <a href="" class="hover:bg-primary-200 dark:hover:bg-gray-400 p-2 rounded-lg">{{ __('nav.About-us') }}</a>
+                        
+                        @if (Request::path() == '/')
+                        <a href="{{ url(route('home') . '#courses') }}" onclick="smallNav()" class="hover:bg-primary-200 dark:hover:bg-gray-400 p-2 rounded-lg">{{ __('nav.Courses') }}</a>
+                        @else
                         <div class="dropdown">
-                            <button class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 flex space-x-2 items-center {{ (request()->is('course/*') || request()->is('categories/*') ) ? 'font-bold dark:text-white' : '' }}">{{ __('nav.Courses') }} <x-heroicon-m-chevron-down class="w-5 h-5 mt-0.5" /></button>
-                            <div class="dropdown-content bg-primary-50 dark:bg-gray-400 dark:text-gray-50 {{$lang=='ar' ? ('text-right right-0'):('')}}">
+                            <button class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-t-lg {{ (request()->is('course/*') || request()->is('categories/*') ) ? 'font-bold dark:text-white' : '' }}">{{ __('nav.Courses') }}</button>
+                            <div class="dropdown-content rounded-b-lg bg-primary-50 dark:bg-gray-400 dark:text-gray-50 {{$lang=='ar' ? ('text-right right-0 rounded-tl-lg'):('rounded-tr-lg')}}">
                                 <a href="{{ route('fields.showUrl', ['url' => 'religious-vision']) }}" class="hover:bg-primary-200 dark:hover:bg-gray-300">
                                     {{__('nav.religious-vision')}}
                                 </a>
@@ -98,14 +107,15 @@
                                 </a>
                             </div>
                         </div>
-                        <a href="" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1">{{ __('nav.Instructors') }}</a>
-                        <a href="" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1">{{ __('nav.Plans') }}</a>
-                        <a href="" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1">{{ __('nav.Partners') }}</a>
+                        @endif
+                        <a href="{{ url(route('home') . '#instructors') }}" onclick="smallNav()" class="hover:bg-primary-200 dark:hover:bg-gray-400 p-2 rounded-lg">{{ __('nav.Instructors') }}</a>
+                        <a href="" class="hover:bg-primary-200 dark:hover:bg-gray-400 p-2 rounded-lg">{{ __('nav.Plans') }}</a>
+                        <a href="" class="hover:bg-primary-200 dark:hover:bg-gray-400 p-2 rounded-lg">{{ __('nav.Partners') }}</a>
                     </div>
                 @endauth
                 </div>
             </div>
-            <div class="md:w-1/5 lg:w-1/4">
+            <div id="rightNav" class="md:w-1/5 lg:w-1/4">
             @if (Route::has('login'))
                 <div class="md:p-6 text-right z-10 md:flex-wrap md:relative justify-end">
                     @auth
@@ -118,19 +128,20 @@
                                             @if(Auth::user()->image) 
                                                 <img src="{{asset(Auth::user()->image)}}" alt="{{ Auth::user()->firstname }}" class="w-7 h-7 rounded-full object-cover md:mr-2"/>
                                             @endif
-                                            <p class="hidden sm:block">{{ Auth::user()->firstname }}</p>
+                                            <p class="hidden sm:block dark:text-white">{{ Auth::user()->firstname }}</p>
                                         </div>
 
                                         <div class="hidden sm:block sm:ml-1">
-                                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                            </svg>
+                                            <x-heroicon-m-chevron-down class="w-5 h-5 text-gray-700 dark:text-white" />
                                         </div>
                                     </button>
                                 </x-slot>
                                 <x-slot name="content">
                                     <x-dropdown-link :href="route('profile.edit')">
                                         {{ __('nav.Profile') }}
+                                    </x-dropdown-link>
+                                    <x-dropdown-link :href="route('profile.courses')">
+                                        {{ __('nav.my-courses') }}
                                     </x-dropdown-link>
                                     <!-- Authentication -->
                                     <form method="POST" action="{{ route('logout') }}">
@@ -146,10 +157,10 @@
                             </x-dropdown>
                         </div>
                     @else
-                        <a href="{{ route('login') }}" class="font-medium text-primary-700 hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 dark:text-gray-50 dark:hover:text-white">{{__('nav.Login')}}</a>
+                        <a href="{{ route('login') }}" class="font-medium text-primary-700 hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 dark:text-gray-50 dark:hover:text-white rounded-lg">{{__('nav.Login')}}</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 font-medium text-primary-700 hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 dark:text-gray-50 dark:hover:text-white">{{__('nav.Register')}}</a>
+                            <a href="{{ route('register') }}" class="ml-4 font-medium text-primary-700 hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 dark:text-gray-50 dark:hover:text-white rounded-lg">{{__('nav.Register')}}</a>
                         @endif
                     @endauth
                 </div>
@@ -179,9 +190,9 @@
                     <div class="language-switcher mb-4">
                         <form action="{{ route('setLocale') }}" method="POST">
                             @csrf
-                            <select name="locale" onchange="this.form.submit()" class="border-0 bg-primary-200 dark:bg-gray-400 dark:text-white focus:outline-0" >
-                                <option value="en" {{ $lang == 'en' ? 'selected' : '' }}>English</option>
+                            <select name="locale" onchange="this.form.submit()" class="border-0 py-1 h-8 bg-primary-200 dark:bg-gray-400 dark:text-white focus:outline-0" >
                                 <option value="ar" {{ $lang == 'ar' ? 'selected' : '' }}>العربية</option>
+                                <option value="en" {{ $lang == 'en' ? 'selected' : '' }}>English</option>
                             </select>
                         </form>
                     </div>
@@ -193,7 +204,7 @@
                             type="text"
                             name="search"
                             id="search"
-                            class="block w-full rounded-full border-0 py-0.5 pl-8 text-gray-700 bg-white dark:bg-gray-200 ring-1 ring-primary-200 placeholder:text-gray-400 focus:ring-primary-500 sm:text-sm sm:leading-6"
+                            class="block w-full rounded-full border-0 py-0.5 pl-8 h-8 text-gray-700 bg-white dark:bg-gray-200 ring-1 ring-primary-200 placeholder:text-gray-400 focus:ring-primary-500 sm:text-sm sm:leading-6"
                             placeholder="{{__('nav.Search')}}"
                         />
                     </div>
@@ -283,16 +294,36 @@
     const navbar = document.getElementById('navbar');
     const logo = document.querySelector('.logo');
     const threshold = 200; // Adjust this value as needed
+    const leftNav = document.getElementById('leftNav');
+    const rightNav = document.getElementById('rightNav');
+
+    function smallNav(){
+        navbar.classList.add('fixed');
+            navbar.classList.add('dark:border-b');
+            navbar.classList.add('dark:border-b-gray-100');
+            leftNav.classList.remove('lg:w-1/4');
+            rightNav.classList.remove('lg:w-1/4');
+            leftNav.classList.add('lg:w-1/3');
+            rightNav.classList.add('lg:w-1/5');
+    }
 
     window.addEventListener('scroll', () => {
         if (window.scrollY > threshold) {
             navbar.classList.add('fixed');
             navbar.classList.add('dark:border-b');
             navbar.classList.add('dark:border-b-gray-100');
+            leftNav.classList.remove('lg:w-1/4');
+            rightNav.classList.remove('lg:w-1/4');
+            leftNav.classList.add('lg:w-1/3');
+            rightNav.classList.add('lg:w-1/5');
         } else {
             navbar.classList.remove('fixed');
             navbar.classList.remove('dark:border-b');
             navbar.classList.remove('dark:border-b-gray-100');
+            leftNav.classList.remove('lg:w-1/3');
+            rightNav.classList.remove('lg:w-1/5');
+            leftNav.classList.add('lg:w-1/4');
+            rightNav.classList.add('lg:w-1/4');
         }
     });
 

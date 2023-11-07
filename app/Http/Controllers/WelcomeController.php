@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;    
 use Illuminate\Http\Request;
 use App\Models\Field;
 use App\Models\Instructor;
@@ -21,6 +22,12 @@ class WelcomeController extends Controller
             "3" =>  $recentCourses
         ];
         $instructors = Instructor::take(8)->get();
-        return view('welcome', compact(['fields', 'courses', 'instructors']));
+        $freeCourses = Course::where('is_free', true)->get();
+        $myCourses = null;
+        $user = Auth::user();
+        if ($user) { 
+            $myCourses = $user->courses;
+        }
+        return view('welcome', compact(['fields', 'courses', 'instructors', 'freeCourses', 'myCourses']));
     }
 }

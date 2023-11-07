@@ -14,7 +14,22 @@
     font-weight: 700;
     font-style: normal;
 }
-
+@font-face {
+    font-family: 'Brando'; /* Choose a unique name for your font */
+    src: url('../fonts/Brando-Arabic-Text.otf');
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Brando-Bold'; /* Choose a unique name for your font */
+    src: url('../fonts/Brando-Arabic-Bold.otf');
+    size: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Noto'; /* Choose a unique name for your font */
+    src: url('../fonts/NotoNastaliqUrdu.ttf') format('truetype');
+    font-style: normal;
+}
 .form-input {
     @apply block w-full rounded-md border-0 py-1.5 text-gray-700 shadow-sm ring-1 ring-inset ring-primary-200 placeholder:text-gray-300 focus:ring-inset focus:ring-primary-500 sm:text-sm sm:leading-6;
 }
@@ -45,11 +60,11 @@ body {
 }
 
 .tab-link {
-    @apply cursor-pointer py-0.5 px-1 text-gray-400 dark:text-gray-300 font-semibold text-sm md:text-lg border-b-2 border-b-gray-300;
+    @apply cursor-pointer py-0.5 px-1 text-gray-400 dark:text-gray-50 text-sm md:text-lg border-b-2 border-b-gray-300;
 }
 
 .tab-link.active {
-    @apply border-b-2 border-b-primary-700 text-primary-700 dark:text-white dark:border-b-white;
+    @apply border-b-2 border-b-primary-700 text-primary-700 font-semibold dark:text-white dark:border-b-white;
 }
 .field-det-hov {
     @apply group-hover:bg-gray-400 group-hover:translate-y-0 group-hover:h-[140%] group-hover:top-0 group-hover:rounded-t-xl;

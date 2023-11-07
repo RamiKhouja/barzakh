@@ -10,6 +10,7 @@ return [
     'Plans' => 'العروض',
     'Partners' => 'الشركاء',
     'Profile' => 'الملف الشخصي',
+    'my-courses' => 'دوراتي',
     'Log-Out' => 'الخروج',
     'Login' => 'الدخول',
     'Register' => 'حساب جديد',

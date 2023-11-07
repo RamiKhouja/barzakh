@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Lesson;
 use App\Models\Course;
+use App\Models\LessonUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Auth;
@@ -50,7 +52,7 @@ class LessonController extends Controller
         
         $path = null;
         if($request->hasFile('picture')) {
-            $picFolder = 'pictures/lessons'.$courseId;
+            $picFolder = 'pictures/lessons/'.$courseId;
             $path = $request->file('picture')->storePublicly($picFolder);
         }
 
@@ -102,11 +104,25 @@ class LessonController extends Controller
                             ->firstOrFail();
                 if (!$lesson) { abort(404); }
 
-                $lessons = Lesson::where('course_id', $course->id)
+                $lessonUser = LessonUser::where('lesson_id',$lesson->id)
+                                ->where('user_id',$user->id)
+                                ->first();
+
+                $courseLessons = Lesson::where('course_id', $course->id)
                             ->orderBy('number')
                             ->get();
+                $lessons = $courseLessons->map(function ($l) use ($user) {
+                    $lessonUser = $l->users->where('id', $user->id)->first();
+                    // if($lessonUser) {
+                    //     $l->percent = 'w-['.round($lessonUser->pivot->time_stopped_watching * 100 / $l->duration).'%]';
+                    // } else {
+                    //     $l->percent = 'w-0';
+                    // }
+                    $l->lessonUser = $lessonUser;
+                    return $l;
+                });
 
-                return view('client.courses.lessons', compact(['course','lessons', 'lesson']));
+                return view('client.courses.lessons', compact(['course','lessons', 'lesson', 'lessonUser']));
             }
             else {
                 return redirect()->route('checkout.show', ['course' => $course]);
@@ -189,5 +205,44 @@ class LessonController extends Controller
         $course->duration = max(0, $course->duration - $lesson->duration);
         $course->save();
         return redirect()->route('admin.course.show', ['course' => $lesson->course_id])->with('success', 'Lesson deleted successfully');
+    }
+
+    public function addView(Request $request)
+    {
+        $userId=$user = auth()->user()->id;
+        $lessonId = $request->input('lesson_id');
+        $existingRecord = LessonUser::where('lesson_id', $lessonId)
+            ->where('user_id', $userId)
+            ->first();
+
+        if (!$existingRecord) {
+            LessonUser::create([
+                'lesson_id' => $lessonId,
+                'user_id' => $userId,
+                'viewed' => true,
+                'time_stopped_watching' => 0,
+                'date_viewed' => Carbon::now()
+            ]);
+        }
+    }
+
+    public function updateTime(Request $request)
+    {
+        $userId=$user = auth()->user()->id;
+        $lessonId = $request->input('lesson_id');
+        $time = $request->input('time');
+        $complete = $request->input('complete');
+
+        $existingRecord = LessonUser::where('lesson_id', $lessonId)
+            ->where('user_id', $userId)
+            ->first();
+        if($existingRecord) {
+            LessonUser::where('lesson_id', $lessonId)
+                ->where('user_id', $userId)
+                ->update([
+                    'time_stopped_watching' => $time,
+                    'complete' => $complete
+                ]);
+        }
     }
 }

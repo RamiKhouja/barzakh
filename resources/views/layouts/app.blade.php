@@ -10,20 +10,18 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-        <!-- <link rel="stylesheet" href="{{ asset('fonts/arb-regular.ttf') }}" type="font/ttf">
-        <link rel="stylesheet" href="{{ asset('fonts/arb-bold.ttf') }}" type="font/ttf"> -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <!-- <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;600&display=swap" rel="stylesheet"> -->
+        
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;600&display=swap" rel="stylesheet">
+        <!-- <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600&display=swap" rel="stylesheet"> -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="antialiased light" x-data="{darkMode: true}" style="font-family:{{app()->getLocale()=='ar' ? ('RbFont') : ('Nunito')}}">
+    <body class="antialiased light" x-data="{darkMode: true}" style="font-family:{{app()->getLocale()=='ar' ? ('Brando') : ('Nunito')}}">
         <div class="min-h-screen bg-primary-100 dark:bg-gray-700">
             @include('layouts.navigation')
 
