@@ -6,7 +6,7 @@
             <div class="md:flex justify-between my-10 {{$lang == 'ar' ? ('flex-row-reverse') : ('')}}">
                 <div class="md:flex items-center {{$lang == 'ar' ? ('flex-row-reverse') : ('')}} mb-6 md:mb-0">
                     <div class="flex {{$lang == 'ar' ? ('flex-row-reverse') : ('')}}">
-                        <img src="{{$instructor->imageLink }}" class="rounded-full w-32 h-32" alt="">
+                        <img src="{{ asset( 'pictures/'.$instructor->image ) }}" class="rounded-full w-32 h-32" alt="">
                     </div>
                     <div class="{{$lang == 'ar' ? ('text-right md:mr-8') : ('md:ml-8')}}">
                         <p class="font-bold text-3xl text-gray-700 dark:text-white mb-4">{{$instructor->firstname}} {{$instructor->lastname}}</p>

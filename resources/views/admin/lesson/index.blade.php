@@ -52,7 +52,7 @@
                                 <tr>
                                     <td>
                                         @if($category->image) 
-                                            <img src="{{asset($category->image)}}" alt="" class="w-12 h-10 rounded-sm object-cover mr-2"/>
+                                            <img src="{{ asset( 'pictures/'.$category->image ) }}" alt="" class="w-12 h-10 rounded-sm object-cover mr-2"/>
                                         @endif
                                     </td>
                                     <td class="table-text">

@@ -22,22 +22,22 @@
         <input id="lang" type="hidden" value="{{$lang}}" />
         <div class="mx-auto flex justify-center">
             <video class="md:h-[30rem]" muted autoplay controls>
-                <source src="/storage/app/pictures/barzakh.mp4" type="video/mp4">
+                <source src="{{ asset( 'pictures/barzakh.mp4') }}" type="video/mp4">
             </video>
         </div>
         <div class="flex justify-center">
         
             <div class="sm:px-6 lg:px-8 my-8 py-8 text-center max-w-xs sm:max-w-sm md:max-w-xl lg:max-w-3xl">
-                <img src="/storage/app/pictures/global/B3.png" class="h-16 sm:h-20 dark:hidden mx-auto mb-4" alt=""/>
-                <img src="/storage/app/pictures/global/B1.png" class="h-16 sm:h-20 hidden dark:block mx-auto mb-4" alt=""/>
+                <img src="{{ asset( 'pictures/global/B3.png) }}" class="h-16 sm:h-20 dark:hidden mx-auto mb-4" alt=""/>
+                <img src="{{ asset( 'pictures/global/B1.png) }}" class="h-16 sm:h-20 hidden dark:block mx-auto mb-4" alt=""/>
                 <p class="{{$lang=='ar' ? ('text-xl') : ('text-2xl lg:text-3xl')}} text-bordo tracking-wider leading-10 dark:text-primary-100" style="font-family:{{$lang=='ar' ? ('Noto Nastaliq Urdu') : ('Great Vibes')}}" dir="{{$lang=='ar' ? ('rtl') : ('ltr')}}">
                     {{__('welcome.Charter-content')}}
                 </p>
                 <p class="{{$lang=='ar' ? ('text-xl mt-5') : ('text-2xl lg:text-3xl mt-7')}} text-bordo dark:text-primary-100" style="font-family:{{$lang=='ar' ? ('Noto Nastaliq Urdu') : ('Great Vibes')}}" >
                     {{__('welcome.ibnu-arabi')}}
                 </p>
-                <img src="/storage/app/pictures/global/B4.png" class="dark:hidden mx-auto mt-4" alt=""/>
-                <img src="/storage/app/pictures/global/B2.png" class="hidden dark:block mx-auto mt-4" alt=""/>
+                <img src="{{ asset( 'pictures/global/B4.png) }}" class="dark:hidden mx-auto mt-4" alt=""/>
+                <img src="{{ asset( 'pictures/global/B2.png) }}" class="hidden dark:block mx-auto mt-4" alt=""/>
             </div>
         </div>
         <div id="courses" class="max-w-xs sm:max-w-xl md:max-w-xl lg:max-w-3xl mx-auto py-32 ">
@@ -164,7 +164,7 @@
                     @foreach($instructors as $instructor)
                     <div class="group relative instructor rounded-2xl">
                         <a href="{{ route('instructor.showUrl', ['url' => $instructor->url]) }}">
-                            <img class="h-auto max-w-full rounded-2xl" src="{{$instructor->imageLink}}" alt="">
+                            <img class="h-auto max-w-full rounded-2xl" src="{{ asset( 'pictures/'.$instructor->image ) }}" alt="">
                             <div class="group-hover:visible rounded-b-2xl group-hover:translate-y-0 group-hover:opacity-100 instructor-details h-1/2 sm:h-[40%] md:h-1/2 lg:h-[40%] top-1/2 sm:top-[60%] md:top-1/2 lg:top-[60%] bg-gradient-to-t from-stone via-transparent to-transparent text-white py-4 px-3">
                                 <div class="{{$lang == 'ar' ? ('text-right') : ('')}}">
                                     <p class="{{$lang == 'ar' ? ('text-xl font-semibold') : ('text-base lg:text-lg font-semibold')}}">{{$instructor->firstname}} {{$instructor->lastname}}</p>
@@ -200,7 +200,7 @@
             <div class="md:grid md:gap-8 xl:gap-16 md:grid-cols-2">
                 <div class="w-full relative shadow-lg rounded-3xl mb-8 md:mb-0">
                     <!-- <img src="/storage/app/pictures/global/suspack-light.jpg" class="h-auto max-w-full rounded-3xl dark:hidden" alt=""/> -->
-                    <img src="/storage/app/pictures/global/suspack-dark.jpg" class="h-auto max-w-full rounded-3xl " alt=""/>
+                    <img src="{{ asset( 'pictures/global/suspack-dark.jpg) }} class="h-auto max-w-full rounded-3xl " alt=""/>
                     <div class="absolute top-2 px-4 sm:px-6 md:px-4 lg:top-4 lg:px-6 xl:px-8 text-center">
                         <p class="text-base md:text-lg lg:text-2xl xl:text-3xl text-white font-black text-center" style="font-family:{{$lang=='ar' ? ('Noto Nastaliq Urdu') : ('Great Vibes')}}">
                             {{__('welcome.suspeso-system')}}
@@ -216,7 +216,7 @@
                 </div>
                 <div class="w-full relative shadow-xl rounded-3xl mb-8 md:mb-0">
                     <!-- <img src="/storage/app/pictures/global/suspack-light.jpg" class="h-auto max-w-full rounded-3xl dark:hidden" alt=""/> -->
-                    <img src="/storage/app/pictures/global/suspack-dark.jpg" class="h-auto max-w-full rounded-3xl " alt=""/>
+                    <img src="{{ asset( 'pictures/global/suspack-dark.jpg) }}" class="h-auto max-w-full rounded-3xl " alt=""/>
                     <!-- <img class="h-auto max-w-full rounded-3xl" src="/storage/app/pictures/global/packs.jpg" alt=""> -->
                     <div class="absolute top-2 px-4 sm:px-6 md:px-4 lg:top-4 lg:px-6 xl:px-8 text-center">
                         <p class="text-base md:text-lg lg:text-2xl xl:text-3xl text-white font-black text-center" style="font-family:{{$lang=='ar' ? ('Noto Nastaliq Urdu') : ('Great Vibes')}}">
@@ -231,10 +231,10 @@
             </div>
         </div>
         <div id="partners" class="flex justify-center pb-32 pt-16">
-            <img src="/storage/app/pictures/global/barzakh-freelance.png" class="h-28 sm:h-52 dark:hidden mr-4 md:mr-8" alt=""/>
-            <img src="/storage/app/pictures/global/barzakh-freelance-white.png" class="h-28 sm:h-52 mr-4 md:mr-8 hidden dark:block" alt=""/>
-            <img src="/storage/app/pictures/global/barzakh-store.png" class="h-28 sm:h-52 dark:hidden ml-4 md:ml-8" alt=""/>
-            <img src="/storage/app/pictures/global/barzakh-store-white.png" class="h-28 sm:h-52 ml-4 md:ml-8 hidden dark:block" alt=""/>
+            <img src="{{ asset( 'pictures/global/barzakh-freelance.png) }}" class="h-28 sm:h-52 dark:hidden mr-4 md:mr-8" alt=""/>
+            <img src="{{ asset( 'pictures/global/barzakh-freelance-white.png) }}" class="h-28 sm:h-52 mr-4 md:mr-8 hidden dark:block" alt=""/>
+            <img src="{{ asset( 'pictures/global/barzakh-store.png) }}" class="h-28 sm:h-52 dark:hidden ml-4 md:ml-8" alt=""/>
+            <img src="{{ asset( 'pictures/global/barzakh-store-white.png) }}" class="h-28 sm:h-52 ml-4 md:ml-8 hidden dark:block" alt=""/>
         </div>
         <x-footer/>
     </div>

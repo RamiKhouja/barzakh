@@ -4,7 +4,7 @@
         <div class="h-20"></div>
         <div class="max-w-xs sm:max-w-sm md:max-w-xl lg:max-w-5xl mx-auto mt-8 md:-mt-20 mb-72 scroll-smooth">
             <div class="flex mt-8 mb-4 justify-center">
-                <img src="/storage/app/pictures/global/logo-main.png" width="170" alt=""/>
+                <img src="{{ asset('pictures/global/logo-main.png') }}" width="170" alt=""/>
             </div>
             <div class="flex justify-center {{$lang=='ar'?('mb-6'):('mb-2')}}">
                 <p class="text-lg md:text-xl lg:text-4xl text-bordo dark:text-white font-bold" style="font-family:{{$lang=='ar' ? ('Noto Nastaliq Urdu') : ('Great Vibes')}}">{{__('about.title')}}</p>

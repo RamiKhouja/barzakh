@@ -14,7 +14,7 @@
                 @foreach($field->categories as $category)
                 <a href="{{ route('category.showUrl', ['url' => $category->url]) }}">
                     <div class="relative rmb-20 sm:mb-0 shadow hover:shadow-lg rounded-3xl">
-                        <img class="rounded-3xl" src="{{ $category->imageLink }}" alt="">
+                        <img class="rounded-3xl" src="{{ asset( 'pictures/'.$category->image ) }}" alt="">
                         <div class="rounded-b-3xl absolute w-full h-1/2 top-1/2 bg-gradient-to-t from-stone via-transparent to-transparent text-white py-4 px-3">
                             <div class="flex h-full items-end justify-center">
                                 <p class="{{$lang == 'ar' ? ('text-xl font-semibold') : ('text-base lg:text-lg font-semibold')}}">

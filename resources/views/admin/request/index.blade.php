@@ -24,7 +24,7 @@
                 @foreach($courses as $course)
                 <div class="rounded-lg bg-white shadow px-4 py-6 mb-4">
                     <div class="flex gap-x-4 items-center px-6">
-                        <img src="{{asset($course->image)}}" alt="" class="w-16 h-10 rounded">
+                        <img src="{{ asset( 'pictures/'.$course->image ) }}" alt="" class="w-16 h-10 rounded">
                         <div class="flex flex-col">
                             <p class="text-lg text-gray-700">{{$course->title_en}} - {{$course->title_ar}}</p>
                             <p class="text-gray-500">

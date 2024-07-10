@@ -15,7 +15,7 @@
                 <div class="col-span-2">
                     <div class="iframe-container rounded-xl h-[150px] sm:h-[298px] md:h-[298px] lg:h-[274px] xl:h-[313px]">
                         <div id="video-placeholder" class="w-full h-full">
-                            <img src="/storage/app//pictures/vid-placeholder.png" alt="Video Placeholder" class="w-full h-full object-cover">
+                            <img src="{{ asset('pictures/vid-placeholder.png') }}" alt="Video Placeholder" class="w-full h-full object-cover">
                         </div>
                         <iframe 
                             id="vimeo-frame" 
@@ -121,7 +121,7 @@
                 </div>
             </div>
             <div class="flex my-10 items-center" dir="{{$lang == 'ar' ? ('rtl') : ('ltr')}}">
-                <img src="{{ $course->instructor->imageLink }}" class="rounded-full w-20 h-20" alt="">
+                <img src="{{ asset( 'pictures/'.$course->instructor->image ) }}" class="rounded-full w-20 h-20" alt="">
                 <div class="{{$lang == 'ar' ? ('text-right mr-5') : ('ml-5')}}">
                     <a href="{{ route('instructor.showUrl', ['url' => $course->instructor->url]) }}">
                         <p class="font-bold text-xl text-gray-400 dark:text-gray-50 mb-1">{{$course->instructor->firstname}} {{$course->instructor->lastname}}</p>
@@ -181,8 +181,8 @@
                     @endforeach
                 </div>
                 <div class="w-full relative shadow-lg rounded-2xl mb-8 md:mb-0 {{$lang=='ar' ? ('order-1') : ('order-2')}}">
-                    <img src="/storage/app/pictures/global/suspack-light.jpg" class="h-auto max-w-full rounded-2xl dark:hidden" alt=""/>
-                    <img src="/storage/app/pictures/global/suspack-dark.jpg" class="h-auto max-w-full rounded-2xl hidden dark:block" alt=""/>
+                    <img src="{{ asset('pictures/global/suspack-light.jpg') }}" class="h-auto max-w-full rounded-2xl dark:hidden" alt=""/>
+                    <img src="{{ asset('pictures/global/suspack-dark.jpg') }}" class="h-auto max-w-full rounded-2xl hidden dark:block" alt=""/>
                     <div class="absolute top-2 px-4 sm:px-6 md:px-4 lg:top-4 lg:px-6 xl:px-8 text-center">
                         <p class="text-base md:text-lg lg:text-xl xl:text-2xl text-bordo dark:text-white font-black text-center" style="font-family:{{$lang=='ar' ? ('Noto Nastaliq Urdu') : ('Great Vibes')}}">
                             {{__('welcome.suspeso-system')}}

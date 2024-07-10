@@ -11,7 +11,7 @@
                         @foreach($instructors as $instructor)
                         <div class="group relative instructor rounded-2xl">
                             <a href="{{ route('instructor.showUrl', ['url' => $instructor->url]) }}">
-                                <img class="h-auto max-w-full rounded-2xl" src="{{$instructor->imageLink}}" alt="">
+                                <img class="h-auto max-w-full rounded-2xl" src="{{ asset( 'pictures/'.$instructor->image ) }}" alt="">
                                 <div class="group-hover:visible rounded-b-2xl group-hover:translate-y-0 group-hover:opacity-100 instructor-details h-1/2 sm:h-[40%] md:h-1/2 lg:h-[40%] top-1/2 sm:top-[60%] md:top-1/2 lg:top-[60%] bg-gradient-to-t from-stone via-transparent to-transparent text-white py-4 px-3">
                                     <div class="{{$lang == 'ar' ? ('text-right') : ('')}}">
                                         <p class="{{$lang == 'ar' ? ('text-xl font-semibold') : ('text-base lg:text-lg font-semibold')}}">{{$instructor->firstname}} {{$instructor->lastname}}</p>

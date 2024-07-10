@@ -17,7 +17,7 @@
             @foreach($courses as $data)
                 <li class="relative md:flex justify-between gap-x-6 p-4 hover:bg-primary-200 dark:hover:bg-gray-500 sm:px-6" dir="{{$lang=='ar' ? 'rtl' : 'ltr'}}">
                     <div class="flex min-w-0 gap-x-4 items-center">
-                        <img src="{{ $data['course']->imageLink }}" alt="Slide 1" class="w-16 h-10 rounded">
+                        <img src="{{ asset( 'pictures/'.$data['course']->image ) }}" alt="Slide 1" class="w-16 h-10 rounded">
                         <div class="min-w-0 flex-auto">
                             <p class="text-base font-semibold text-gray-700 hover:text-bordo dark:text-primary-50 dark:hover:text-red-500 {{$lang=='ar' ? 'text-right' : ''}}">
                                 <a href="{{ route('course.showUrl', ['url'=>$data['course']->url]) }}" target="_blank">

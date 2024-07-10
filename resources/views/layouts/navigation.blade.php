@@ -133,7 +133,7 @@
                                     <button class="inline-flex items-center sm:px-3 sm:py-2 text-sm leading-4 font-medium rounded-lg text-gray-500 dark:text-gray-400 dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 hover:bg-primary-200 dark:hover:bg-gray-400 focus:outline-none transition ease-in-out duration-150">
                                         <div class="flex items-center">
                                             @if(Auth::user()->image) 
-                                                <img src="{{ asset( 'pictures/'.Auth::user()->imageLink )}}" alt="{{ Auth::user()->firstname }}" class="w-7 h-7 rounded-full object-cover md:mr-2"/>
+                                                <img src="{{ asset( 'pictures/'.Auth::user()->image )}}" alt="{{ Auth::user()->firstname }}" class="w-7 h-7 rounded-full object-cover md:mr-2"/>
                                             @endif
                                             <p class="hidden sm:block dark:text-white">{{ Auth::user()->firstname }}</p>
                                         </div>

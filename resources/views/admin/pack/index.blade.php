@@ -61,7 +61,7 @@
                                 <tr>
                                     <td>
                                         @if($pack->image) 
-                                            <img src="{{$pack->imageLink}}" alt="" class="w-12 h-10 rounded-sm object-cover mr-2"/>
+                                            <img src="{{ asset( 'pictures/'.$pack->image ) }}" alt="" class="w-12 h-10 rounded-sm object-cover mr-2"/>
                                         @endif
                                     </td>
                                     <td class="table-text">
