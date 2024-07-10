@@ -48,7 +48,8 @@
             <div class="nav-center md:w-3/5 lg:w-1/2 hidden md:block">
                 @if (Request::path() == '/')
                 <div class="flex justify-center mt-12 logo">
-                    <img src="/storage/app/pictures/global/logo-main.png" class="h-32" alt=""/>
+                
+                <img src="{{ asset( 'pictures/global/logo-main.png') }}" class="h-32" alt=""/>
                 </div>
                 @endif
                 <div class="flex justify-center items-center my-3">
@@ -132,7 +133,7 @@
                                     <button class="inline-flex items-center sm:px-3 sm:py-2 text-sm leading-4 font-medium rounded-lg text-gray-500 dark:text-gray-400 dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 hover:bg-primary-200 dark:hover:bg-gray-400 focus:outline-none transition ease-in-out duration-150">
                                         <div class="flex items-center">
                                             @if(Auth::user()->image) 
-                                                <img src="{{Auth::user()->imageLink}}" alt="{{ Auth::user()->firstname }}" class="w-7 h-7 rounded-full object-cover md:mr-2"/>
+                                                <img src="{{ asset( 'pictures/'.Auth::user()->imageLink )}}" alt="{{ Auth::user()->firstname }}" class="w-7 h-7 rounded-full object-cover md:mr-2"/>
                                             @endif
                                             <p class="hidden sm:block dark:text-white">{{ Auth::user()->firstname }}</p>
                                         </div>
