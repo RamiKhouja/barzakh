@@ -58,9 +58,9 @@
                             <label htmlFor="title" class="form-label">
                                 Categories
                             </label>
-                            <select multiple id="categories" name="categories[]" class="mt-2 form-input">
+                            <select class="select2 mt-2 form-input w-full" name="categories[]" multiple="multiple">
                                 @foreach($categories as $category)
-                                <option value="{{ $category->id }}" class="mt-2">{{ $category->title_en }} ( {{ $category->title_ar }} )</option>
+                                    <option value="{{ $category->id }}" class="mt-2">{{ $category->title_en }} ( {{ $category->title_ar }} )</option>
                                 @endforeach
                             </select>
                         </div>
@@ -288,7 +288,12 @@
             </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <script>
+        $(document).ready(function() {
+            $('.select2').select2();
+        });
+
         function clearForm() {
             document.getElementById('myForm').reset();
         }

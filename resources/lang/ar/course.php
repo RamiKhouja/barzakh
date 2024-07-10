@@ -35,6 +35,8 @@ return [
     'completion-certificate' => 'شهادة إتمام الدورة',
     'ask-instructor' => 'اسأل المحاضر',
     'course-req' => 'متطلبات الدورة التدريبية',
-    'go-to-course' => 'ادخل الدرس'
+    'go-to-course' => 'ادخل الدرس',
+    'suspeso-system' => 'نظام سوسبيزو',
+    'the-lesson' => 'الدرس'
 ];
 ?>

@@ -23,7 +23,7 @@
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 container" dir="{{$lang == 'ar' ? ('rtl') : ('ltr')}}">
                 @foreach($courses as $course)
-                    <x-course :course="$course" />
+                    <x-course :course="$course" :status=null :completed=null />
                 @endforeach
             </div>
             <div class="pagination mt-20">

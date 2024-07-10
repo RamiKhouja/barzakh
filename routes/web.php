@@ -8,9 +8,13 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\InstructorController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\LessonController;
+use App\Http\Controllers\PackController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\CourseRequestController;
+use App\Http\Controllers\OfferController;
+use App\Http\Controllers\AboutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,6 +60,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/instructors', [InstructorController::class, 'index'])->name('admin.instructors');
     Route::get('/admin/instructor/edit/{instructor}', [InstructorController::class, 'edit'])->name('admin.instructor.edit');
     Route::put('/admin/instructor/{instructor}', [InstructorController::class, 'update'])->name('admin.instructor.update');
+    Route::delete('/admin/instructor/{instructor}', [InstructorController::class, 'delete'])->name('admin.instructor.delete');
 
     // Admin categories routes
     Route::get('/admin/category/create', [CategoryController::class, 'create'])->name('admin.category.create');
@@ -82,12 +87,32 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/lesson/edit/{lesson}', [LessonController::class, 'edit'])->name('admin.lesson.edit');
     Route::put('/admin/lesson/{lesson}', [LessonController::class, 'update'])->name('admin.lesson.update');
     Route::delete('/admin/lesson/{lesson}', [LessonController::class, 'delete'])->name('admin.lesson.delete');
+
+    // Admin courses routes
+    Route::get('/admin/pack/create', [PackController::class, 'create'])->name('admin.pack.create');
+    Route::post('/admin/pack', [PackController::class, 'store'])->name('admin.pack.store');
+    Route::get('/admin/packs', [PackController::class, 'index'])->name('admin.packs');
+    Route::delete('/admin/pack/{pack}', [PackController::class, 'delete'])->name('admin.pack.delete');
+    Route::get('/admin/pack/edit/{pack}', [PackController::class, 'edit'])->name('admin.pack.edit');
+    Route::put('/admin/pack/{pack}', [PackController::class, 'update'])->name('admin.pack.update');
+
+    //Admin offers routes
+    Route::get('/admin/offers', [OfferController::class, 'adminIndex'])->name('admin.offers');
+
+    //Admin requests routes
+    Route::get('/admin/requests', [CourseRequestController::class, 'adminIndex'])->name('admin.requests');
+    Route::put('/admin/request/reject/{courseRequest}', [CourseRequestController::class, 'reject'])->name('admin.request.reject');
+    Route::put('/admin/request/approve/{courseRequest}', [CourseRequestController::class, 'approve'])->name('admin.request.approve');
 });
 
 Route::middleware(['auth', 'student'])->group(function () {
     Route::get('/checkout/{course}', [CheckoutController::class, 'show'])->name('checkout.show');
     Route::post('/lesson/addView', [LessonController::class, 'addView'])->name('lesson.addview');
     Route::post('/lesson/updateTime', [LessonController::class, 'updateTime'])->name('lesson.updateTime');
+    Route::post('/request/store', [CourseRequestController::class, 'store'])->name('request.store');
+    Route::get('/requests', [CourseRequestController::class, 'index'])->name('requests');
+    Route::post('/offer/store', [OfferController::class, 'store'])->name('offer.store');
+    Route::get('/offers', [OfferController::class, 'index'])->name('offers');
 });
 
 // Guest Routes
@@ -96,5 +121,8 @@ Route::get('/courses/{url}', [CategoryController::class, 'showByUrl'])->name('ca
 Route::get('/course/{url}', [CourseController::class, 'showByUrl'])->name('course.showUrl');
 Route::get('/course/{url}/{number}', [LessonController::class, 'showByCourse'])->name('lesson.showCourse');
 Route::get('/instructor/{url}', [InstructorController::class, 'showByUrl'])->name('instructor.showUrl');
+Route::get('/packs', [PackController::class, 'clientIndex'])->name('packs');
+Route::get('/about', [AboutController::class, 'index'])->name('about');
+Route::get('/experts', [InstructorController::class, 'clientIndex'])->name('instructors.index');
 
 require __DIR__.'/auth.php';

@@ -38,7 +38,7 @@
                     </p></div>
                 </div>
                 <div class=" md:px-4 col-span-1 mt-8 lg:mt-0" dir="{{$lang == 'ar' ? ('rtl') : ('ltr')}}">
-                    <div class="lg:fixed lg:top-[20%] xl:top-[23%] h-2/3 w-full lg:max-w-xs bg-white dark:bg-gray-400 shadow-lg rounded-xl overflow-y-auto dark:scrollbar-thumb-dark">
+                    <div class="lg:fixed lg:top-[20%] xl:top-[24%] h-2/3 w-full lg:max-w-xs bg-white dark:bg-gray-400 shadow-lg rounded-xl overflow-y-auto dark:scrollbar-thumb-dark">
                         <ul class="py-4">
                             @foreach($lessons as $l)
                             <li class="px-4 hover:bg-primary-200 dark:text-white dark:hover:bg-gray-300 dark:hover:text-white cursor-pointer">

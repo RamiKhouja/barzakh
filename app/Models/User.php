@@ -6,6 +6,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Support\Facades\Storage;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -71,5 +73,24 @@ class User extends Authenticatable
         return $this->belongsToMany(Lesson::class, 'lesson_users')
             ->withPivot(['viewed', 'time_stopped_watching', 'date_viewed', 'complete'])
             ->withTimestamps();
+    }
+
+    public function requests()
+    {
+        return $this->hasMany(CourseRequest::class);
+    }
+
+    public function offers()
+    {
+        return $this->hasMany(Offer::class);
+    }
+
+    public function imageLink() : Attribute
+    {
+        return Attribute::make(
+            get: function(){
+                return Storage::disk('pictures')->url($this->image);
+            }
+        );
     }
 }

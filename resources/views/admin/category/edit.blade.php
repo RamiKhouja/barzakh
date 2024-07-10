@@ -2,7 +2,7 @@
     <div class="bg-primary-100 py-12">
     <div class="md:hidden h-20"></div>
         <div class="max-w-xs sm:max-w-sm md:max-w-xl lg:w-7xl mx-auto flex justify-center">
-            <div class="w-full">
+            <div class="w-full pb-52">
                 <div class="flex justify-center">
                     <p class="text-2xl text-primary-700 font-semibold mb-12">
                         Update Category
@@ -16,7 +16,7 @@
                             <label htmlFor="title" class="form-label mb-2">
                                 Category Image
                             </label>
-                            <x-picture-input :image="old('picture', $category->image)" :circle="false" />
+                            <x-picture-input :image="old('picture', $category->imageLink)" :circle="false" />
                         </div>
                     </div>
                     <div class="flex justify-between space-x-4 mt-8">

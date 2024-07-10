@@ -21,12 +21,15 @@ class WelcomeController extends Controller
             "2" =>  $mostCourses,
             "3" =>  $recentCourses
         ];
-        $instructors = Instructor::take(8)->get();
+        $instructors = Instructor::take(10)->orderBy('order','asc')->get();
         $freeCourses = Course::where('is_free', true)->get();
         $myCourses = null;
         $user = Auth::user();
         if ($user) { 
-            $myCourses = $user->courses;
+            $myCourses = $user->courses->map(function ($course) use ($user) {
+                $course->completed_lessons = $course->completedLessonsCountByUser($user);
+                return $course;
+            });
         }
         return view('welcome', compact(['fields', 'courses', 'instructors', 'freeCourses', 'myCourses']));
     }

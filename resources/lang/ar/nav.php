@@ -4,10 +4,10 @@ return [
     'Axes' => 'المحاور',
     'Categories' => 'الفئات',
     'Courses' => 'المحتوى',
-    'Instructors' => 'الأساتذة',
+    'Instructors' => 'الخبراء',
     'Home' => 'الرئيسية',
     'About-us' => 'من نحن',
-    'Plans' => 'العروض',
+    'Plans' => 'أنظمة الاشتراك',
     'Partners' => 'الشركاء',
     'Profile' => 'الملف الشخصي',
     'my-courses' => 'دوراتي',
@@ -18,5 +18,6 @@ return [
     'religious-vision' => 'الرؤية الدينية',
     'beauty-vision' => 'الرؤية الجمالية',
     'scientific-and-philosophical-vision' => 'الرؤية العلمية والفلسفية',
+    'Packs' => 'المجموعات'
 ];
 ?>

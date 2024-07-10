@@ -14,7 +14,7 @@
         <div class="max-w-xs sm:max-w-sm md:max-w-xl lg:max-w-5xl lg:px-12 mx-auto flex justify-center">
             <div class="sm:flex w-full sm:space-x-12 text-center sm:text-left">
                 <div class="w-full sm:w-1/2 md:w-1/3">
-                    <img src="{{asset($course->image)}}" alt="" class="w-full rounded-lg object-cover mr-2"/>
+                    <img src="{{ $course->imageLink }}" alt="" class="w-full rounded-lg object-cover mr-2"/>
                 </div>
                 <div class="block mt-4 sm:mt-0">
                     <p class="text-4xl font-medium text-gray-700">{{$course->title_en}}</p>

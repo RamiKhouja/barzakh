@@ -35,6 +35,8 @@ return [
     'completion-certificate' => 'Course completion certificate',
     'ask-instructor' => 'Ask the instructor',
     'course-req' => 'Course Requirements',
-    'go-to-course' => 'Access the Course'
+    'go-to-course' => 'Access the Course',
+    'suspeso-system' => 'Suspeso',
+    'the-lesson' => 'Lesson'
 ];
 ?>

@@ -21,48 +21,54 @@
                     <div class="language-switcher">
                         <form action="{{ route('setLocale') }}" method="POST">
                             @csrf
-                            <select name="locale" onchange="this.form.submit()" class="border-0 bg-primary-200 rounded-lg cursor-pointer dark:bg-gray-400 dark:text-white focus:outline-0 text-sm h-8 py-1" >
-                                <option value="ar" {{ $lang == 'ar' ? 'selected' : '' }} style="font-family:'Brando';">العربية</option>
-                                <option value="en" {{ $lang == 'en' ? 'selected' : '' }} style="font-family:'Nunito';">English</option>
+                            <select name="locale" onchange="this.form.submit()" class="border-0 bg-primary-200 rounded-full text-primary-700 focus:ring-primary-300 cursor-pointer dark:bg-gray-400 dark:text-white focus:outline-0 text-sm h-8 py-1" >
+                                <option value="ar" {{ $lang == 'ar' ? 'selected' : '' }} style="font-family:'Amiri';">العربية</option>
+                                <option value="en" {{ $lang == 'en' ? 'selected' : '' }} style="font-family:'PT Serif';">English</option>
                             </select>
                         </form>
                     </div>
                     <div class="relative rounded-full md:ml-0 lg:ml-4">
-                        <div class="pointer-events-none absolute top-1.5 left-3 flex items-center">
-                            <x-zondicon-search class="h-4 w-4 text-gray-400" aria-hidden="true" />
+                        <div class="pointer-events-none absolute top-2 {{ $lang=='ar' ? 'right-3' : 'left-3'}} flex items-center">
+                            <x-zondicon-search class="h-4 w-4 text-primary-700" aria-hidden="true" />
                         </div>
                         <input
                             type="text"
                             name="search"
                             id="search"
-                            class="block w-full rounded-full border-0 py-0.5 pl-8 h-8 text-gray-700 bg-white dark:bg-gray-200 ring-1 ring-primary-200 placeholder:text-gray-400 focus:ring-primary-500 sm:text-sm sm:leading-6"
+                            class="block w-full rounded-full border-0 py-0.5 h-8 text-gray-700 bg-white dark:bg-gray-200 ring-1 ring-primary-200 placeholder:text-primary-700 focus:ring-primary-500 sm:text-sm sm:leading-6 {{$lang=='ar' ? 'text-right pr-8':'pl-8'}}"
                             placeholder="{{__('nav.Search')}}"
                         />
                     </div>
                 </div>
             </div>
+            <div class="mx-auto">
+                <img src="{{ asset('pictures/global/logo.png') }}" class="h-10 md:hidden dark:hidden" alt=""/>
+                <img src="{{ asset('pictures/global/logo-white.png') }}" class="hidden dark:block h-10 md:hidden dark:md:hidden" alt=""/>
+            </div>
             <div class="nav-center md:w-3/5 lg:w-1/2 hidden md:block">
                 @if (Request::path() == '/')
                 <div class="flex justify-center mt-12 logo">
-                    <img src="{{ asset('pictures/global/logo-main.png') }}" class="h-32" alt=""/>
+                    <img src="/storage/app/pictures/global/logo-main.png" class="h-32" alt=""/>
                 </div>
                 @endif
                 <div class="flex justify-center items-center my-3">
                 @auth
                     @if(Auth::user()->role == 'admin') 
-                    <div class="flex-wrap my-4 space-x-2 text-primary-700 dark:text-gray-50 font-medium">
-                        <a href="{{ route('admin.dashboard') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 p-2 rounded-lg">{{ __('nav.Dashboard') }}</a>
-                        <a href="{{ route('admin.fields') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 p-2 rounded-lg">{{ __('nav.Axes') }}</a>
-                        <a href="{{ route('admin.categories') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 p-2 rounded-lg">{{ __('nav.Categories') }}</a>
-                        <a href="{{ route('admin.courses') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 p-2 rounded-lg">{{ __('nav.Courses') }}</a>
-                        <a href="{{ route('admin.instructors') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 p-2 rounded-lg">{{ __('nav.Instructors') }}</a>
+                    <div class="flex-wrap my-4 space-x-2 text-primary-700 dark:text-gray-50 font-medium text-lg">
+                        <a href="{{ route('admin.fields') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg">{{ __('nav.Axes') }}</a>
+                        <a href="{{ route('admin.categories') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg">{{ __('nav.Categories') }}</a>
+                        <a href="{{ route('admin.packs') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-0.5 rounded-lg">{{ __('nav.Packs') }}</a>
+                        <a href="{{ route('admin.courses') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg">{{ __('nav.Courses') }}</a>
+                        <a href="{{ route('admin.instructors') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg">{{ __('nav.Instructors') }}</a>
+                        <a href="{{ route('admin.offers') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg">{{ __('Offers') }}</a>
+                        <a href="{{ route('admin.requests') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg">{{ __('Requests') }}</a>
                     </div>
                     @else
-                    <div class="flex-wrap my-4 space-x-2 text-primary-700 dark:text-gray-50 font-medium">
-                        <a href="{{route('home')}}" class="hover:bg-primary-200 dark:hover:bg-gray-400 p-2 rounded-lg {{ request()->is('/') ? 'font-bold dark:text-white' : '' }}">{{ __('nav.Home') }}</a>
-                        <a href="" class="hover:bg-primary-200 dark:hover:bg-gray-400 p-2 rounded-lg">{{ __('nav.About-us') }}</a>
+                    <div class="flex-wrap my-4 space-x-2 text-primary-700 dark:text-gray-50 font-medium text-lg">
+                        <a href="{{route('home')}}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg {{ request()->is('/') ? 'font-bold dark:text-white' : '' }}">{{ __('nav.Home') }}</a>
+                        <a href="{{route('about')}}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg">{{ __('nav.About-us') }}</a>
                         @if (Request::path() == '/')
-                        <a href="{{ url(route('home') . '#courses') }}" onclick="smallNav()" class="hover:bg-primary-200 dark:hover:bg-gray-400 p-2 rounded-lg">{{ __('nav.Courses') }}</a>
+                        <a href="{{ url(route('home') . '#courses') }}" onclick="smallNav()" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg">{{ __('nav.Courses') }}</a>
                         @else
                         <div class="dropdown">
                             <button class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-t-lg flex space-x-2 items-center {{ (request()->is('course/*') || request()->is('categories/*')) ? 'font-bold dark:text-white' : '' }}">{{ __('nav.Courses') }}</button>
@@ -80,18 +86,18 @@
                         </div>
                         @endif
                         
-                        <a href="{{ url(route('home') . '#instructors') }}" onclick="smallNav()" class="hover:bg-primary-200 dark:hover:bg-gray-400 p-2 rounded-lg">{{ __('nav.Instructors') }}</a>
-                        <a href="" class="hover:bg-primary-200 dark:hover:bg-gray-400 p-2 rounded-lg">{{ __('nav.Plans') }}</a>
-                        <a href="" class="hover:bg-primary-200 dark:hover:bg-gray-400 p-2 rounded-lg">{{ __('nav.Partners') }}</a>
+                        <a href="{{ url(route('home') . '#instructors') }}" onclick="smallNav()" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg">{{ __('nav.Instructors') }}</a>
+                        <a href="{{ url(route('home') . '#plans') }}" onclick="smallNav()" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg">{{ __('nav.Plans') }}</a>
+                        <a href="{{ url(route('home') . '#partners') }}" onclick="smallNav()" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg">{{ __('nav.Partners') }}</a>
                     </div>
                     @endif
                 @else
-                    <div class="flex-wrap space-x-2 text-primary-700 dark:text-gray-50 font-medium">
-                        <a href="{{route('home')}}" class="hover:bg-primary-200 dark:hover:bg-gray-400 p-2 rounded-lg {{ request()->is('/') ? 'font-bold dark:text-white' : '' }}">{{ __('nav.Home') }}</a>
-                        <a href="" class="hover:bg-primary-200 dark:hover:bg-gray-400 p-2 rounded-lg">{{ __('nav.About-us') }}</a>
+                    <div class="flex-wrap space-x-2 text-primary-700 dark:text-gray-50 font-medium text-lg">
+                        <a href="{{route('home')}}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg {{ request()->is('/') ? 'font-bold dark:text-white' : '' }}">{{ __('nav.Home') }}</a>
+                        <a href="{{route('about')}}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg">{{ __('nav.About-us') }}</a>
                         
                         @if (Request::path() == '/')
-                        <a href="{{ url(route('home') . '#courses') }}" onclick="smallNav()" class="hover:bg-primary-200 dark:hover:bg-gray-400 p-2 rounded-lg">{{ __('nav.Courses') }}</a>
+                        <a href="{{ url(route('home') . '#courses') }}" onclick="smallNav()" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg">{{ __('nav.Courses') }}</a>
                         @else
                         <div class="dropdown">
                             <button class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-t-lg {{ (request()->is('course/*') || request()->is('categories/*') ) ? 'font-bold dark:text-white' : '' }}">{{ __('nav.Courses') }}</button>
@@ -108,9 +114,9 @@
                             </div>
                         </div>
                         @endif
-                        <a href="{{ url(route('home') . '#instructors') }}" onclick="smallNav()" class="hover:bg-primary-200 dark:hover:bg-gray-400 p-2 rounded-lg">{{ __('nav.Instructors') }}</a>
-                        <a href="" class="hover:bg-primary-200 dark:hover:bg-gray-400 p-2 rounded-lg">{{ __('nav.Plans') }}</a>
-                        <a href="" class="hover:bg-primary-200 dark:hover:bg-gray-400 p-2 rounded-lg">{{ __('nav.Partners') }}</a>
+                        <a href="{{ url(route('home') . '#instructors') }}" onclick="smallNav()" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg">{{ __('nav.Instructors') }}</a>
+                        <a href="{{ url(route('home') . '#plans') }}" onclick="smallNav()" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg">{{ __('nav.Plans') }}</a>
+                        <a href="{{ url(route('home') . '#partners') }}" onclick="smallNav()" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg">{{ __('nav.Partners') }}</a>
                     </div>
                 @endauth
                 </div>
@@ -126,7 +132,7 @@
                                     <button class="inline-flex items-center sm:px-3 sm:py-2 text-sm leading-4 font-medium rounded-lg text-gray-500 dark:text-gray-400 dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 hover:bg-primary-200 dark:hover:bg-gray-400 focus:outline-none transition ease-in-out duration-150">
                                         <div class="flex items-center">
                                             @if(Auth::user()->image) 
-                                                <img src="{{asset(Auth::user()->image)}}" alt="{{ Auth::user()->firstname }}" class="w-7 h-7 rounded-full object-cover md:mr-2"/>
+                                                <img src="{{Auth::user()->imageLink}}" alt="{{ Auth::user()->firstname }}" class="w-7 h-7 rounded-full object-cover md:mr-2"/>
                                             @endif
                                             <p class="hidden sm:block dark:text-white">{{ Auth::user()->firstname }}</p>
                                         </div>
@@ -157,12 +163,34 @@
                             </x-dropdown>
                         </div>
                     @else
-                        <a href="{{ route('login') }}" class="font-medium text-primary-700 hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 dark:text-gray-50 dark:hover:text-white rounded-lg">{{__('nav.Login')}}</a>
+                        <div class="sm:flex sm:items-center sm:ml-6 md:hidden">
+                            <x-dropdown align="right" width="48">
+                                <x-slot name="trigger">
+                                    <button class="sm:px-3 sm:py-2 transition ease-in-out duration-150">
+                                        <x-heroicon-s-user-circle class="h-7 w-7 text-gray-500 dark:text-white" />
+                                    </button>
+                                </x-slot>
+                                <x-slot name="content">
+                                    <x-dropdown-link :href="route('login')">
+                                        {{ __('nav.Login') }}
+                                    </x-dropdown-link>
+                                    @if (Route::has('register'))
+                                    <x-dropdown-link :href="route('register')">
+                                        {{ __('nav.Register') }}
+                                    </x-dropdown-link>
+                                    @endif
+                                    
+                                </x-slot>
+                            </x-dropdown>
+                        </div>
+                        <div class="flex items-center" dir="{{$lang=='ar'?('rtl'):('')}}">
+                            <a href="{{ route('login') }}" class="hidden md:inline-block text-lg font-medium text-primary-700 hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 dark:text-gray-50 dark:hover:text-white rounded-lg">{{__('nav.Login')}}</a>
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 font-medium text-primary-700 hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 dark:text-gray-50 dark:hover:text-white rounded-lg">{{__('nav.Register')}}</a>
-                        @endif
-                    @endauth
+                            @if (Route::has('register'))
+                                <a href="{{ route('register') }}" class="hidden md:inline-block text-lg ml-4 font-medium text-primary-700 hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 dark:text-gray-50 dark:hover:text-white rounded-lg">{{__('nav.Register')}}</a>
+                            @endif
+                        </div>
+                    @endif
                 </div>
             @endif
                 
@@ -190,21 +218,21 @@
                     <div class="language-switcher mb-4">
                         <form action="{{ route('setLocale') }}" method="POST">
                             @csrf
-                            <select name="locale" onchange="this.form.submit()" class="border-0 py-1 h-8 bg-primary-200 dark:bg-gray-400 dark:text-white focus:outline-0" >
+                            <select name="locale" onchange="this.form.submit()" class="border-0 py-1 h-8 bg-primary-200 text-primary-700 focus:ring-primary-300 dark:bg-gray-400 dark:text-white focus:outline-0" >
                                 <option value="ar" {{ $lang == 'ar' ? 'selected' : '' }}>العربية</option>
                                 <option value="en" {{ $lang == 'en' ? 'selected' : '' }}>English</option>
                             </select>
                         </form>
                     </div>
                     <div class="relative rounded-full">
-                        <div class="pointer-events-none absolute top-1.5 left-3 flex items-center">
-                            <x-zondicon-search class="h-4 w-4 text-gray-400" aria-hidden="true" />
+                        <div class="pointer-events-none absolute top-2 {{ $lang=='ar' ? 'right-3' : 'left-3'}} flex items-center">
+                            <x-zondicon-search class="h-4 w-4 text-primary-700" aria-hidden="true" />
                         </div>
                         <input
                             type="text"
                             name="search"
                             id="search"
-                            class="block w-full rounded-full border-0 py-0.5 pl-8 h-8 text-gray-700 bg-white dark:bg-gray-200 ring-1 ring-primary-200 placeholder:text-gray-400 focus:ring-primary-500 sm:text-sm sm:leading-6"
+                            class="block w-full rounded-full border-0 py-0.5 h-8 text-gray-700 bg-white dark:bg-gray-200 ring-1 ring-primary-200 placeholder:text-primary-700 focus:ring-primary-500 sm:text-sm sm:leading-6 {{$lang=='ar' ? 'text-right pr-8':'pl-8'}}"
                             placeholder="{{__('nav.Search')}}"
                         />
                     </div>
@@ -218,23 +246,24 @@
                             <div><a href="{{ route('admin.dashboard') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-0.5 rounded-lg">{{ __('nav.Dashboard') }}</a></div>
                             <div><a href="{{ route('admin.fields') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-0.5 rounded-lg">{{ __('nav.Axes') }}</a></div>
                             <div><a href="{{ route('admin.categories') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-0.5 rounded-lg">{{ __('nav.Categories') }}</a></div>
+                            <div><a href="{{ route('admin.packs') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-0.5 rounded-lg">{{ __('nav.Packs') }}</a></div>
                             <div><a href="{{ route('admin.courses') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-0.5 rounded-lg">{{ __('nav.Courses') }}</a></div>
                             <div><a href="{{ route('admin.instructors') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-0.5 rounded-lg">{{ __('nav.Instructors') }}</a></div>
                         
                         @else
-                            <div><a href="/" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-0.5 rounded-lg">{{ __('nav.Home') }}</a></div>
-                            <div><a href="" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-0.5 rounded-lg">{{ __('nav.About-us') }}</a></div>
-                            <div><a href="/#courses" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-0.5 rounded-lg">{{ __('nav.Courses') }}</a></div>
-                            <div><a href="" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-0.5 rounded-lg">{{ __('nav.Instructors') }}</a></div>
+                            <div><a href="{{route('home')}}" @click="open = !open" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-0.5 rounded-lg">{{ __('nav.Home') }}</a></div>
+                            <div><a href="{{route('about')}}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-0.5 rounded-lg">{{ __('nav.About-us') }}</a></div>
+                            <div><a href="{{ url(route('home') . '#courses') }}" @click="open = !open" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-0.5 rounded-lg">{{ __('nav.Courses') }}</a></div>
+                            <div><a href="{{ url(route('home') . '#instructors') }}" @click="open = !open" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-0.5 rounded-lg">{{ __('nav.Instructors') }}</a></div>
                             <div><a href="" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-0.5 rounded-lg">{{ __('nav.Plans') }}</a></div>
                             <div><a href="" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-0.5 rounded-lg">{{ __('nav.Partners') }}</a></div>
                         
                         @endif
                     @else
-                            <div><a href="/" class="resp-menu-item">{{ __('nav.Home') }}</a></div>
-                            <div><a href="" class="resp-menu-item">{{ __('nav.About-us') }}</a></div>
-                            <div><a href="/#courses" class="resp-menu-item">{{ __('nav.Courses') }}</a></div>
-                            <div><a href="" class="resp-menu-item">{{ __('nav.Instructors') }}</a></div>
+                            <div><a href="{{route('home')}}" @click="open = !open" class="resp-menu-item">{{ __('nav.Home') }}</a></div>
+                            <div><a href="{{route('about')}}" class="resp-menu-item">{{ __('nav.About-us') }}</a></div>
+                            <div><a href="{{ url(route('home') . '#courses') }}" @click="open = !open" class="resp-menu-item">{{ __('nav.Courses') }}</a></div>
+                            <div><a href="{{ url(route('home') . '#instructors') }}" @click="open = !open" class="resp-menu-item">{{ __('nav.Instructors') }}</a></div>
                             <div><a href="" class="resp-menu-item">{{ __('nav.Plans') }}</a></div>
                             <div><a href="" class="resp-menu-item">{{ __('nav.Partners') }}</a></div>
                         

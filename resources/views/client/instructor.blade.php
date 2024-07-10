@@ -6,7 +6,7 @@
             <div class="md:flex justify-between my-10 {{$lang == 'ar' ? ('flex-row-reverse') : ('')}}">
                 <div class="md:flex items-center {{$lang == 'ar' ? ('flex-row-reverse') : ('')}} mb-6 md:mb-0">
                     <div class="flex {{$lang == 'ar' ? ('flex-row-reverse') : ('')}}">
-                        <img src="{{asset($instructor->image)}}" class="rounded-full w-32 h-32" alt="">
+                        <img src="{{$instructor->imageLink }}" class="rounded-full w-32 h-32" alt="">
                     </div>
                     <div class="{{$lang == 'ar' ? ('text-right md:mr-8') : ('md:ml-8')}}">
                         <p class="font-bold text-3xl text-gray-700 dark:text-white mb-4">{{$instructor->firstname}} {{$instructor->lastname}}</p>
@@ -60,7 +60,7 @@
                 <p class="text-2xl {{$lang == 'ar' ? ('font-medium') : ('font-semibold')}} text-gray-700 dark:text-white mb-6">{{__('instructor.the-courses')}}</p>
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 container" dir="{{$lang == 'ar' ? ('rtl') : ('ltr')}}">
                     @foreach($instructor->courses as $course)
-                        <x-course :course="$course" />
+                        <x-course :course="$course" :status=null :completed=null />
                     @endforeach 
                 </div>
             </div>

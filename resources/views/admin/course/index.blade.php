@@ -64,7 +64,7 @@
                                 <tr>
                                     <td>
                                         @if($course->image) 
-                                            <img src="{{asset($course->image)}}" alt="" class="w-12 h-10 rounded-sm object-cover mr-2"/>
+                                            <img src="{{$course->imageLink}}" alt="" class="w-12 h-10 rounded-sm object-cover mr-2"/>
                                         @endif
                                     </td>
                                     <td class="table-text">

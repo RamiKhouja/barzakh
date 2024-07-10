@@ -4,23 +4,23 @@
         <div class="text-center {{$lang == 'ar' ? ('sm:text-right') : ('sm:text-left')}} space-y-2 mx-auto sm:mx-0">
             <img src="{{ asset('pictures/global/logo.png') }}" class="h-16 dark:hidden" alt=""/>
             <img src="{{ asset('pictures/global/logo-white.png') }}" class="h-16 hidden dark:block" alt=""/>
-            <p class="text-gray-700 dark:text-gray-50 {{$lang == 'ar' ? ('font-midium') : ('font-semibold')}} text-lg px-2">{{__('welcome.about-barzakh')}}</p>
-            <p class="text-gray-700 dark:text-gray-50 {{$lang == 'ar' ? ('font-midium') : ('font-semibold')}} text-lg px-2">{{__('welcome.our-news')}}</p>
-            <p class="text-gray-700 dark:text-gray-50 {{$lang == 'ar' ? ('font-midium') : ('font-semibold')}} text-lg px-2">{{__('welcome.the-team')}}</p>
-            <p class="text-gray-700 dark:text-gray-50 {{$lang == 'ar' ? ('font-midium') : ('font-semibold')}} text-lg px-2">{{__('welcome.contact-us')}}</p>
+            <p class="text-gray-700 dark:text-gray-50 font-medium text-lg px-2">{{__('welcome.about-barzakh')}}</p>
+            <p class="text-gray-700 dark:text-gray-50 font-medium text-lg px-2">{{__('welcome.our-news')}}</p>
+            <p class="text-gray-700 dark:text-gray-50 font-medium text-lg px-2">{{__('welcome.the-team')}}</p>
+            <p class="text-gray-700 dark:text-gray-50 font-medium text-lg px-2">{{__('welcome.contact-us')}}</p>
         </div>
         <div class="text-center {{$lang == 'ar' ? ('sm:text-right') : ('sm:text-left')}} space-y-2 mx-auto sm:mx-0">
             <p class="text-primary-700 dark:text-white font-black text-xl">{{__('welcome.discover-more')}}</p>
-            <p class="text-gray-700 dark:text-gray-50 {{$lang == 'ar' ? ('font-midium') : ('font-semibold')}} text-lg">{{__('welcome.our-courses')}}</p>
-            <p class="text-gray-700 dark:text-gray-50 {{$lang == 'ar' ? ('font-midium') : ('font-semibold')}} text-lg">{{__('welcome.most-popular-courses')}}</p>
-            <p class="text-gray-700 dark:text-gray-50 {{$lang == 'ar' ? ('font-midium') : ('font-semibold')}} text-lg">{{__('welcome.subscription-plans')}}</p>
-            <p class="text-gray-700 dark:text-gray-50 {{$lang == 'ar' ? ('font-midium') : ('font-semibold')}} text-lg">{{__('welcome.our-experts')}}</p>
-            <p class="text-gray-700 dark:text-gray-50 {{$lang == 'ar' ? ('font-midium') : ('font-semibold')}} text-lg">{{__('welcome.learning-partners')}}</p>
+            <p class="text-gray-700 dark:text-gray-50 font-medium text-lg">{{__('welcome.our-courses')}}</p>
+            <p class="text-gray-700 dark:text-gray-50 font-medium text-lg">{{__('welcome.most-popular-courses')}}</p>
+            <p class="text-gray-700 dark:text-gray-50 font-medium text-lg">{{__('welcome.subscription-plans')}}</p>
+            <p class="text-gray-700 dark:text-gray-50 font-medium text-lg">{{__('welcome.our-experts')}}</p>
+            <p class="text-gray-700 dark:text-gray-50 font-medium text-lg">{{__('welcome.learning-partners')}}</p>
         </div>
         <div class="text-center {{$lang == 'ar' ? ('sm:text-right') : ('sm:text-left')}} space-y-2 mx-auto sm:mx-0">
             <p class="text-primary-700 dark:text-white font-black text-xl">{{__('welcome.barzakh-for-business')}}</p>
-            <p class="text-gray-700 dark:text-gray-50 {{$lang == 'ar' ? ('font-midium') : ('font-semibold')}} text-lg">{{__('welcome.join-our-experts')}}</p>
-            <p class="text-gray-700 dark:text-gray-50 {{$lang == 'ar' ? ('font-midium') : ('font-semibold')}} text-lg">{{__('welcome.train-your-team')}}</p>
+            <p class="text-gray-700 dark:text-gray-50 font-medium text-lg">{{__('welcome.join-our-experts')}}</p>
+            <p class="text-gray-700 dark:text-gray-50 font-medium text-lg">{{__('welcome.train-your-team')}}</p>
         </div>
         <div class="text-center space-y-4 mx-auto">
             <p class="text-gray-700 dark:text-gray-50 font-black text-xl">{{__('welcome.download-app')}}</p>
@@ -30,9 +30,9 @@
     </div>
     <div class="pt-24 md:flex md:justify-between md:items-center space-y-4 md:space-y-0 {{$lang == 'ar' ? ('md:flex-row-reverse') : ('')}}">
         <div class="sm:flex sm:space-x-6 space-y-2 sm:space-y-0 sm:justify-center md:justify-normal text-center">
-            <p class="text-primary-700 dark:text-white {{$lang == 'ar' ? ('font-midium') : ('font-semibold')}}">{{__('welcome.terms-of-use')}}</p>
-            <p class="text-primary-700 dark:text-white {{$lang == 'ar' ? ('font-midium') : ('font-semibold')}}">{{__('welcome.privacy-policy')}}</p>
-            <p class="text-primary-700 dark:text-white {{$lang == 'ar' ? ('font-midium') : ('font-semibold')}}">{{__('welcome.help-center')}}</p>
+            <p class="text-primary-700 dark:text-white font-medium">{{__('welcome.terms-of-use')}}</p>
+            <p class="text-primary-700 dark:text-white font-medium">{{__('welcome.privacy-policy')}}</p>
+            <p class="text-primary-700 dark:text-white font-medium">{{__('welcome.help-center')}}</p>
         </div>
         <div class="flex space-x-2 justify-center md:justify-normal dark:hidden">
             <img src="{{ asset('pictures/global/yt.png') }}" class="w-8" alt=""/>

@@ -166,6 +166,21 @@
                             </div>
                         </div>
                     </div>
+                    <div class="w-20">
+                        <label htmlFor="title" class="form-label">
+                            Order
+                        </label>
+                        <div class="mt-2">
+                            <input
+                            type="number"
+                            name="order"
+                            id="order"
+                            class="form-input"
+                            placeholder="99"
+                            value="{{ $order }}"
+                            />
+                        </div>
+                    </div>
                     <div class="flex justify-end my-8">
                         <button type="button" class="secondary-btn mr-2" onclick="clearForm()">{{ __('Cancel') }}</button>
                         <button type="submit" class="primary-btn">{{ __('Save') }}</button>

@@ -1,6 +1,6 @@
 {
   "resources/css/app.css": {
-    "file": "assets/app-0d6adaf4.css",
+    "file": "assets/app-03515c76.css",
     "isEntry": true,
     "src": "resources/css/app.css"
   },
@@ -11,18 +11,6 @@
   "resources/fonts/Brando-Arabic-Text.otf": {
     "file": "assets/Brando-Arabic-Text-ef8febd2.otf",
     "src": "resources/fonts/Brando-Arabic-Text.otf"
-  },
-  "resources/fonts/NotoNastaliqUrdu.ttf": {
-    "file": "assets/NotoNastaliqUrdu-27c4aba9.ttf",
-    "src": "resources/fonts/NotoNastaliqUrdu.ttf"
-  },
-  "resources/fonts/arb-bold.ttf": {
-    "file": "assets/arb-bold-7a7d2ff2.ttf",
-    "src": "resources/fonts/arb-bold.ttf"
-  },
-  "resources/fonts/arb-regular.ttf": {
-    "file": "assets/arb-regular-40617281.ttf",
-    "src": "resources/fonts/arb-regular.ttf"
   },
   "resources/js/app.js": {
     "file": "assets/app-6e0eadfb.js",

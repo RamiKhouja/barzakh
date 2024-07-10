@@ -41,9 +41,9 @@ class CategoryController extends Controller
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
         
-        $path = null;
         if($request->hasFile('picture')) {
-            $path = $request->file('picture')->storePublicly('pictures/categories');
+            $fileName = time() . '_' . $request->file('picture')->getClientOriginalName();
+            $request->file('picture')->storeAs('/categories', $fileName, 'pictures');
         }
         $category = new Category;
         $category->title_en = $request->input('title_en');
@@ -52,7 +52,7 @@ class CategoryController extends Controller
         $category->description_ar = $request->input('description_ar');
         $category->field_id = $request->input('field_id');
         $category->url=strtolower(str_replace(' ', '-', trim($request->input('title_en'))));
-        $category->image = $path;
+        $category->image = "/categories/{$fileName}";
         $category->save();
 
         return Redirect::route('admin.categories')->with('success','Category has been created successfully.');
@@ -90,8 +90,11 @@ class CategoryController extends Controller
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
+        
         if($request->hasFile('picture')) {
-            $category->image = $request->file('picture')->storePublicly('pictures/categories');
+            $fileName = time() . '_' . $request->file('picture')->getClientOriginalName();
+            $request->file('picture')->storeAs('/categories', $fileName, 'pictures');
+            $category->image = "/categories/{$fileName}";
         }
 
         $category->fill($request->post())->save();

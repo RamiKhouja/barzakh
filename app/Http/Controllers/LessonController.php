@@ -50,10 +50,9 @@ class LessonController extends Controller
 
         $courseId = intval($request->input('course_id'));
         
-        $path = null;
         if($request->hasFile('picture')) {
-            $picFolder = 'pictures/lessons/'.$courseId;
-            $path = $request->file('picture')->storePublicly($picFolder);
+            $fileName = time() . '_' . $request->file('picture')->getClientOriginalName();
+            $request->file('picture')->storeAs('lessons', $fileName, 'pictures');
         }
 
         $lesson = new Lesson;
@@ -62,7 +61,7 @@ class LessonController extends Controller
         $lesson->course_id = $courseId;
         $lesson->number = $request->input('number');
         $lesson->video_url = $request->input('video_url');
-        $lesson->image = $path;
+        $lesson->image = "/lessons/{$fileName}";
         $lesson->url = strtolower(str_replace(' ', '-', trim($request->input('title_en'))));
         $lesson->description_en = $request->input('description_en');
         $lesson->description_ar = $request->input('description_ar');

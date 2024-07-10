@@ -4,13 +4,23 @@
         <div class="h-20"></div>
         <div class="max-w-xs sm:max-w-sm md:max-w-xl lg:max-w-4xl xl:max-w-5xl mx-auto mt-8 md:-mt-20 mb-36">
             <div class="my-16" dir="{{$lang == 'ar' ? ('rtl') : ('ltr')}}">
-                <p class="text-2xl {{$lang == 'ar' ? ('font-medium') : ('font-semibold')}} text-gray-700 dark:text-white mb-6">{{__('instructor.the-courses')}}</p>
+                <p class="text-2xl {{$lang == 'ar' ? ('font-medium') : ('font-semibold')}} text-gray-700 dark:text-white mb-6">{{__('profile.the-courses')}}</p>
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 container" dir="{{$lang == 'ar' ? ('rtl') : ('ltr')}}">
                     @foreach($courses as $course)
-                        <x-course :course="$course" />
+                        <x-course :course="$course" :status=null :completed="$course->completed_lessons"/>
                     @endforeach 
                 </div>
             </div>
+            @if($requested)
+            <div class="my-16" dir="{{$lang == 'ar' ? ('rtl') : ('ltr')}}">
+                <p class="text-2xl {{$lang == 'ar' ? ('font-medium') : ('font-semibold')}} text-gray-700 dark:text-white mb-6">{{__('profile.requested-courses')}}</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 container" dir="{{$lang == 'ar' ? ('rtl') : ('ltr')}}">
+                    @foreach($requested as $cr)
+                        <x-course :course="$cr->course" :status="$cr->status" :completed=null />
+                    @endforeach 
+                </div>
+            </div>
+            @endif
         </div>
         <x-footer/>
     </div>

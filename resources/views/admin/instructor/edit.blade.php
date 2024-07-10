@@ -16,7 +16,7 @@
                             <label htmlFor="title" class="form-label mb-2">
                                 Profile Picture
                             </label>
-                            <x-picture-input :image="old('picture', $instructor->image)" :circle="true"/>
+                            <x-picture-input :image="old('picture', $instructor->imageLink)" :circle="true"/>
                         </div>
                     </div>
                     <div>
@@ -110,6 +110,23 @@
                             />
                         </div>
                     </div>
+                    <div class="flex justify-between space-x-4 mt-8">
+                        <div class="w-full">
+                            <label htmlFor="title" class="form-label">
+                                URL
+                            </label>
+                            <div class="mt-2">
+                                <input
+                                type="text"
+                                name="url"
+                                value="{{ $instructor->url }}"
+                                id="url"
+                                class="form-input"
+                                placeholder="Instructor url"
+                                />
+                            </div>
+                        </div>
+                    </div>
                     <div class="flex justify-between space-x-4 my-8">
                         <div class="w-full">
                             <label htmlFor="title" class="form-label">
@@ -176,6 +193,21 @@
                                 {{$instructor->getTranslation('description', 'ar') }}
                                 </textarea>
                             </div>
+                        </div>
+                    </div>
+                    <div class="w-20">
+                        <label htmlFor="title" class="form-label">
+                            Order
+                        </label>
+                        <div class="mt-2">
+                            <input
+                            type="number"
+                            name="order"
+                            id="order"
+                            class="form-input"
+                            placeholder="99"
+                            value="{{ $instructor->order }}"
+                            />
                         </div>
                     </div>
                     <div class="flex justify-end my-8">

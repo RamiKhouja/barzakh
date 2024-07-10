@@ -17,43 +17,54 @@
             }
         }
     ?>
-    <div class="bg-primary-100 dark:bg-gray-700">
+    <div class="bg-primary-100 dark:bg-gray-700 w-full">
         <div class="md:hidden h-20"></div>
         <input id="lang" type="hidden" value="{{$lang}}" />
         <div class="mx-auto flex justify-center">
             <video class="md:h-[30rem]" muted autoplay controls>
-                <source src="{{ asset('pictures/barzakh.mp4') }}" type="video/mp4">
+                <source src="/storage/app/pictures/barzakh.mp4" type="video/mp4">
             </video>
         </div>
         <div class="flex justify-center">
         
-            <div class="sm:px-6 lg:px-8 my-8 py-8 text-center max-w-xs sm:max-w-sm md:max-w-xl lg:max-w-3xl border-b-2 border-b-primary-500 dark:border-b-gray-50">
-                <x-bi-quote class="w-16 h-16 text-bordo mb-4 mx-auto" />
-                <p class="text-xl text-bordo tracking-wider leading-10 dark:text-primary-100" style="font-family:{{$lang=='ar' ? ('Noto') : ('Nunito')}}">
+            <div class="sm:px-6 lg:px-8 my-8 py-8 text-center max-w-xs sm:max-w-sm md:max-w-xl lg:max-w-3xl">
+                <img src="/storage/app/pictures/global/B3.png" class="h-16 sm:h-20 dark:hidden mx-auto mb-4" alt=""/>
+                <img src="/storage/app/pictures/global/B1.png" class="h-16 sm:h-20 hidden dark:block mx-auto mb-4" alt=""/>
+                <p class="{{$lang=='ar' ? ('text-xl') : ('text-2xl lg:text-3xl')}} text-bordo tracking-wider leading-10 dark:text-primary-100" style="font-family:{{$lang=='ar' ? ('Noto Nastaliq Urdu') : ('Great Vibes')}}" dir="{{$lang=='ar' ? ('rtl') : ('ltr')}}">
                     {{__('welcome.Charter-content')}}
                 </p>
+                <p class="{{$lang=='ar' ? ('text-xl mt-5') : ('text-2xl lg:text-3xl mt-7')}} text-bordo dark:text-primary-100" style="font-family:{{$lang=='ar' ? ('Noto Nastaliq Urdu') : ('Great Vibes')}}" >
+                    {{__('welcome.ibnu-arabi')}}
+                </p>
+                <img src="/storage/app/pictures/global/B4.png" class="dark:hidden mx-auto mt-4" alt=""/>
+                <img src="/storage/app/pictures/global/B2.png" class="hidden dark:block mx-auto mt-4" alt=""/>
             </div>
         </div>
         <div id="courses" class="max-w-xs sm:max-w-xl md:max-w-xl lg:max-w-3xl mx-auto py-32 ">
             <div class="flex justify-center">
-                <p class="text-2xl md:text-3xl lg:text-5xl text-bordo dark:text-white font-black mb-16 {{$lang=='ar'?('text-right'):('')}}">
+                <p class="text-2xl md:text-3xl lg:text-5xl text-primary-700 dark:text-white font-black {{$lang=='ar'?('text-right mb-2'):('italic mb-4')}}">
                     {{__('welcome.our-content')}}
+                </p>
+            </div>
+            <div class="flex justify-center">
+                <p class="text-base md:text-xl lg:text-2xl text-bordo dark:text-primary-50 font-medium mb-16" style="font-family:{{$lang=='ar' ? ('Noto Nastaliq Urdu') : ('Great Vibes')}}">
+                    {{__('welcome.world-visions')}}
                 </p>
             </div>
             <div class="flex justify-center">
                 <div class="xs:columns-1 md:columns-3 md:gap-4 lg:gap-8" dir="{{$lang=='ar' ? ('rtl') : ('ltr')}}">
                 @foreach($fields as $field)
-                <a href="{{ route('fields.showUrl', ['url' => $field->url]) }}">
+                <a href="{{ route('fields.showUrl', ['url' => $field->url]) }}" style="-webkit-tap-highlight-color: transparent;">
                     <div class="h-72 w-72 md:h-52 md:w-52 lg:h-72 lg:w-72 my-6 md:my-0 cat-circle hover:shadow-lg rounded-full">  
                         <div class="h-2/5 flex items-center justify-center text-center">
                             <div class="w-48">
-                                <p class="text-xl md:text-lg lg:text-xl text-bordo font-semibold" style="font-family:{{$lang=='ar' ? ('Noto') : ('Nunito')}}">
+                                <p class="{{$lang=='ar' ? ('text-xl md:text-sm lg:text-xl font-semibold') : ('text-2xl md:text-xl lg:text-2xl font-medium')}} text-bordo" style="font-family:{{$lang=='ar' ? ('Noto Nastaliq Urdu') : ('Great Vibes')}}">
                                     {{ $field->title }}
                                 </p>
                             </div>
                         </div>
                         <div class="h-3/5 p-8 text-center">
-                            <p class="text-xl md:text-lg lg:text-xl font-normal text-gray-400">{{ $field->subtitle }}</p>
+                            <p class="text-xl md:text-sm lg:text-xl font-normal text-gray-400 {{$lang=='ar'?(''):('italic')}}">{{ $field->subtitle }}</p>
                         </div> 
                     </div>
                 </a>
@@ -61,7 +72,7 @@
                 </div>
             </div>
         </div>
-        @if(Auth::user())
+        @if(Auth::user() && $myCourses && count($myCourses) > 0)
         <div id="free" class="container pt-16 pb-8 sm:max-w-xl md:max-w-2xl lg:max-w-screen-lg xl:max-w-screen-2xl mx-auto">
             <p class="text-2xl md:text-3xl lg:text-5xl text-primary-700 dark:text-white font-black px-4 md:px-8 lg:px-16 mb-4 {{$lang=='ar'?('text-right'):('')}}">
                 {{__('welcome.finish-started')}}
@@ -72,14 +83,14 @@
                      {{checkCount($myCourses)}}">
                     <x-heroicon-s-chevron-left class="w-4 h-4"/>
                 </button>
-                <div class="owl-carousel my-owl owl-theme w-10/12">
+                <div class="owl-carousel my-owl owl-theme w-full md:w-10/12">
                     <!-- Carousel Items -->
                     @foreach($myCourses as $course)
                     <div class="item">
-                        <x-course :course="$course" />
+                        <x-course :course="$course" :status=null :completed="$course->completed_lessons"/>
                     </div>
                     @endforeach
-                    <div class="item"></div>
+                    <!-- <div class="item"></div> -->
                     <!-- Add more items as needed -->
                 </div>
                 <button class="myNextBtn h-56 bg-primary-150 text-stone dark:bg-gray-400 dark:hover:text-gray-700 dark:hover:bg-primary-200 dark:text-primary-50 rounded-xl hover:bg-primary-300 shadow-md px-2 hidden sm:block {{checkCount($myCourses)}}">
@@ -88,9 +99,9 @@
             </div>
         </div>
         @endif
-        <div class="">
-            <div class="tabs container py-16 sm:max-w-xl md:max-w-2xl lg:max-w-screen-lg xl:max-w-screen-2xl mx-auto">
-                <p class="text-2xl md:text-3xl lg:text-5xl text-primary-700 dark:text-white font-black px-4 md:px-8 lg:px-16 mb-4 {{$lang=='ar'?('text-right'):('')}}">
+        <div>
+            <div class="tabs w-full max-w-full py-16 sm:max-w-xl md:max-w-2xl lg:max-w-screen-lg xl:max-w-screen-2xl mx-auto">
+                <p class="text-2xl md:text-3xl lg:text-5xl text-primary-700 dark:text-white font-black px-4 md:px-8 lg:px-16 mb-4 {{$lang=='ar'?('text-right'):('italic')}}">
                     {{__('welcome.chose-for-you')}}
                 </p>
                 <ul class="tab-links px-4 md:px-8 lg:px-16 {{$lang=='ar'?('flex-row-reverse'):('')}}">
@@ -104,11 +115,11 @@
                     <button class="prevBtn h-56 bg-primary-150 text-stone dark:bg-gray-400 dark:hover:text-gray-700 dark:hover:bg-primary-200 dark:text-primary-50 rounded-xl hover:bg-primary-300 shadow-md px-2 hidden sm:block">
                         <x-heroicon-s-chevron-left class="w-4 h-4"/>
                     </button>
-                    <div class="owl-carousel owl-tabs owl-theme w-10/12">
+                    <div class="owl-carousel owl-tabs owl-theme md:w-10/12">
                         <!-- Carousel Items -->
                         @foreach($courseType as $course)
                         <div class="item">
-                            <x-course :course="$course" />
+                            <x-course :course="$course" :status=null :completed=null />
                         </div>
                         @endforeach
                         <!-- Add more items as needed -->
@@ -121,22 +132,21 @@
                 <!-- Add more tab content containers as needed -->
             </div>
         </div>
-        <div id="free" class="container pt-16 pb-8 sm:max-w-xl md:max-w-2xl lg:max-w-screen-lg xl:max-w-screen-2xl mx-auto">
-            <p class="text-2xl md:text-3xl lg:text-5xl text-primary-700 dark:text-white font-black px-4 md:px-8 lg:px-16 mb-4 {{$lang=='ar'?('text-right'):('')}}">
+        <div id="free" class="w-full max-w-full pt-16 pb-8 sm:max-w-xl md:max-w-2xl lg:max-w-screen-lg xl:max-w-screen-2xl mx-auto">
+            <p class="text-2xl md:text-3xl lg:text-5xl text-primary-700 dark:text-white font-black px-4 md:px-8 lg:px-16 mb-4 {{$lang=='ar'?('text-right'):('italic')}}">
                 {{__('welcome.free-courses')}}
             </p>
-            <div class="items-center container py-8  sm:max-w-xl md:max-w-2xl lg:max-w-screen-lg xl:max-w-screen-2xl  mx-auto mt-4 flex space-x-4 justify-center">
+            <div class="items-center w-full max-w-full py-8  sm:max-w-xl md:max-w-2xl lg:max-w-screen-lg xl:max-w-screen-2xl  mx-auto mt-4 flex space-x-4 justify-center">
                 <button class="prevBtnFree h-56 bg-primary-150 text-stone dark:bg-gray-400 dark:hover:text-gray-700 dark:hover:bg-primary-200 dark:text-primary-50 rounded-xl hover:bg-primary-300 shadow-md px-2 hidden sm:block {{checkCount($freeCourses)}}">
                     <x-heroicon-s-chevron-left class="w-4 h-4"/>
                 </button>
-                <div class="owl-carousel owl-free owl-theme w-10/12">
+                <div class="owl-carousel owl-free owl-theme md:w-10/12">
                     <!-- Carousel Items -->
                     @foreach($freeCourses as $course)
                     <div class="item">
-                        <x-course :course="$course" />
+                        <x-course :course="$course" :status=null :completed=null />
                     </div>
                     @endforeach
-                    <div class="item"></div>
                     <!-- Add more items as needed -->
                 </div>
                 <button class="nextBtnFree h-56 bg-primary-150 text-stone dark:bg-gray-400 dark:hover:text-gray-700 dark:hover:bg-primary-200 dark:text-primary-50 rounded-xl hover:bg-primary-300 shadow-md px-2 hidden sm:block {{checkCount($freeCourses)}}">
@@ -144,20 +154,34 @@
                 </button>
             </div>
         </div>
-        <div id="instructors" class="px-8 py-32 max-w-xs sm:max-w-xl md:max-w-2xl lg:max-w-4xl mx-auto">
-            <p class="text-2xl md:text-3xl lg:text-5xl text-gray-500 dark:text-white font-black  mb-12 text-center">
+        <!-- <div id="instructors" class="px-8 py-32 max-w-sm sm:max-w-xl md:max-w-2xl lg:max-w-4xl mx-auto"> -->
+        <div id="instructors" class="w-full max-w-full px-4 lg:px-20 py-32 sm:max-w-md md:max-w-screen-xl mx-auto">
+            <p class="text-2xl md:text-3xl lg:text-5xl text-primary-700 dark:text-white font-black  mb-12 text-center {{$lang=='ar'?(''):('italic')}}">
                 {{__('welcome.our-instructors')}}
             </p>
-            <div class="mt-4">
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div class="my-4">
+                <div class="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-5 gap-6">
                     @foreach($instructors as $instructor)
-                    <div class="group relative instructor">
+                    <div class="group relative instructor rounded-2xl">
                         <a href="{{ route('instructor.showUrl', ['url' => $instructor->url]) }}">
-                            <img class="h-auto max-w-full" src="{{ asset($instructor->image) }}" alt="">
-                            <div class="group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 instructor-details bg-stone text-white py-4 px-4 bg-opacity-70">
+                            <img class="h-auto max-w-full rounded-2xl" src="{{$instructor->imageLink}}" alt="">
+                            <div class="group-hover:visible rounded-b-2xl group-hover:translate-y-0 group-hover:opacity-100 instructor-details h-1/2 sm:h-[40%] md:h-1/2 lg:h-[40%] top-1/2 sm:top-[60%] md:top-1/2 lg:top-[60%] bg-gradient-to-t from-stone via-transparent to-transparent text-white py-4 px-3">
                                 <div class="{{$lang == 'ar' ? ('text-right') : ('')}}">
-                                    <p class="text-xl font-semibold">{{$instructor->firstname}} {{$instructor->lastname}}</p>
-                                    <p class="text-sm font-medium text-gray-50" style="font-family:'Nunito'">{{$instructor->email}}</p>
+                                    <p class="{{$lang == 'ar' ? ('text-xl font-semibold') : ('text-base lg:text-lg font-semibold')}}">{{$instructor->firstname}} {{$instructor->lastname}}</p>
+                                    <p class="text-xs lg:text-sm font-medium text-gray-50" 
+                                        dir="{{$lang == 'ar' ? ('rtl') : ('ltr')}}"
+                                        title="{{$instructor->short_desc}}"
+                                    >
+                                        <?php
+                                            $nb = $lang=='ar' ? 4 : 3;
+                                            $desc = $instructor->short_desc;
+                                            $arr = explode(" ",$instructor->short_desc);
+                                            if(count($arr)>$nb) {
+                                                $desc= implode(" ",array_slice($arr, 0, $nb)).'...';
+                                            }
+                                        ?>
+                                        {{ $desc }}
+                                    </p>
                                 </div>
                             </div>
                         </a>
@@ -165,13 +189,52 @@
                     @endforeach
                 </div>
             </div>
+            <div class="flex justify-end" dir="{{$lang=='ar'?('rtl'):('ltr')}}">
+            <a href="{{route('instructors.index')}}" type="button" class="rounded-full bg-bordo border border-bordo dark:bg-white dark:border-white px-4 py-1 lg:py-1.5 text-xs lg:text-base font-medium text-white dark:text-bordo shadow-sm hover:bg-white hover:border-bordo hover:text-bordo dark:hover:bg-bordo dark:hover:text-white {{$lang=='ar'?(''):('italic')}}">{{__('welcome.see-all-instructors')}}</a>
+            </div>
         </div>
-        
-        <div class="flex justify-center space-x-16 pb-32">
-            <img src="{{ asset('pictures/global/barzakh-freelance.png') }}" class="h-28 sm:h-52 dark:hidden" alt=""/>
-            <img src="{{ asset('pictures/global/barzakh-freelance-white.png') }}" class="h-28 sm:h-52 hidden dark:block" alt=""/>
-            <img src="{{ asset('pictures/global/barzakh-store.png') }}" class="h-28 sm:h-52 dark:hidden" alt=""/>
-            <img src="{{ asset('pictures/global/barzakh-store-white.png') }}" class="h-28 sm:h-52 hidden dark:block" alt=""/>
+        <div id="plans" class="w-full max-w-full px-4 py-32 sm:max-w-md md:max-w-screen-xl mx-auto">
+            <p class="text-2xl md:text-3xl lg:text-5xl text-primary-700 dark:text-white font-black  mb-12 text-center {{$lang=='ar'?(''):('italic')}}">
+                {{__('welcome.our-plans')}}
+            </p>
+            <div class="md:grid md:gap-8 xl:gap-16 md:grid-cols-2">
+                <div class="w-full relative shadow-lg rounded-3xl mb-8 md:mb-0">
+                    <!-- <img src="/storage/app/pictures/global/suspack-light.jpg" class="h-auto max-w-full rounded-3xl dark:hidden" alt=""/> -->
+                    <img src="/storage/app/pictures/global/suspack-dark.jpg" class="h-auto max-w-full rounded-3xl " alt=""/>
+                    <div class="absolute top-2 px-4 sm:px-6 md:px-4 lg:top-4 lg:px-6 xl:px-8 text-center">
+                        <p class="text-base md:text-lg lg:text-2xl xl:text-3xl text-white font-black text-center" style="font-family:{{$lang=='ar' ? ('Noto Nastaliq Urdu') : ('Great Vibes')}}">
+                            {{__('welcome.suspeso-system')}}
+                        </p>
+                        <p class="text-center text-xs md:text-sm lg:text-base xl:text-lg text-gray-50 my-2 sm:mt-2 sm:mb-5 md:mt-2 md:mb-2 lg:my-4 xl:my-6 {{$lang=='ar'?(''):('italic')}}" dir="{{$lang=='ar'?('rtl'):('ltr')}}">
+                            {{__('welcome.suspeso-description')}}
+                        </p>
+                        <div class="flex justify-center w-full space-x-4 lg:space-x-8 items-center">
+                            <a href="{{route('requests')}}" type="button" class="rounded-full bg-bordo border border-bordo px-4 py-1 lg:py-1.5 text-xs lg:text-base font-medium text-white shadow-sm hover:bg-white hover:border-bordo hover:text-bordo {{$lang=='ar'?(''):('italic')}}">{{__('welcome.pay-for-course')}}</a>
+                            <a href="{{route('offers')}}" type="button" class="rounded-full bg-white border border-bordo px-4 py-1 lg:py-1.5 text-xs lg:text-base font-medium text-bordo shadow-sm hover:bg-bordo hover:border-bordo hover:text-white {{$lang=='ar'?(''):('italic')}}">{{__('welcome.demend-course')}}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full relative shadow-xl rounded-3xl mb-8 md:mb-0">
+                    <!-- <img src="/storage/app/pictures/global/suspack-light.jpg" class="h-auto max-w-full rounded-3xl dark:hidden" alt=""/> -->
+                    <img src="/storage/app/pictures/global/suspack-dark.jpg" class="h-auto max-w-full rounded-3xl " alt=""/>
+                    <!-- <img class="h-auto max-w-full rounded-3xl" src="/storage/app/pictures/global/packs.jpg" alt=""> -->
+                    <div class="absolute top-2 px-4 sm:px-6 md:px-4 lg:top-4 lg:px-6 xl:px-8 text-center">
+                        <p class="text-base md:text-lg lg:text-2xl xl:text-3xl text-white font-black text-center" style="font-family:{{$lang=='ar' ? ('Noto Nastaliq Urdu') : ('Great Vibes')}}">
+                            {{__('welcome.packs-system')}}
+                        </p>
+                        <p class="text-center text-xs md:text-sm lg:text-base xl:text-lg text-gray-50 my-2 sm:mt-2 sm:mb-5 md:mt-2 md:mb-2 lg:my-4 xl:my-6 {{$lang=='ar'?(''):('italic')}}" dir="{{$lang=='ar'?('rtl'):('ltr')}}">
+                            {{__('welcome.our-pack-description')}}
+                        </p>
+                        <a href="{{route('packs')}}" type="button" class="rounded-full bg-bordo border border-bordo dark:bg-white dark:border-white px-4 py-1 lg:py-1.5 text-xs lg:text-base font-medium text-white dark:text-bordo shadow-sm hover:bg-white hover:border-bordo hover:text-bordo dark:hover:bg-bordo dark:hover:text-white {{$lang=='ar'?(''):('italic')}}">{{__('welcome.discover-our-packs')}}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="partners" class="flex justify-center pb-32 pt-16">
+            <img src="/storage/app/pictures/global/barzakh-freelance.png" class="h-28 sm:h-52 dark:hidden mr-4 md:mr-8" alt=""/>
+            <img src="/storage/app/pictures/global/barzakh-freelance-white.png" class="h-28 sm:h-52 mr-4 md:mr-8 hidden dark:block" alt=""/>
+            <img src="/storage/app/pictures/global/barzakh-store.png" class="h-28 sm:h-52 dark:hidden ml-4 md:ml-8" alt=""/>
+            <img src="/storage/app/pictures/global/barzakh-store-white.png" class="h-28 sm:h-52 ml-4 md:ml-8 hidden dark:block" alt=""/>
         </div>
         <x-footer/>
     </div>
@@ -186,7 +249,7 @@
             height: 188px
         }
         .cat-circle {
-            background-image: url('{{ asset('pictures/global/cat-circle.png') }}');
+            background-image: url('/storage/app/pictures/global/cat-circle.png');
             background-size: contain;
             background-position: center;
         }
@@ -213,8 +276,6 @@
         .instructor-details {
             position: absolute;
             visibility: hidden;
-            top: 60%;
-            height: 40%;
             width: 100%;
             opacity: 0;
             transition: opacity 0.25s ease-in-out;
@@ -226,24 +287,24 @@
     const lang = document.getElementById('lang').value;
     $(document).ready(function() {
         $(".owl-tabs").owlCarousel({
-            items: 4, // Number of items to display
             loop: true, // Infinite loop
             rtl: lang=='ar',
             margin: 20, // Margin between items
             nav: false, // Display navigation buttons
             dots: false, // Hide navigation dots
             responsive: {
-                0: {
-                    items: 1.5
+                0: { 
+                    items: 1.5,
+                    center: true
                 },
                 640: {
                     items: 2
                 },
                 768: {
-                    items: 3
+                    items: 2.5
                 },
                 1024: {
-                    items: 4
+                    items: 3.5
                 },
                 1280: {
                     items: 4.5
@@ -269,18 +330,21 @@
         });
 
         $(".owl-free").owlCarousel({
-            loop: false,
+            loop: true,
             margin: 20,
             nav: false,
             dots: false,
             rtl: lang=='ar',
             responsive: {
-                0: { items: 1.5 },
+                0: { 
+                    items: 1.5,
+                    center: true
+                },
                 640: { items: 2 },
-                768: { items: 3 },
-                1024: { items: 4 },
+                768: { items: 2.5 },
+                1024: { items: 3.5 },
                 1280: { items: 4.5 }
-            }
+            },
         });
 
         $(".prevBtnFree").click(function () {
@@ -300,14 +364,16 @@
         });
 
         $(".my-owl").owlCarousel({
-            items: 4,
-            loop: false,
             margin: 20,
             nav: false,
             dots: false,
             rtl: lang=='ar',
             responsive: {
-                0: { items: 1.5 },
+                0: { 
+                    items: 1.5,
+                    loop: true,
+                    center: true
+                },
                 640: { items: 2 },
                 768: { items: 3 },
                 1024: { items: 4 },

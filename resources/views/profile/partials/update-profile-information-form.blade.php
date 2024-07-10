@@ -17,7 +17,7 @@
         @csrf
         @method('patch')
 
-        <x-picture-input :image="old('picture', $user->image)" :circle="true"/>
+        <x-picture-input :image="old('picture', $user->imageLink)" :circle="true"/>
 
         <div class="flex space-x-4">
             <div>

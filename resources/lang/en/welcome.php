@@ -1,11 +1,13 @@
 <?php
 return [
-    'chose-for-you' => 'We chose for you',
-    'chosen-courses' => 'Chosen Courses',
+    'chose-for-you' => 'Chosen Courses',
+    'chosen-courses' => 'Worth Watching',
     'most-watched' => 'Most Watched',
     'most-recent' => 'Recent Courses',
     'Charter' => 'Charter',
-    'Charter-content' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum id soluta odit voluptatibus, enim provident nemo ullam? Eaque soluta quam natus vel ullam officiis suscipit, doloremque a vitae, voluptas ratione.',
+    'Charter-content' => 'When you read books, know your own state, and see what addresses you in them, for indeed, conditions are the locus of address, and individuals carry it. Judgment is the result of wisdom, and knowledge is the result of awareness. Whoever has no wisdom has no judgment, and whoever has no awareness has no knowledge. Time is a questioning place, and place is frozen time. Hearing is the origin of existence, for every existing thing vibrates.',
+    'ibnu-arabi' => 'Ibnu Arabi',
+    'world-visions' => 'World Visions',
     '1Lesson' => '1 Lesson',
     'Lessons' => 'Lessons',
     'No-Lessons' => 'No Lessons',
@@ -31,10 +33,20 @@ return [
     'terms-of-use' => 'Terms of Use',
     'privacy-policy' => 'Privacy Policy',
     'help-center' => 'Help Center',
-    'our-instructors' => 'Our Instructors',
-    'our-content' => 'Our Content',
-    'free-courses' => 'Our Free Courses',
+    'our-instructors' => 'Experts',
+    'see-all-instructors' => 'See All Experts',
+    'our-content' => 'Content',
+    'free-courses' => 'Free Courses',
     'your-courses' => 'Your Courses',
-    'finish-started' => 'Finish What You Started'
+    'finish-started' => 'Finish What You Started',
+    'our-plans' => 'Our Plans',
+    'our-packs' => 'Our Packs',
+    'packs-system' => 'Packs System',
+    'suspeso-system' => 'Suspeso',
+    'discover-our-packs' => 'Discover Packs',
+    'our-pack-description' => 'A pricing model that offers bundles of products or services at discounted prices, meets diverse needs, and enhances interaction with the content.',
+    'pay-for-course' => 'Pay for Course',
+    'demend-course' => 'Get Course',
+    'suspeso-description' => "Contributes to building a refined cultural community, where one group buys educational lessons and leaves them for those in need, while another group benefits from these lessons."
 ];
 ?>
