@@ -200,7 +200,7 @@
             <div class="md:grid md:gap-8 xl:gap-16 md:grid-cols-2">
                 <div class="w-full relative shadow-lg rounded-3xl mb-8 md:mb-0">
                     <!-- <img src="/storage/app/pictures/global/suspack-light.jpg" class="h-auto max-w-full rounded-3xl dark:hidden" alt=""/> -->
-                    <img src="{{ asset( 'pictures/global/suspack-dark.jpg') }} class="h-auto max-w-full rounded-3xl " alt=""/>
+                    <img src="{{ asset( 'pictures/global/suspack-dark.jpg') }}" class="h-auto max-w-full rounded-3xl " alt=""/>
                     <div class="absolute top-2 px-4 sm:px-6 md:px-4 lg:top-4 lg:px-6 xl:px-8 text-center">
                         <p class="text-base md:text-lg lg:text-2xl xl:text-3xl text-white font-black text-center" style="font-family:{{$lang=='ar' ? ('Noto Nastaliq Urdu') : ('Great Vibes')}}">
                             {{__('welcome.suspeso-system')}}
