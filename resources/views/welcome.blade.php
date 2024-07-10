@@ -28,16 +28,16 @@
         <div class="flex justify-center">
         
             <div class="sm:px-6 lg:px-8 my-8 py-8 text-center max-w-xs sm:max-w-sm md:max-w-xl lg:max-w-3xl">
-                <img src="{{ asset( 'pictures/global/B3.png) }}" class="h-16 sm:h-20 dark:hidden mx-auto mb-4" alt=""/>
-                <img src="{{ asset( 'pictures/global/B1.png) }}" class="h-16 sm:h-20 hidden dark:block mx-auto mb-4" alt=""/>
+                <img src="{{ asset( 'pictures/global/B3.png') }}" class="h-16 sm:h-20 dark:hidden mx-auto mb-4" alt=""/>
+                <img src="{{ asset( 'pictures/global/B1.png') }}" class="h-16 sm:h-20 hidden dark:block mx-auto mb-4" alt=""/>
                 <p class="{{$lang=='ar' ? ('text-xl') : ('text-2xl lg:text-3xl')}} text-bordo tracking-wider leading-10 dark:text-primary-100" style="font-family:{{$lang=='ar' ? ('Noto Nastaliq Urdu') : ('Great Vibes')}}" dir="{{$lang=='ar' ? ('rtl') : ('ltr')}}">
                     {{__('welcome.Charter-content')}}
                 </p>
                 <p class="{{$lang=='ar' ? ('text-xl mt-5') : ('text-2xl lg:text-3xl mt-7')}} text-bordo dark:text-primary-100" style="font-family:{{$lang=='ar' ? ('Noto Nastaliq Urdu') : ('Great Vibes')}}" >
                     {{__('welcome.ibnu-arabi')}}
                 </p>
-                <img src="{{ asset( 'pictures/global/B4.png) }}" class="dark:hidden mx-auto mt-4" alt=""/>
-                <img src="{{ asset( 'pictures/global/B2.png) }}" class="hidden dark:block mx-auto mt-4" alt=""/>
+                <img src="{{ asset( 'pictures/global/B4.png') }}" class="dark:hidden mx-auto mt-4" alt=""/>
+                <img src="{{ asset( 'pictures/global/B2.png') }}" class="hidden dark:block mx-auto mt-4" alt=""/>
             </div>
         </div>
         <div id="courses" class="max-w-xs sm:max-w-xl md:max-w-xl lg:max-w-3xl mx-auto py-32 ">
@@ -200,7 +200,7 @@
             <div class="md:grid md:gap-8 xl:gap-16 md:grid-cols-2">
                 <div class="w-full relative shadow-lg rounded-3xl mb-8 md:mb-0">
                     <!-- <img src="/storage/app/pictures/global/suspack-light.jpg" class="h-auto max-w-full rounded-3xl dark:hidden" alt=""/> -->
-                    <img src="{{ asset( 'pictures/global/suspack-dark.jpg) }} class="h-auto max-w-full rounded-3xl " alt=""/>
+                    <img src="{{ asset( 'pictures/global/suspack-dark.jpg') }} class="h-auto max-w-full rounded-3xl " alt=""/>
                     <div class="absolute top-2 px-4 sm:px-6 md:px-4 lg:top-4 lg:px-6 xl:px-8 text-center">
                         <p class="text-base md:text-lg lg:text-2xl xl:text-3xl text-white font-black text-center" style="font-family:{{$lang=='ar' ? ('Noto Nastaliq Urdu') : ('Great Vibes')}}">
                             {{__('welcome.suspeso-system')}}
@@ -216,7 +216,7 @@
                 </div>
                 <div class="w-full relative shadow-xl rounded-3xl mb-8 md:mb-0">
                     <!-- <img src="/storage/app/pictures/global/suspack-light.jpg" class="h-auto max-w-full rounded-3xl dark:hidden" alt=""/> -->
-                    <img src="{{ asset( 'pictures/global/suspack-dark.jpg) }}" class="h-auto max-w-full rounded-3xl " alt=""/>
+                    <img src="{{ asset( 'pictures/global/suspack-dark.jpg') }}" class="h-auto max-w-full rounded-3xl " alt=""/>
                     <!-- <img class="h-auto max-w-full rounded-3xl" src="/storage/app/pictures/global/packs.jpg" alt=""> -->
                     <div class="absolute top-2 px-4 sm:px-6 md:px-4 lg:top-4 lg:px-6 xl:px-8 text-center">
                         <p class="text-base md:text-lg lg:text-2xl xl:text-3xl text-white font-black text-center" style="font-family:{{$lang=='ar' ? ('Noto Nastaliq Urdu') : ('Great Vibes')}}">
@@ -231,10 +231,10 @@
             </div>
         </div>
         <div id="partners" class="flex justify-center pb-32 pt-16">
-            <img src="{{ asset( 'pictures/global/barzakh-freelance.png) }}" class="h-28 sm:h-52 dark:hidden mr-4 md:mr-8" alt=""/>
-            <img src="{{ asset( 'pictures/global/barzakh-freelance-white.png) }}" class="h-28 sm:h-52 mr-4 md:mr-8 hidden dark:block" alt=""/>
-            <img src="{{ asset( 'pictures/global/barzakh-store.png) }}" class="h-28 sm:h-52 dark:hidden ml-4 md:ml-8" alt=""/>
-            <img src="{{ asset( 'pictures/global/barzakh-store-white.png) }}" class="h-28 sm:h-52 ml-4 md:ml-8 hidden dark:block" alt=""/>
+            <img src="{{ asset( 'pictures/global/barzakh-freelance.png') }}" class="h-28 sm:h-52 dark:hidden mr-4 md:mr-8" alt=""/>
+            <img src="{{ asset( 'pictures/global/barzakh-freelance-white.png') }}" class="h-28 sm:h-52 mr-4 md:mr-8 hidden dark:block" alt=""/>
+            <img src="{{ asset( 'pictures/global/barzakh-store.png') }}" class="h-28 sm:h-52 dark:hidden ml-4 md:ml-8" alt=""/>
+            <img src="{{ asset( 'pictures/global/barzakh-store-white.png') }}" class="h-28 sm:h-52 ml-4 md:ml-8 hidden dark:block" alt=""/>
         </div>
         <x-footer/>
     </div>
