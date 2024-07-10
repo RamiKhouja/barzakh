@@ -249,7 +249,7 @@
             height: 188px
         }
         .cat-circle {
-            background-image: url('/storage/app/pictures/global/cat-circle.png');
+            background-image: url('{{ asset( "pictures/global/cat-circle.png") }}');
             background-size: contain;
             background-position: center;
         }
