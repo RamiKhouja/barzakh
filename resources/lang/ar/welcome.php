@@ -36,7 +36,7 @@ return [
     'help-center' => 'مركز المساعدة',
     'our-instructors' => 'الخبراء',
     'our-content' => 'محتوى المنصة',
-    'free-courses' => 'الدورات المجانية',
+    'free-courses' => 'المحتوى المفتوح',
     'your-courses' => 'دوراتك',
     'finish-started' => 'أكمل ما بدأت',
     'our-plans' => 'الخطط',

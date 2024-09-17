@@ -36,7 +36,7 @@ return [
     'our-instructors' => 'Experts',
     'see-all-instructors' => 'See All Experts',
     'our-content' => 'Content',
-    'free-courses' => 'Free Courses',
+    'free-courses' => 'Open Content',
     'your-courses' => 'Your Courses',
     'finish-started' => 'Finish What You Started',
     'our-plans' => 'Our Plans',
