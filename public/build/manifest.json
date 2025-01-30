@@ -1,8 +1,12 @@
 {
   "resources/css/app.css": {
-    "file": "assets/app-06f7ebad.css",
+    "file": "assets/app-6044b74d.css",
     "isEntry": true,
     "src": "resources/css/app.css"
+  },
+  "resources/fonts/AlQalamTajNastaleeq.ttf": {
+    "file": "assets/AlQalamTajNastaleeq-f72244fd.ttf",
+    "src": "resources/fonts/AlQalamTajNastaleeq.ttf"
   },
   "resources/fonts/Brando-Arabic-Bold.otf": {
     "file": "assets/Brando-Arabic-Bold-6a235b65.otf",
