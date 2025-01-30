@@ -120,6 +120,19 @@ class CourseController extends Controller
         return view('admin.courses', compact('courses'));
     }
 
+    public function clientSearch(Request $request)
+    {
+        $query = $request->input('query');
+
+        // Search for courses or instructors where the name contains the query
+        $courses = Course::where('title_en', 'LIKE', '%' . $query . '%')
+            ->orWhere('title_ar', 'LIKE', '%' . $query . '%')
+            ->get();
+        //$instructors = Instructor::where('name', 'LIKE', '%' . $query . '%')->get();
+
+        return view('client.search', compact('courses'));
+    }
+
 
     /**
      * Display the specified resource.
@@ -181,6 +194,7 @@ class CourseController extends Controller
         $course->is_free = $isFree;
         $course->is_chosen = $isChosen;
         $course->discount_price = $request->input('discount_price');
+        $course->language = $request->input('language');
         
         if ($course->discount_price != null && $course->discount_price > 0) {
             $course->discount = round((($course->price - $course->discount_price) / $course->price) * 100, 1);

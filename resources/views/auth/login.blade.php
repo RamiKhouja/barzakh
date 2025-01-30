@@ -29,13 +29,13 @@
         <div class="block mt-4" dir="{{$lang=='ar' ? ('rtl') : ('ltr')}}">
             <label for="remember_me" class="inline-flex items-center">
                 <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
-                <span class="{{$lang=='ar'?('mr-2'):('ml-2')}} text-sm text-gray-600 dark:text-gray-400">{{ __('auth.remember') }}</span>
+                <span class="{{$lang=='ar'?('mr-2'):('ml-2')}} text-sm text-gray-600 dark:text-gray-50">{{ __('auth.remember') }}</span>
             </label>
         </div>
 
         <div class="flex items-center mt-4 justify-end" dir="{{$lang=='ar' ? ('rtl') : ('ltr')}}">
             @if (Route::has('password.request'))
-                <a class="underline {{$lang=='ar'?('ml-3'):('mr-3')}} text-sm text-gray-700 dark:text-gray-50 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('register') }}">
+                <a class="underline {{$lang=='ar'?('ml-3'):('mr-3')}} text-sm text-gray-700 dark:text-white hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('register') }}">
                     {{ __('auth.noaccount') }}
                 </a>
             @endif

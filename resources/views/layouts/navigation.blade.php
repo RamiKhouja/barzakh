@@ -27,18 +27,22 @@
                             </select>
                         </form>
                     </div>
+                    @if(!Auth::check() || (Auth::check() && Auth::user()->role !== 'admin'))
                     <div class="relative rounded-full md:ml-0 lg:ml-4">
                         <div class="pointer-events-none absolute top-2 {{ $lang=='ar' ? 'right-3' : 'left-3'}} flex items-center">
                             <x-zondicon-search class="h-4 w-4 text-primary-700" aria-hidden="true" />
                         </div>
-                        <input
-                            type="text"
-                            name="search"
-                            id="search"
-                            class="block w-full rounded-full border-0 py-0.5 h-8 text-gray-700 bg-white dark:bg-gray-200 ring-1 ring-primary-200 placeholder:text-primary-700 focus:ring-primary-500 sm:text-sm sm:leading-6 {{$lang=='ar' ? 'text-right pr-8':'pl-8'}}"
-                            placeholder="{{__('nav.Search')}}"
-                        />
+                        <form id="search-form" action="{{ route('search') }}" method="GET">
+                            <input
+                                type="text"
+                                name="query"
+                                id="search-input"
+                                class="block w-full rounded-full border-0 py-0.5 h-8 text-gray-700 bg-white dark:bg-gray-200 ring-1 ring-primary-200 placeholder:text-primary-700 focus:ring-primary-500 sm:text-sm sm:leading-6 {{$lang=='ar' ? 'text-right pr-8':'pl-8'}}"
+                                placeholder="{{__('nav.Search')}}"
+                            />
+                        </form>
                     </div>
+                    @endif
                 </div>
             </div>
             <div class="mx-auto">
@@ -63,6 +67,7 @@
                         <a href="{{ route('admin.instructors') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg">{{ __('nav.Instructors') }}</a>
                         <a href="{{ route('admin.offers') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg">{{ __('Offers') }}</a>
                         <a href="{{ route('admin.requests') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg">{{ __('Requests') }}</a>
+                        <a href="{{ route('admin.services') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg">{{ __('Services') }}</a>
                     </div>
                     @else
                     <div class="flex-wrap my-4 space-x-2 text-primary-700 dark:text-gray-50 font-medium text-lg">
@@ -229,13 +234,15 @@
                         <div class="pointer-events-none absolute top-2 {{ $lang=='ar' ? 'right-3' : 'left-3'}} flex items-center">
                             <x-zondicon-search class="h-4 w-4 text-primary-700" aria-hidden="true" />
                         </div>
-                        <input
-                            type="text"
-                            name="search"
-                            id="search"
-                            class="block w-full rounded-full border-0 py-0.5 h-8 text-gray-700 bg-white dark:bg-gray-200 ring-1 ring-primary-200 placeholder:text-primary-700 focus:ring-primary-500 sm:text-sm sm:leading-6 {{$lang=='ar' ? 'text-right pr-8':'pl-8'}}"
-                            placeholder="{{__('nav.Search')}}"
-                        />
+                        <form id="search-form" action="{{ route('search') }}" method="GET">
+                            <input
+                                type="text"
+                                name="query" 
+                                id="search-input"
+                                class="block w-full rounded-full border-0 py-0.5 h-8 text-gray-700 bg-white dark:bg-gray-200 ring-1 ring-primary-200 placeholder:text-primary-700 focus:ring-primary-500 sm:text-sm sm:leading-6 {{$lang=='ar' ? 'text-right pr-8':'pl-8'}}"
+                                placeholder="{{__('nav.Search')}}"
+                            />
+                        </form>
                     </div>
                 </div>
                 
@@ -379,4 +386,17 @@
     document.getElementById('theme-toggle-button').addEventListener('click', toggleTheme);
     document.getElementById('theme-toggle-button-resp').addEventListener('click', toggleTheme);
 
+    document.addEventListener('DOMContentLoaded', () => {
+        const searchForm = document.getElementById('search-form');
+        const searchInput = document.getElementById('search-input');
+
+        searchInput.addEventListener('keypress', (event) => {
+            if (event.key === 'Enter') {
+                event.preventDefault(); // Prevent default form submission
+                if (searchInput.value.trim() !== '') {
+                    searchForm.submit(); // Submit the form
+                }
+            }
+        });
+    });
 </script>

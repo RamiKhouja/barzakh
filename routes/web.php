@@ -15,6 +15,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CourseRequestController;
 use App\Http\Controllers\OfferController;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\ServiceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -103,6 +104,13 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/requests', [CourseRequestController::class, 'adminIndex'])->name('admin.requests');
     Route::put('/admin/request/reject/{courseRequest}', [CourseRequestController::class, 'reject'])->name('admin.request.reject');
     Route::put('/admin/request/approve/{courseRequest}', [CourseRequestController::class, 'approve'])->name('admin.request.approve');
+
+    Route::get('/admin/service/create', [ServiceController::class, 'create'])->name('admin.service.create');
+    Route::post('/admin/service', [ServiceController::class, 'store'])->name('admin.service.store');
+    Route::get('/admin/services', [ServiceController::class, 'index'])->name('admin.services');
+    Route::get('/admin/service/edit/{service}', [ServiceController::class, 'edit'])->name('admin.service.edit');
+    Route::put('/admin/service/{service}', [ServiceController::class, 'update'])->name('admin.service.update');
+    Route::delete('/admin/service/{service}', [ServiceController::class, 'delete'])->name('admin.service.delete');
 });
 
 Route::middleware(['auth', 'student'])->group(function () {
@@ -124,5 +132,7 @@ Route::get('/instructor/{url}', [InstructorController::class, 'showByUrl'])->nam
 Route::get('/packs', [PackController::class, 'clientIndex'])->name('packs');
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 Route::get('/experts', [InstructorController::class, 'clientIndex'])->name('instructors.index');
+Route::get('/search', [CourseController::class, 'clientSearch'])->name('search');
+Route::get('/services', [ServiceController::class, 'clientIndex'])->name('services');
 
 require __DIR__.'/auth.php';

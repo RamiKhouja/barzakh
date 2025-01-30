@@ -5,11 +5,11 @@
 
         <div class="mt-4">
             <div class="mt-2">
-                <label class="inline-flex items-center">
+                <label class="inline-flex items-center dark:text-gray-50">
                     <input type="radio" class="form-radio" name="sex" value="male" {{ old('sex') == 'male' ? 'checked' : '' }}>
                     <span class="{{$lang=='ar'?('mr-2'):('ml-2')}}">{{__('auth.mr')}}</span>
                 </label>
-                <label class="inline-flex items-center ml-6">
+                <label class="inline-flex items-center ml-6 dark:text-gray-50">
                     <input type="radio" class="form-radio" name="sex" value="female" {{ old('sex') == 'female' ? 'checked' : '' }}>
                     <span class="{{$lang=='ar'?('mr-2'):('ml-2')}}">{{__('auth.ms')}}</span>
                 </label>

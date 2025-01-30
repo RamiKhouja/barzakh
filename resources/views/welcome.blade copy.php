@@ -30,7 +30,7 @@
             <div class="sm:px-6 lg:px-8 my-8 py-8 text-center max-w-xs sm:max-w-sm md:max-w-xl lg:max-w-3xl">
                 <img src="{{ asset('pictures/global/B3.png') }}" class="h-16 sm:h-20 dark:hidden mx-auto mb-4" alt=""/>
                 <img src="{{ asset('pictures/global/B1.png') }}" class="h-16 sm:h-20 hidden dark:block mx-auto mb-4" alt=""/>
-                <p class="{{$lang=='ar' ? ('text-xl') : ('text-2xl lg:text-3xl')}} text-bordo tracking-wider leading-10 dark:text-primary-100" style="font-family:{{$lang=='ar' ? ('Noto Nastaliq Urdu') : ('Great Vibes')}}">
+                <p class="{{$lang=='ar' ? ('text-xl') : ('text-2xl lg:text-3xl')}} text-bordo tracking-wider leading-10 dark:text-primary-100" style="font-family:{{$lang=='ar' ? ('TajNastaleeq') : ('Great Vibes')}}">
                     {{__('welcome.Charter-content')}}
                 </p>
                 <img src="{{ asset('pictures/global/B4.png') }}" class="dark:hidden mx-auto mt-4" alt=""/>
@@ -50,7 +50,7 @@
                     <div class="h-72 w-72 md:h-52 md:w-52 lg:h-72 lg:w-72 my-6 md:my-0 cat-circle hover:shadow-lg rounded-full">  
                         <div class="h-2/5 flex items-center justify-center text-center">
                             <div class="w-48">
-                                <p class="{{$lang=='ar' ? ('text-xl md:text-sm lg:text-xl font-semibold') : ('text-2xl md:text-xl lg:text-2xl font-medium')}} text-bordo" style="font-family:{{$lang=='ar' ? ('Noto Nastaliq Urdu') : ('Great Vibes')}}">
+                                <p class="{{$lang=='ar' ? ('text-xl md:text-sm lg:text-xl font-semibold') : ('text-2xl md:text-xl lg:text-2xl font-medium')}} text-bordo" style="font-family:{{$lang=='ar' ? ('TajNastaleeq') : ('Great Vibes')}}">
                                     {{ $field->title }}
                                 </p>
                             </div>
@@ -190,7 +190,7 @@
                 <div class="w-full relative shadow-md rounded-3xl mb-8 md:mb-0">
                     <img class="h-auto max-w-full rounded-3xl" src="{{ asset('pictures/global/suspeso.jpg') }}" alt="">
                     <div class="absolute top-4 left-16 px-4 sm:top-6 sm:left-20 sm:px-6 md:top-3 md:left-16 md:px-4 lg:top-6 lg:left-20 lg:px-6 xl:top-8 xl:left-32 xl:px-8 text-center">
-                        <p class="text-base md:text-lg lg:text-2xl xl:text-3xl text-bordo font-black text-center" style="font-family:{{$lang=='ar' ? ('Noto Nastaliq Urdu') : ('Great Vibes')}}">
+                        <p class="text-base md:text-lg lg:text-2xl xl:text-3xl text-bordo font-black text-center" style="font-family:{{$lang=='ar' ? ('TajNastaleeq') : ('Great Vibes')}}">
                             {{__('welcome.suspeso-system')}}
                         </p>
                         <p class="text-center text-xs md:text-sm lg:text-base xl:text-lg text-primary-700 mt-2 mb-3 sm:mt-2 sm:mb-5 md:mt-2 md:mb-2 lg:mt-3 lg:mb-6 xl:mt-4 xl:mb-8 {{$lang=='ar'?(''):('italic')}}" dir="{{$lang=='ar'?('rtl'):('ltr')}}">
@@ -207,7 +207,7 @@
                     <img src="{{ asset('pictures/global/suspack-dark.jpg') }}" class="h-auto max-w-full rounded-3xl hidden dark:block" alt=""/>
                     <!-- <img class="h-auto max-w-full rounded-3xl" src="{{ asset('pictures/global/packs.jpg') }}" alt=""> -->
                     <div class="absolute top-4 right-16 px-4 sm:top-6 sm:right-20 sm:px-6 md:top-3 md:right-16 md:px-4 lg:top-6 lg:right-20 lg:px-6 xl:top-8 xl:right-32 xl:px-8 text-center">
-                        <p class="text-base md:text-lg lg:text-2xl xl:text-3xl text-bordo font-black text-center" style="font-family:{{$lang=='ar' ? ('Noto Nastaliq Urdu') : ('Great Vibes')}}">
+                        <p class="text-base md:text-lg lg:text-2xl xl:text-3xl text-bordo font-black text-center" style="font-family:{{$lang=='ar' ? ('TajNastaleeq') : ('Great Vibes')}}">
                             {{__('welcome.packs-system')}}
                         </p>
                         <p class="text-center text-xs md:text-sm lg:text-base xl:text-lg text-primary-700 mt-2 mb-3 sm:mt-2 sm:mb-5 md:mt-2 md:mb-2 lg:mt-3 lg:mb-6 xl:mt-5 xl:mb-8 {{$lang=='ar'?(''):('italic')}}" dir="{{$lang=='ar'?('rtl'):('ltr')}}">

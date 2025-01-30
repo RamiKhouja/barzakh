@@ -191,7 +191,9 @@
                                 id="description_en"
                                 placeholder="Course description"
                                 class="form-input"
-                            ></textarea>
+                            >
+                            {{ $course->description_en }}
+                            </textarea>
                             </div>
                         </div>
                         <div class="w-full text-right">
@@ -207,7 +209,9 @@
                                     placeholder="كلمات عن المادة"
                                     class="form-input placeholder:text-right text-right"
                                     style="direction: rtl;"
-                                ></textarea>
+                                >
+                                {{ $course->description_ar }}
+                                </textarea>
                             </div>
                         </div>
                     </div>
@@ -269,12 +273,17 @@
                             @if($course->requirements_en != null)
                                 @foreach(json_decode($course->requirements_en) as $requirement)
                                 <div class="mt-2">
-                                    <input type="text" name="requirements_en[]" class="form-input " placeholder="Requirement" value="{{$requirement}}">
+                                    <textarea name="requirements_en[]" class="form-input " placeholder="Requirement" value="{{$requirement}}">
+                                    {{$requirement}}
+                                    </textarea>
+                                    
                                 </div>
                                 @endforeach
                             @else
                                 <div class="mb-2">
-                                    <input type="text" name="requirements_en[]" class="form-input " placeholder="Requirement">
+                                    <textarea name="requirements_en[]" class="form-input " placeholder="Requirement">
+                                    
+                                    </textarea>
                                 </div>
                             @endif
                             </div>

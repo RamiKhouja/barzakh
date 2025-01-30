@@ -30,7 +30,9 @@
             <div class="sm:px-6 lg:px-8 my-8 py-8 text-center max-w-xs sm:max-w-sm md:max-w-xl lg:max-w-3xl">
                 <img src="{{ asset( 'pictures/global/B3.png') }}" class="h-16 sm:h-20 dark:hidden mx-auto mb-4" alt=""/>
                 <img src="{{ asset( 'pictures/global/B1.png') }}" class="h-16 sm:h-20 hidden dark:block mx-auto mb-4" alt=""/>
-                <p class="{{$lang=='ar' ? ('text-xl') : ('text-2xl lg:text-3xl')}} text-bordo tracking-wider leading-10 dark:text-primary-100" style="font-family:{{$lang=='ar' ? ('Noto Nastaliq Urdu') : ('Great Vibes')}}" dir="{{$lang=='ar' ? ('rtl') : ('ltr')}}">
+                <p class="{{$lang=='ar' ? ('text-xl') : ('text-2xl lg:text-3xl')}} text-bordo tracking-wider leading-10 dark:text-primary-100" 
+                    style="font-family:{{$lang=='ar' ? ('Noto Nastaliq Urdu') : ('Great Vibes')}}" 
+                    dir="{{$lang=='ar' ? ('rtl') : ('ltr')}}">
                     {{__('welcome.Charter-content')}}
                 </p>
                 <p class="{{$lang=='ar' ? ('text-xl mt-5') : ('text-2xl lg:text-3xl mt-7')}} text-bordo dark:text-primary-100" style="font-family:{{$lang=='ar' ? ('Noto Nastaliq Urdu') : ('Great Vibes')}}" >
@@ -231,10 +233,16 @@
             </div>
         </div>
         <div id="partners" class="flex justify-center pb-32 pt-16">
-            <img src="{{ asset( 'pictures/global/barzakh-freelance.png') }}" class="h-28 sm:h-52 dark:hidden mr-4 md:mr-8" alt=""/>
-            <img src="{{ asset( 'pictures/global/barzakh-freelance-white.png') }}" class="h-28 sm:h-52 mr-4 md:mr-8 hidden dark:block" alt=""/>
-            <img src="{{ asset( 'pictures/global/barzakh-store.png') }}" class="h-28 sm:h-52 dark:hidden ml-4 md:ml-8" alt=""/>
-            <img src="{{ asset( 'pictures/global/barzakh-store-white.png') }}" class="h-28 sm:h-52 ml-4 md:ml-8 hidden dark:block" alt=""/>
+            <a href="/services" class="group">
+                <img src="{{ asset( 'pictures/global/labs-black.png') }}" class="h-28 sm:h-52 dark:hidden group-hover:hidden mr-4 md:mr-8" alt=""/>
+                <img src="{{ asset( 'pictures/global/labs-red.png') }}" class="h-28 sm:h-52 hidden group-hover:block mr-4 md:mr-8" alt=""/>
+                <img src="{{ asset( 'pictures/global/labs-white.png') }}" class="h-28 sm:h-52 mr-4 md:mr-8 hidden dark:block group-hover:dark:hidden" alt=""/>
+            </a>
+            <a href="#" class="group">
+                <img src="{{ asset( 'pictures/global/store-black.png') }}" class="h-32 sm:h-56 dark:hidden group-hover:hidden ml-4 md:ml-8" alt=""/>
+                <img src="{{ asset( 'pictures/global/store-red.png') }}" class="h-32 sm:h-56 hidden group-hover:block ml-4 md:ml-8" alt=""/>
+                <img src="{{ asset( 'pictures/global/store-white.png') }}" class="h-32 sm:h-56 ml-4 md:ml-8 hidden dark:block group-hover:dark:hidden" alt=""/>
+            </a>
         </div>
         <x-footer/>
     </div>

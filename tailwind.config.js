@@ -20,6 +20,7 @@ export default {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
                 ibm: "'IBM Plex Sans Arabic', serif",
                 noto: "'Noto Nastaliq Urdu', serif",
+                taj: "'AlQalamTajNastaleeq', serif",
                 brando: "'Brando Regular'"
             },
         },
