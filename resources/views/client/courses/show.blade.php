@@ -184,7 +184,7 @@
                     <!-- <img src="{{ asset('pictures/global/suspack-light.jpg') }}" class="h-auto max-w-full rounded-2xl dark:hidden" alt=""/> -->
                     <img src="{{ asset('pictures/global/suspack-dark.jpg') }}" class="h-auto max-w-full rounded-2xl" alt=""/>
                     <div class="absolute top-2 px-4 sm:px-6 md:px-4 lg:top-4 lg:px-6 xl:px-8 text-center">
-                        <p class="text-base md:text-lg lg:text-xl xl:text-2xl text-white  font-black text-center" style="font-family:{{$lang=='ar' ? ('TajNastaleeq') : ('Great Vibes')}}">
+                        <p class="text-base md:text-lg lg:text-xl xl:text-2xl text-white  font-black text-center" style="font-family:{{$lang=='ar' ? ('MehrNastaliq') : ('Great Vibes')}}">
                             {{__('welcome.suspeso-system')}}
                         </p>
                         <p class="text-center text-xs lg:text-sm xl:text-base text-gray-50 my-2 sm:mt-2 sm:mb-5 md:my-2 lg:my-3 xl:my-4 {{$lang=='ar'?(''):('italic')}}" dir="{{$lang=='ar'?('rtl'):('ltr')}}">

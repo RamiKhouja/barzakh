@@ -20,6 +20,12 @@
     font-weight: normal;
 }
 
+@font-face {
+    font-family: 'MehrNastaliq';
+    src: url('../fonts/Mehr_Nastaliq_Web-v.2.0.woff') format('woff');
+    font-weight: normal;
+}
+
 .form-input {
     @apply block w-full rounded-md border-0 py-1.5 text-gray-700 shadow-sm ring-1 ring-inset ring-primary-200 placeholder:text-gray-300 focus:ring-inset focus:ring-primary-500 sm:text-sm sm:leading-6;
 }

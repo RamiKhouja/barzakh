@@ -35,19 +35,19 @@
                 <div class="mt-12 lg:mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <div class="rounded-full flex flex-col justify-center bg-primary-200 w-72 h-72 mx-auto">
                         <div class="text-center">
-                            <p class="text-lg md:text-2xl lg:text-4xl text-bordo dark:text-white font-semibold mb-8" style="font-family: Noto Nastaliq Urdu">مخبر برزخ</p>
+                            <p class="text-4xl text-bordo font-medium mb-4" style="font-family: MehrNastaliq">مخبر برزخ</p>
                             <p class="text-lg md:text-2xl lg:text-xl text-gray-700 font-medium uppercase mb-4" style="font-family: PT Serif">Barzakh Lab</p>
                         </div>
                     </div>
                     <div class="rounded-full flex flex-col justify-center bg-primary-200 w-72 h-72 mx-auto">
                         <div class="text-center">
-                            <p class="text-lg md:text-2xl lg:text-4xl text-bordo font-semibold mb-8" style="font-family: Noto Nastaliq Urdu">برزخ لرؤى العالم</p>
+                            <p class="text-4xl text-bordo font-medium mb-4" style="font-family: MehrNastaliq">برزخ لرؤى العالم</p>
                             <p class="text-lg md:text-2xl lg:text-xl text-gray-700 font-medium uppercase mb-4" style="font-family: PT Serif">For World Views</p>
                         </div>
                     </div>
                     <div class="rounded-full flex flex-col justify-center bg-primary-200 w-72 h-72 mx-auto">
                         <div class="text-center">
-                            <p class="text-lg md:text-2xl lg:text-4xl text-bordo font-semibold mb-8" style="font-family: Noto Nastaliq Urdu">دكان برزخ</p>
+                            <p class="text-4xl lg:text-4xl text-bordo font-medium mb-4" style="font-family: MehrNastaliq">دكان برزخ</p>
                             <p class="text-lg md:text-2xl lg:text-xl text-gray-700 font-medium uppercase mb-4" style="font-family: PT Serif">Concept Store</p>
                         </div>
                     </div>
@@ -64,7 +64,7 @@
                             <img src="{{ asset('pictures/about/circle1.png') }}" class="w-2/3 mx-auto" alt="">
                         </div>
                         <div class="text-center mt-8 lg:mt-4 md:mt-0 mb-12">
-                            <p class="text-2xl lg:text-4xl text-bordo dark:text-white font-semibold mb-8" style="font-family: Noto Nastaliq Urdu">مخبر برزخ</p>
+                            <p class="text-2xl lg:text-4xl text-bordo dark:text-white font-medium mb-4" style="font-family: MehrNastaliq">مخبر برزخ</p>
                             <p class="text-lg lg:text-xl text-gray-700 dark:text-white font-medium uppercase" style="font-family: PT Serif">Barzakh Lab</p>
                         </div>
                     </div>
@@ -106,7 +106,7 @@
                 </div>
                 <div class="flex justify-center lg:justify-start mb-12">
                     <div class="text-center">
-                        <p class="text-2xl lg:text-4xl text-bordo dark:text-white font-semibold mb-8" style="font-family: Noto Nastaliq Urdu">برزخ لرؤى العالم</p>
+                        <p class="text-2xl lg:text-4xl text-bordo dark:text-white font-medium mb-4" style="font-family: MehrNastaliq">برزخ لرؤى العالم</p>
                         <p class="text-lg lg:text-xl text-gray-700 dark:text-white font-medium uppercase mb-4" style="font-family: PT Serif">For World Views</p>
                     </div>
                 </div>
@@ -133,7 +133,7 @@
                 </div>
                 <div class="flex justify-center lg:justify-start mb-12 lg:mx-24">
                     <div class="text-center">
-                        <p class="text-2xl lg:text-4xl text-bordo dark:text-white font-semibold mb-8" style="font-family: Noto Nastaliq Urdu">دكّان برزخ</p>
+                        <p class="text-2xl lg:text-4xl text-bordo dark:text-white font-medium mb-4" style="font-family: MehrNastaliq">دكّان برزخ</p>
                         <p class="text-lg lg:text-xl text-gray-700 dark:text-white font-medium uppercase mb-4" style="font-family: PT Serif">Concept Store</p>
                     </div>
                 </div>

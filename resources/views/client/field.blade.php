@@ -4,7 +4,7 @@
         <div class="h-20"></div>
         <div class="max-w-xs sm:max-w-sm md:max-w-xl lg:max-w-5xl mx-auto mt-8 md:-mt-20 mb-72">
             <div class="flex justify-center md:mt-20 {{$lang=='ar'?('mb-6'):('mb-2')}}">
-                <p class="text-lg md:text-xl lg:text-3xl text-bordo dark:text-white font-bold" style="font-family:{{$lang=='ar' ? ('TajNastaleeq') : ('Great Vibes')}}">{{ $field->title }}</p>
+                <p class="text-lg md:text-xl lg:text-3xl text-bordo dark:text-white font-bold" style="font-family:{{$lang=='ar' ? ('MehrNastaliq') : ('Great Vibes')}}">{{ $field->title }}</p>
             </div>
             <div class="flex justify-center mb-20">
                 <p class="text-sm md:text-base lg:text-xl text-primary-700 dark:text-white font-normal {{$lang=='ar'?(''):('italic')}}">{{ $field->subtitle }}</p>

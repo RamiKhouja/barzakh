@@ -1,6 +1,6 @@
 {
   "resources/css/app.css": {
-    "file": "assets/app-6044b74d.css",
+    "file": "assets/app-aa856231.css",
     "isEntry": true,
     "src": "resources/css/app.css"
   },
@@ -15,6 +15,10 @@
   "resources/fonts/Brando-Arabic-Text.otf": {
     "file": "assets/Brando-Arabic-Text-ef8febd2.otf",
     "src": "resources/fonts/Brando-Arabic-Text.otf"
+  },
+  "resources/fonts/Mehr_Nastaliq_Web-v.2.0.woff": {
+    "file": "assets/Mehr_Nastaliq_Web-v.2.0-4948d6b7.woff",
+    "src": "resources/fonts/Mehr_Nastaliq_Web-v.2.0.woff"
   },
   "resources/js/app.js": {
     "file": "assets/app-6e0eadfb.js",
