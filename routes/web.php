@@ -54,6 +54,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/field/create', [FieldController::class, 'create'])->name('field.create');
     Route::post('/admin/field', [FieldController::class, 'store'])->name('field.store');
     Route::get('/admin/fields', [FieldController::class, 'index'])->name('admin.fields');
+    Route::get('/admin/field/edit/{field}', [FieldController::class, 'edit'])->name('field.edit');
+    Route::put('/admin/field/{field}', [FieldController::class, 'update'])->name('field.update');
 
     //Admin instructor routes
     Route::get('/admin/instructor/create', [InstructorController::class, 'create'])->name('instructor.create');

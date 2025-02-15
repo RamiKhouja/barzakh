@@ -68,7 +68,7 @@
                                         {{ $field->url }}
                                     </td>
                                     <td class="relative py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
-                                    <a href="#" class="text-indigo-600 hover:text-indigo-900">
+                                    <a href="{{ route('field.edit', ['field' => $field->id]) }}" class="text-indigo-600 hover:text-indigo-900">
                                         Edit<span class="sr-only">, {person.name}</span>
                                     </a>
                                     </td>

@@ -31,7 +31,7 @@ class FieldController extends Controller
         $field->url=strtolower(str_replace(' ', '-', trim($request->input('title_en'))));
         $field->save();
 
-        return Redirect::route('admin.fields')->with('success','Study axe has been created successfully.'); 
+        return Redirect::route('admin.fields')->with('success','Study domain has been created successfully.'); 
     }
 
     public function showByUrl($url)
@@ -41,5 +41,23 @@ class FieldController extends Controller
         if (!$field) { abort(404); }
 
         return view('client.field', compact('field'));
+    }
+
+    public function edit(Field $field)
+    {
+        return view('admin.field.edit',compact('field'));
+    }
+
+    public function update(Request $request, Field $field)
+    {
+        $field->setTranslation('title', 'en', $request->input('title_en'));
+        $field->setTranslation('title', 'ar', $request->input('title_ar'));
+        $field->setTranslation('subtitle', 'en', $request->input('subtitle_en'));
+        $field->setTranslation('subtitle', 'ar', $request->input('subtitle_ar'));
+        $field->setTranslation('description', 'en', $request->input('description_en'));
+        $field->setTranslation('description', 'ar', $request->input('description_ar'));
+        $field->url=strtolower(str_replace(' ', '-', trim($request->input('title_en'))));
+        $field->save();
+        return Redirect::route('admin.fields')->with('success','Study domain has been updated successfully.'); 
     }
 }
