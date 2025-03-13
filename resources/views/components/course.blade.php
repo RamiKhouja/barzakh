@@ -72,9 +72,16 @@
                     <p class="text-base text-stone dark:text-primary-200">
                         {{$course->instructor->firstname}} {{$course->instructor->lastname}}
                     </p>
-                    <a href="/prd" class="text-gray-50 z-30 px-1.5 py-1 border border-gray-50 rounded-full bg-gray-400">
-                    <x-heroicon-s-bookmark  class="h-6 w-5"/>
-                    </a>
+                    <div class="flex justify-between items-center gap-x-2">
+                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(route('course.showUrl', ['url' => $course->url])) }}&picture={{ urlencode(asset('pictures/'.$course->image)) }}"
+                            target="_blank"
+                            class="text-gray-50 z-30 px-1.5 py-1.5 border border-gray-50 rounded-full bg-bordo flex items-center space-x-1">
+                            <x-heroicon-s-share class="h-5 w-5"/>
+                        </a>
+                        <a href="/prd" class="text-gray-50 z-30 px-1.5 py-1 border border-gray-50 rounded-full bg-gray-400">
+                            <x-heroicon-s-bookmark  class="h-6 w-5"/>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
