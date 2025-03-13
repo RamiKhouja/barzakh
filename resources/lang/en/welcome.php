@@ -47,6 +47,7 @@ return [
     'our-pack-description' => 'A pricing model that offers bundles of products or services at discounted prices, meets diverse needs, and enhances interaction with the content.',
     'pay-for-course' => 'Pay for Course',
     'demend-course' => 'Get Course',
-    'suspeso-description' => "Contributes to building a refined cultural community, where one group buys educational lessons and leaves them for those in need, while another group benefits from these lessons."
+    'suspeso-description' => "It contributes to building a refined cultural community, where one group purchases educational lessons and donates them to those in need, while another group benefits from these lessons.",
+    'coming-soon' => "Coming Soon..."
 ];
 ?>

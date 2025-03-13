@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="bg-primary-100 py-12">
     <div class="md:hidden h-20"></div>
-        <div class="max-w-xs sm:max-w-sm md:max-w-xl lg:w-7xl mx-auto flex justify-center">
+        <div class="max-w-xs sm:max-w-sm md:max-w-xl lg:w-7xl xl:max-w-screen-md mx-auto flex justify-center">
             <div class="w-full">
                 <div class="flex justify-center">
                     <p class="text-2xl text-primary-700 font-semibold mb-12">
@@ -215,7 +215,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flex items-end space-x-6 mt-12">
+                    <div class="grid grid-cols-4 items-end space-x-6 mt-12">
                         <div class="w-full">
                             <label htmlFor="title" class="form-label">
                                 Course Language
@@ -238,6 +238,11 @@
                             <input type="checkbox" name="is_chosen" value="1" class="sr-only peer" {{ $course->is_chosen ? 'checked' : '' }}>
                             <div class="w-11 h-6 bg-gray-200 ring-1 ring-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary-500 dark:peer-focus:ring-primary-700 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-white after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary-500"></div>
                             <span class="ml-3 form-label">Chosen</span>
+                        </label>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" name="is_soon" value="1" class="sr-only peer" {{ $course->is_soon ? 'checked' : '' }}>
+                            <div class="w-11 h-6 bg-gray-200 ring-1 ring-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary-500 dark:peer-focus:ring-primary-700 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-white after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary-500"></div>
+                            <span class="ml-3 form-label">Coming soon</span>
                         </label>
                     </div>
                     <div class="mt-8 w-full">

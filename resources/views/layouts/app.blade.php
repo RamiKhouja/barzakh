@@ -6,7 +6,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta property="og:title" content="برزخ لرؤى العالم">
         <meta property="og:description" content="بيئة متكاملة للاقتصاد الثقافي الرقمي">
-        <meta property="og:image" content="{{ asset( 'pictures/global/logo-main.png') }}">
+        <meta property="og:image" content="{{ asset( 'pictures/global/og-main.jpeg') }}">
         <link rel="icon" type="image/x-icon" href="{{asset('favicon.ico')}}">
         <title>{{ config('app.name', 'Barzakh') }}</title>
 

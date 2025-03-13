@@ -8,9 +8,24 @@
                 <div class="absolute top-2 right-2 {{$status=='pending' ? 'bg-bordo' : ($status=='accepted' ? 'bg-green-700' : 'bg-red-700')}} rounded-full shadow px-2 py-1">
                     <p class="text-sm text-white font-semibold">{{ __('profile.' . $status) }}</p>
                 </div>
+                @if($course->is_soon)
+                <div class="absolute top-4 right-4 bg-bordo text-white text-base font-medium px-4 py-1.5 rounded-lg shadow">
+                    {{ __('welcome.coming-soon') }}
+                </div>
+                @endif
             </div>
             @else
-                <img src="{{ asset( 'pictures/'.$course->image ) }}" alt="Slide 1" class="h-32 w-full object-cover rounded-t-3xl">
+            <div class="relative">
+                    <img src="{{ asset( 'pictures/'.$course->image ) }}" 
+                         alt="Slide 1" 
+                         class="h-32 w-full object-cover rounded-t-3xl">
+                    
+                    @if($course->is_soon)
+                    <div class="absolute top-4 right-4 bg-bordo text-white text-base font-medium px-4 py-1.5 rounded-lg shadow">
+                        {{ __('welcome.coming-soon') }}
+                    </div>
+                    @endif
+                </div>
             @endif
             <div class="group-hover:visible group-hover:translate-y-0 course-duration-band bg-primary-100 text-gray-700 dark:bg-gray-500 dark:text-primary-50 py-1 px-4 bg-opacity-70 dark:bg-opacity-70">
                     <div class="flex items-center space-x-2">

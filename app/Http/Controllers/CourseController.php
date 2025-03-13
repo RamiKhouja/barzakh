@@ -53,6 +53,7 @@ class CourseController extends Controller
             'categories' => 'required',
             'is_free' => 'nullable',
             'is_chosen' => 'nullable',
+            'is_soon' => 'nullable',
             'is_discount' => 'nullable',
             'discount_start' => 'nullable',
             'discount_end' => 'nullable'
@@ -71,6 +72,7 @@ class CourseController extends Controller
         $course->price = $request->input('price');
         $course->is_free = $request->has('is_free');
         $course->is_chosen = $request->has('is_chosen');
+        $course->is_soon = $request->has('is_soon');
         $course->is_discount = $request->has('is_discount');
         if($request->has('is_discount')) {
             $course->discount_price = $request->input('discount_price');
@@ -171,7 +173,8 @@ class CourseController extends Controller
             'featured_vid' => 'nullable',
             'categories' => 'required',
             'is_free' => 'nullable',
-            'is_chosen' => 'nullable'
+            'is_chosen' => 'nullable',
+            'is_soon' => 'nullable'
         ]);
         $previousInstructorId = $course->instructor_id;
 
@@ -191,8 +194,10 @@ class CourseController extends Controller
         $course->price = $request->input('price');
         $isFree = $request->has('is_free');
         $isChosen = $request->has('is_chosen');
+        $isSoon = $request->has('is_soon');
         $course->is_free = $isFree;
         $course->is_chosen = $isChosen;
+        $course->is_soon = $isSoon;
         $course->discount_price = $request->input('discount_price');
         $course->language = $request->input('language');
         
