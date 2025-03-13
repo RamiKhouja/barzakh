@@ -30,12 +30,12 @@
             <div class="sm:px-6 lg:px-8 my-8 py-8 text-center max-w-xs sm:max-w-sm md:max-w-xl lg:max-w-3xl">
                 <img src="{{ asset( 'pictures/global/B3.png') }}" class="h-16 sm:h-20 dark:hidden mx-auto mb-4" alt=""/>
                 <img src="{{ asset( 'pictures/global/B1.png') }}" class="h-16 sm:h-20 hidden dark:block mx-auto mb-4" alt=""/>
-                <p class="{{$lang=='ar' ? ('text-xl') : ('text-2xl lg:text-3xl')}} text-bordo tracking-wider leading-10 dark:text-primary-100" 
-                    style="font-family:{{$lang=='ar' ? ('Noto Nastaliq Urdu') : ('Great Vibes')}} ; line-height: {{$lang=='ar' ? ('50px') : ('40px')}} " 
+                <p class="text-2xl lg:text-3xl text-bordo tracking-wider leading-10 dark:text-primary-100" 
+                    style="font-family:{{$lang=='ar' ? ('MehrNastaliq') : ('Great Vibes')}} ; line-height: {{$lang=='ar' ? ('50px') : ('40px')}} " 
                     dir="{{$lang=='ar' ? ('rtl') : ('ltr')}}">
                     {{__('welcome.Charter-content')}}
                 </p>
-                <p class="{{$lang=='ar' ? ('text-xl') : ('text-2xl lg:text-3xl')}} mt-5 text-bordo dark:text-primary-100" style="font-family:{{$lang=='ar' ? ('Noto Nastaliq Urdu') : ('Great Vibes')}}" >
+                <p class="{{$lang=='ar' ? ('text-2xl lg:text-4xl mt-5') : ('text-2xl lg:text-3xl mt-7')}} text-bordo dark:text-primary-100" style="font-family:{{$lang=='ar' ? ('MehrNastaliq') : ('Great Vibes')}}" >
                     {{__('welcome.ibnu-arabi')}}
                 </p>
                 <img src="{{ asset( 'pictures/global/B4.png') }}" class="dark:hidden mx-auto mt-4" alt=""/>
@@ -49,7 +49,7 @@
                 </p>
             </div>
             <div class="flex justify-center">
-                <p class="{{$lang=='ar' ? ('text-3xl lg:text-4xl') : ('text-2xl lg:text-3xl')}} text-bordo dark:text-primary-50 font-medium mb-16" style="font-family:{{$lang=='ar' ? ('Noto Nastaliq Urdu') : ('Great Vibes')}}">
+                <p class="{{$lang=='ar' ? ('text-3xl lg:text-4xl') : ('text-2xl lg:text-3xl')}} text-bordo dark:text-primary-50 font-medium mb-16" style="font-family:{{$lang=='ar' ? ('MehrNastaliq') : ('Great Vibes')}}">
                     {{__('welcome.world-visions')}}
                 </p>
             </div>
@@ -60,7 +60,7 @@
                     <div class="h-72 w-72 md:h-52 md:w-52 lg:h-72 lg:w-72 my-6 md:my-0 cat-circle hover:shadow-lg rounded-full">  
                         <div class="h-2/5 flex items-center justify-center text-center">
                             <div class="w-48">
-                                <p class="{{$lang=='ar' ? ('text-xl md:text-sm lg:text-2xl font-semibold') : ('text-2xl md:text-xl lg:text-2xl font-medium')}} text-bordo" style="font-family:{{$lang=='ar' ? ('Noto Nastaliq Urdu') : ('Great Vibes')}}">
+                                <p class="{{$lang=='ar' ? ('text-3xl lg:text-4xl') : ('text-2xl lg:text-3xl')}} font-medium  text-bordo" style="font-family:{{$lang=='ar' ? ('MehrNastaliq') : ('Great Vibes')}}">
                                     {{ $field->title }}
                                 </p>
                             </div>
@@ -204,7 +204,7 @@
                     <!-- <img src="/storage/app/pictures/global/suspack-light.jpg" class="h-auto max-w-full rounded-3xl dark:hidden" alt=""/> -->
                     <img src="{{ asset( 'pictures/global/suspack-dark.png') }}" class="h-auto max-w-full rounded-3xl " alt=""/>
                     <div class="absolute top-2 px-4 sm:px-6 md:px-4 lg:top-4 lg:px-6 xl:px-8 text-center">
-                        <p class="text-2xl lg:text-3xl text-white font-semibold text-center" style="font-family:{{$lang=='ar' ? ('Noto Nastaliq Urdu') : ('Great Vibes')}}">
+                        <p class="text-2xl lg:text-4xl text-white font-semibold text-center" style="font-family:{{$lang=='ar' ? ('MehrNastaliq') : ('Great Vibes')}}">
                             {{__('welcome.suspeso-system')}}
                         </p>
                         <p class="text-center text-xs md:text-sm lg:text-base xl:text-lg text-gray-50 my-2 sm:mt-2 sm:mb-5 md:mt-2 md:mb-2 lg:my-4 xl:my-6 {{$lang=='ar'?(''):('italic')}}" dir="{{$lang=='ar'?('rtl'):('ltr')}}">
@@ -221,7 +221,7 @@
                     <img src="{{ asset( 'pictures/global/suspack-dark.png') }}" class="h-auto max-w-full rounded-3xl " alt=""/>
                     <!-- <img class="h-auto max-w-full rounded-3xl" src="/storage/app/pictures/global/packs.jpg" alt=""> -->
                     <div class="absolute top-2 px-4 sm:px-6 md:px-4 lg:top-4 lg:px-6 xl:px-8 text-center">
-                        <p class="text-2xl lg:text-3xl text-white font-semibold text-center" style="font-family:{{$lang=='ar' ? ('Noto Nastaliq Urdu') : ('Great Vibes')}}">
+                        <p class="text-2xl lg:text-4xl text-white font-semibold text-center" style="font-family:{{$lang=='ar' ? ('MehrNastaliq') : ('Great Vibes')}}">
                             {{__('welcome.packs-system')}}
                         </p>
                         <p class="text-center text-xs md:text-sm lg:text-base xl:text-lg text-gray-50 my-2 sm:mt-2 sm:mb-5 md:mt-2 md:mb-2 lg:my-4 xl:my-6 {{$lang=='ar'?(''):('italic')}}" dir="{{$lang=='ar'?('rtl'):('ltr')}}">
@@ -232,16 +232,16 @@
                 </div>
             </div>
         </div>
-        <div id="partners" class="flex justify-center pb-32 pt-16">
+        <div id="partners" class="flex justify-center items-end pb-32 pt-16">
             <a href="/services" class="group">
-                <img src="{{ asset( 'pictures/global/labs-black.png') }}" class="h-28 sm:h-36 dark:hidden group-hover:hidden mr-4 md:mr-12" alt=""/>
-                <img src="{{ asset( 'pictures/global/labs-red.png') }}" class="h-28 sm:h-36 hidden group-hover:block mr-4 md:mr-12" alt=""/>
-                <img src="{{ asset( 'pictures/global/labs-white.png') }}" class="h-28 sm:h-36 mr-4 md:mr-12 hidden dark:block group-hover:dark:hidden" alt=""/>
+                <img src="{{ asset( 'pictures/global/labs-black.png') }}" class="h-16 sm:h-36 dark:hidden group-hover:hidden mr-4 md:mr-12" alt=""/>
+                <img src="{{ asset( 'pictures/global/labs-red.png') }}" class="h-16 sm:h-36 hidden group-hover:block mr-4 md:mr-12" alt=""/>
+                <img src="{{ asset( 'pictures/global/labs-white.png') }}" class="h-16 sm:h-36 mr-4 md:mr-12 hidden dark:block group-hover:dark:hidden" alt=""/>
             </a>
             <a href="#" class="group">
-                <img src="{{ asset( 'pictures/global/store-black.png') }}" class="h-32 sm:h-36 dark:hidden group-hover:hidden ml-4 md:ml-12" alt=""/>
-                <img src="{{ asset( 'pictures/global/store-red.png') }}" class="h-32 sm:h-36 hidden group-hover:block ml-4 md:ml-12" alt=""/>
-                <img src="{{ asset( 'pictures/global/store-white.png') }}" class="h-32 sm:h-36 ml-4 md:ml-12 hidden dark:block group-hover:dark:hidden" alt=""/>
+                <img src="{{ asset( 'pictures/global/store-black.png') }}" class="h-16 sm:h-36 dark:hidden group-hover:hidden ml-4 md:ml-12" alt=""/>
+                <img src="{{ asset( 'pictures/global/store-red.png') }}" class="h-16 sm:h-36 hidden group-hover:block ml-4 md:ml-12" alt=""/>
+                <img src="{{ asset( 'pictures/global/store-white.png') }}" class="h-16 sm:h-36 ml-4 md:ml-12 hidden dark:block group-hover:dark:hidden" alt=""/>
             </a>
         </div>
         <x-footer/>
