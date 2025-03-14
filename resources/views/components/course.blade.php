@@ -1,4 +1,9 @@
 <?php $lang = app()->getLocale(); ?>
+@section('og-meta')
+    <meta property="og:title" content="{{ $course->title_ar }}">
+    <meta property="og:description" content="{{ $course->description_ar ?? 'Check out this course!' }}">
+    <meta property="og:image" content="{{ asset('pictures'.$course->image) }}">
+@endsection
 <div class="rounded-3xl my-4 group shadow-md relative">
     <a href="{{ route('course.showUrl', ['url' => $course->url]) }}">
         <div class="relative">
@@ -73,7 +78,7 @@
                         {{$course->instructor->firstname}} {{$course->instructor->lastname}}
                     </p>
                     <div class="flex justify-between items-center gap-x-2">
-                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(route('course.showUrl', ['url' => $course->url])) }}&picture={{ urlencode(asset('pictures/'.$course->image)) }}"
+                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(route('course.showUrl', ['url' => $course->url])) }}&picture={{ urlencode(asset('pictures'.$course->image)) }}"
                             target="_blank"
                             class="text-gray-50 z-30 px-1.5 py-1.5 border border-gray-50 rounded-full bg-bordo flex items-center space-x-1">
                             <x-heroicon-s-share class="h-5 w-5"/>

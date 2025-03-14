@@ -4,15 +4,11 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        @if(isset($course))
-            <meta property="og:title" content="{{ $course->title_ar }}">
-            <meta property="og:description" content="{{ $course->description_ar ?? 'Check out this course!' }}">
-            <meta property="og:image" content="{{ asset('pictures/'.$course->image) }}">
-        @else
+        @yield('og-meta', '
             <meta property="og:title" content="برزخ لرؤى العالم">
-            <meta property="og:description" content="بيئة متكاملة للاقتصاد الثقافي الرقمي">
-            <meta property="og:image" content="{{ asset('pictures/global/og-main.jpeg') }}">
-        @endif
+            <meta property="og:description" content="بيئة تكامليّة للاقتصاد الثقافي الرقمي">
+            <meta property="og:image" content="'.asset('pictures/global/og-main.jpeg').'">
+        ')
         <link rel="icon" type="image/x-icon" href="{{asset('favicon.ico')}}">
         <title>{{ config('app.name', 'Barzakh') }}</title>
 

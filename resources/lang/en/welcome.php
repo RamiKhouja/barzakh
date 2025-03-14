@@ -7,7 +7,7 @@ return [
     'Charter' => 'Charter',
     'Charter-content' => 'When you read books, know your own state, and see what addresses you in them, for indeed, conditions are the locus of address, and individuals carry it. Judgment is the result of wisdom, and knowledge is the result of awareness. Whoever has no wisdom has no judgment, and whoever has no awareness has no knowledge. Time is a questioning place, and place is frozen time. Hearing is the origin of existence, for every existing thing vibrates.',
     'ibnu-arabi' => 'Ibnu Arabi',
-    'world-visions' => 'World Visions',
+    'world-visions' => 'World Views',
     '1Lesson' => '1 Lesson',
     'Lessons' => 'Lessons',
     'No-Lessons' => 'No Lessons',
