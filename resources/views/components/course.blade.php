@@ -1,5 +1,6 @@
 <?php $lang = app()->getLocale(); ?>
 @section('og-meta')
+    <meta property="og:url" content="{{ url('course/'.$course->url) }}" />
     <meta property="og:title" content="{{ $course->title_ar }}">
     <meta property="og:description" content="{{ $course->description_ar ?? 'Check out this course!' }}">
     <meta property="og:image" content="{{ asset('pictures'.$course->image) }}">
