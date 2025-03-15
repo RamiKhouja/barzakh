@@ -6,10 +6,10 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         
         <!-- Open Graph Tags -->
-        <meta property="og:url" content="https://barzakh.com.tn">
-        <meta property="og:title" content="برزخ لرؤى العالم">
-        <meta property="og:description" content="بيئة تكامليّة للاقتصاد الثقافي الرقمي">
-        <meta property="og:image" content="{{ asset('pictures/global/og-main.jpeg') }}">
+        <meta property="og:url" content="{{ $meta_url ?? url()->current() }}">
+        <meta property="og:title" content="{{ $meta_title ?? 'بَرزَخ لِرُؤَى العَالَم' }}">
+        <meta property="og:description" content="{{ $meta_description ?? 'بيئة تكامليّة للاقتصاد الثقافي الرقمي' }}">
+        <meta property="og:image" content="{{ $meta_image ?? asset('pictures/global/og-main.jpeg') }}">
         
         <link rel="icon" type="image/x-icon" href="{{asset('favicon.ico')}}">
         <title>{{ config('app.name', 'Barzakh') }}</title>

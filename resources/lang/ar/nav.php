@@ -15,9 +15,9 @@ return [
     'Login' => 'الدخول',
     'Register' => 'حساب جديد',
     'Search' => 'البحث',
-    'religious-vision' => 'الرؤية الدينية',
-    'beauty-vision' => 'الرؤية الجمالية',
-    'scientific-and-philosophical-vision' => 'الرؤية العلمية والفلسفية',
+    'religious-vision' => 'الرؤية الروحيّة',
+    'beauty-vision' => 'الرؤية الجماليّة',
+    'scientific-and-philosophical-vision' => 'الرؤية العقليّة',
     'Packs' => 'المجموعات'
 ];
 ?>

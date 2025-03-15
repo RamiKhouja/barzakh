@@ -15,9 +15,9 @@ return [
     'Login' => 'Log in',
     'Register' => 'Register',
     'Search' => 'Search',
-    'religious-vision'=> 'Religious Vision',
-    'beauty-vision' => 'Beauty Vision',
-    'scientific-and-philosophical-vision' => 'Scientific and Philosophical Vision',
+    'religious-vision'=> 'Spiritual View',
+    'beauty-vision' => 'Aesthetic View',
+    'scientific-and-philosophical-vision' => 'Mental View',
     'Packs' => 'Packs'
 ];
 ?>

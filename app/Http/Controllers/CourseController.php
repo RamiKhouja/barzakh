@@ -270,7 +270,15 @@ class CourseController extends Controller
             }
         }
 
-        return view('client.courses.show', compact(['course', 'categories', 'payment']));
+        // Define Open Graph metadata
+        $meta_title = $course->title_ar;
+        $meta_description = strip_tags($course->description_ar ?? 'بيئة تكامليّة للاقتصاد الثقافي الرقمي');
+        $meta_image = $course->image ? asset('pictures' . $course->image) : asset('pictures/global/og-main.jpeg');
+        $meta_url = url()->current();
+
+        return view('client.courses.show', compact(
+            'course', 'categories', 'payment', 'meta_title', 'meta_description', 'meta_image', 'meta_url'
+        ));
     }
 
     public function myCourses()

@@ -79,13 +79,13 @@
                         <div class="dropdown">
                             <button class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-t-lg flex space-x-2 items-center {{ (request()->is('course/*') || request()->is('categories/*')) ? 'font-bold dark:text-white' : '' }}">{{ __('nav.Courses') }}</button>
                             <div class="dropdown-content bg-primary-50 dark:bg-gray-400 dark:text-gray-50 {{$lang=='ar' ? ('text-right right-0'):('')}}">
-                                <a href="{{ route('fields.showUrl', ['url' => 'religious-vision']) }}" class="hover:bg-primary-200 dark:hover:bg-gray-400">
+                                <a href="{{ route('fields.showUrl', ['url' => 'spiritual-view']) }}" class="hover:bg-primary-200 dark:hover:bg-gray-400">
                                     {{__('nav.religious-vision')}}
                                 </a>
-                                <a href="{{ route('fields.showUrl', ['url' => 'beauty-vision']) }}" class="hover:bg-primary-200 dark:hover:bg-gray-400">
+                                <a href="{{ route('fields.showUrl', ['url' => 'aesthetic-view']) }}" class="hover:bg-primary-200 dark:hover:bg-gray-400">
                                     {{__('nav.beauty-vision')}}
                                 </a>
-                                <a href="{{ route('fields.showUrl', ['url' => 'scientific-and-philosophical-vision']) }}" class="hover:bg-primary-200 dark:hover:bg-gray-400">
+                                <a href="{{ route('fields.showUrl', ['url' => 'mental-view']) }}" class="hover:bg-primary-200 dark:hover:bg-gray-400">
                                     {{__('nav.scientific-and-philosophical-vision')}}
                                 </a>
                             </div>
@@ -108,13 +108,13 @@
                         <div class="dropdown">
                             <button class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-t-lg {{ (request()->is('course/*') || request()->is('categories/*') ) ? 'font-bold dark:text-white' : '' }}">{{ __('nav.Courses') }}</button>
                             <div class="dropdown-content rounded-b-lg bg-primary-50 dark:bg-gray-400 dark:text-gray-50 {{$lang=='ar' ? ('text-right right-0 rounded-tl-lg'):('rounded-tr-lg')}}">
-                                <a href="{{ route('fields.showUrl', ['url' => 'religious-vision']) }}" class="hover:bg-primary-200 dark:hover:bg-gray-300">
+                                <a href="{{ route('fields.showUrl', ['url' => 'spiritual-view']) }}" class="hover:bg-primary-200 dark:hover:bg-gray-300">
                                     {{__('nav.religious-vision')}}
                                 </a>
-                                <a href="{{ route('fields.showUrl', ['url' => 'beauty-vision']) }}" class="hover:bg-primary-200 dark:hover:bg-gray-300">
+                                <a href="{{ route('fields.showUrl', ['url' => 'aesthetic-view']) }}" class="hover:bg-primary-200 dark:hover:bg-gray-300">
                                     {{__('nav.beauty-vision')}}
                                 </a>
-                                <a href="{{ route('fields.showUrl', ['url' => 'scientific-and-philosophical-vision']) }}" class="hover:bg-primary-200 dark:hover:bg-gray-300">
+                                <a href="{{ route('fields.showUrl', ['url' => 'mental-view']) }}" class="hover:bg-primary-200 dark:hover:bg-gray-300">
                                     {{__('nav.scientific-and-philosophical-vision')}}
                                 </a>
                             </div>
