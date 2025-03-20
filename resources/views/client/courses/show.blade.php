@@ -1,4 +1,9 @@
-<x-app-layout>
+<x-app-layout
+    :meta_title="$meta_title"
+    :meta_description="$meta_description"
+    :meta_image="$meta_image"
+    :meta_url="$meta_url"
+>
     <?php $lang = app()->getLocale(); ?>
     <div class="bg-primary-100 dark:bg-gray-700" id="page-container">
         @if ($message = Session::get('success'))

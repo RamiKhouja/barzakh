@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         
+        @props(['meta_title', 'meta_description', 'meta_image', 'meta_url'])
         <!-- Open Graph Tags -->
         <meta property="og:url" content="{{ $meta_url ?? url()->current() }}">
         <meta property="og:title" content="{{ $meta_title ?? 'بَرزَخ لِرُؤَى العَالَم' }}">
