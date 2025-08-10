@@ -92,7 +92,7 @@
                 {{__('welcome.finish-started')}}
             </p>
             <div class="items-center container pt-8  sm:max-w-xl md:max-w-2xl lg:max-w-screen-lg xl:max-w-screen-2xl  mx-auto mt-4 flex space-x-4 justify-center">
-                <button class="myPrevBtn h-56 bg-primary-150 text-stone dark:bg-gray-400 dark:hover:text-gray-700 dark:hover:bg-primary-200 dark:text-primary-50
+                <button class="myPrevBtn h-56 mb-28 bg-primary-150 text-stone dark:bg-gray-400 dark:hover:text-gray-700 dark:hover:bg-primary-200 dark:text-primary-50
                      rounded-xl hover:bg-primary-300 shadow-md px-2 hidden sm:block 
                      {{checkCount($myCourses)}}">
                     <x-heroicon-s-chevron-left class="w-4 h-4"/>
@@ -107,7 +107,7 @@
                     <!-- <div class="item"></div> -->
                     <!-- Add more items as needed -->
                 </div>
-                <button class="myNextBtn h-56 bg-primary-150 text-stone dark:bg-gray-400 dark:hover:text-gray-700 dark:hover:bg-primary-200 dark:text-primary-50 rounded-xl hover:bg-primary-300 shadow-md px-2 hidden sm:block {{checkCount($myCourses)}}">
+                <button class="myNextBtn h-56 mb-28 bg-primary-150 text-stone dark:bg-gray-400 dark:hover:text-gray-700 dark:hover:bg-primary-200 dark:text-primary-50 rounded-xl hover:bg-primary-300 shadow-md px-2 hidden sm:block {{checkCount($myCourses)}}">
                     <x-heroicon-s-chevron-right class="w-4 h-4"/>
                 </button>
             </div>
@@ -151,7 +151,7 @@
                 {{__('welcome.free-courses')}}
             </p>
             <div class="items-center w-full max-w-full pt-8  sm:max-w-xl md:max-w-2xl lg:max-w-screen-lg xl:max-w-screen-2xl  mx-auto mt-4 flex space-x-4 justify-center">
-                <button class="prevBtnFree h-56 bg-primary-150 text-stone dark:bg-gray-400 dark:hover:text-gray-700 dark:hover:bg-primary-200 dark:text-primary-50 rounded-xl hover:bg-primary-300 shadow-md px-2 hidden sm:block {{checkCount($freeCourses)}}">
+                <button class="prevBtnFree h-56 mb-28 bg-primary-150 text-stone dark:bg-gray-400 dark:hover:text-gray-700 dark:hover:bg-primary-200 dark:text-primary-50 rounded-xl hover:bg-primary-300 shadow-md px-2 hidden sm:block {{checkCount($freeCourses)}}">
                     <x-heroicon-s-chevron-left class="w-4 h-4"/>
                 </button>
                 <div class="owl-carousel owl-free owl-theme md:w-10/12">
@@ -163,7 +163,7 @@
                     @endforeach
                     <!-- Add more items as needed -->
                 </div>
-                <button class="nextBtnFree h-56 bg-primary-150 text-stone dark:bg-gray-400 dark:hover:text-gray-700 dark:hover:bg-primary-200 dark:text-primary-50 rounded-xl hover:bg-primary-300 shadow-md px-2 hidden sm:block {{checkCount($freeCourses)}}">
+                <button class="nextBtnFree h-56 mb-28 bg-primary-150 text-stone dark:bg-gray-400 dark:hover:text-gray-700 dark:hover:bg-primary-200 dark:text-primary-50 rounded-xl hover:bg-primary-300 shadow-md px-2 hidden sm:block {{checkCount($freeCourses)}}">
                     <x-heroicon-s-chevron-right class="w-4 h-4"/>
                 </button>
             </div>
