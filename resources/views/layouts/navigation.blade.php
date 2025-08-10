@@ -68,6 +68,7 @@
                         <a href="{{ route('admin.offers') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg">{{ __('Offers') }}</a>
                         <a href="{{ route('admin.requests') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg">{{ __('Requests') }}</a>
                         <a href="{{ route('admin.services') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg">{{ __('Services') }}</a>
+                        <a href="{{ route('admin.partners') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg">{{ __('Partners') }}</a>
                     </div>
                     @else
                     <div class="flex-wrap my-4 space-x-2 text-primary-700 dark:text-gray-50 font-medium text-lg">
@@ -138,7 +139,7 @@
                                     <button class="inline-flex items-center sm:px-3 sm:py-2 text-sm leading-4 font-medium rounded-lg text-gray-500 dark:text-gray-400 dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 hover:bg-primary-200 dark:hover:bg-gray-400 focus:outline-none transition ease-in-out duration-150">
                                         <div class="flex items-center">
                                             @if(Auth::user()->image) 
-                                                <img src="{{ asset( 'pictures/'.Auth::user()->image )}}" alt="{{ Auth::user()->firstname }}" class="w-7 h-7 rounded-full object-cover md:mr-2"/>
+                                                <img src="{{ asset( Auth::user()->image )}}" alt="{{ Auth::user()->firstname }}" class="w-7 h-7 rounded-full object-cover md:mr-2"/>
                                             @endif
                                             <p class="hidden sm:block dark:text-white">{{ Auth::user()->firstname }}</p>
                                         </div>

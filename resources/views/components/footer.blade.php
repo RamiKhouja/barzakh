@@ -35,14 +35,22 @@
             <p class="text-primary-700 dark:text-white font-medium">{{__('welcome.help-center')}}</p>
         </div>
         <div class="flex space-x-2 justify-center md:justify-normal dark:hidden">
-            <img src="{{ asset('pictures/global/yt.png') }}" class="w-8" alt=""/>
-            <img src="{{ asset('pictures/global/fb.png') }}" class="w-8" alt=""/>
+            <a href="https://www.youtube.com/@Barzakhwv" target="_blank">
+                <img src="{{ asset('pictures/global/yt.png') }}" class="w-8" alt=""/>
+            </a>
+            <a href="https://www.facebook.com/barzakhwordviews" target="_blank">
+                <img src="{{ asset('pictures/global/fb.png') }}" class="w-8" alt=""/>
+            </a>
             <img src="{{ asset('pictures/global/tw.png') }}" class="w-8" alt=""/>
             <img src="{{ asset('pictures/global/li.png') }}" class="w-8" alt=""/>
         </div>
         <div class="dark:flex space-x-2 justify-center md:justify-normal hidden">
-            <img src="{{ asset('pictures/global/yt-white.png') }}" class="w-8" alt=""/>
-            <img src="{{ asset('pictures/global/fb-white.png') }}" class="w-8" alt=""/>
+            <a href="https://www.youtube.com/@Barzakhwv" target="_blank">
+                <img src="{{ asset('pictures/global/yt-white.png') }}" class="w-8" alt=""/>
+            </a>
+            <a href="https://www.facebook.com/barzakhwordviews" target="_blank">
+                <img src="{{ asset('pictures/global/fb-white.png') }}" class="w-8" alt=""/>
+            </a>
             <img src="{{ asset('pictures/global/tw-white.png') }}" class="w-8" alt=""/>
             <img src="{{ asset('pictures/global/li-white.png') }}" class="w-8" alt=""/>
         </div>

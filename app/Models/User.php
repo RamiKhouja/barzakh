@@ -68,6 +68,11 @@ class User extends Authenticatable
         return $this->belongsToMany(Course::class, 'payments', 'student_id', 'course_id');
     }
 
+    public function savedCourses()
+    {
+        return $this->belongsToMany(Course::class, 'saved_courses', 'student_id', 'course_id');
+    }
+
     public function lessons()
     {
         return $this->belongsToMany(Lesson::class, 'lesson_users')

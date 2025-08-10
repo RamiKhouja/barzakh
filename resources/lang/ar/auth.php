@@ -12,5 +12,7 @@ return [
     "ms" => "السيدة",
     "firstname" => "الإسم",
     "lastname" => "اللقب",
-    "confirmpass" => "تأكيد كلمة السر"
+    "confirmpass" => "تأكيد كلمة السر",
+    "google-signin" => "تسجيل الدخول باستخدام جوجل",
+    "google-signup" => "إنشاء حساب باستخدام جوجل",
 ];

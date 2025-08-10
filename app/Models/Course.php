@@ -24,6 +24,11 @@ class Course extends Model
         return $this->belongsToMany(User::class, 'payments');
     }
 
+    public function savedStudents()
+    {
+        return $this->belongsToMany(User::class, 'saved_courses');
+    }
+
     public function lessons()
     {
         return $this->hasMany(Lesson::class);

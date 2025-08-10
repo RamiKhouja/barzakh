@@ -12,5 +12,7 @@ return [
     "ms" => "Ms",
     "firstname" => "First Name",
     "lastname" => "Last Name",
-    "confirmpass" => "Confirm Password"
+    "confirmpass" => "Confirm Password",
+    "google-signin" => "Sign in with Google",
+    "google-signup" => "Sign up with Google",
 ];

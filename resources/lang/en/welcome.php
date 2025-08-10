@@ -48,6 +48,7 @@ return [
     'pay-for-course' => 'Pay for Course',
     'demend-course' => 'Get Course',
     'suspeso-description' => "It contributes to building a refined cultural community, where one group purchases educational lessons and donates them to those in need, while another group benefits from these lessons.",
-    'coming-soon' => "Coming Soon..."
+    'coming-soon' => "Coming Soon...",
+    'our-partners' => "Our Partners"
 ];
 ?>

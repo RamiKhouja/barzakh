@@ -16,6 +16,8 @@ use App\Http\Controllers\CourseRequestController;
 use App\Http\Controllers\OfferController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\PartnerController;
+use App\Http\Controllers\Auth\SocialiteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -113,6 +115,14 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/service/edit/{service}', [ServiceController::class, 'edit'])->name('admin.service.edit');
     Route::put('/admin/service/{service}', [ServiceController::class, 'update'])->name('admin.service.update');
     Route::delete('/admin/service/{service}', [ServiceController::class, 'delete'])->name('admin.service.delete');
+
+    // Admin partners routes
+    Route::get('/admin/partner/create', [PartnerController::class, 'create'])->name('admin.partner.create');
+    Route::post('/admin/partner', [PartnerController::class, 'store'])->name('admin.partner.store');
+    Route::get('/admin/partners', [PartnerController::class, 'index'])->name('admin.partners');
+    Route::get('/admin/partner/edit/{partner}', [PartnerController::class, 'edit'])->name('admin.partner.edit');
+    Route::put('/admin/partner/{partner}', [PartnerController::class, 'update'])->name('admin.partner.update');
+    Route::delete('/admin/partner/{partner}', [PartnerController::class, 'destroy'])->name('admin.partner.delete');
 });
 
 Route::middleware(['auth', 'student'])->group(function () {
@@ -123,6 +133,8 @@ Route::middleware(['auth', 'student'])->group(function () {
     Route::get('/requests', [CourseRequestController::class, 'index'])->name('requests');
     Route::post('/offer/store', [OfferController::class, 'store'])->name('offer.store');
     Route::get('/offers', [OfferController::class, 'index'])->name('offers');
+    Route::get('/course/payment/{id}', [CourseController::class, 'preparePayment'])->name('course.payment');
+    Route::get('/course/save/{id}', [CourseController::class, 'saveCourse'])->name('course.save');
 });
 
 // Guest Routes
@@ -136,5 +148,8 @@ Route::get('/about', [AboutController::class, 'index'])->name('about');
 Route::get('/experts', [InstructorController::class, 'clientIndex'])->name('instructors.index');
 Route::get('/search', [CourseController::class, 'clientSearch'])->name('search');
 Route::get('/services', [ServiceController::class, 'clientIndex'])->name('services');
+
+Route::get('/auth/google/redirect', [SocialiteController::class, 'redirectToGoogle'])->name('google.redirect');
+Route::get('/auth/google/callback', [SocialiteController::class, 'handleGoogleCallback'])->name('google.callback');
 
 require __DIR__.'/auth.php';

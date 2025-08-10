@@ -9,10 +9,13 @@ use App\Models\Category;
 use App\Models\CategoryCourse;
 use App\Models\Instructor;
 use App\Models\CourseRequest;
+use App\Models\SavedCourse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Auth;   
 use Illuminate\Support\Facades\Storage; 
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class CourseController extends Controller
 {
@@ -131,6 +134,22 @@ class CourseController extends Controller
             ->orWhere('title_ar', 'LIKE', '%' . $query . '%')
             ->get();
         //$instructors = Instructor::where('name', 'LIKE', '%' . $query . '%')->get();
+        $instructors = Instructor::where(function ($queryBuilder) use ($query) {
+            $queryBuilder->where('firstname->en', 'LIKE', "%$query%")
+                        ->orWhere('firstname->ar', 'LIKE', "%$query%")
+                        ->orWhere('lastname->en', 'LIKE', "%$query%")
+                        ->orWhere('lastname->ar', 'LIKE', "%$query%");
+        })->get();
+
+        if ($instructors->isNotEmpty()) {
+            foreach ($instructors as $instructor) {
+                $instructorCourses = Course::where('instructor_id', $instructor->id)->get();
+                $courses = $courses->merge($instructorCourses);
+            }
+
+            // Optional: remove duplicates
+            $courses = $courses->unique('id')->values(); // reset keys
+        }
 
         return view('client.search', compact('courses'));
     }
@@ -255,6 +274,107 @@ class CourseController extends Controller
         return redirect()->route('admin.courses')->with('success', 'Course deleted successfully');
     }
 
+    public function preparePayment($id)
+    {
+        $user = Auth::user();
+        
+        if (!$user) { abort(404); }
+        $course = Course::findOrFail($id);
+
+        $orderId = uniqid('order_');
+        $total = ($course->is_discount ? $course->discount_price : $course->price) * 1000;
+
+        $data = [
+            "receiverWalletId" => "65626489757f299608eb5265", // or sandbox ID
+            "token" => "TND",
+            "amount" => $total,
+            "type" => "immediate",
+            "description" => "Payment for course: {$course->title_en}",
+            "acceptedPaymentMethods" => ["bank_card"],
+            "lifespan" => 20,
+            "checkoutForm" => false,
+            "addPaymentFeesToAmount" => false,
+            "firstName" => $user->firstname,
+            "lastName" => $user->lastname,
+            "phoneNumber" => $user->phone,
+            "email" => $user->email,
+            "orderId" => $orderId,
+            "webhook" => "https://merchant.tech/api/notification_payment",
+            "silentWebhook" => true,
+            "successUrl" => url("/api/payment-response/{$course->id}/{$user->id}"),
+            "failUrl" => url("/api/payment-response/{$course->id}/{$user->id}"),
+            "theme" => "light",
+        ];
+        
+
+        $response = Http::withHeaders([
+            'x-api-key' => '65626489757f299608eb525f:UrkKzvLwuFiOS2lfbHysCckZRsJ5D8cK'
+        ])->post('https://api.konnect.network/api/v2/payments/init-payment', $data);
+
+        if ($response->successful()) {
+            $res = $response->json();
+            return redirect($res['payUrl']); // Redirect user to payment gateway
+        } else {
+            // Log error and return custom error response
+            logger()->error('Payment init failed', ['response' => $response->body()]);
+            return back()->with('error', 'Failed to initiate payment.');
+        }
+
+    }
+
+    public function saveCourse (Request $request, $id)
+    {
+        $user = Auth::user();
+        if (!$user) { abort(404); }
+
+        $course = Course::find($id);
+        if (!$course) { abort(404); }
+
+        $savedCourse = SavedCourse::create([
+            'student_id' => $user->id,
+            'course_id' => $course->id
+        ]);
+        return back()->with('success', 'Course saved successfully!');
+    }
+
+    public function paymentResponse(Request $request, $id, $userId)
+    {
+        $paymentRef = $request->query('payment_ref');
+        
+        if (!$paymentRef) {
+            return response()->json(['error' => 'payment_ref is required'], 400);
+        }
+
+        $course = Course::find($id);
+        
+        $url = "https://api.konnect.network/api/v2/payments/{$paymentRef}";
+        try {
+            $response = Http::get($url);
+            $data = $response->json();
+            
+            if (isset($data['payment']['transactions'][0])) {
+                $status = $data['payment']['transactions'][0]['status'] ?? 'unknown';
+    
+                if($status== "success") {
+
+                    $payment = Payment::create([
+                        'student_id' => intval($userId),
+                        'course_id' => $course->id,
+                        'amount' => floatval($course->price),
+                        'status' => 'successful',
+                    ]);
+
+                    return Redirect::route('course.showUrl', ['url' => $course->url, 'success' => '1']);
+                }
+            }
+            return Redirect::route('course.showUrl', ['url' => $course->url, 'success' => '0']);
+
+        } catch (\Exception $e) {
+            Log::error('Error calling Konnect API', ['error' => $e->getMessage()]);
+            return Redirect::route('course.showUrl', ['url' => $course->url, 'success' => '0']);
+        }
+    }
+
     public function showByUrl($url)
     {
         $course = Course::where('url', $url)->with('lessons')->first();
@@ -290,6 +410,7 @@ class CourseController extends Controller
             return $course;
         });
         $requested = $user->requests;
-        return view('client.profile.courses', compact(['courses','requested']));
+        $saved = $user->savedCourses;
+        return view('client.profile.courses', compact(['courses','requested', 'saved']));
     }
 }

@@ -37,6 +37,14 @@ return [
     'course-req' => 'متطلبات الدورة التدريبية',
     'go-to-course' => 'ادخل الدرس',
     'suspeso-system' => 'نظام سوسبيزو',
-    'the-lesson' => 'الدرس'
+    'the-lesson' => 'الدرس',
+    'payed-success' => 'تمّ خلاص الدورة بنجاح',
+    'payed-success-desc' => 'مبارك! يمكنك الآن الاستمتاع بمشاهدة الدورة',
+    'payed-failure' => 'خطأ في التسجيل في الدورة',
+    'payed-failure-desc' => 'يرجى التحقق من بيانات الدفع الخاصة بك والمحاولة مرة أخرى.',
+    'saved-success' => 'تمّ حفظ الدورة بنجاح',
+    'facebook' => 'فايسبوك',
+    'whatsapp' => 'واتساب',
+    'linkedin' => 'لينكدين'
 ];
 ?>

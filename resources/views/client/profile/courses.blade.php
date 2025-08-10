@@ -11,6 +11,16 @@
                     @endforeach 
                 </div>
             </div>
+            @if($saved)
+            <div class="my-16" dir="{{$lang == 'ar' ? ('rtl') : ('ltr')}}">
+                <p class="text-2xl {{$lang == 'ar' ? ('font-medium') : ('font-semibold')}} text-gray-700 dark:text-white mb-6">{{__('profile.saved-courses')}}</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 container" dir="{{$lang == 'ar' ? ('rtl') : ('ltr')}}">
+                    @foreach($saved as $savedCourse)
+                        <x-course :course="$savedCourse" :status=null :completed=null/>
+                    @endforeach 
+                </div>
+            </div>
+            @endif
             @if($requested)
             <div class="my-16" dir="{{$lang == 'ar' ? ('rtl') : ('ltr')}}">
                 <p class="text-2xl {{$lang == 'ar' ? ('font-medium') : ('font-semibold')}} text-gray-700 dark:text-white mb-6">{{__('profile.requested-courses')}}</p>

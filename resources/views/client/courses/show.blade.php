@@ -13,6 +13,32 @@
                 </div>
             </div>
         @endif
+        @if (request()->query('success') == '1')
+            <div 
+                dir="{{$lang == 'ar' ? ('rtl') : ('ltr')}}"
+                id="successMessage" 
+                class="rounded-lg bg-green-700 px-6 py-3 mb-6 shadow-lg w-fit mx-auto flex gap-x-2"
+            >
+                <x-heroicon-s-check-badge class="w-6 h-6 text-white" />
+                <div>
+                    <h3 class="text-lg font-semibold text-white">{{__('course.payed-success')}}</h3>
+                    <p class="mt-2 text-sm font-medium text-white">{{__('course.payed-success-desc')}}</p>
+                </div>
+            </div>
+        @endif
+        @if (request()->query('success') == '0')
+            <div 
+                dir="{{$lang == 'ar' ? ('rtl') : ('ltr')}}"
+                id="successMessage" 
+                class="rounded-lg bg-red-700 px-6 py-3 mb-6 shadow-lg w-fit mx-auto flex gap-x-2"
+            >
+                <x-heroicon-s-x-circle class="w-6 h-6 text-white" />
+                <div>
+                    <h3 class="text-lg font-semibold text-white">{{__('course.payed-failure')}}</h3>
+                    <p class="mt-2 text-sm font-medium text-white">{{__('course.payed-failure-desc')}}</p>
+                </div>
+            </div>
+        @endif
         <div class="h-20"></div>
         <div class="max-w-xs sm:max-w-screen-sm lg:max-w-4xl xl:max-w-5xl mx-auto mt-8 md:-mt-20 mb-56">
             
@@ -103,21 +129,29 @@
                                     @endif
                                 </div>
                             </div>
-                            <div class=" text-gray-700 px-1.5 py-1 rounded-full bg-gray-100 h-fit">
-                                <x-heroicon-o-bookmark  class="h-6 w-5"/>
-                            </div>
+                            @if(Auth::check())
+                            <a 
+                                href="{{ route('course.save', ['id' => $course->id]) }}"
+                                class=" text-gray-700 px-1.5 py-1 rounded-full bg-gray-100 h-fit">
+                                <x-heroicon-s-bookmark  class="h-6 w-5"/>
+                            </a>
+                            @endif
                         </div>
                     </div>
-                    @if($payment != null)
-                        @if($payment->status == 'successful')
+                    @if($course->is_free)
+                        <a href="{{ route('lesson.showCourse', ['url' => $course->url, 'number' => 1]) }}">
+                            <button class="w-full mt-8 bg-red-500 text-white text-center py-1 rounded-md hover:shadow hover:bg-red-700">
+                                {{__('course.go-to-course')}}
+                            </button>
+                        </a>
+                    @elseif($payment != null && $payment->status == 'successful')
                         <a href="{{ route('lesson.showCourse', ['url' => $course->url, 'number' => $payment->lesson_nb]) }}">
                             <button class="w-full mt-8 bg-red-500 text-white text-center py-1 rounded-md hover:shadow hover:bg-red-700">
                                 {{__('course.go-to-course')}}
                             </button>
                         </a>
-                        @endif
                     @else
-                        <a href="{{ route('lesson.showCourse', ['url' => $course->url, 'number' => 1]) }}">
+                        <a href="{{ route('course.payment', ['id' => $course->id]) }}">
                             <button class="w-full mt-8 bg-red-500 text-white text-center py-1 rounded-md hover:shadow hover:bg-red-700">
                                 {{__('course.buy-course')}}
                             </button>
@@ -396,5 +430,5 @@
     setTimeout(() => {
         const successMessage = document.getElementById('successMessage');
         successMessage.style.display = 'none';
-    }, 3000);
+    }, 5000);
 </script>

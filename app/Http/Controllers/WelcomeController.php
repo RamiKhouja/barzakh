@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Field;
 use App\Models\Instructor;
 use App\Models\Course;
+use App\Models\Partner;
 
 class WelcomeController extends Controller
 {
@@ -31,6 +32,7 @@ class WelcomeController extends Controller
                 return $course;
             });
         }
-        return view('welcome', compact(['fields', 'courses', 'instructors', 'freeCourses', 'myCourses']));
+        $partners = Partner::all();
+        return view('welcome', compact(['fields', 'courses', 'instructors', 'freeCourses', 'myCourses', 'partners']));
     }
 }

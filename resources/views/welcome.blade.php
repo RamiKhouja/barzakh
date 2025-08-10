@@ -19,6 +19,18 @@
     ?>
     <div class="bg-primary-100 dark:bg-gray-700 w-full">
         <div class="md:hidden h-20"></div>
+        @if ($message = Session::get('success'))
+        <div class="max-w-xs sm:max-w-sm md:max-w-xl lg:max-w-4xl mx-auto">
+            <div 
+                dir="{{$lang == 'ar' ? ('rtl') : ('ltr')}}"
+                id="successMessage" 
+                class="rounded-lg bg-green-700 px-6 py-3 mb-6 shadow-lg w-fit mx-auto flex gap-x-2"
+            >
+                <x-heroicon-s-check-badge class="w-6 h-6 text-white" />
+                <h3 class="text-lg font-semibold text-white">{{__('course.saved-success')}}</h3>
+            </div>
+        </div>
+        @endif
         <input id="lang" type="hidden" value="{{$lang}}" />
         <div class="mx-auto flex justify-center">
             <video class="md:h-[30rem]" muted autoplay controls>
@@ -75,11 +87,11 @@
             </div>
         </div>
         @if(Auth::user() && $myCourses && count($myCourses) > 0)
-        <div id="free" class="container pt-16 pb-8 sm:max-w-xl md:max-w-2xl lg:max-w-screen-lg xl:max-w-screen-2xl mx-auto">
+        <div id="free" class="container pt-16 sm:max-w-xl md:max-w-2xl lg:max-w-screen-lg xl:max-w-screen-2xl mx-auto">
             <p class="text-2xl md:text-3xl lg:text-5xl text-primary-700 dark:text-white font-black px-4 md:px-8 lg:px-16 mb-4 {{$lang=='ar'?('text-right'):('')}}">
                 {{__('welcome.finish-started')}}
             </p>
-            <div class="items-center container py-8  sm:max-w-xl md:max-w-2xl lg:max-w-screen-lg xl:max-w-screen-2xl  mx-auto mt-4 flex space-x-4 justify-center">
+            <div class="items-center container pt-8  sm:max-w-xl md:max-w-2xl lg:max-w-screen-lg xl:max-w-screen-2xl  mx-auto mt-4 flex space-x-4 justify-center">
                 <button class="myPrevBtn h-56 bg-primary-150 text-stone dark:bg-gray-400 dark:hover:text-gray-700 dark:hover:bg-primary-200 dark:text-primary-50
                      rounded-xl hover:bg-primary-300 shadow-md px-2 hidden sm:block 
                      {{checkCount($myCourses)}}">
@@ -88,7 +100,7 @@
                 <div class="owl-carousel my-owl owl-theme w-full md:w-10/12">
                     <!-- Carousel Items -->
                     @foreach($myCourses as $course)
-                    <div class="item">
+                    <div class="item pb-28">
                         <x-course :course="$course" :status=null :completed="$course->completed_lessons"/>
                     </div>
                     @endforeach
@@ -102,7 +114,7 @@
         </div>
         @endif
         <div>
-            <div class="tabs w-full max-w-full py-16 sm:max-w-xl md:max-w-2xl lg:max-w-screen-lg xl:max-w-screen-2xl mx-auto">
+            <div class="tabs w-full max-w-full pt-16 sm:max-w-xl md:max-w-2xl lg:max-w-screen-lg xl:max-w-screen-2xl mx-auto">
                 <p class="text-2xl md:text-3xl lg:text-5xl text-primary-700 dark:text-white font-black px-4 md:px-8 lg:px-16 mb-4 {{$lang=='ar'?('text-right'):('italic')}}">
                     {{__('welcome.chose-for-you')}}
                 </p>
@@ -114,19 +126,19 @@
                 </ul>
                 @foreach ($courses as $key => $courseType)
                 <div id="tab-{{$key}}-content" class="tab-content items-center {{$key!='1' ? ('hidden') : ('')}} container py-8 sm:max-w-xl md:max-w-2xl lg:max-w-screen-lg xl:max-w-screen-2xl  mx-auto mt-4 flex space-x-4 justify-center">
-                    <button class="prevBtn h-56 bg-primary-150 text-stone dark:bg-gray-400 dark:hover:text-gray-700 dark:hover:bg-primary-200 dark:text-primary-50 rounded-xl hover:bg-primary-300 shadow-md px-2 hidden sm:block">
+                    <button class="prevBtn h-56 mb-28 bg-primary-150 text-stone dark:bg-gray-400 dark:hover:text-gray-700 dark:hover:bg-primary-200 dark:text-primary-50 rounded-xl hover:bg-primary-300 shadow-md px-2 hidden sm:block">
                         <x-heroicon-s-chevron-left class="w-4 h-4"/>
                     </button>
                     <div class="owl-carousel owl-tabs owl-theme md:w-10/12">
                         <!-- Carousel Items -->
                         @foreach($courseType as $course)
-                        <div class="item">
+                        <div class="item pb-28">
                             <x-course :course="$course" :status=null :completed=null />
                         </div>
                         @endforeach
                         <!-- Add more items as needed -->
                     </div>
-                    <button class="nextBtn h-56 bg-primary-150 text-stone dark:bg-gray-400 dark:hover:text-gray-700 dark:hover:bg-primary-200 dark:text-primary-50 rounded-xl hover:bg-primary-300 shadow-md px-2 hidden sm:block">
+                    <button class="nextBtn h-56 mb-28 bg-primary-150 text-stone dark:bg-gray-400 dark:hover:text-gray-700 dark:hover:bg-primary-200 dark:text-primary-50 rounded-xl hover:bg-primary-300 shadow-md px-2 hidden sm:block">
                         <x-heroicon-s-chevron-right class="w-4 h-4"/>
                     </button>
                 </div>
@@ -134,18 +146,18 @@
                 <!-- Add more tab content containers as needed -->
             </div>
         </div>
-        <div id="free" class="w-full max-w-full pt-16 pb-8 sm:max-w-xl md:max-w-2xl lg:max-w-screen-lg xl:max-w-screen-2xl mx-auto">
+        <div id="free" class="w-full max-w-full pt-16 sm:max-w-xl md:max-w-2xl lg:max-w-screen-lg xl:max-w-screen-2xl mx-auto">
             <p class="text-2xl md:text-3xl lg:text-5xl text-primary-700 dark:text-white font-black px-4 md:px-8 lg:px-16 mb-4 {{$lang=='ar'?('text-right'):('italic')}}">
                 {{__('welcome.free-courses')}}
             </p>
-            <div class="items-center w-full max-w-full py-8  sm:max-w-xl md:max-w-2xl lg:max-w-screen-lg xl:max-w-screen-2xl  mx-auto mt-4 flex space-x-4 justify-center">
+            <div class="items-center w-full max-w-full pt-8  sm:max-w-xl md:max-w-2xl lg:max-w-screen-lg xl:max-w-screen-2xl  mx-auto mt-4 flex space-x-4 justify-center">
                 <button class="prevBtnFree h-56 bg-primary-150 text-stone dark:bg-gray-400 dark:hover:text-gray-700 dark:hover:bg-primary-200 dark:text-primary-50 rounded-xl hover:bg-primary-300 shadow-md px-2 hidden sm:block {{checkCount($freeCourses)}}">
                     <x-heroicon-s-chevron-left class="w-4 h-4"/>
                 </button>
                 <div class="owl-carousel owl-free owl-theme md:w-10/12">
                     <!-- Carousel Items -->
                     @foreach($freeCourses as $course)
-                    <div class="item">
+                    <div class="item pb-28">
                         <x-course :course="$course" :status=null :completed=null />
                     </div>
                     @endforeach
@@ -232,17 +244,31 @@
                 </div>
             </div>
         </div>
-        <div id="partners" class="flex justify-center items-end pb-32 pt-16">
-            <a href="/services" class="group">
-                <img src="{{ asset( 'pictures/global/labs-black.png') }}" class="h-16 sm:h-36 dark:hidden group-hover:hidden mr-4 md:mr-12" alt=""/>
-                <img src="{{ asset( 'pictures/global/labs-red.png') }}" class="h-16 sm:h-36 hidden group-hover:block mr-4 md:mr-12" alt=""/>
-                <img src="{{ asset( 'pictures/global/labs-white.png') }}" class="h-16 sm:h-36 mr-4 md:mr-12 hidden dark:block group-hover:dark:hidden" alt=""/>
-            </a>
-            <a href="#" class="group">
-                <img src="{{ asset( 'pictures/global/store-black.png') }}" class="h-16 sm:h-36 dark:hidden group-hover:hidden ml-4 md:ml-12" alt=""/>
-                <img src="{{ asset( 'pictures/global/store-red.png') }}" class="h-16 sm:h-36 hidden group-hover:block ml-4 md:ml-12" alt=""/>
-                <img src="{{ asset( 'pictures/global/store-white.png') }}" class="h-16 sm:h-36 ml-4 md:ml-12 hidden dark:block group-hover:dark:hidden" alt=""/>
-            </a>
+        <div id="partners" class="mb-32 w-full max-w-full px-4 py-32 sm:max-w-md md:max-w-screen-xl mx-auto">
+            <div class="flex justify-center items-end pb-32 pt-16">
+                <a href="/services" class="group">
+                    <img src="{{ asset( 'pictures/global/labs-black.png') }}" class="h-16 sm:h-36 dark:hidden group-hover:hidden mr-4 md:mr-12" alt=""/>
+                    <img src="{{ asset( 'pictures/global/labs-red.png') }}" class="h-16 sm:h-36 hidden group-hover:block mr-4 md:mr-12" alt=""/>
+                    <img src="{{ asset( 'pictures/global/labs-white.png') }}" class="h-16 sm:h-36 mr-4 md:mr-12 hidden dark:block group-hover:dark:hidden" alt=""/>
+                </a>
+                <a href="#" class="group">
+                    <img src="{{ asset( 'pictures/global/store-black.png') }}" class="h-16 sm:h-36 dark:hidden group-hover:hidden ml-4 md:ml-12" alt=""/>
+                    <img src="{{ asset( 'pictures/global/store-red.png') }}" class="h-16 sm:h-36 hidden group-hover:block ml-4 md:ml-12" alt=""/>
+                    <img src="{{ asset( 'pictures/global/store-white.png') }}" class="h-16 sm:h-36 ml-4 md:ml-12 hidden dark:block group-hover:dark:hidden" alt=""/>
+                </a>
+            </div>
+            <p class="text-2xl md:text-3xl lg:text-5xl text-primary-700 dark:text-white font-black  mb-12 text-center {{$lang=='ar'?(''):('italic')}}">
+                {{__('welcome.our-partners')}}
+            </p>
+            <div class="owl-carousel partner-owl owl-theme w-full mt-8">
+                @foreach($partners as $partner)
+                <div class="item flex items-center justify-center h-32">
+                    <a href="{{$partner->url}}" target="_blank">
+                        <img src="{{ asset('pictures/' . $partner->logo) }}" title="{{$partner->name}}" class="object-contain max-h-28" alt="{{ $partner->name }}">
+                    </a>
+                </div>
+                @endforeach
+            </div>
         </div>
         <x-footer/>
     </div>
@@ -287,6 +313,9 @@
             width: 100%;
             opacity: 0;
             transition: opacity 0.25s ease-in-out;
+        }
+        .owl-carousel .owl-item img.btn-share{
+            width: unset !important;
         }
     </style>
 </x-app-layout>
@@ -384,8 +413,27 @@
                 },
                 640: { items: 2 },
                 768: { items: 3 },
-                1024: { items: 4 },
-                1280: { items: 4.5 }
+                1024: { items: 4 }
+            }
+        });
+
+        $(".partner-owl").owlCarousel({
+            margin: 44,
+            nav: false,
+            dots: false,
+            rtl: lang=='ar',
+            loop: true,
+            repeat: true,
+            autoplay: true,
+            autoplayTimeout: 3000,       // 3 seconds between each slide
+            autoplayHoverPause: true,
+            autoplaySpeed: 1000,         // 1 second transition animation
+            smartSpeed: 1000, 
+            responsive: {
+                0: { items: 1, center: true },
+                640: { items: 2 },
+                768: { items: 3 },
+                1024: { items: 4 }
             }
         });
 
@@ -430,4 +478,9 @@
             link.classList.add('active');
         });
     });
+
+    setTimeout(() => {
+        const successMessage = document.getElementById('successMessage');
+        successMessage.style.display = 'none';
+    }, 3000);
 </script>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use App\Models\Instructor;
 use App\Models\Course;
@@ -82,32 +83,54 @@ class InstructorController extends Controller
                 Rule::unique('instructors')->ignore($instructor->id)
             ],
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'order' => 'nullable',
+            'order' => 'nullable|integer|min:1',
         ]);
         
-        $instructor->setTranslation('firstname', 'en', $request->input('firstname_en'));
-        $instructor->setTranslation('firstname', 'ar', $request->input('firstname_ar'));
-        $instructor->setTranslation('lastname', 'en', $request->input('lastname_en'));
-        $instructor->setTranslation('lastname', 'ar', $request->input('lastname_ar'));
-        $instructor->setTranslation('short_desc', 'en', $request->input('short_desc_en'));
-        $instructor->setTranslation('short_desc', 'ar', $request->input('short_desc_ar'));
-        $instructor->setTranslation('description', 'en', $request->input('description_en'));
-        $instructor->setTranslation('description', 'ar', $request->input('description_ar'));
-        $instructor->email = $request->input('email');
-        $instructor->url = $request->input('url');
-        $instructor->order = $request->input('order');
-        
-        if ($request->hasFile('picture')) {
-            // If a new image is uploaded, replace the existing one
-            $path = $request->file('picture')->storePublicly('pictures/instructors');
-            $fileName = time() . '_' . $request->file('picture')->getClientOriginalName();
-            $request->file('picture')->storeAs('/instructors', $fileName, 'pictures'); 
-            $instructor->image="/instructors/{$fileName}";
-        }
-        
-        $instructor->save();
+        $oldOrder = $instructor->order;
+        $newOrder = $request->input('order');
 
-        return redirect()->route('admin.instructors')->with('success','Instructor Has Been updated successfully');
+        DB::beginTransaction();
+
+        try {
+            if ($newOrder && $newOrder != $oldOrder) {
+                if ($newOrder < $oldOrder) {
+                    Instructor::where('order', '>=', $newOrder)
+                        ->where('order', '<', $oldOrder)
+                        ->increment('order');
+                } else {
+                    Instructor::where('order', '<=', $newOrder)
+                        ->where('order', '>', $oldOrder)
+                        ->decrement('order');
+                }
+            }
+
+            $instructor->setTranslation('firstname', 'en', $request->input('firstname_en'));
+            $instructor->setTranslation('firstname', 'ar', $request->input('firstname_ar'));
+            $instructor->setTranslation('lastname', 'en', $request->input('lastname_en'));
+            $instructor->setTranslation('lastname', 'ar', $request->input('lastname_ar'));
+            $instructor->setTranslation('short_desc', 'en', $request->input('short_desc_en'));
+            $instructor->setTranslation('short_desc', 'ar', $request->input('short_desc_ar'));
+            $instructor->setTranslation('description', 'en', $request->input('description_en'));
+            $instructor->setTranslation('description', 'ar', $request->input('description_ar'));
+            $instructor->email = $request->input('email');
+            $instructor->url = $request->input('url');
+            $instructor->order = $newOrder;
+
+            if ($request->hasFile('picture')) {
+                $fileName = time() . '_' . $request->file('picture')->getClientOriginalName();
+                $request->file('picture')->storeAs('/instructors', $fileName, 'pictures'); 
+                $instructor->image = "/instructors/{$fileName}";
+            }
+
+            $instructor->save();
+
+            DB::commit();
+
+            return redirect()->route('admin.instructors')->with('success','Instructor has been updated successfully.');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return back()->with('error', 'Error while updating instructor: ' . $e->getMessage());
+        }
     }
 
     public function showByUrl($url)

@@ -37,6 +37,14 @@ return [
     'course-req' => 'Course Requirements',
     'go-to-course' => 'Access the Course',
     'suspeso-system' => 'Suspeso',
-    'the-lesson' => 'Lesson'
+    'the-lesson' => 'Lesson',
+    'payed-success' => 'Course payed successfully',
+    'payed-success-desc' => 'Congratulations! You can now enjoy your course.',
+    'payed-failure' => 'Course payment failure',
+    'payed-failure-desc' => 'Please check your payment credentials an try again.',
+    'saved-success' => 'Course saved successfully',
+    'facebook' => 'Facebook',
+    'whatsapp' => 'WhatsApp',
+    'linkedin' => 'Linkedin'
 ];
 ?>
