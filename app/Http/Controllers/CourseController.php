@@ -86,6 +86,7 @@ class CourseController extends Controller
             }
         }
         $course->featured_vid = $request->input('featured_vid');
+        $course->video_type = $request->input('video_type', 'vimeo');
         $course->image = "/courses/{$fileName}";
         $course->url = strtolower(str_replace(' ', '-', trim($request->input('title_en'))));
         $course->level= $request->input('level');
@@ -227,6 +228,7 @@ class CourseController extends Controller
         }
 
         $course->featured_vid = $request->input('featured_vid');
+        $course->video_type = $request->input('video_type', $course->video_type ?? 'vimeo');
         $course->url = $request->input('url');
         $course->level = $request->input('level');
         

@@ -73,9 +73,18 @@
                         </div>
                     </div>
                     <div class="flex justify-between space-x-4 mt-8">
-                        <div class="w-full">
+                        <div class="w-1/3">
+                            <label htmlFor="video_type" class="form-label">
+                                Video Type
+                            </label>
+                            <select id="video_type" name="video_type" class="mt-2 form-input">
+                                <option value="vimeo" {{ $lesson->video_type == "vimeo" ? 'selected' : '' }}>Vimeo</option>
+                                <option value="youtube" {{ $lesson->video_type == "youtube" ? 'selected' : '' }}>YouTube</option>
+                            </select>
+                        </div>
+                        <div class="w-1/3">
                             <label htmlFor="title" class="form-label">
-                                Vido ID
+                                Video ID
                             </label>
                             <div class="mt-2">
                                 <input
@@ -88,7 +97,7 @@
                                 />
                             </div>
                         </div>
-                        <div class="w-full">
+                        <div class="w-1/3">
                             <div class="flex space-x-2 items-center">
                                 <label htmlFor="title" class="form-label">
                                     Duration

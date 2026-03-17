@@ -160,7 +160,16 @@
                         
                     </div>
                     <div class="flex justify-between space-x-4 mt-8">
-                        <div class="w-full">
+                        <div class="w-1/3">
+                            <label htmlFor="video_type" class="form-label">
+                                Video Type
+                            </label>
+                            <select id="video_type" name="video_type" class="mt-2 form-input">
+                                <option value="vimeo">Vimeo</option>
+                                <option value="youtube">YouTube</option>
+                            </select>
+                        </div>
+                        <div class="w-1/3">
                             <label htmlFor="title" class="form-label">
                                 Featured Video
                             </label>
@@ -174,7 +183,7 @@
                                 />
                             </div>
                         </div>
-                        <div class="w-full">
+                        <div class="w-1/3">
                             <label htmlFor="title" class="form-label">
                                 Level
                             </label>

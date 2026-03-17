@@ -51,7 +51,7 @@
                         <iframe 
                             id="vimeo-frame" 
                             class="responsive-iframe -mt-6"
-                            src="https://player.vimeo.com/video/{{$course->featured_vid}}?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" 
+                            src="@if($course->video_type == 'youtube') https://www.youtube.com/embed/{{$course->featured_vid}} @else https://player.vimeo.com/video/{{$course->featured_vid}}?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479 @endif" 
                             frameborder="0" allow="autoplay; fullscreen;" 
                             title="{{$course->title_en}}" onload="showVideoFrame()">
                         </iframe>
@@ -203,7 +203,7 @@
                     @foreach($course->lessons as $lesson)
                     <button 
                         class="w-full flex justify-between items-center px-4 py-2 md:px-2 md:py-1 lg:px-4 lg:py-2 border-b border-b-primary-150 dark:border-b-gray-500 {{$lesson->is_free ? ('hover:bg-primary-150 dark:hover:bg-gray-500 dark:hover:border-b-gray-500 cursor-pointer') : ('cursor-default')}}" dir="{{$lang=='ar' ? ('rtl') : ('ltr')}}"
-                        onclick="{{ $lesson->is_free ? 'openLessonModal("' . $lesson->video_url . '")' : '' }}"
+                        onclick="{{ $lesson->is_free ? 'openLessonModal("' . $lesson->video_url . '", "' . $lesson->video_type . '")' : '' }}"
                     >
                         <div class="flex gap-x-4 items-center">
                             <p class="text-base text-bordo dark:text-white">{{__('course.the-lesson')}} {{$i++}}</p>
@@ -414,12 +414,16 @@
         container.classList.remove('opacity-20');
         navigation.classList.remove('opacity-20');
     }
-    function openLessonModal(video_url) {
+    function openLessonModal(video_url, video_type) {
         const modal = document.getElementById('lessonModal');
         modal.classList.remove('hidden');
 
         const iframe = document.getElementById('lesson-frame');
-        iframe.src = `https://player.vimeo.com/video/${video_url}?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479`;
+        if (video_type == 'youtube') {
+            iframe.src = `https://www.youtube.com/embed/${video_url}`;
+        } else {
+            iframe.src = `https://player.vimeo.com/video/${video_url}?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479`;
+        }
 
         const container = document.getElementById('page-container');
         const navigation = document.getElementById('navigation');

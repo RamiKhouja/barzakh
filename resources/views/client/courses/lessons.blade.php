@@ -25,7 +25,7 @@
                         <iframe 
                             id="vimeo-frame" 
                             class="responsive-iframe -mt-6"
-                            src="https://player.vimeo.com/video/{{$lesson->video_url}}#t={{$time}}s?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" 
+                            src="@if($lesson->video_type == 'youtube') https://www.youtube.com/embed/{{$lesson->video_url}}?start={{$time}} @else https://player.vimeo.com/video/{{$lesson->video_url}}#t={{$time}}s?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479 @endif" 
                             frameborder="0" allow="autoplay; fullscreen;" 
                             title="{{$lesson->title_en}}" onload="showVideoFrame()">
                         </iframe>
@@ -113,6 +113,7 @@
         document.getElementById('video-placeholder').style.display = 'none';
         document.getElementById('vimeo-frame').style.display = 'block';
     }
+    @if($lesson->video_type == 'vimeo')
     var vimeoFrame = document.getElementById('vimeo-frame');
     var player = new Vimeo.Player(vimeoFrame);
     var lessonId = document.getElementById('lesson_id').value;
@@ -175,4 +176,5 @@
             })
         });
     });
+    @endif
 </script>
