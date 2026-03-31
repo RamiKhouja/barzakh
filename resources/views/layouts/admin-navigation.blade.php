@@ -53,7 +53,7 @@
 
     <aside
         id="navigation"
-        class="fixed inset-y-0 {{ app()->getLocale() === 'ar' ? 'right-0 translate-x-full border-l' : 'left-0 -translate-x-full border-r' }} z-50 flex w-72 flex-col border-primary-200 bg-primary-100 text-primary-800 shadow-xl transition-transform duration-300 dark:border-gray-400 dark:bg-gray-700 dark:text-white lg:translate-x-0"
+        class="fixed inset-y-0 {{ app()->getLocale() === 'ar' ? 'right-0 border-l' : 'left-0 border-r' }} z-50 flex w-72 flex-col border-primary-200 bg-primary-100 text-primary-800 shadow-xl transition-transform duration-300 dark:border-gray-400 dark:bg-gray-700 dark:text-white lg:translate-x-0"
         :class="open ? 'translate-x-0' : '{{ app()->getLocale() === 'ar' ? 'translate-x-full lg:translate-x-0' : '-translate-x-full lg:translate-x-0' }}'"
     >
         <div class="flex items-center justify-between border-b border-primary-200 px-5 py-5 dark:border-gray-400">
