@@ -1,6 +1,5 @@
-<x-app-layout>
-    <div class="bg-primary-100 py-12" id="page-container">
-    <div class="md:hidden h-20"></div>
+<x-admin-layout>
+    <div class="bg-primary-100 dark:bg-gray-700 py-12" id="page-container">
         @if ($message = Session::get('success'))
             <div id="successMessage" class="rounded-md bg-green-50 p-4 mb-6 shadow">
                 <div class="ml-3">
@@ -12,42 +11,42 @@
             <div class="px-4 sm:px-6 lg:px-8">
                 <div class="sm:flex sm:items-center">
                     <div class="sm:flex-auto">
-                    <h1 class="text-lg font-semibold leading-6 text-gray-700">Categories</h1>
-                    <p class="mt-2 text-sm text-gray-700">
-                        A list of all the categories in your website.
+                    <h1 class="text-lg font-semibold leading-6 text-gray-700 dark:text-gray-100">{{ __('admin.categories_title') }}</h1>
+                    <p class="mt-2 text-sm text-gray-700 dark:text-gray-100">
+                        {{ __('admin.categories_description') }}
                     </p>
                     </div>
                     <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
                     <a type="button" class="primary-btn" href="{{ route('admin.category.create') }}">
-                        New Category
+                        {{ __('admin.new_category') }}
                     </a>
                     </div>
                 </div>
-                <div class="mt-8 p-8 bg-white rounded-2xl shadow-sm">
+                <div class="mt-8 p-8 bg-white dark:bg-gray-400 rounded-2xl shadow-sm">
                     <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                         <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-                            <table class="min-w-full divide-y divide-gray-300">
+                            <table class="min-w-full divide-y divide-gray-300 dark:divide-gray-100">
                             <thead>
                                 <tr>
                                 <th scope="col" class="table-th"></th>
                                 <th scope="col" class="table-th">
-                                    Title
+                                    {{ __('admin.title') }}
                                 </th>
                                 <th scope="col" class="table-th">
-                                    Title Ar
+                                    {{ __('admin.title_ar') }}
                                 </th>
                                 <th scope="col" class="table-th">
-                                    Domain
+                                    {{ __('admin.domain') }}
                                 </th>
                                 <th scope="col" class="table-th">
-                                    URL
+                                    {{ __('admin.url') }}
                                 </th>
                                 <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-0">
-                                    <span class="sr-only">Edit</span>
+                                    <span class="sr-only">{{ __('admin.actions') }}</span>
                                 </th>
                                 </tr>
                             </thead>
-                            <tbody class="divide-y divide-gray-300">
+                            <tbody class="divide-y divide-gray-300 dark:divide-gray-100">
                             @foreach($categories as $category)
                                 <tr>
                                     <td>
@@ -68,17 +67,20 @@
                                         {{ $category->url }}
                                     </td>
                                     <td class="relative py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
-                                        <a href="{{ route('admin.category.edit', ['category' => $category->id]) }}" class="text-indigo-600 hover:text-indigo-900">
-                                            Edit<span class="sr-only"></span>
+                                        <a href="{{ route('admin.category.edit', ['category' => $category->id]) }}" class="text-gray-400 hover:text-primary-500">
+                                            <x-zondicon-edit-pencil class="w-4 h-4 text-primary-500 dark:text-white" />
                                         </a>
-                                        <button onclick="openModal('{{ $category->id }}')"
-                                            class="secondary-btn"
-                                        >Delete</button>
+                                        <button onclick="openModal('{{ $category->id }}')">
+                                            <x-zondicon-trash class="w-4 h-4 text-gray-400 dark:text-white" />
+                                        </button>
                                     </td>
                                 </tr>
                             @endforeach
                             </tbody>
                             </table>
+                            <div class="mt-8">
+                                {{ $categories->links() }}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -88,9 +90,9 @@
     <div class="fixed z-50 inset-0 hidden overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true" id="myModal">
     <!-- <div id="myModal" class="hidden fixed z-10 inset-0 overflow-y-auto shadow-2xl"> -->
         <div class="flex items-center justify-center min-h-screen px-4">
-            <div class="bg-white rounded p-8 shadow-2xl">
+            <div class="bg-white dark:bg-gray-400 rounded p-8 shadow-2xl">
                 <!-- Modal content -->
-                <h2 class="mb-2 text-base font-semibold text-gray-900">Are you sure you want to delete this category?</h2>
+                <h2 class="mb-2 text-base font-semibold text-gray-900 dark:text-gray-100">Are you sure you want to delete this category?</h2>
                 <form action="{{ route('admin.category.delete', ['category' => 'categoryId']) }}" method="POST">
                     @csrf
                     @method('DELETE')
@@ -100,7 +102,7 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+</x-admin-layout>
 <script>
     function openModal(categoryId) {
         const modal = document.getElementById('myModal');

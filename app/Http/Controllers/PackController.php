@@ -15,7 +15,7 @@ class PackController extends Controller
      */
     public function index()
     {
-        $packs = Pack::with('courses')->get();
+        $packs = Pack::with('courses')->orderByDesc('id')->paginate(15);
         return view('admin.pack.index', compact('packs'));
     }
 

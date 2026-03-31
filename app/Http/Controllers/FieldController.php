@@ -10,7 +10,7 @@ class FieldController extends Controller
 {
     public function index() 
     {
-        $fields = Field::all();
+        $fields = Field::orderByDesc('id')->paginate(15);
         return view('admin.field.index', compact('fields'));
     }
 

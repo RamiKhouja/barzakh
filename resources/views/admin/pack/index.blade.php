@@ -1,6 +1,5 @@
-<x-app-layout>
-    <div class="bg-primary-100 py-12" id="page-container">
-    <div class="md:hidden h-20"></div>
+<x-admin-layout>
+    <div class="bg-primary-100 dark:bg-gray-700 py-12" id="page-container">
         @if ($message = Session::get('success'))
         <div class="max-w-xs sm:max-w-sm md:max-w-xl lg:max-w-4xl mx-auto">
             <div id="successMessage" class="rounded-md bg-green-50 p-4 mb-6 shadow">
@@ -15,48 +14,48 @@
             <div class="px-4 sm:px-6 lg:px-8">
                 <div class="sm:flex sm:items-center">
                     <div class="sm:flex-auto">
-                    <h1 class="text-lg font-semibold leading-6 text-gray-700">Packs</h1>
-                    <p class="mt-2 text-sm text-gray-700">
-                        A list of all the packs in your website.
+                    <h1 class="text-lg font-semibold leading-6 text-gray-700 dark:text-gray-100">{{ __('admin.packs_title') }}</h1>
+                    <p class="mt-2 text-sm text-gray-700 dark:text-gray-100">
+                        {{ __('admin.packs_description') }}
                     </p>
                     </div>
                     <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
                     <a type="button" class="primary-btn" href="{{ route('admin.pack.create') }}">
-                        New Pack
+                        {{ __('admin.new_pack') }}
                     </a>
                     </div>
                 </div>
-                <div class="mt-8 p-8 bg-white rounded-2xl shadow-sm">
+                <div class="mt-8 p-8 bg-white dark:bg-gray-400 rounded-2xl shadow-sm">
                     <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                         <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-                            <table class="min-w-full divide-y divide-gray-300" id="course-table">
+                            <table class="min-w-full divide-y divide-gray-300 dark:divide-gray-100" id="course-table">
                             <thead>
                                 <tr>
                                     <th scope="col" class="table-th"></th>
                                     <th scope="col" class="table-th">
-                                        Name
+                                        {{ __('admin.name') }}
                                     </th>
                                     <th scope="col" class="table-th">
-                                        Name Ar
+                                        {{ __('admin.name_ar') }}
                                     </th>
                                     <th scope="col" class="table-th">
-                                        Price
+                                        {{ __('admin.price') }}
                                     </th>
                                     <th scope="col" class="table-th">
-                                        Visibility
+                                        {{ __('admin.visibility') }}
                                     </th>
                                     <th scope="col" class="table-th">
-                                        Courses
+                                        {{ __('admin.courses') }}
                                     </th>
                                     <th scope="col" class="table-th">
-                                        Created
+                                        {{ __('admin.created') }}
                                     </th>
                                     <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-0">
-                                        <span class="sr-only">Edit</span>
+                                        <span class="sr-only">{{ __('admin.actions') }}</span>
                                     </th>
                                 </tr>
                             </thead>
-                            <tbody class="divide-y divide-gray-300">
+                            <tbody class="divide-y divide-gray-300 dark:divide-gray-100">
                             @foreach($packs as $pack)
                                 <tr>
                                     <td>
@@ -89,10 +88,10 @@
                                     <td class="table-text">
                                         <div class="space-x-2 flex items-center">
                                             <a href="{{ route('admin.pack.edit', ['pack' => $pack->id]) }}">
-                                                <x-zondicon-edit-pencil class="w-4 h-4 text-primary-500" />
+                                                <x-zondicon-edit-pencil class="w-4 h-4 text-primary-500 dark:text-white" />
                                             </a>
                                             <button onclick="openModal('{{ $pack->id }}')">
-                                                <x-zondicon-trash class="w-4 h-4 text-gray-400" />
+                                                <x-zondicon-trash class="w-4 h-4 text-gray-400 dark:text-white" />
                                             </button>
                                         </div>
                                     </td>
@@ -100,6 +99,9 @@
                             @endforeach
                             </tbody>
                             </table>
+                            <div class="mt-8">
+                                {{ $packs->links() }}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -109,9 +111,9 @@
     <div class="fixed z-50 inset-0 hidden overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true" id="myModal">
     <!-- <div id="myModal" class="hidden fixed z-10 inset-0 overflow-y-auto shadow-2xl"> -->
         <div class="flex items-center justify-center min-h-screen px-4">
-            <div class="bg-white rounded p-8 shadow-2xl">
+            <div class="bg-white dark:bg-gray-400 rounded p-8 shadow-2xl">
                 <!-- Modal content -->
-                <h2 class="mb-2 text-base font-semibold text-gray-900">Are you sure you want to delete this course?</h2>
+                <h2 class="mb-2 text-base font-semibold text-gray-900 dark:text-gray-100">Are you sure you want to delete this course?</h2>
                 <form action="{{ route('admin.pack.delete', ['pack' => 'packId']) }}" method="POST">
                     @csrf
                     @method('DELETE')
@@ -121,7 +123,7 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+</x-admin-layout>
 <script>
     function openModal(packId) {
         const modal = document.getElementById('myModal');

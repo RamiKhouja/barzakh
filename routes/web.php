@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\FieldController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\InstructorController;
@@ -48,9 +48,8 @@ Route::middleware('auth')->group(function () {
 
 // Admin Routes
 Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('/admin/dashboard', function() {
-        return view('admin.dashboard');
-    })->name('admin.dashboard');
+    Route::redirect('/admin', '/admin/dashboard');
+    Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
 
     // Admin fields routes
     Route::get('/admin/field/create', [FieldController::class, 'create'])->name('field.create');

@@ -1,6 +1,5 @@
-<x-app-layout>
-    <div class="bg-primary-100 py-12" id="page-container">
-    <div class="md:hidden h-20"></div>
+<x-admin-layout>
+    <div class="bg-primary-100 dark:bg-gray-700 py-12" id="page-container">
         @if ($message = Session::get('success'))
         <div class="max-w-xs sm:max-w-sm md:max-w-xl lg:max-w-4xl mx-auto">
             <div id="successMessage" class="rounded-md bg-green-50 p-4 mb-6 shadow">
@@ -15,40 +14,40 @@
             <div class="px-4 sm:px-6 lg:px-8">
                 <div class="sm:flex sm:items-center">
                     <div class="sm:flex-auto">
-                    <h1 class="text-lg font-semibold leading-6 text-gray-700">Offers</h1>
-                    <p class="mt-2 text-sm text-gray-700">
-                        A list of all the offers in your website.
+                    <h1 class="text-lg font-semibold leading-6 text-gray-700 dark:text-gray-100">{{ __('admin.offers_title') }}</h1>
+                    <p class="mt-2 text-sm text-gray-700 dark:text-gray-100">
+                        {{ __('admin.offers_description') }}
                     </p>
                     </div>
                 </div>
-                <div class="mt-8 p-8 bg-white rounded-2xl shadow-sm">
+                <div class="mt-8 p-8 bg-white dark:bg-gray-400 rounded-2xl shadow-sm">
                     <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                         <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-                            <table class="min-w-full divide-y divide-gray-300" id="course-table">
+                            <table class="min-w-full divide-y divide-gray-300 dark:divide-gray-100" id="course-table">
                             <thead>
                                 <tr>
                                     <th scope="col" class="table-th"></th>
                                     <th scope="col" class="table-th">
-                                        Course
+                                        {{ __('admin.course') }}
                                     </th>
                                     <th scope="col" class="table-th">
-                                        User
+                                        {{ __('admin.user') }}
                                     </th>
                                     <th scope="col" class="table-th">
-                                        Qty
+                                        {{ __('admin.qty') }}
                                     </th>
                                     <th scope="col" class="table-th">
-                                        Amount
+                                        {{ __('admin.amount') }}
                                     </th>
                                     <th scope="col" class="table-th">
-                                        Status
+                                        {{ __('admin.status') }}
                                     </th>
                                     <th scope="col" class="table-th">
-                                        Created
+                                        {{ __('admin.created') }}
                                     </th>
                                 </tr>
                             </thead>
-                            <tbody class="divide-y divide-gray-300">
+                            <tbody class="divide-y divide-gray-300 dark:divide-gray-100">
                             @foreach($offers as $offer)
                                 <tr>
                                     <td>
@@ -85,6 +84,9 @@
                             @endforeach
                             </tbody>
                             </table>
+                            <div class="mt-8">
+                                {{ $offers->links() }}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -92,7 +94,7 @@
         </div>
     </div>
     
-</x-app-layout>
+</x-admin-layout>
 <script>
     setTimeout(() => {
         const successMessage = document.getElementById('successMessage');

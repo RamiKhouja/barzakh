@@ -24,7 +24,7 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $courses = Course::all();
+        $courses = Course::with('instructor')->orderByDesc('id')->paginate(15);
         return view('admin.course.index', compact('courses'));
     }
 
@@ -118,12 +118,29 @@ class CourseController extends Controller
 
     public function search(Request $request)
     {
-        $searchTerm = $request->input('q');
-        
-        // Perform the search based on the $searchTerm, e.g., by course title
-        $courses = Course::where('title_en', 'like', "%$searchTerm%")->get();
-        
-        return view('admin.courses', compact('courses'));
+        $query = trim((string) $request->input('q'));
+
+        $courses = Course::with('instructor')
+            ->when($query !== '', function ($builder) use ($query) {
+                $builder->where('title_en', 'like', "%{$query}%")
+                    ->orWhere('title_ar', 'like', "%{$query}%");
+            })
+            ->orderByDesc('id')
+            ->limit(15)
+            ->get();
+
+        $instructors = Instructor::when($query !== '', function ($builder) use ($query) {
+                $builder->where('firstname->en', 'like', "%{$query}%")
+                    ->orWhere('firstname->ar', 'like', "%{$query}%")
+                    ->orWhere('lastname->en', 'like', "%{$query}%")
+                    ->orWhere('lastname->ar', 'like', "%{$query}%")
+                    ->orWhere('email', 'like', "%{$query}%");
+            })
+            ->orderBy('order')
+            ->limit(15)
+            ->get();
+
+        return view('admin.search.index', compact('courses', 'instructors', 'query'));
     }
 
     public function clientSearch(Request $request)

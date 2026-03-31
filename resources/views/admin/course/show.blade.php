@@ -1,6 +1,5 @@
-<x-app-layout>
-    <div class="bg-primary-100 py-12" id="page-container">
-    <div class="md:hidden h-20"></div>
+<x-admin-layout>
+    <div class="bg-primary-100 dark:bg-gray-700 py-12" id="page-container">
         @if ($message = Session::get('success'))
         <div class="max-w-xs sm:max-w-sm md:max-w-xl lg:max-w-4xl mx-auto">
             <div id="successMessage" class="rounded-md bg-green-50 p-4 mb-6 shadow">
@@ -17,21 +16,21 @@
                     <img src="{{ asset( 'pictures/'.$course->image ) }}" alt="" class="w-full rounded-lg object-cover mr-2"/>
                 </div>
                 <div class="block mt-4 sm:mt-0">
-                    <p class="text-4xl font-medium text-gray-700">{{$course->title_en}}</p>
+                    <p class="text-4xl font-medium text-gray-700 dark:text-white">{{$course->title_en}}</p>
                     <div class="md:flex md:flex-wrap md:space-x-4 mt-4 space-y-2 md:space-y-0">
                         <div class="flex space-x-1 items-center">
-                            <x-heroicon-s-banknotes class="h-4 w-4"/>
-                            <p class="text-gray-400 text-sm font-semibold {{$course->is_discount ? ('line-through'):('')}}">${{$course->price}} USD</p>
+                            <x-heroicon-s-banknotes class="h-4 w-4 dark:text-white"/>
+                            <p class="text-gray-400 dark:text-gray-50 text-sm font-semibold {{$course->is_discount ? ('line-through'):('')}}">${{$course->price}} USD</p>
                         </div>
                         @if($course->is_discount)
                         <div class="flex space-x-1 items-center">
-                            <x-heroicon-s-arrow-trending-down class="h-4 w-4"/>
-                            <p class="text-gray-400 text-sm font-semibold">
+                            <x-heroicon-s-arrow-trending-down class="h-4 w-4 dark:text-white"/>
+                            <p class="text-gray-400 dark:text-gray-50 text-sm font-semibold">
                                 ${{$course->discount_price}} USD
                             </p>
                         </div>
                         <div class="flex space-x-1 items-center">
-                            <p class="text-gray-400 text-sm font-semibold">
+                            <p class="text-gray-400 dark:text-gray-50 text-sm font-semibold">
                                 DISC {{$course->discount}}%
                             </p>
                         </div>
@@ -39,58 +38,58 @@
                     </div>
                     <div class="md:flex md:flex-wrap md:space-x-4 mt-2 md:mt-4 space-y-2 md:space-y-0">
                         <div class="flex space-x-1 items-center">
-                            <x-heroicon-s-chart-bar class="h-4 w-4"/>
-                            <p class="text-gray-400 text-sm font-semibold">{{ucfirst($course->level)}}</p>
+                            <x-heroicon-s-chart-bar class="h-4 w-4 dark:text-white"/>
+                            <p class="text-gray-400 dark:text-gray-50 text-sm font-semibold">{{ucfirst($course->level)}}</p>
                         </div>
                         <div class="flex space-x-1 items-center">
-                            <x-heroicon-m-play-circle class="h-4 w-4"/>
-                            <p class="text-gray-400 text-sm font-semibold">
+                            <x-heroicon-m-play-circle class="h-4 w-4 dark:text-white"/>
+                            <p class="text-gray-400 dark:text-gray-50 text-sm font-semibold">
                                 {{$course->nb_lessons}} Lessons ({{ gmdate("H:i:s", $course->duration) }})
                             </p>
                         </div>
                         <div class="flex space-x-1 items-center">
-                            <x-heroicon-s-document class="h-4 w-4"/>
-                            <p class="text-gray-400 text-sm font-semibold">
+                            <x-heroicon-s-document class="h-4 w-4 dark:text-white"/>
+                            <p class="text-gray-400 dark:text-gray-50 text-sm font-semibold">
                                 {{$course->nb_files > 0 ? $course->nb_files : ('No')}} Files
                             </p>
                         </div>
                     </div>
                     <div class="md:flex md:flex-wrap md:space-x-4 mt-2 md:mt-4 space-y-2 md:space-y-0">
                         <div class="flex space-x-1 items-center">
-                            <x-heroicon-m-users class="h-4 w-4"/>
-                            <p class="text-gray-400 text-sm font-semibold">
+                            <x-heroicon-m-users class="h-4 w-4 dark:text-white"/>
+                            <p class="text-gray-400 dark:text-gray-50 text-sm font-semibold">
                                 {{$course->nb_subscription > 0 ? $course->nb_subscription : ('No')}} Students
                             </p>
                         </div>
                         <div class="flex space-x-1 items-center">
-                            <x-heroicon-s-eye class="h-4 w-4"/>
-                            <p class="text-gray-400 text-sm font-semibold">
+                            <x-heroicon-s-eye class="h-4 w-4 dark:text-white"/>
+                            <p class="text-gray-400 dark:text-gray-50 text-sm font-semibold">
                                 {{$course->nb_visits > 0 ? $course->nb_visits : ('No')}} Visits
                             </p>
                         </div>
                     </div>
                     <div class="md:flex md:flex-wrap md:space-x-4 mt-2 md:mt-4 space-y-2 md:space-y-0">
                         <div class="flex space-x-1 items-center">
-                            <x-heroicon-s-speaker-wave class="h-4 w-4"/>
-                            <p class="text-gray-400 text-sm font-semibold">
+                            <x-heroicon-s-speaker-wave class="h-4 w-4 dark:text-white"/>
+                            <p class="text-gray-400 dark:text-gray-50 text-sm font-semibold">
                                 {{$course->language}}
                             </p>
                         </div>
                         <div class="flex space-x-1 items-center">
-                            <x-heroicon-s-language class="h-4 w-4"/>
+                            <x-heroicon-s-language class="h-4 w-4 dark:text-white"/>
                             @if($course->translations != null)
                                 <?php $i = 0; ?>
                                 @foreach(json_decode($course->translations) as $trans)
                                 <?php $i++; ?>
-                                <p class="text-gray-400 text-sm font-semibold">
+                                <p class="text-gray-400 dark:text-gray-50 text-sm font-semibold">
                                     {{ucfirst($trans)}} 
                                 </p>
                                 @if($i < count(json_decode($course->translations)))
-                                    <p class="text-gray-400 text-sm font-semibold">.</p>
+                                    <p class="text-gray-400 dark:text-gray-50 text-sm font-semibold">.</p>
                                 @endif
                                 @endforeach
                             @else
-                                <p class="text-gray-400 text-sm font-semibold">
+                                <p class="text-gray-400 dark:text-gray-50 text-sm font-semibold">
                                     No Translations
                                 </p>
                             @endif
@@ -102,47 +101,47 @@
         <div class="max-w-xs sm:max-w-sm md:max-w-xl lg:max-w-5xl lg:px-12 mx-auto mt-12">
             <div class="sm:flex sm:items-center">
                 <div class="sm:flex-auto">
-                <h1 class="text-lg font-semibold leading-6 text-gray-700">Lessons</h1>
-                <p class="mt-2 text-sm text-gray-700">
-                    A list of lessons in this course.
+                <h1 class="text-lg font-semibold leading-6 text-gray-700 dark:text-gray-100">{{ __('admin.lessons_title') }}</h1>
+                <p class="mt-2 text-sm text-gray-700 dark:text-gray-100">
+                    {{ __('admin.course_lessons_description') }}
                 </p>
                 </div>
                 <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
                 <a type="button" class="primary-btn" href="{{ route('admin.lesson.create', ['course' => $course->id]) }}">
-                    New Lesson
+                    {{ __('admin.new_lesson') }}
                 </a>
                 </div>
             </div>
-            <div class="mt-8 p-8 bg-white rounded-2xl shadow-sm">
+            <div class="mt-8 p-8 bg-white dark:bg-gray-400 rounded-2xl shadow-sm">
                 <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-                        <table class="min-w-full divide-y divide-gray-300">
+                        <table class="min-w-full divide-y divide-gray-300 dark:divide-gray-100">
                         <thead>
                             <tr>
                             <th scope="col" class="table-th">
-                                N°
+                                {{ __('admin.lesson_number') }}
                             </th>
                             <th scope="col" class="table-th">
-                                Title
+                                {{ __('admin.title') }}
                             </th>
                             <th scope="col" class="table-th">
-                                Title Ar
+                                {{ __('admin.title_ar') }}
                             </th>
                             <th scope="col" class="table-th">
-                                Duration
+                                {{ __('admin.duration') }}
                             </th>
                             <th scope="col" class="table-th">
-                                Free
+                                {{ __('admin.free') }}
                             </th>
                             <th scope="col" class="table-th">
-                                Visible
+                                {{ __('admin.visible') }}
                             </th>
                             <th scope="col" class="table-th">
-                                Action
+                                {{ __('admin.actions') }}
                             </th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-gray-300">
+                        <tbody class="divide-y divide-gray-300 dark:divide-gray-100">
                         @foreach($lessons as $lesson)
                             <tr>
                                 <td class="table-text">
@@ -165,13 +164,13 @@
                                 </td>
                                 <td class="relative p-4 text-right text-sm font-medium sm:pr-0 space-x-2 flex items-center">
                                     <a>
-                                        <x-heroicon-s-eye class="w-4 h-4 text-primary-700" />
+                                        <x-heroicon-s-eye class="w-4 h-4 text-primary-700 dark:text-white" />
                                     </a>
                                     <a href="{{ route('admin.lesson.edit', ['lesson' => $lesson->id]) }}">
-                                        <x-zondicon-edit-pencil class="w-4 h-4 text-primary-500" />
+                                        <x-zondicon-edit-pencil class="w-4 h-4 text-primary-500 dark:text-white" />
                                     </a>
                                     <button onclick="openModal('{{ $lesson->id }}')">
-                                        <x-zondicon-trash class="w-4 h-4 text-gray-400" />
+                                        <x-zondicon-trash class="w-4 h-4 text-gray-400 dark:text-white" />
                                     </button>
                                 </td>
                             </tr>
@@ -186,9 +185,9 @@
     <div class="fixed z-50 inset-0 hidden overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true" id="myModal">
     <!-- <div id="myModal" class="hidden fixed z-10 inset-0 overflow-y-auto shadow-2xl"> -->
         <div class="flex items-center justify-center min-h-screen px-4">
-            <div class="bg-white rounded p-8 shadow-2xl">
+            <div class="bg-white dark:bg-gray-400 rounded p-8 shadow-2xl">
                 <!-- Modal content -->
-                <h2 class="mb-2 text-base font-semibold text-gray-900">Are you sure you want to delete this lesson?</h2>
+                <h2 class="mb-2 text-base font-semibold text-gray-900 dark:text-gray-100">Are you sure you want to delete this lesson?</h2>
                 <form action="{{ route('admin.lesson.delete', ['lesson' => 'lessonId']) }}" method="POST">
                     @csrf
                     @method('DELETE')
@@ -198,7 +197,7 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+</x-admin-layout>
 <script>
     setTimeout(() => {
         const successMessage = document.getElementById('successMessage');

@@ -14,7 +14,7 @@ class InstructorController extends Controller
 {
     public function index() 
     {
-        $instructors = Instructor::paginate(10);
+        $instructors = Instructor::orderBy('order')->paginate(15);
         return view('admin.instructor.index', compact('instructors'));
     }
 

@@ -18,6 +18,13 @@ return [
     'religious-vision' => 'الرؤية الروحيّة',
     'beauty-vision' => 'الرؤية الجماليّة',
     'scientific-and-philosophical-vision' => 'الرؤية العقليّة',
-    'Packs' => 'المجموعات'
+    'Packs' => 'المجموعات',
+    'Lessons' => 'الدروس',
+    'Offers' => 'العروض',
+    'Requests' => 'الطلبات',
+    'Services' => 'الخدمات',
+    'Account' => 'الحساب',
+    'Admin' => 'إدارة برزخ',
+    'Admin-panel' => 'لوحة الإدارة'
 ];
 ?>

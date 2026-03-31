@@ -1,6 +1,5 @@
-<x-app-layout>
-    <div class="bg-primary-100 py-12 h-screen">
-    <div class="md:hidden h-20"></div>
+<x-admin-layout>
+    <div class="bg-primary-100 dark:bg-gray-700 py-12" id="page-container">
         @if ($message = Session::get('success'))
             <div id="successMessage" class="rounded-md bg-green-50 p-4 mb-6 shadow">
                 <div class="ml-3">
@@ -12,45 +11,45 @@
             <div class="px-4 sm:px-6 lg:px-8">
                 <div class="sm:flex sm:items-center">
                     <div class="sm:flex-auto">
-                    <h1 class="text-lg font-semibold leading-6 text-gray-700">Instructors</h1>
-                    <p class="mt-2 text-sm text-gray-700">
-                        A list of all the instructors in your website.
+                    <h1 class="text-lg font-semibold leading-6 text-gray-700 dark:text-gray-100">{{ __('admin.instructors_title') }}</h1>
+                    <p class="mt-2 text-sm text-gray-700 dark:text-gray-100">
+                        {{ __('admin.instructors_description') }}
                     </p>
                     </div>
                     <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
                     <a type="button" class="primary-btn" href="{{ route('instructor.create') }}">
-                        New Instructor
+                        {{ __('admin.new_instructor') }}
                     </a>
                     </div>
                 </div>
-                <div class="mt-8 p-8 bg-white rounded-2xl shadow-sm">
+                <div class="mt-8 p-8 bg-white dark:bg-gray-400 rounded-2xl shadow-sm">
                     <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                         <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-                            <table class="min-w-full divide-y divide-gray-300">
+                            <table class="min-w-full divide-y divide-gray-300 dark:divide-gray-100">
                             <thead>
                                 <tr>
                                 <th scope="col" class="table-th"></th>
                                 <th scope="col" class="table-th">
-                                    Order
+                                    {{ __('admin.order') }}
                                 </th>
                                 <th scope="col" class="table-th">
-                                    Name
+                                    {{ __('admin.name') }}
                                 </th>
                                 <th scope="col" class="table-th">
-                                    Name Ar
+                                    {{ __('admin.name_ar') }}
                                 </th>
                                 <th scope="col" class="table-th">
-                                    email
+                                    {{ __('admin.email') }}
                                 </th>
                                 <th scope="col" class="table-th">
-                                    Courses
+                                    {{ __('admin.courses') }}
                                 </th>
                                 <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-0">
-                                    <span class="sr-only">Edit</span>
+                                    <span class="sr-only">{{ __('admin.actions') }}</span>
                                 </th>
                                 </tr>
                             </thead>
-                            <tbody class="divide-y divide-gray-300">
+                            <tbody class="divide-y divide-gray-300 dark:divide-gray-100">
                             @foreach($instructors as $instructor)
                                 <tr>
                                     <td>
@@ -75,17 +74,17 @@
                                     </td>
                                     <td class="relative py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0 space-x-2 flex items-center">
                                         <a href="{{ route('admin.instructor.edit', ['instructor' => $instructor->id]) }}" class="text-gray-400 hover:text-primary-500">
-                                            <x-zondicon-edit-pencil class="w-4 h-4 text-primary-500" />
+                                            <x-zondicon-edit-pencil class="w-4 h-4 text-primary-500 dark:text-white" />
                                         </a>
                                         <button onclick="openModal('{{ $instructor->id }}')">
-                                            <x-zondicon-trash class="w-4 h-4 text-gray-400" />
+                                            <x-zondicon-trash class="w-4 h-4 text-gray-400 dark:text-white" />
                                         </button>
                                     </td>
                                 </tr>
                             @endforeach
                             </tbody>
                             </table>
-                            <div class="pagination mt-20">
+                            <div class="mt-8">
                                 {{ $instructors->links() }}
                             </div>
                         </div>
@@ -96,9 +95,9 @@
     </div>
     <div class="fixed z-50 inset-0 hidden overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true" id="myModal">
         <div class="flex items-center justify-center min-h-screen px-4">
-            <div class="bg-white rounded p-8 shadow-2xl">
+            <div class="bg-white dark:bg-gray-400 rounded p-8 shadow-2xl">
                 <!-- Modal content -->
-                <h2 class="mb-2 text-base font-semibold text-gray-900">Are you sure you want to delete this instructor?</h2>
+                <h2 class="mb-2 text-base font-semibold text-gray-900 dark:text-gray-100">Are you sure you want to delete this instructor?</h2>
                 <form action="{{ route('admin.instructor.delete', ['instructor' => 'instructorId']) }}" method="POST">
                     @csrf
                     @method('DELETE')
@@ -108,7 +107,7 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+</x-admin-layout>
 <script>
     function openModal(instructorId) {
         const modal = document.getElementById('myModal');

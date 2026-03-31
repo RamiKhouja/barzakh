@@ -1,6 +1,5 @@
-<x-app-layout>
-    <div class="bg-primary-100 py-12">
-    <div class="md:hidden h-20"></div>
+<x-admin-layout>
+    <div class="bg-primary-100 dark:bg-gray-700 py-12">
         <div class="max-w-xs sm:max-w-sm md:max-w-xl lg:w-7xl mx-auto flex justify-center">
             <div class="w-full">
                 <div class="flex justify-center">
@@ -84,7 +83,7 @@
                                     aria-describedby="price-currency"
                                 />
                                 <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-                                    <span class="text-gray-700 sm:text-sm" id="price-currency">
+                                    <span class="text-gray-700 dark:text-gray-100 sm:text-sm" id="price-currency">
                                         USD
                                     </span>
                                 </div>
@@ -93,7 +92,7 @@
                         <div>
                             <label class="relative inline-flex items-center cursor-pointer">
                                 <input type="checkbox" name="is_discount" id="is_discount" value="1" class="sr-only peer" onchange="toggleDiscountArea()" >
-                                <div class="w-11 h-6 bg-gray-200 ring-1 ring-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary-500 dark:peer-focus:ring-primary-700 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-white after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary-500"></div>
+                                <div class="w-11 h-6 bg-gray-200 ring-1 ring-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary-500 dark:peer-focus:ring-primary-700 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white dark:bg-gray-400 after:border-white after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-400 peer-checked:bg-primary-500"></div>
                                 <span class="ml-3 form-label">Discount</span>
                             </label>
                         </div>
@@ -117,7 +116,7 @@
                                     aria-describedby="price-currency"
                                 />
                                 <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-                                    <span class="text-gray-700 sm:text-sm" id="price-currency">
+                                    <span class="text-gray-700 dark:text-gray-100 sm:text-sm" id="price-currency">
                                         USD
                                     </span>
                                 </div>
@@ -241,17 +240,17 @@
                         </div>
                         <label class="relative inline-flex items-center cursor-pointer">
                             <input type="checkbox" name="is_free" value="1" class="sr-only peer">
-                            <div class="w-11 h-6 bg-gray-200 ring-1 ring-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary-500 dark:peer-focus:ring-primary-700 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-white after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary-500"></div>
+                            <div class="w-11 h-6 bg-gray-200 ring-1 ring-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary-500 dark:peer-focus:ring-primary-700 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white dark:bg-gray-400 after:border-white after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-400 peer-checked:bg-primary-500"></div>
                             <span class="ml-3 form-label">Free</span>
                         </label>
                         <label class="relative inline-flex items-center cursor-pointer">
                             <input type="checkbox" name="is_chosen" value="1" class="sr-only peer">
-                            <div class="w-11 h-6 bg-gray-200 ring-1 ring-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary-500 dark:peer-focus:ring-primary-700 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-white after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary-500"></div>
+                            <div class="w-11 h-6 bg-gray-200 ring-1 ring-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary-500 dark:peer-focus:ring-primary-700 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white dark:bg-gray-400 after:border-white after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-400 peer-checked:bg-primary-500"></div>
                             <span class="ml-3 form-label">Chosen</span>
                         </label>
                         <label class="relative inline-flex items-center cursor-pointer">
                             <input type="checkbox" name="is_soon" value="1" class="sr-only peer">
-                            <div class="w-11 h-6 bg-gray-200 ring-1 ring-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary-500 dark:peer-focus:ring-primary-700 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-white after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary-500"></div>
+                            <div class="w-11 h-6 bg-gray-200 ring-1 ring-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary-500 dark:peer-focus:ring-primary-700 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white dark:bg-gray-400 after:border-white after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-400 peer-checked:bg-primary-500"></div>
                             <span class="ml-3 form-label">Coming soon</span>
                         </label>
                     </div>
@@ -260,7 +259,7 @@
                             <label htmlFor="title" class="form-label">
                                 Translations
                             </label>
-                            <button type="button" id="add-trans"><x-zondicon-add-solid class="w-6 h-6 text-primary-700" /></button>
+                            <button type="button" id="add-trans"><x-zondicon-add-solid class="w-6 h-6 text-primary-700 dark:text-white" /></button>
                         </div>
                         <div class="flex flex-wrap items-center space-x-4" id="trans-container">
                             <div class="w-28 mt-2">
@@ -274,7 +273,7 @@
                                 <label htmlFor="title" class="form-label">
                                     Course Requirements
                                 </label>
-                                <button type="button" id="add-requirement"><x-zondicon-add-solid class="w-6 h-6 text-primary-700" /></button>
+                                <button type="button" id="add-requirement"><x-zondicon-add-solid class="w-6 h-6 text-primary-700 dark:text-white" /></button>
                             </div>
                             <div id="requirements-en-container" class="mt-2">
                                 <div class="mb-2">
@@ -362,4 +361,4 @@
         });
     });
     </script>
-</x-app-layout>
+</x-admin-layout>

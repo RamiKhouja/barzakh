@@ -1,6 +1,5 @@
-<x-app-layout>
-    <div class="bg-primary-100 py-12 h-screen">
-    <div class="md:hidden h-20"></div>
+<x-admin-layout>
+    <div class="bg-primary-100 dark:bg-gray-700 py-12">
         @if ($message = Session::get('success'))
             <div id="successMessage" class="rounded-md bg-green-50 p-4 mb-6 shadow">
                 <div class="ml-3">
@@ -12,44 +11,44 @@
             <div class="px-4 sm:px-6 lg:px-8">
                 <div class="sm:flex sm:items-center">
                     <div class="sm:flex-auto">
-                    <h1 class="text-lg font-semibold leading-6 text-gray-700">Study Domains</h1>
-                    <p class="mt-2 text-sm text-gray-700">
-                        A list of all the domains in your website.
+                    <h1 class="text-lg font-semibold leading-6 text-gray-700 dark:text-gray-100">{{ __('admin.fields_title') }}</h1>
+                    <p class="mt-2 text-sm text-gray-700 dark:text-gray-100">
+                        {{ __('admin.fields_description') }}
                     </p>
                     </div>
                     <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
                     <a type="button" class="primary-btn" href="{{ route('field.create') }}">
-                        New Domain
+                        {{ __('admin.new_field') }}
                     </a>
                     </div>
                 </div>
-                <div class="mt-8 p-8 bg-white rounded-2xl shadow-sm">
+                <div class="mt-8 p-8 bg-white dark:bg-gray-400 rounded-2xl shadow-sm">
                     <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                         <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-                            <table class="min-w-full divide-y divide-gray-300">
+                            <table class="min-w-full divide-y divide-gray-300 dark:divide-gray-100">
                             <thead>
                                 <tr>
                                 <th scope="col" class="table-th">
-                                    Title
+                                    {{ __('admin.title') }}
                                 </th>
                                 <th scope="col" class="table-th">
-                                    Title Ar
+                                    {{ __('admin.title_ar') }}
                                 </th>
                                 <th scope="col" class="table-th">
-                                    Subtitle
+                                    {{ __('admin.subtitle') }}
                                 </th>
                                 <th scope="col" class="table-th">
-                                    Subtitle Ar
+                                    {{ __('admin.subtitle_ar') }}
                                 </th>
                                 <th scope="col" class="table-th">
-                                    URL
+                                    {{ __('admin.url') }}
                                 </th>
                                 <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-0">
-                                    <span class="sr-only">Edit</span>
+                                    <span class="sr-only">{{ __('admin.actions') }}</span>
                                 </th>
                                 </tr>
                             </thead>
-                            <tbody class="divide-y divide-gray-300">
+                            <tbody class="divide-y divide-gray-300 dark:divide-gray-100">
                             @foreach($fields as $field)
                                 <tr>
                                     <td class="table-text">
@@ -68,21 +67,24 @@
                                         {{ $field->url }}
                                     </td>
                                     <td class="relative py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
-                                    <a href="{{ route('field.edit', ['field' => $field->id]) }}" class="text-indigo-600 hover:text-indigo-900">
-                                        Edit<span class="sr-only">, {person.name}</span>
+                                    <a href="{{ route('field.edit', ['field' => $field->id]) }}" class="text-gray-400 hover:text-primary-500">
+                                        <x-zondicon-edit-pencil class="w-4 h-4 text-primary-500 dark:text-white" />
                                     </a>
                                     </td>
                                 </tr>
                             @endforeach
                             </tbody>
                             </table>
+                            <div class="mt-8">
+                                {{ $fields->links() }}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</x-app-layout>
+</x-admin-layout>
 <script>
     setTimeout(() => {
         const successMessage = document.getElementById('successMessage');

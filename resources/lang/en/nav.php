@@ -18,6 +18,13 @@ return [
     'religious-vision'=> 'Spiritual View',
     'beauty-vision' => 'Aesthetic View',
     'scientific-and-philosophical-vision' => 'Mental View',
-    'Packs' => 'Packs'
+    'Packs' => 'Packs',
+    'Lessons' => 'Lessons',
+    'Offers' => 'Offers',
+    'Requests' => 'Requests',
+    'Services' => 'Services',
+    'Account' => 'Account',
+    'Admin' => 'Barzakh Admin',
+    'Admin-panel' => 'Admin panel'
 ];
 ?>

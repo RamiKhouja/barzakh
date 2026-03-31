@@ -17,7 +17,9 @@ class LessonController extends Controller
      */
     public function index()
     {
-        //
+        $lessons = Lesson::with('course')->orderByDesc('id')->paginate(15);
+
+        return view('admin.lesson.index', compact('lessons'));
     }
 
     /**

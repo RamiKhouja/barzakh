@@ -36,7 +36,8 @@ class CourseRequestController extends Controller
         ->with(['requests' => function ($query) {
             $query->where('status', 'pending')->with('user');
         }])
-        ->get();
+        ->orderByDesc('id')
+        ->paginate(15);
 
         return view('admin.request.index', compact('courses'));
     }

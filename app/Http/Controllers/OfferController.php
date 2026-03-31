@@ -22,7 +22,7 @@ class OfferController extends Controller
 
     public function adminIndex()
     {
-        $offers = Offer::with('user')->with('course')->get();
+        $offers = Offer::with(['user', 'course'])->orderByDesc('id')->paginate(15);
         return view('admin.offer.index', compact('offers'));
     }
 

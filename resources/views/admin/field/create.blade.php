@@ -1,6 +1,5 @@
-<x-app-layout>
-    <div class="bg-primary-100 py-12 h-screen">
-    <div class="md:hidden h-20"></div>
+<x-admin-layout>
+    <div class="bg-primary-100 dark:bg-gray-700 py-12 h-screen">
         <div class="max-w-xs sm:max-w-sm md:max-w-xl lg:w-7xl mx-auto flex justify-center">
             <div class="w-full">
                 <div class="flex justify-center">
@@ -116,4 +115,4 @@
             document.getElementById('myForm').reset();
         }
     </script>
-</x-app-layout>
+</x-admin-layout>

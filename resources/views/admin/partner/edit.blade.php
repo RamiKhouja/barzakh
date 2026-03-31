@@ -1,6 +1,5 @@
-<x-app-layout>
-    <div class="bg-primary-100 py-12">
-    <div class="md:hidden h-20"></div>
+<x-admin-layout>
+    <div class="bg-primary-100 dark:bg-gray-700 py-12">
         <div class="max-w-xs sm:max-w-sm md:max-w-xl lg:w-7xl mx-auto flex justify-center">
             <div class="w-full pb-52">
                 <div class="flex justify-center">
@@ -58,4 +57,4 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+</x-admin-layout>
