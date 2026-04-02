@@ -63,6 +63,7 @@ class LessonController extends Controller
         $lesson->course_id = $courseId;
         $lesson->number = $request->input('number');
         $lesson->video_url = $request->input('video_url');
+        $lesson->video_type = $request->input('video_type', 'vimeo');
         $lesson->image = "/lessons/{$fileName}";
         $lesson->url = strtolower(str_replace(' ', '-', trim($request->input('title_en'))));
         $lesson->description_en = $request->input('description_en');
@@ -173,6 +174,7 @@ class LessonController extends Controller
         $lesson->title_ar = $request->input('title_ar');
         $lesson->number = $request->input('number');
         $lesson->video_url = $request->input('video_url');
+        $lesson->video_type = $request->input('video_type', $lesson->video_type ?? 'vimeo');
         $lesson->image = $path;
         $lesson->url = strtolower(str_replace(' ', '-', trim($request->input('title_en'))));
         $lesson->description_en = $request->input('description_en');
