@@ -1,19 +1,35 @@
-<nav x-data="{ open: false }" class="bg-primary-100 dark:bg-gray-700 border-0 dark:border-gray-700 fixed top-0 z-50 w-full md:relative md:shadow-none" id="navigation">
+<nav x-data="{ open: false }" class="bg-primary-100 dark:bg-gray-700 border-0 dark:border-gray-700 fixed top-0 z-50 w-full lg:relative lg:shadow-none" id="navigation">
     <!-- Primary Navigation Menu -->
     <?php 
-        $lang = app()->getLocale(); 
+        $lang = app()->getLocale();
+        $navActiveClass = 'bg-primary-200 dark:bg-gray-400 text-bordo dark:text-white';
+        $mobileNavActiveClass = 'bg-primary-300 dark:bg-gray-500 text-bordo dark:text-white';
+        $isHome = request()->routeIs('home');
+        $isAbout = request()->routeIs('about');
+        $isCourses = request()->routeIs('fields.showUrl') || request()->routeIs('category.showUrl') || request()->routeIs('course.showUrl') || request()->routeIs('lesson.showCourse');
+        $isInstructors = request()->routeIs('instructors.index') || request()->routeIs('instructor.showUrl');
+        $isAdminDashboard = request()->routeIs('admin.dashboard');
+        $isAdminFields = request()->routeIs('admin.fields') || request()->routeIs('field.*');
+        $isAdminCategories = request()->routeIs('admin.categories') || request()->routeIs('admin.category.*');
+        $isAdminPacks = request()->routeIs('admin.packs') || request()->routeIs('admin.pack.*');
+        $isAdminCourses = request()->routeIs('admin.courses') || request()->routeIs('admin.course.*') || request()->routeIs('admin.lesson.*');
+        $isAdminInstructors = request()->routeIs('admin.instructors') || request()->routeIs('admin.instructor.*') || request()->routeIs('instructor.create') || request()->routeIs('instructor.store');
+        $isAdminOffers = request()->routeIs('admin.offers') || request()->routeIs('admin.offer.*');
+        $isAdminRequests = request()->routeIs('admin.requests') || request()->routeIs('admin.request.*');
+        $isAdminServices = request()->routeIs('admin.services') || request()->routeIs('admin.service.*');
+        $isAdminPartners = request()->routeIs('admin.partners') || request()->routeIs('admin.partner.*');
     ?>
-    <div class="mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-0 w-full bg-primary-100 dark:bg-gray-700 group dark:shadow-none" id="navbar">
+    <div class="mx-auto px-4 sm:px-6 lg:px-8 py-4 lg:py-0 w-full bg-primary-100 dark:bg-gray-700 group dark:shadow-none" id="navbar">
         <div class="flex justify-between {{ Request::path() == '/' ? 'items-start' : 'items-center'}} nav-content">
             <div>
-                <button @click="open = !open" class="md:hidden block text-gray-600 hover:text-gray-900 dark:text-gray-50 dark:hover:text-white">
+                <button @click="open = !open" class="lg:hidden block text-gray-600 hover:text-gray-900 dark:text-gray-50 dark:hover:text-white">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
                 </button>
             </div>
-            <div id="leftNav" class="md:w-1/5 lg:w-1/4">
-                <div class="items-center p-6 hidden md:flex md:flex-wrap lg:flex-nowrap md:space-y-2 lg:space-y-0 justify-center">
+            <div id="leftNav" class="lg:w-1/4">
+                <div class="items-center p-6 hidden lg:flex lg:flex-nowrap lg:space-y-0 justify-center">
                     <button id="theme-toggle-button" class="mr-4 bg-primary-200 rounded-full p-1 dark:bg-gray-400">
                         <x-heroicon-s-moon class="w-6 h-6 text-gray-700 dark:hidden" />
                         <x-heroicon-s-sun class="w-6 h-6 text-white hidden dark:block" />
@@ -46,10 +62,10 @@
                 </div>
             </div>
             <div class="mx-auto">
-                <img src="{{ asset('pictures/global/logo.png') }}" class="h-10 md:hidden dark:hidden" alt=""/>
-                <img src="{{ asset('pictures/global/logo-white.png') }}" class="hidden dark:block h-10 md:hidden dark:md:hidden" alt=""/>
+                <img src="{{ asset('pictures/global/logo.png') }}" class="h-10 lg:hidden dark:hidden" alt=""/>
+                <img src="{{ asset('pictures/global/logo-white.png') }}" class="hidden dark:block h-10 lg:hidden dark:lg:hidden" alt=""/>
             </div>
-            <div class="nav-center md:w-3/5 lg:w-1/2 hidden md:block">
+            <div class="nav-center lg:w-1/2 hidden lg:block">
                 @if (Request::path() == '/')
                 <div class="flex justify-center mt-12 logo">
                 
@@ -60,83 +76,83 @@
                 @auth
                     @if(Auth::user()->role == 'admin') 
                     <div class="flex-wrap my-4 space-x-2 text-primary-700 dark:text-gray-50 font-medium text-lg">
-                        <a href="{{ route('admin.fields') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg">{{ __('nav.Axes') }}</a>
-                        <a href="{{ route('admin.categories') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg">{{ __('nav.Categories') }}</a>
-                        <a href="{{ route('admin.packs') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-0.5 rounded-lg">{{ __('nav.Packs') }}</a>
-                        <a href="{{ route('admin.courses') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg">{{ __('nav.Courses') }}</a>
-                        <a href="{{ route('admin.instructors') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg">{{ __('nav.Instructors') }}</a>
-                        <a href="{{ route('admin.offers') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg">{{ __('Offers') }}</a>
-                        <a href="{{ route('admin.requests') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg">{{ __('Requests') }}</a>
-                        <a href="{{ route('admin.services') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg">{{ __('Services') }}</a>
-                        <a href="{{ route('admin.partners') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg">{{ __('Partners') }}</a>
+                        <a href="{{ route('admin.fields') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg {{ $isAdminFields ? $navActiveClass : '' }}">{{ __('nav.Axes') }}</a>
+                        <a href="{{ route('admin.categories') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg {{ $isAdminCategories ? $navActiveClass : '' }}">{{ __('nav.Categories') }}</a>
+                        <a href="{{ route('admin.packs') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-0.5 rounded-lg {{ $isAdminPacks ? $navActiveClass : '' }}">{{ __('nav.Packs') }}</a>
+                        <a href="{{ route('admin.courses') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg {{ $isAdminCourses ? $navActiveClass : '' }}">{{ __('nav.Courses') }}</a>
+                        <a href="{{ route('admin.instructors') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg {{ $isAdminInstructors ? $navActiveClass : '' }}">{{ __('nav.Instructors') }}</a>
+                        <a href="{{ route('admin.offers') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg {{ $isAdminOffers ? $navActiveClass : '' }}">{{ __('Offers') }}</a>
+                        <a href="{{ route('admin.requests') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg {{ $isAdminRequests ? $navActiveClass : '' }}">{{ __('Requests') }}</a>
+                        <a href="{{ route('admin.services') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg {{ $isAdminServices ? $navActiveClass : '' }}">{{ __('Services') }}</a>
+                        <a href="{{ route('admin.partners') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg {{ $isAdminPartners ? $navActiveClass : '' }}">{{ __('Partners') }}</a>
                     </div>
                     @else
                     <div class="flex-wrap my-4 space-x-2 text-primary-700 dark:text-gray-50 font-medium text-lg">
-                        <a href="{{route('home')}}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg {{ request()->is('/') ? 'font-bold dark:text-white' : '' }}">{{ __('nav.Home') }}</a>
-                        <a href="{{route('about')}}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg">{{ __('nav.About-us') }}</a>
+                        <a href="{{route('home')}}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg {{ $isHome ? $navActiveClass : '' }}">{{ __('nav.Home') }}</a>
+                        <a href="{{route('about')}}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg {{ $isAbout ? $navActiveClass : '' }}">{{ __('nav.About-us') }}</a>
                         @if (Request::path() == '/')
-                        <a href="{{ url(route('home') . '#courses') }}" onclick="smallNav()" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg">{{ __('nav.Courses') }}</a>
+                        <a href="{{ url(route('home') . '#courses') }}" onclick="smallNav()" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg {{ $isCourses ? $navActiveClass : '' }}">{{ __('nav.Courses') }}</a>
                         @else
                         <div class="dropdown">
-                            <button class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-t-lg flex space-x-2 items-center {{ (request()->is('course/*') || request()->is('categories/*')) ? 'font-bold dark:text-white' : '' }}">{{ __('nav.Courses') }}</button>
+                            <button class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-t-lg flex space-x-2 items-center {{ $isCourses ? $navActiveClass : '' }}">{{ __('nav.Courses') }}</button>
                             <div class="dropdown-content bg-primary-50 dark:bg-gray-400 dark:text-gray-50 {{$lang=='ar' ? ('text-right right-0'):('')}}">
-                                <a href="{{ route('fields.showUrl', ['url' => 'spiritual-view']) }}" class="hover:bg-primary-200 dark:hover:bg-gray-400">
+                                <a href="{{ route('fields.showUrl', ['url' => 'spiritual-view']) }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 {{ request()->routeIs('fields.showUrl') && request()->route('url') === 'spiritual-view' ? $navActiveClass : '' }}">
                                     {{__('nav.religious-vision')}}
                                 </a>
-                                <a href="{{ route('fields.showUrl', ['url' => 'aesthetic-view']) }}" class="hover:bg-primary-200 dark:hover:bg-gray-400">
+                                <a href="{{ route('fields.showUrl', ['url' => 'aesthetic-view']) }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 {{ request()->routeIs('fields.showUrl') && request()->route('url') === 'aesthetic-view' ? $navActiveClass : '' }}">
                                     {{__('nav.beauty-vision')}}
                                 </a>
-                                <a href="{{ route('fields.showUrl', ['url' => 'mental-view']) }}" class="hover:bg-primary-200 dark:hover:bg-gray-400">
+                                <a href="{{ route('fields.showUrl', ['url' => 'mental-view']) }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 {{ request()->routeIs('fields.showUrl') && request()->route('url') === 'mental-view' ? $navActiveClass : '' }}">
                                     {{__('nav.scientific-and-philosophical-vision')}}
                                 </a>
                             </div>
                         </div>
                         @endif
                         
-                        <a href="{{ url(route('home') . '#instructors') }}" onclick="smallNav()" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg">{{ __('nav.Instructors') }}</a>
+                        <a href="{{ url(route('home') . '#instructors') }}" onclick="smallNav()" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg {{ $isInstructors ? $navActiveClass : '' }}">{{ __('nav.Instructors') }}</a>
                         <a href="{{ url(route('home') . '#plans') }}" onclick="smallNav()" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg">{{ __('nav.Plans') }}</a>
                         <a href="{{ url(route('home') . '#partners') }}" onclick="smallNav()" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg">{{ __('nav.Partners') }}</a>
                     </div>
                     @endif
                 @else
                     <div class="flex-wrap space-x-2 text-primary-700 dark:text-gray-50 font-medium text-lg">
-                        <a href="{{route('home')}}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg {{ request()->is('/') ? 'font-bold dark:text-white' : '' }}">{{ __('nav.Home') }}</a>
-                        <a href="{{route('about')}}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg">{{ __('nav.About-us') }}</a>
+                        <a href="{{route('home')}}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg {{ $isHome ? $navActiveClass : '' }}">{{ __('nav.Home') }}</a>
+                        <a href="{{route('about')}}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg {{ $isAbout ? $navActiveClass : '' }}">{{ __('nav.About-us') }}</a>
                         
                         @if (Request::path() == '/')
-                        <a href="{{ url(route('home') . '#courses') }}" onclick="smallNav()" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg">{{ __('nav.Courses') }}</a>
+                        <a href="{{ url(route('home') . '#courses') }}" onclick="smallNav()" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg {{ $isCourses ? $navActiveClass : '' }}">{{ __('nav.Courses') }}</a>
                         @else
                         <div class="dropdown">
-                            <button class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-t-lg {{ (request()->is('course/*') || request()->is('categories/*') ) ? 'font-bold dark:text-white' : '' }}">{{ __('nav.Courses') }}</button>
+                            <button class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-t-lg {{ $isCourses ? $navActiveClass : '' }}">{{ __('nav.Courses') }}</button>
                             <div class="dropdown-content rounded-b-lg bg-primary-50 dark:bg-gray-400 dark:text-gray-50 {{$lang=='ar' ? ('text-right right-0 rounded-tl-lg'):('rounded-tr-lg')}}">
-                                <a href="{{ route('fields.showUrl', ['url' => 'spiritual-view']) }}" class="hover:bg-primary-200 dark:hover:bg-gray-300">
+                                <a href="{{ route('fields.showUrl', ['url' => 'spiritual-view']) }}" class="hover:bg-primary-200 dark:hover:bg-gray-300 {{ request()->routeIs('fields.showUrl') && request()->route('url') === 'spiritual-view' ? $navActiveClass : '' }}">
                                     {{__('nav.religious-vision')}}
                                 </a>
-                                <a href="{{ route('fields.showUrl', ['url' => 'aesthetic-view']) }}" class="hover:bg-primary-200 dark:hover:bg-gray-300">
+                                <a href="{{ route('fields.showUrl', ['url' => 'aesthetic-view']) }}" class="hover:bg-primary-200 dark:hover:bg-gray-300 {{ request()->routeIs('fields.showUrl') && request()->route('url') === 'aesthetic-view' ? $navActiveClass : '' }}">
                                     {{__('nav.beauty-vision')}}
                                 </a>
-                                <a href="{{ route('fields.showUrl', ['url' => 'mental-view']) }}" class="hover:bg-primary-200 dark:hover:bg-gray-300">
+                                <a href="{{ route('fields.showUrl', ['url' => 'mental-view']) }}" class="hover:bg-primary-200 dark:hover:bg-gray-300 {{ request()->routeIs('fields.showUrl') && request()->route('url') === 'mental-view' ? $navActiveClass : '' }}">
                                     {{__('nav.scientific-and-philosophical-vision')}}
                                 </a>
                             </div>
                         </div>
                         @endif
-                        <a href="{{ url(route('home') . '#instructors') }}" onclick="smallNav()" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg">{{ __('nav.Instructors') }}</a>
+                        <a href="{{ url(route('home') . '#instructors') }}" onclick="smallNav()" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg {{ $isInstructors ? $navActiveClass : '' }}">{{ __('nav.Instructors') }}</a>
                         <a href="{{ url(route('home') . '#plans') }}" onclick="smallNav()" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg">{{ __('nav.Plans') }}</a>
                         <a href="{{ url(route('home') . '#partners') }}" onclick="smallNav()" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg">{{ __('nav.Partners') }}</a>
                     </div>
                 @endauth
                 </div>
             </div>
-            <div id="rightNav" class="md:w-1/5 lg:w-1/4">
+            <div id="rightNav" class="lg:w-1/4">
             @if (Route::has('login'))
-                <div class="md:p-6 text-right z-10 md:flex-wrap md:relative justify-end">
+                <div class="lg:p-6 text-right z-10 lg:flex-wrap lg:relative justify-end">
                     @auth
                         <!-- Settings Dropdown -->
                         <div class="sm:flex sm:items-center sm:ml-6">
                             <x-dropdown align="right" width="48">
                                 <x-slot name="trigger">
-                                    <button class="inline-flex items-center sm:px-3 sm:py-2 text-sm leading-4 font-medium rounded-lg text-gray-500 dark:text-gray-400 dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 hover:bg-primary-200 dark:hover:bg-gray-400 focus:outline-none transition ease-in-out duration-150">
+                                    <button class="inline-flex items-center sm:px-3 sm:py-2 text-sm leading-4 font-medium rounded-lg text-gray-500 dark:text-gray-400 dark:bg-gray-700 hover:text-gray-700 dark:hover:text-gray-300 hover:bg-primary-200 dark:hover:bg-gray-400 focus:outline-none transition ease-in-out duration-150">
                                         <div class="flex items-center">
                                             @if(Auth::user()->image) 
                                                 <img src="{{ asset( Auth::user()->image )}}" alt="{{ Auth::user()->firstname }}" class="w-7 h-7 rounded-full object-cover md:mr-2"/>
@@ -170,7 +186,7 @@
                             </x-dropdown>
                         </div>
                     @else
-                        <div class="sm:flex sm:items-center sm:ml-6 md:hidden">
+                        <div class="sm:flex sm:items-center sm:ml-6 lg:hidden">
                             <x-dropdown align="right" width="48">
                                 <x-slot name="trigger">
                                     <button class="sm:px-3 sm:py-2 transition ease-in-out duration-150">
@@ -178,11 +194,11 @@
                                     </button>
                                 </x-slot>
                                 <x-slot name="content">
-                                    <x-dropdown-link :href="route('login')">
+                                    <x-dropdown-link :href="route('login', ['redirect_to' => url()->full()])">
                                         {{ __('nav.Login') }}
                                     </x-dropdown-link>
                                     @if (Route::has('register'))
-                                    <x-dropdown-link :href="route('register')">
+                                    <x-dropdown-link :href="route('register', ['redirect_to' => url()->full()])">
                                         {{ __('nav.Register') }}
                                     </x-dropdown-link>
                                     @endif
@@ -191,10 +207,10 @@
                             </x-dropdown>
                         </div>
                         <div class="flex items-center" dir="{{$lang=='ar'?('rtl'):('')}}">
-                            <a href="{{ route('login') }}" class="hidden md:inline-block text-lg font-medium text-primary-700 hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 dark:text-gray-50 dark:hover:text-white rounded-lg">{{__('nav.Login')}}</a>
+                            <a href="{{ route('login', ['redirect_to' => url()->full()]) }}" class="hidden lg:inline-block text-lg font-medium text-primary-700 hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 dark:text-gray-50 dark:hover:text-white rounded-lg">{{__('nav.Login')}}</a>
 
                             @if (Route::has('register'))
-                                <a href="{{ route('register') }}" class="hidden md:inline-block text-lg ml-4 font-medium text-primary-700 hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 dark:text-gray-50 dark:hover:text-white rounded-lg">{{__('nav.Register')}}</a>
+                                <a href="{{ route('register', ['redirect_to' => url()->full()]) }}" class="hidden lg:inline-block text-lg ml-4 font-medium text-primary-700 hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 dark:text-gray-50 dark:hover:text-white rounded-lg">{{__('nav.Register')}}</a>
                             @endif
                         </div>
                     @endif
@@ -208,11 +224,11 @@
     <!-- Responsive Navigation Menu -->
     
 
-    <div x-show="open" class="md:hidden fixed top-0 left-0 h-full w-3/4 bg-primary-200 dark:bg-gray-400 shadow-lg z-20">
+    <div x-cloak x-show="open" class="lg:hidden fixed top-0 left-0 h-full w-3/4 bg-primary-200 dark:bg-gray-400 shadow-lg z-20">
         <!-- Menu content goes here -->
         <div class="p-4 space-y-4 h-screen">
             <div class="flex justify-end">
-                <button @click="open = !open" class="md:hidden block text-gray-600 hover:text-gray-900 dark:text-gray-50 dark:hover:text-white">
+                <button @click="open = !open" class="lg:hidden block text-gray-600 hover:text-gray-900 dark:text-gray-50 dark:hover:text-white">
                     <x-zondicon-close class="w-4 h-4" />
                 </button>
             </div>
@@ -252,27 +268,27 @@
                     <!-- Menu items -->
                     @auth
                         @if(Auth::user()->role == 'admin') 
-                            <div><a href="{{ route('admin.dashboard') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-0.5 rounded-lg">{{ __('nav.Dashboard') }}</a></div>
-                            <div><a href="{{ route('admin.fields') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-0.5 rounded-lg">{{ __('nav.Axes') }}</a></div>
-                            <div><a href="{{ route('admin.categories') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-0.5 rounded-lg">{{ __('nav.Categories') }}</a></div>
-                            <div><a href="{{ route('admin.packs') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-0.5 rounded-lg">{{ __('nav.Packs') }}</a></div>
-                            <div><a href="{{ route('admin.courses') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-0.5 rounded-lg">{{ __('nav.Courses') }}</a></div>
-                            <div><a href="{{ route('admin.instructors') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-0.5 rounded-lg">{{ __('nav.Instructors') }}</a></div>
+                            <div><a href="{{ route('admin.dashboard') }}" class="resp-menu-item {{ $isAdminDashboard ? $mobileNavActiveClass : '' }}">{{ __('nav.Dashboard') }}</a></div>
+                            <div><a href="{{ route('admin.fields') }}" class="resp-menu-item {{ $isAdminFields ? $mobileNavActiveClass : '' }}">{{ __('nav.Axes') }}</a></div>
+                            <div><a href="{{ route('admin.categories') }}" class="resp-menu-item {{ $isAdminCategories ? $mobileNavActiveClass : '' }}">{{ __('nav.Categories') }}</a></div>
+                            <div><a href="{{ route('admin.packs') }}" class="resp-menu-item {{ $isAdminPacks ? $mobileNavActiveClass : '' }}">{{ __('nav.Packs') }}</a></div>
+                            <div><a href="{{ route('admin.courses') }}" class="resp-menu-item {{ $isAdminCourses ? $mobileNavActiveClass : '' }}">{{ __('nav.Courses') }}</a></div>
+                            <div><a href="{{ route('admin.instructors') }}" class="resp-menu-item {{ $isAdminInstructors ? $mobileNavActiveClass : '' }}">{{ __('nav.Instructors') }}</a></div>
                         
                         @else
-                            <div><a href="{{route('home')}}" @click="open = !open" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-0.5 rounded-lg">{{ __('nav.Home') }}</a></div>
-                            <div><a href="{{route('about')}}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-0.5 rounded-lg">{{ __('nav.About-us') }}</a></div>
-                            <div><a href="{{ url(route('home') . '#courses') }}" @click="open = !open" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-0.5 rounded-lg">{{ __('nav.Courses') }}</a></div>
-                            <div><a href="{{ url(route('home') . '#instructors') }}" @click="open = !open" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-0.5 rounded-lg">{{ __('nav.Instructors') }}</a></div>
-                            <div><a href="" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-0.5 rounded-lg">{{ __('nav.Plans') }}</a></div>
-                            <div><a href="" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-0.5 rounded-lg">{{ __('nav.Partners') }}</a></div>
+                            <div><a href="{{route('home')}}" @click="open = !open" class="resp-menu-item {{ $isHome ? $mobileNavActiveClass : '' }}">{{ __('nav.Home') }}</a></div>
+                            <div><a href="{{route('about')}}" class="resp-menu-item {{ $isAbout ? $mobileNavActiveClass : '' }}">{{ __('nav.About-us') }}</a></div>
+                            <div><a href="{{ url(route('home') . '#courses') }}" @click="open = !open" class="resp-menu-item {{ $isCourses ? $mobileNavActiveClass : '' }}">{{ __('nav.Courses') }}</a></div>
+                            <div><a href="{{ url(route('home') . '#instructors') }}" @click="open = !open" class="resp-menu-item {{ $isInstructors ? $mobileNavActiveClass : '' }}">{{ __('nav.Instructors') }}</a></div>
+                            <div><a href="" class="resp-menu-item">{{ __('nav.Plans') }}</a></div>
+                            <div><a href="" class="resp-menu-item">{{ __('nav.Partners') }}</a></div>
                         
                         @endif
                     @else
-                            <div><a href="{{route('home')}}" @click="open = !open" class="resp-menu-item">{{ __('nav.Home') }}</a></div>
-                            <div><a href="{{route('about')}}" class="resp-menu-item">{{ __('nav.About-us') }}</a></div>
-                            <div><a href="{{ url(route('home') . '#courses') }}" @click="open = !open" class="resp-menu-item">{{ __('nav.Courses') }}</a></div>
-                            <div><a href="{{ url(route('home') . '#instructors') }}" @click="open = !open" class="resp-menu-item">{{ __('nav.Instructors') }}</a></div>
+                            <div><a href="{{route('home')}}" @click="open = !open" class="resp-menu-item {{ $isHome ? $mobileNavActiveClass : '' }}">{{ __('nav.Home') }}</a></div>
+                            <div><a href="{{route('about')}}" class="resp-menu-item {{ $isAbout ? $mobileNavActiveClass : '' }}">{{ __('nav.About-us') }}</a></div>
+                            <div><a href="{{ url(route('home') . '#courses') }}" @click="open = !open" class="resp-menu-item {{ $isCourses ? $mobileNavActiveClass : '' }}">{{ __('nav.Courses') }}</a></div>
+                            <div><a href="{{ url(route('home') . '#instructors') }}" @click="open = !open" class="resp-menu-item {{ $isInstructors ? $mobileNavActiveClass : '' }}">{{ __('nav.Instructors') }}</a></div>
                             <div><a href="" class="resp-menu-item">{{ __('nav.Plans') }}</a></div>
                             <div><a href="" class="resp-menu-item">{{ __('nav.Partners') }}</a></div>
                         
@@ -296,6 +312,10 @@
 }
 </style>
 <style>
+[x-cloak] {
+  display: none !important;
+}
+
 .dropdown {
   position: relative;
   display: inline-block;

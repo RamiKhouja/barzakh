@@ -131,7 +131,7 @@ class LessonController extends Controller
             }
 
         } else {
-            return redirect()->route('login', ['redirect_to' => route('lesson.showCourse', ['url' => $course->url, 'number' => $number])]);
+            return redirect()->guest(route('login'));
         }
     }
 

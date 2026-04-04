@@ -19,7 +19,7 @@
                 <img src="{{ asset('pictures/global/B2.png') }}" class="hidden dark:block mx-auto w-2/3  lg:w-64" alt=""/>
             </div>
 
-            <div class="mt-20" dir="{{$lang == 'ar' ? ('rtl') : ('ltr')}}">
+            <div class="fade-section mt-20" dir="{{$lang == 'ar' ? ('rtl') : ('ltr')}}">
                 <div class="flex items-start gap-x-3">
                     <img src="{{ asset('pictures/about/dot-solid.png') }}" class="w-8 md:w-11" alt=""/>
                     <p class="text-3xl md:text-4xl lg:text-5xl text-bordo dark:text-white font-bold mb-8 lg:mb-12">{{__('about.meaning')}}</p>
@@ -30,7 +30,7 @@
                     <img src="{{ asset('pictures/global/B2.png') }}" class="hidden dark:block mx-auto w-2/3 lg:w-64" alt=""/>
                 </div>
             </div>
-            <div class="mt-20" dir="{{$lang == 'ar' ? ('rtl') : ('ltr')}}">
+            <div class="fade-section mt-20" dir="{{$lang == 'ar' ? ('rtl') : ('ltr')}}">
                 <p class="text-center text-3xl md:text-4xl lg:text-6xl text-bordo dark:text-white font-bold mb-12">{{__('about.components')}}</p>
                 <div class="mt-12 lg:mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <div class="rounded-full flex flex-col justify-center bg-primary-200 w-72 h-72 mx-auto">
@@ -57,7 +57,7 @@
                     <img src="{{ asset('pictures/global/B2.png') }}" class="hidden dark:block mx-auto w-2/3 lg:w-64" alt=""/>
                 </div>
             </div>
-            <div class="mt-20" dir="{{$lang == 'ar' ? ('rtl') : ('ltr')}}">
+            <div class="fade-section mt-20" dir="{{$lang == 'ar' ? ('rtl') : ('ltr')}}">
                 <div class="lg:flex lg:items-end">
                     <div class="flex justify-center lg:justify-end w-80 relative">
                         <div class="absolute md:hidden">
@@ -97,7 +97,7 @@
                 </div>
 
             </div>
-            <div class="mt-32 relative" dir="{{$lang == 'ar' ? ('rtl') : ('ltr')}}">
+            <div class="fade-section mt-32 relative" dir="{{$lang == 'ar' ? ('rtl') : ('ltr')}}">
                 <div class="hidden absolute md:block md:w-4/5 md:-top-4 {{$lang == 'ar' ? ('md:-left-8') : ('md:-right-8')}}">
                     <img src="{{ asset('pictures/about/circle2.png') }}" class="w-full {{$lang == 'ar' ? ('') : ('scale-x-[-1]')}}" alt="">
                 </div>
@@ -127,7 +127,7 @@
                 </div>
                 <p class="text-lg md:text-xl lg:text-3xl text-gray-700 dark:text-gray-100 font-ibm lg:max-w-4xl">{{__('about.world-views-description-2')}}</p>
             </div>
-            <div class="mt-40 relative" dir="{{$lang == 'ar' ? ('rtl') : ('ltr')}}">
+            <div class="fade-section mt-40 relative" dir="{{$lang == 'ar' ? ('rtl') : ('ltr')}}">
                 <div class="absolute md:hidden -top-12">
                     <img src="{{ asset('pictures/about/circle3.png') }}" class="w-4/5 mx-auto" alt="">
                 </div>
@@ -144,11 +144,11 @@
                     <img src="{{ asset('pictures/about/circle3.png') }}" class="w-full {{$lang == 'ar' ? ('') : ('scale-x-[-1]')}}" alt="">
                 </div>
             </div>
-            <div class="mt-20 lg:mt-56 relative" dir="{{$lang == 'ar' ? ('rtl') : ('ltr')}}">
+            <div class="fade-section mt-20 lg:mt-56 relative" dir="{{$lang == 'ar' ? ('rtl') : ('ltr')}}">
                 <p class="text-center text-2xl lg:text-6xl text-bordo dark:text-white font-semibold mb-10">{{__('about.environment')}}</p>
                 <img src="{{ asset('pictures/about/fields.png') }}" class="w-full md:w-3/5 mx-auto" alt="">
             </div>
-            <div class="mt-16 lg:mt-32" dir="{{$lang == 'ar' ? ('rtl') : ('ltr')}}">
+            <div class="fade-section mt-16 lg:mt-32" dir="{{$lang == 'ar' ? ('rtl') : ('ltr')}}">
                 <div class="flex items-start gap-x-3">
                     <img src="{{ asset('pictures/about/dot-solid.png') }}" class="w-8 lg:w-11" alt=""/>
                     <p class="text-2xl lg:text-4xl text-bordo dark:text-white font-bold mb-4 lg:mb-8">{{__('about.barzakh-project')}}</p>
@@ -203,7 +203,7 @@
                 
             </div>
 
-            <div class="mt-20 lg:mt-32" dir="{{$lang == 'ar' ? ('rtl') : ('ltr')}}">
+            <div class="fade-section mt-20 lg:mt-32" dir="{{$lang == 'ar' ? ('rtl') : ('ltr')}}">
                 <div class="text-center">
                     <!-- <p class="lg:max-w-xl mx-auto text-2xl lg:text-5xl text-bordo dark:text-white font-bold mb-16" style="line-height: 1.5; !important;">{{__('about.join-us')}}</p>
                     <p class="text-lg md:text-xl lg:text-3xl text-gray-700 dark:text-gray-100 font-ibm font-medium mb-16" style="line-height: 1.5; !important;">{{__('about.join-description')}}</p> -->
@@ -212,7 +212,7 @@
                 </div>
             </div>
 
-            <div class="mt-16 lg:mt-32" dir="{{$lang == 'ar' ? ('rtl') : ('ltr')}}">
+            <div class="fade-section mt-16 lg:mt-32" dir="{{$lang == 'ar' ? ('rtl') : ('ltr')}}">
                 
                 <p class="text-center lg:max-w-xl mx-auto text-2xl lg:text-5xl text-bordo dark:text-white font-bold mb-8" style="line-height: 1.5; !important;">{{__('about.why-invest')}}</p>
                 <div class="flex items-start gap-x-3 mb-8">
@@ -242,43 +242,36 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            const paragraphs = document.querySelectorAll('.paragraph');
+            const sections = document.querySelectorAll('.fade-section');
 
-            function isInViewport(element) {
-                const rect = element.getBoundingClientRect();
-                return (
-                    rect.top >= 0 &&
-                    rect.left >= 0 &&
-                    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-                    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-                );
+            if (!sections.length) {
+                return;
             }
 
-            function animateParagraphs() {
-                paragraphs.forEach(paragraph => {
-                    if (isInViewport(paragraph)) {
-                        paragraph.classList.add('animate');
-                    }
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    entry.target.classList.toggle('is-visible', entry.isIntersecting);
                 });
-            }
+            }, {
+                threshold: 0.2,
+                rootMargin: '-10% 0px -10% 0px',
+            });
 
-            animateParagraphs();
-
-            window.addEventListener('scroll', animateParagraphs);
+            sections.forEach((section) => observer.observe(section));
         });
     </script>
 
     <style>
-        .paragraph {
+        .fade-section {
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 1.5s, transform 1.5s;
+            transform: translateY(32px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+            will-change: opacity, transform;
         }
 
-        .paragraph.animate {
+        .fade-section.is-visible {
             opacity: 1;
             transform: translateY(0);
         }
-
     </style>
 </x-app-layout>

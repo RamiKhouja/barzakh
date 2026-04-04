@@ -10,6 +10,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 
@@ -18,8 +19,10 @@ class RegisteredUserController extends Controller
     /**
      * Display the registration view.
      */
-    public function create(): View
+    public function create(Request $request): View
     {
+        $this->rememberIntendedUrl($request);
+
         return view('auth.register');
     }
 
@@ -30,6 +33,8 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        $this->rememberIntendedUrl($request);
+
         $request->validate([
             'firstname' => ['required', 'string', 'max:255'],
             'lastname' => ['required', 'string', 'max:255'],
@@ -50,6 +55,30 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        return redirect()->intended(RouteServiceProvider::HOME);
+    }
+
+    private function rememberIntendedUrl(Request $request): void
+    {
+        $redirectTo = $request->input('redirect_to');
+
+        if (! $redirectTo) {
+            return;
+        }
+
+        $path = parse_url($redirectTo, PHP_URL_PATH) ?? '';
+        $host = parse_url($redirectTo, PHP_URL_HOST);
+        $isRelativePath = Str::startsWith($redirectTo, '/');
+        $isSameHost = $host && $host === $request->getHost();
+
+        if (! $isRelativePath && ! $isSameHost) {
+            return;
+        }
+
+        if (in_array($path, ['/login', '/register'], true)) {
+            return;
+        }
+
+        $request->session()->put('url.intended', $redirectTo);
     }
 }

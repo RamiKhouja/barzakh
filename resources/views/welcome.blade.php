@@ -32,8 +32,47 @@
         </div>
         @endif
         <input id="lang" type="hidden" value="{{$lang}}" />
-        <div class="mx-auto flex justify-center">
-            <video class="md:h-[30rem]" muted autoplay controls>
+        <div class="mx-auto flex w-full justify-center" x-data="{ videoReady: false }">
+            <div
+                x-show="!videoReady"
+                x-transition:leave="transition ease-out duration-500"
+                x-transition:leave-start="opacity-100"
+                x-transition:leave-end="opacity-0"
+                class="relative h-56 w-full overflow-hidden bg-[#0f0f0f] shadow-sm md:h-[30rem]"
+            >
+                <div class="absolute inset-0 bg-gradient-to-b from-white/[0.04] via-transparent to-black/30"></div>
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <div class="h-12 w-12 rounded-full border-4 border-white/20 border-t-white/90 animate-spin"></div>
+                </div>
+                <div class="absolute inset-x-0 bottom-0 p-4 md:p-5">
+                    <div class="rounded-xl bg-black/45 px-4 py-3 backdrop-blur-sm">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <div class="h-3 w-3 rounded-full bg-white/85"></div>
+                                <div class="h-2.5 w-16 rounded-full bg-white/20"></div>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="h-2.5 w-6 rounded-full bg-white/20"></div>
+                                <div class="h-2.5 w-6 rounded-full bg-white/20"></div>
+                                <div class="h-2.5 w-6 rounded-full bg-white/20"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <video
+                x-show="videoReady"
+                @loadeddata="videoReady = true"
+                x-transition:enter="transition ease-out duration-700"
+                x-transition:enter-start="opacity-0"
+                x-transition:enter-end="opacity-100"
+                class="w-full object-cover md:h-[30rem]"
+                style="display: none;"
+                muted
+                autoplay
+                controls
+                preload="auto"
+            >
                 <source src="{{ asset( 'pictures/barzakh.mp4') }}" type="video/mp4">
             </video>
         </div>
