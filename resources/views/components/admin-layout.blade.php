@@ -37,12 +37,32 @@
 
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="antialiased light" x-data="{ darkMode: true }" style="font-family:{{ app()->getLocale() == 'ar' ? 'Amiri' : 'PT Serif' }}">
+    <body
+        class="antialiased light"
+        x-data="{
+            darkMode: true,
+            sidebarCollapsed: false,
+            init() {
+                this.sidebarCollapsed = localStorage.getItem('admin-sidebar-collapsed') === 'true';
+            },
+            toggleSidebar() {
+                this.sidebarCollapsed = !this.sidebarCollapsed;
+                localStorage.setItem('admin-sidebar-collapsed', this.sidebarCollapsed);
+            }
+        }"
+        style="font-family:{{ app()->getLocale() == 'ar' ? 'Amiri' : 'PT Serif' }}"
+    >
         <div class="min-h-screen bg-primary-50 dark:bg-gray-700">
             @include('layouts.admin-navigation')
 
-            <div class="min-h-screen transition-all duration-300 {{ app()->getLocale() === 'ar' ? 'lg:pr-72' : 'lg:pl-72' }}">
-                <header class="fixed top-0 z-40 hidden border-b border-primary-200 bg-white/90 backdrop-blur dark:border-gray-400 dark:bg-gray-700 lg:block {{ app()->getLocale() === 'ar' ? 'right-72 left-0' : 'left-72 right-0' }}">
+            <div
+                class="min-h-screen transition-all duration-300"
+                :class="sidebarCollapsed ? '{{ app()->getLocale() === 'ar' ? 'lg:pr-24' : 'lg:pl-24' }}' : '{{ app()->getLocale() === 'ar' ? 'lg:pr-72' : 'lg:pl-72' }}'"
+            >
+                <header
+                    class="fixed top-0 z-40 hidden border-b border-primary-200 bg-white/90 backdrop-blur dark:border-gray-400 dark:bg-gray-700 lg:block"
+                    :class="sidebarCollapsed ? '{{ app()->getLocale() === 'ar' ? 'right-24 left-0' : 'left-24 right-0' }}' : '{{ app()->getLocale() === 'ar' ? 'right-72 left-0' : 'left-72 right-0' }}'"
+                >
                     <div class="flex items-center justify-between gap-4 px-6 py-4 xl:px-10" x-data="{ userMenuOpen: false }">
                         <div class="w-full max-w-xl">
                             <form action="{{ route('admin.courses.search') }}" method="GET" class="relative">

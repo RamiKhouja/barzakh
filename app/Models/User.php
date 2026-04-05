@@ -90,6 +90,11 @@ class User extends Authenticatable
         return $this->hasMany(Offer::class);
     }
 
+    public function serviceRequests()
+    {
+        return $this->hasMany(ServiceRequest::class);
+    }
+
     public function imageLink() : Attribute
     {
         return Attribute::make(

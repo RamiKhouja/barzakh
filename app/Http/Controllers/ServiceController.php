@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Service;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Str;
 
 class ServiceController extends Controller
 {
@@ -27,7 +28,7 @@ class ServiceController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'title_en' => 'required|string',
             'title_ar' => 'required|string',
             'description_en' => 'nullable',
@@ -35,19 +36,21 @@ class ServiceController extends Controller
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'price' => 'required'
         ]);
+        $fileName = null;
+
         if($request->hasFile('picture')) {
             $fileName = time() . '_' . $request->file('picture')->getClientOriginalName();
             $request->file('picture')->storeAs('/services', $fileName, 'pictures');
         }
 
         $service = new Service;
-        $service->title_en = $request->input('title_en');
-        $service->title_ar = $request->input('title_ar');
-        $service->description_en = $request->input('description_en');
-        $service->description_ar = $request->input('description_ar');
-        $service->price = $request->input('price');
-        $service->image = "/services/{$fileName}";
-        $service->url = strtolower(str_replace(' ', '-', trim($request->input('title_en'))));
+        $service->title_en = $validated['title_en'];
+        $service->title_ar = $validated['title_ar'];
+        $service->description_en = $validated['description_en'] ?? null;
+        $service->description_ar = $validated['description_ar'] ?? null;
+        $service->price = $validated['price'];
+        $service->image = $fileName ? "/services/{$fileName}" : null;
+        $service->url = Str::slug($validated['title_en']);
         $service->save();
 
         return Redirect::route('admin.services')->with('success','Service has been created successfully.');
@@ -68,9 +71,10 @@ class ServiceController extends Controller
 
     public function update(Request $request, Service $service)
     {
-        $request->validate([
+        $validated = $request->validate([
             'title_en' => 'required|string',
             'title_ar' => 'required|string',
+            'url' => 'required|string',
             'description_en' => 'nullable',
             'description_ar' => 'nullable',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -79,19 +83,18 @@ class ServiceController extends Controller
 
         if ($request->hasFile('picture')) {
             // If a new image is uploaded, replace the existing one
-            $path = $request->file('picture')->storePublicly('pictures/services');
             $fileName = time() . '_' . $request->file('picture')->getClientOriginalName();
-            $request->file('picture')->storeAs('/services', $fileName, 'pictures'); 
-            $service->image="/services/{$fileName}";
+            $request->file('picture')->storeAs('/services', $fileName, 'pictures');
+            $service->image = "/services/{$fileName}";
         }
 
-        $service->title_en = $request->input('title_en');
-        $service->title_ar = $request->input('title_ar');
-        $service->description_en = $request->input('description_en');
-        $service->description_ar = $request->input('description_ar');
-        $service->price = $request->input('price');
-        $service->url = $request->input('url');
-        
+        $service->title_en = $validated['title_en'];
+        $service->title_ar = $validated['title_ar'];
+        $service->description_en = $validated['description_en'] ?? null;
+        $service->description_ar = $validated['description_ar'] ?? null;
+        $service->price = $validated['price'];
+        $service->url = Str::slug($validated['url']);
+
         $service->save();
 
         return redirect()->route('admin.services')->with('success', 'Service has been updated successfully.');
@@ -112,6 +115,6 @@ class ServiceController extends Controller
         $service = Service::where('url', $url)->first();
         if (!$service) { abort(404); }
 
-        return view('client.service.show', compact(['course']));
+        return view('client.service.show', compact(['service']));
     }
 }

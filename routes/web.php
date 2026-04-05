@@ -19,6 +19,7 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\Auth\SocialiteController;
 use App\Http\Controllers\StaticPageController;
+use App\Http\Controllers\ServiceRequestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -118,9 +119,12 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/service/create', [ServiceController::class, 'create'])->name('admin.service.create');
     Route::post('/admin/service', [ServiceController::class, 'store'])->name('admin.service.store');
     Route::get('/admin/services', [ServiceController::class, 'index'])->name('admin.services');
+    Route::get('/admin/service/{service}', [ServiceController::class, 'show'])->name('admin.service.show');
     Route::get('/admin/service/edit/{service}', [ServiceController::class, 'edit'])->name('admin.service.edit');
     Route::put('/admin/service/{service}', [ServiceController::class, 'update'])->name('admin.service.update');
     Route::delete('/admin/service/{service}', [ServiceController::class, 'delete'])->name('admin.service.delete');
+    Route::get('/admin/service-requests', [ServiceRequestController::class, 'index'])->name('admin.service-requests.index');
+    Route::get('/admin/service-request/{serviceRequest}', [ServiceRequestController::class, 'show'])->name('admin.service-requests.show');
 
     // Admin partners routes
     Route::get('/admin/partner/create', [PartnerController::class, 'create'])->name('admin.partner.create');
@@ -143,6 +147,8 @@ Route::middleware(['auth', 'student'])->group(function () {
     Route::get('/course/save/{id}', [CourseController::class, 'saveCourse'])->name('course.save');
 });
 
+Route::post('/service-request', [ServiceRequestController::class, 'store'])->name('service-request.store');
+
 // Guest Routes
 Route::get('/categories/{url}', [FieldController::class, 'showByUrl'])->name('fields.showUrl');
 Route::get('/courses/{url}', [CategoryController::class, 'showByUrl'])->name('category.showUrl');
@@ -154,6 +160,7 @@ Route::get('/about', [AboutController::class, 'index'])->name('about');
 Route::get('/experts', [InstructorController::class, 'clientIndex'])->name('instructors.index');
 Route::get('/search', [CourseController::class, 'clientSearch'])->name('search');
 Route::get('/services', [ServiceController::class, 'clientIndex'])->name('services');
+Route::get('/service/{url}', [ServiceController::class, 'showByUrl'])->name('service.showUrl');
 Route::get('/terms-of-use', [StaticPageController::class, 'show'])->defaults('slug', 'terms-of-use')->name('terms-of-use');
 Route::get('/privacy-policy', [StaticPageController::class, 'show'])->defaults('slug', 'privacy-policy')->name('privacy-policy');
 Route::get('/help-center', [StaticPageController::class, 'show'])->defaults('slug', 'help-center')->name('help-center');

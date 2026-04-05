@@ -67,6 +67,9 @@
                                         {{ $service->url }}
                                     </td>
                                     <td class="relative py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
+                                        <a href="{{ route('admin.service.show', ['service' => $service->id]) }}" class="text-gray-400 hover:text-primary-500 mr-2 inline-block">
+                                            <x-heroicon-s-eye class="w-4 h-4 text-primary-700 dark:text-white" />
+                                        </a>
                                         <a href="{{ route('admin.service.edit', ['service' => $service->id]) }}" class="text-gray-400 hover:text-primary-500">
                                             <x-zondicon-edit-pencil class="w-4 h-4 text-primary-500 dark:text-white" />
                                         </a>

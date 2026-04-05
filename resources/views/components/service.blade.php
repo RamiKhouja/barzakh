@@ -9,10 +9,17 @@
             <p class="text-base text-stone dark:text-primary-200 mt-4">
                 {{ $lang == 'ar' ? $service->description_ar : $service->description_en }}
             </p>
-            <div class="mt-4 flex flex-row-reverse">
-                <button onclick="openModal()" class="rounded-full px-4 py-1 bg-bordo border border-bordo text-white hover:bg-primary-200 hover:dark:bg-gray-500 hover:text-bordo hover:dark:text-white hover:dark:border-white">
+            <div class="mt-4 flex flex-row-reverse gap-3">
+                <button
+                    type="button"
+                    onclick="openServiceRequestModal('{{ $service->id }}', @js($lang == 'ar' ? $service->title_ar : $service->title_en))"
+                    class="rounded-full px-4 py-1 bg-bordo border border-bordo text-white hover:bg-primary-200 hover:dark:bg-gray-500 hover:text-bordo hover:dark:text-white hover:dark:border-white"
+                >
                     {{__('services.button')}}
                 </button>
+                <a href="{{ route('service.showUrl', ['url' => $service->url]) }}" class="rounded-full px-4 py-1 border border-bordo text-bordo dark:text-white hover:bg-primary-200 hover:dark:bg-gray-500 hover:dark:border-white">
+                    {{ __('admin.view_page') }}
+                </a>
             </div>
         </div>
     </div>
