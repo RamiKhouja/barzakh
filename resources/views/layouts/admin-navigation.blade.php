@@ -11,6 +11,8 @@
         ['route' => 'admin.requests', 'label' => __('nav.Requests'), 'patterns' => ['admin.requests', 'admin.request.*']],
         ['route' => 'admin.services', 'label' => __('nav.Services'), 'patterns' => ['admin.services', 'admin.service.*']],
         ['route' => 'admin.partners', 'label' => __('nav.Partners'), 'patterns' => ['admin.partners', 'admin.partner.*']],
+        ['route' => 'admin.about.edit', 'label' => __('nav.About-page'), 'patterns' => ['admin.about.*']],
+        ['route' => 'admin.static-pages.index', 'label' => __('nav.Pages'), 'patterns' => ['admin.static-pages.*']],
     ];
 @endphp
 
@@ -57,7 +59,7 @@
         :class="open ? 'translate-x-0' : '{{ app()->getLocale() === 'ar' ? 'translate-x-full lg:translate-x-0' : '-translate-x-full lg:translate-x-0' }}'"
     >
         <div class="flex items-center justify-between border-b border-primary-200 px-5 py-5 dark:border-gray-400">
-            <a href="{{ route('admin.dashboard') }}" class="block">
+            <a href="{{ route('admin.dashboard') }}" class="flex items-end gap-x-4">
                 <img src="{{ asset('pictures/global/logo.png') }}" alt="Barzakh" class="h-11 dark:hidden" />
                 <img src="{{ asset('pictures/global/logo-white.png') }}" alt="Barzakh" class="hidden h-11 dark:block" />
                 <p class="mt-2 text-xs font-medium tracking-[0.18em] text-primary-500 dark:text-gray-100">
@@ -118,7 +120,7 @@
                     </button>
 
                     <div x-show="mobileAccountOpen" x-transition class="mt-2 space-y-2">
-                        <a href="{{ route('profile.edit') }}" class="block rounded-xl px-4 py-3 text-sm font-medium text-primary-700 transition hover:bg-primary-200/80 dark:text-white dark:hover:bg-stone">
+                        <a href="{{ route('admin.profile.edit') }}" class="block rounded-xl px-4 py-3 text-sm font-medium text-primary-700 transition hover:bg-primary-200/80 dark:text-white dark:hover:bg-stone">
                             {{ __('nav.Profile') }}
                         </a>
 

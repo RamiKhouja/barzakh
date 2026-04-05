@@ -23,6 +23,8 @@ return [
     'Offers' => 'العروض',
     'Requests' => 'الطلبات',
     'Services' => 'الخدمات',
+    'About-page' => 'صفحة من نحن',
+    'Pages' => 'الصفحات',
     'Account' => 'الحساب',
     'Admin' => 'إدارة برزخ',
     'Admin-panel' => 'لوحة الإدارة'

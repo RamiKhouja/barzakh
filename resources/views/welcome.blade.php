@@ -309,7 +309,7 @@
                 @endforeach
             </div>
         </div>
-        <x-footer/>
+        
     </div>
     <style>
         @tailwind base;

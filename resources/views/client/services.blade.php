@@ -17,7 +17,6 @@
                 @endforeach
             </div>
         </div>
-        <x-footer/>
     </div>
     <div class="fixed z-50 inset-0 hidden overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true" id="myModal">
         <div class="flex items-center justify-center min-h-screen px-4 rounded-lg">

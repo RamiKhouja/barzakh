@@ -23,6 +23,8 @@ return [
     'Offers' => 'Offers',
     'Requests' => 'Requests',
     'Services' => 'Services',
+    'About-page' => 'About Page',
+    'Pages' => 'Pages',
     'Account' => 'Account',
     'Admin' => 'Barzakh Admin',
     'Admin-panel' => 'Admin panel'

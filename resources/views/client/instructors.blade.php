@@ -38,8 +38,6 @@
                 </div>
             </div>
         </div>
-        <x-footer/>
-
     <style>
         .instructor-details {
             position: absolute;

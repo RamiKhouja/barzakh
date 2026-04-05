@@ -284,7 +284,6 @@
                 </div>
             </div>
         </div>
-        <x-footer/>
     </div>
     <div class="fixed z-50 inset-0 hidden overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true" id="demendModal">
         <div class="flex items-center justify-center min-h-screen px-4">

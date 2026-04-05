@@ -18,6 +18,7 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\Auth\SocialiteController;
+use App\Http\Controllers\StaticPageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,6 +51,12 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::redirect('/admin', '/admin/dashboard');
     Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+    Route::get('/admin/profile', [ProfileController::class, 'edit'])->name('admin.profile.edit');
+    Route::get('/admin/about', [AboutController::class, 'edit'])->name('admin.about.edit');
+    Route::put('/admin/about/{about}', [AboutController::class, 'update'])->name('admin.about.update');
+    Route::get('/admin/static-pages', [StaticPageController::class, 'index'])->name('admin.static-pages.index');
+    Route::get('/admin/static-pages/{page}/edit', [StaticPageController::class, 'edit'])->name('admin.static-pages.edit');
+    Route::put('/admin/static-pages/{page}', [StaticPageController::class, 'update'])->name('admin.static-pages.update');
 
     // Admin fields routes
     Route::get('/admin/field/create', [FieldController::class, 'create'])->name('field.create');
@@ -147,6 +154,10 @@ Route::get('/about', [AboutController::class, 'index'])->name('about');
 Route::get('/experts', [InstructorController::class, 'clientIndex'])->name('instructors.index');
 Route::get('/search', [CourseController::class, 'clientSearch'])->name('search');
 Route::get('/services', [ServiceController::class, 'clientIndex'])->name('services');
+Route::get('/terms-of-use', [StaticPageController::class, 'show'])->defaults('slug', 'terms-of-use')->name('terms-of-use');
+Route::get('/privacy-policy', [StaticPageController::class, 'show'])->defaults('slug', 'privacy-policy')->name('privacy-policy');
+Route::get('/help-center', [StaticPageController::class, 'show'])->defaults('slug', 'help-center')->name('help-center');
+Route::get('/pages/{slug}', [StaticPageController::class, 'show'])->name('static-pages.show');
 
 Route::get('/auth/google/redirect', [SocialiteController::class, 'redirectToGoogle'])->name('google.redirect');
 Route::get('/auth/google/callback', [SocialiteController::class, 'handleGoogleCallback'])->name('google.callback');

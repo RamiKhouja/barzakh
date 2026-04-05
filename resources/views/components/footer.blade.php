@@ -30,9 +30,9 @@
     </div>
     <div class="pt-24 md:flex md:justify-between md:items-center space-y-4 md:space-y-0 {{$lang == 'ar' ? ('md:flex-row-reverse') : ('')}}">
         <div class="sm:flex sm:space-x-6 space-y-2 sm:space-y-0 sm:justify-center md:justify-normal text-center">
-            <p class="text-primary-700 dark:text-white font-medium">{{__('welcome.terms-of-use')}}</p>
-            <p class="text-primary-700 dark:text-white font-medium">{{__('welcome.privacy-policy')}}</p>
-            <p class="text-primary-700 dark:text-white font-medium">{{__('welcome.help-center')}}</p>
+            <a href="{{ route('terms-of-use') }}" class="text-primary-700 dark:text-white font-medium">{{__('welcome.terms-of-use')}}</a>
+            <a href="{{ route('privacy-policy') }}" class="text-primary-700 dark:text-white font-medium">{{__('welcome.privacy-policy')}}</a>
+            <a href="{{ route('help-center') }}" class="text-primary-700 dark:text-white font-medium">{{__('welcome.help-center')}}</a>
         </div>
         <div class="flex space-x-2 justify-center md:justify-normal dark:hidden">
             <a href="https://www.youtube.com/@Barzakhwv" target="_blank">

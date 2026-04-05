@@ -30,7 +30,6 @@
                 {{ $courses->links() }}
             </div>
         </div>
-        <x-footer/>
     </div>
 </x-app-layout>
 <style>

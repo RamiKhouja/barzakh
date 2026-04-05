@@ -32,7 +32,6 @@
             </div>
             @endif
         </div>
-        <x-footer/>
     </div>
 </x-app-layout>
 <style>

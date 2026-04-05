@@ -44,6 +44,5 @@
             @endforeach
             </div>
         </div>
-        <x-footer/>
     </div>
 </x-app-layout>
