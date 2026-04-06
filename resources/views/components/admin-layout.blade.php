@@ -26,6 +26,16 @@
             html:not(.theme-ready) body {
                 visibility: hidden;
             }
+
+            [x-cloak="admin-mobile-drawer"] {
+                display: none !important;
+            }
+
+            @media (min-width: 1024px) {
+                [x-cloak="admin-mobile-drawer"] {
+                    display: flex !important;
+                }
+            }
         </style>
         <script>
             (function () {
