@@ -88,16 +88,18 @@
         </div>
     </div>
 
-    <div x-show="open" x-transition.opacity class="fixed inset-0 z-40 bg-gray-900/50 lg:hidden" @click="open = false"></div>
+    <div x-cloak x-show="open" x-transition.opacity class="fixed inset-0 z-40 bg-gray-900/50 lg:hidden" @click="open = false"></div>
 
     <aside
         id="navigation"
-        class="fixed inset-y-0 {{ app()->getLocale() === 'ar' ? 'right-0 border-l' : 'left-0 border-r' }} z-50 flex flex-col border-primary-200 bg-primary-100 text-primary-800 shadow-xl transition-all duration-300 dark:border-gray-400 dark:bg-gray-700 dark:text-white lg:translate-x-0"
-        :class="sidebarCollapsed ? 'lg:w-24' : 'lg:w-72'"
-        :class="open ? 'translate-x-0' : '{{ app()->getLocale() === 'ar' ? 'translate-x-full lg:translate-x-0' : '-translate-x-full lg:translate-x-0' }}'"
+        class="fixed inset-y-0 {{ app()->getLocale() === 'ar' ? 'right-0 border-l translate-x-full lg:translate-x-0' : 'left-0 border-r -translate-x-full lg:translate-x-0' }} z-50 flex flex-col border-primary-200 bg-primary-100 text-primary-800 shadow-xl transition-all duration-300 dark:border-gray-400 dark:bg-gray-700 dark:text-white"
+        :class="[
+            sidebarCollapsed ? 'lg:w-24' : 'lg:w-72',
+            open ? 'translate-x-0' : '{{ app()->getLocale() === 'ar' ? 'translate-x-full lg:translate-x-0' : '-translate-x-full lg:translate-x-0' }}'
+        ]"
     >
         <div class="flex items-center justify-between border-b border-primary-200 px-5 py-5 dark:border-gray-400">
-            <a href="{{ route('admin.dashboard') }}" x-show="!sidebarCollapsed" x-transition.opacity class="flex items-end gap-x-4 min-w-0">
+            <a href="{{ route('admin.dashboard') }}" x-show="!(sidebarCollapsed && window.innerWidth >= 1024)" x-transition.opacity class="flex items-end gap-x-4 min-w-0">
                 <img src="{{ asset('pictures/global/logo.png') }}" alt="Barzakh" class="h-11 dark:hidden shrink-0" />
                 <img src="{{ asset('pictures/global/logo-white.png') }}" alt="Barzakh" class="hidden h-11 dark:block shrink-0" />
                 <p class="mt-2 text-xs font-medium tracking-[0.18em] text-primary-500 dark:text-gray-100">
@@ -186,21 +188,21 @@
                         <div class="space-y-2">
                             <button
                                 type="button"
-                                @click="if (sidebarCollapsed) { sidebarCollapsed = false; localStorage.setItem('admin-sidebar-collapsed', false); {{ $item['state'] }} = true; } else { {{ $item['state'] }} = !{{ $item['state'] }} }"
+                                @click="if (sidebarCollapsed && window.innerWidth >= 1024) { sidebarCollapsed = false; localStorage.setItem('admin-sidebar-collapsed', false); {{ $item['state'] }} = true; } else { {{ $item['state'] }} = !{{ $item['state'] }} }"
                                 class="{{ $isActive ? 'bg-primary-700 text-white shadow-sm dark:bg-stone dark:text-white' : 'text-primary-700 hover:bg-primary-200/80 dark:text-gray-50 dark:hover:bg-gray-400' }} flex w-full items-center rounded-2xl px-4 py-3 text-sm font-medium transition"
-                                :class="sidebarCollapsed ? 'justify-center' : 'justify-between'"
+                                :class="sidebarCollapsed && window.innerWidth >= 1024 ? 'justify-center' : 'justify-between'"
                                 title="{{ $item['label'] }}"
                             >
                                 <span class="flex items-center gap-3 min-w-0">
                                     <x-dynamic-component :component="$item['icon']" class="h-5 w-5 shrink-0" />
-                                    <span x-show="!sidebarCollapsed" x-transition.opacity class="truncate">{{ $item['label'] }}</span>
+                                    <span x-show="!(sidebarCollapsed && window.innerWidth >= 1024)" x-transition.opacity class="truncate">{{ $item['label'] }}</span>
                                 </span>
-                                <svg x-show="!sidebarCollapsed" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform shrink-0" :class="{{ $item['state'] }} ? 'rotate-180' : ''" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <svg x-show="!(sidebarCollapsed && window.innerWidth >= 1024)" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform shrink-0" :class="{{ $item['state'] }} ? 'rotate-180' : ''" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
                                 </svg>
                             </button>
 
-                            <div x-show="!sidebarCollapsed && {{ $item['state'] }}" x-transition class="space-y-2 px-2">
+                            <div x-show="!(sidebarCollapsed && window.innerWidth >= 1024) && {{ $item['state'] }}" x-transition class="space-y-2 px-2">
                                 @foreach ($item['children'] as $child)
                                     @php $isChildActive = $matchesPatterns($child['patterns']); @endphp
                                     <a
@@ -220,11 +222,11 @@
                         <a
                             href="{{ route($item['route']) }}"
                             class="{{ $isActive ? 'bg-primary-700 text-white shadow-sm dark:bg-stone dark:text-white' : 'text-primary-700 hover:bg-primary-200/80 dark:text-gray-50 dark:hover:bg-gray-400' }} flex items-center rounded-2xl px-4 py-3 text-sm font-medium transition"
-                            :class="sidebarCollapsed ? 'justify-center' : ''"
+                            :class="sidebarCollapsed && window.innerWidth >= 1024 ? 'justify-center' : ''"
                             title="{{ $item['label'] }}"
                         >
                             <x-dynamic-component :component="$item['icon']" class="h-5 w-5 shrink-0" />
-                            <span x-show="!sidebarCollapsed" x-transition.opacity class="truncate {{ app()->getLocale() === 'ar' ? 'mr-3' : 'ml-3' }}">{{ $item['label'] }}</span>
+                            <span x-show="!(sidebarCollapsed && window.innerWidth >= 1024)" x-transition.opacity class="truncate {{ app()->getLocale() === 'ar' ? 'mr-3' : 'ml-3' }}">{{ $item['label'] }}</span>
                         </a>
                     @endif
                 @endforeach
