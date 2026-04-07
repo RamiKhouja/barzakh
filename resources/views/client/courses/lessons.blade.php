@@ -1,7 +1,7 @@
 <x-app-layout>
     <?php $lang = app()->getLocale(); ?>
     <div class="bg-primary-100 dark:bg-gray-700">
-        <div class="h-20"></div>
+        <div class="h-8 md:h-16 xl:h-8"></div>
         <?php
             $time = 0;
             if($lessonUser) {
@@ -15,10 +15,10 @@
         <input type="hidden" id="time" value="{{ $time }}" />
         <input type="hidden" id="lesson_id" value="{{ $lesson->id }}" />
         <input type="hidden" id="duration" value="{{ $lesson->duration }}" />
-        <div class="max-w-xs sm:max-w-screen-sm md:max-w-xl lg:max-w-4xl xl:max-w-6xl mx-auto mt-8 md:-mt-20 lg:mb-16">
+        <div class="w-full sm:max-w-screen-sm md:max-w-xl lg:max-w-4xl xl:max-w-6xl mx-auto mt-8 md:-mt-20 lg:mb-16">
             <div class="grid grid-cols-1 lg:grid-cols-4 lg:gap-10 container mt-16" dir="{{$lang == 'ar' ? ('rtl') : ('ltr')}}">
                 <div class="col-span-3">
-                    <div class="iframe-container rounded-xl h-[150px] sm:h-[298px] md:h-[272px] lg:h-[310px] xl:h-[400px]">
+                    <div id="lesson-video-container" class="iframe-container sm:rounded-xl aspect-[16/9] sm:h-[298px] sm:aspect-auto md:h-[272px] lg:aspect-[16/9] lg:h-auto">
                         <div id="video-placeholder" class="w-full h-full">
                             <img src="{{ asset('/pictures/vid-placeholder.png') }}" alt="Video Placeholder" class="w-full h-full object-cover">
                         </div>
@@ -30,15 +30,15 @@
                             title="{{$lesson->title_en}}" onload="showVideoFrame()">
                         </iframe>
                     </div>
-                    <div class="my-8">
-                        <p class="text-3xl font-semibold text-primary-700 dark:text-white">{{$lang=='ar' ? $lesson->title_ar : $lesson->title_en}}</p>
+                    <div class="mt-8 mb-2 lg:mt-12 mb-4 px-4 md:px-0">
+                        <p class="text-xl lg:text-3xl font-semibold text-primary-700 dark:text-white">{{$lang=='ar' ? $lesson->title_ar : $lesson->title_en}}</p>
                     </div>
-                    <div class="dark:text-gray-50"><p>
+                    <div class="dark:text-gray-50 px-4 md:px-0"><p>
                     {{$lang=='ar' ? $lesson->description_ar : $lesson->description_en}}
                     </p></div>
                 </div>
-                <div class=" md:px-4 col-span-1 mt-8 lg:mt-0" dir="{{$lang == 'ar' ? ('rtl') : ('ltr')}}">
-                    <div class="lg:fixed lg:top-[20%] xl:top-[24%] h-2/3 w-full lg:max-w-xs bg-white dark:bg-gray-400 shadow-lg rounded-xl overflow-y-auto dark:scrollbar-thumb-dark">
+                <div class="px-4 md:px-4 col-span-1 mt-8 lg:mt-0" dir="{{$lang == 'ar' ? ('rtl') : ('ltr')}}">
+                    <div id="lesson-list-panel" class="max-h-[60vh] lg:max-h-none lg:fixed lg:top-[136px] xl:top-[100px] h-2/3 w-full lg:max-w-xs bg-white dark:bg-gray-400 shadow-lg rounded-xl overflow-y-auto dark:scrollbar-thumb-dark">
                         <ul class="py-4">
                             @foreach($lessons as $l)
                             <li class="px-4 hover:bg-primary-200 dark:text-white dark:hover:bg-gray-300 dark:hover:text-white cursor-pointer">
@@ -79,7 +79,12 @@
 </x-app-layout>
 <style>
     iframe {
-        border-radius: 1rem;
+        border-radius: 0;
+    }
+    @media (min-width: 640px) {
+        iframe {
+            border-radius: 1rem;
+        }
     }
     .iframe-container {
         position: relative;
@@ -113,6 +118,24 @@
         document.getElementById('video-placeholder').style.display = 'none';
         document.getElementById('vimeo-frame').style.display = 'block';
     }
+
+    function syncLessonListHeight() {
+        const videoContainer = document.getElementById('lesson-video-container');
+        const lessonListPanel = document.getElementById('lesson-list-panel');
+
+        if (!videoContainer || !lessonListPanel) {
+            return;
+        }
+
+        if (window.innerWidth >= 1024) {
+            lessonListPanel.style.height = `${videoContainer.offsetHeight}px`;
+        } else {
+            lessonListPanel.style.height = '';
+        }
+    }
+
+    window.addEventListener('load', syncLessonListHeight);
+    window.addEventListener('resize', syncLessonListHeight);
     @if($lesson->video_type == 'vimeo')
     var vimeoFrame = document.getElementById('vimeo-frame');
     var player = new Vimeo.Player(vimeoFrame);
