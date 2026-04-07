@@ -1,4 +1,5 @@
 <x-admin-layout>
+    @php($isRtl = app()->getLocale() === 'ar')
     <div class="bg-primary-100 dark:bg-gray-700 py-12">
         <div class="max-w-xs sm:max-w-sm md:max-w-xl lg:w-7xl xl:max-w-screen-md mx-auto flex justify-center">
             <div class="w-full">
@@ -10,7 +11,7 @@
                 <form method="POST" action="{{ route('admin.course.update', $course->id) }}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
-                    <div class="flex justify-between space-x-4">
+                    <div class="flex justify-between gap-x-4">
                         <div class="w-full">
                             <label htmlFor="title" class="form-label">
                                 Title
@@ -43,7 +44,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flex justify-between space-x-4 mt-8">
+                    <div class="flex justify-between gap-x-4 mt-8">
                         <div class="w-full">
                             <label htmlFor="title" class="form-label">
                                 URL
@@ -60,12 +61,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flex justify-between space-x-4 mt-8">
+                    <div class="flex justify-between gap-x-4 mt-8">
                         <div class="w-full">
                             <label htmlFor="title" class="form-label">
                                 Instructor
                             </label>
-                            <select id="instructor_id" name="instructor_id" class="mt-2 form-input">
+                            <select id="instructor_id" name="instructor_id" class="mt-2 form-input {{ $isRtl ? 'text-right pl-10 pr-3' : 'pr-10' }}" style="{{ $isRtl ? 'direction: rtl; background-position: left 0.75rem center;' : '' }}">
                                 @foreach($instructors as $instructor)
                                 <option value="{{ $instructor->id }}" class="mt-2" {{ $course->instructor_id == $instructor->id ? 'selected' : '' }}>
                                     {{ $instructor->firstname }} {{ $instructor->lastname }}
@@ -74,7 +75,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="flex justify-between space-x-4 mt-8">
+                    <div class="flex justify-between gap-x-4 mt-8">
                         <div class="w-full">
                             <label htmlFor="title" class="form-label">
                                 Categories
@@ -88,7 +89,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="flex justify-between space-x-4 mt-8">
+                    <div class="flex justify-between gap-x-4 mt-8">
                         <div class="w-full">
                             <label htmlFor="title" class="form-label">
                                 Price
@@ -140,7 +141,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flex justify-between space-x-4 mt-8">
+                    <div class="flex justify-between gap-x-4 mt-8">
                         <div class="w-full">
                             <label htmlFor="title" class="form-label mb-2">
                                 Course Image
@@ -149,12 +150,12 @@
                         </div>
                         
                     </div>
-                    <div class="flex justify-between space-x-4 mt-8">
+                    <div class="flex justify-between gap-x-4 mt-8">
                         <div class="w-1/3">
                             <label htmlFor="video_type" class="form-label">
                                 Video Type
                             </label>
-                            <select id="video_type" name="video_type" class="mt-2 form-input">
+                            <select id="video_type" name="video_type" class="mt-2 form-input {{ $isRtl ? 'text-right pl-10 pr-3' : 'pr-10' }}" style="{{ $isRtl ? 'direction: rtl; background-position: left 0.75rem center;' : '' }}">
                                 <option value="vimeo" {{ $course->video_type == "vimeo" ? 'selected' : '' }}>Vimeo</option>
                                 <option value="youtube" {{ $course->video_type == "youtube" ? 'selected' : '' }}>YouTube</option>
                             </select>
@@ -178,7 +179,7 @@
                             <label htmlFor="title" class="form-label">
                                 Level
                             </label>
-                            <select id="level" name="level" class="mt-2 form-input">
+                            <select id="level" name="level" class="mt-2 form-input {{ $isRtl ? 'text-right pl-10 pr-3' : 'pr-10' }}" style="{{ $isRtl ? 'direction: rtl; background-position: left 0.75rem center;' : '' }}">
                                 <option value="beginner" class="mt-2" {{ $course->level == "beginner" ? 'selected' : '' }}>Beginner</option>
                                 <option value="intermediate" class="mt-2" {{ $course->level == "intermediate" ? 'selected' : '' }}>Intermediate</option>
                                 <option value="advanced" class="mt-2" {{ $course->level == "advanced" ? 'selected' : '' }}>Advanced</option>
@@ -186,7 +187,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="flex justify-between space-x-4 mt-12">
+                    <div class="flex justify-between gap-x-4 mt-12">
                         <div class="w-full">
                             <label htmlFor="title" class="form-label">
                                 Description
@@ -223,7 +224,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="grid grid-cols-4 items-end space-x-6 mt-12">
+                    <div class="grid grid-cols-4 items-end gap-x-6 mt-12">
                         <div class="w-full">
                             <label htmlFor="title" class="form-label">
                                 Course Language
@@ -237,30 +238,30 @@
                                 placeholder="e.g. English, عربي, 汉, Español, हिन्दी"
                             />
                         </div>
-                        <label class="relative inline-flex items-center cursor-pointer">
+                        <label class="relative inline-flex items-center cursor-pointer" dir="{{ $isRtl ? 'rtl' : 'ltr' }}">
                             <input type="checkbox" name="is_free" value="1" class="sr-only peer" {{ $course->is_free ? 'checked' : '' }}>
-                            <div class="w-11 h-6 bg-gray-200 ring-1 ring-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary-500 dark:peer-focus:ring-primary-700 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white dark:bg-gray-400 after:border-white after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-400 peer-checked:bg-primary-500"></div>
-                            <span class="ml-3 form-label">Free</span>
+                            <div class="relative w-11 h-6 rounded-full bg-gray-200 ring-1 ring-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary-500 dark:bg-gray-400 dark:peer-focus:ring-primary-700 peer-checked:bg-primary-500 after:absolute after:top-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-white after:bg-white after:transition-all {{ $isRtl ? 'after:right-[2px] peer-checked:after:-translate-x-full' : 'after:left-[2px] peer-checked:after:translate-x-full' }} after:content-['']"></div>
+                            <span class="{{ $isRtl ? 'mr-3' : 'ml-3' }} form-label">Free</span>
                         </label>
-                        <label class="relative inline-flex items-center cursor-pointer">
+                        <label class="relative inline-flex items-center cursor-pointer" dir="{{ $isRtl ? 'rtl' : 'ltr' }}">
                             <input type="checkbox" name="is_chosen" value="1" class="sr-only peer" {{ $course->is_chosen ? 'checked' : '' }}>
-                            <div class="w-11 h-6 bg-gray-200 ring-1 ring-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary-500 dark:peer-focus:ring-primary-700 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white dark:bg-gray-400 after:border-white after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-400 peer-checked:bg-primary-500"></div>
-                            <span class="ml-3 form-label">Chosen</span>
+                            <div class="relative w-11 h-6 rounded-full bg-gray-200 ring-1 ring-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary-500 dark:bg-gray-400 dark:peer-focus:ring-primary-700 peer-checked:bg-primary-500 after:absolute after:top-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-white after:bg-white after:transition-all {{ $isRtl ? 'after:right-[2px] peer-checked:after:-translate-x-full' : 'after:left-[2px] peer-checked:after:translate-x-full' }} after:content-['']"></div>
+                            <span class="{{ $isRtl ? 'mr-3' : 'ml-3' }} form-label">Chosen</span>
                         </label>
-                        <label class="relative inline-flex items-center cursor-pointer">
+                        <label class="relative inline-flex items-center cursor-pointer" dir="{{ $isRtl ? 'rtl' : 'ltr' }}">
                             <input type="checkbox" name="is_soon" value="1" class="sr-only peer" {{ $course->is_soon ? 'checked' : '' }}>
-                            <div class="w-11 h-6 bg-gray-200 ring-1 ring-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary-500 dark:peer-focus:ring-primary-700 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white dark:bg-gray-400 after:border-white after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-400 peer-checked:bg-primary-500"></div>
-                            <span class="ml-3 form-label">Coming soon</span>
+                            <div class="relative w-11 h-6 rounded-full bg-gray-200 ring-1 ring-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary-500 dark:bg-gray-400 dark:peer-focus:ring-primary-700 peer-checked:bg-primary-500 after:absolute after:top-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-white after:bg-white after:transition-all {{ $isRtl ? 'after:right-[2px] peer-checked:after:-translate-x-full' : 'after:left-[2px] peer-checked:after:translate-x-full' }} after:content-['']"></div>
+                            <span class="{{ $isRtl ? 'mr-3' : 'ml-3' }} form-label">Coming soon</span>
                         </label>
                     </div>
                     <div class="mt-8 w-full">
-                        <div class="flex space-x-4 items-center">
+                        <div class="flex gap-x-4 items-center">
                             <label htmlFor="title" class="form-label">
                                 Translations
                             </label>
                             <button type="button" id="add-trans"><x-zondicon-add-solid class="w-6 h-6 text-primary-700 dark:text-white" /></button>
                         </div>
-                        <div class="flex flex-wrap items-center space-x-4" id="trans-container">
+                        <div class="flex flex-wrap items-center gap-x-4" id="trans-container">
                             @if($course->translations != null)
                                 @foreach(json_decode($course->translations) as $trans)
                                 <div class="w-28 mt-2">
@@ -274,9 +275,9 @@
                             @endif
                         </div>
                     </div>
-                    <div class="flex justify-between space-x-4 mt-8">
+                    <div class="flex justify-between gap-x-4 mt-8">
                         <div class="w-full">
-                            <div class="flex space-x-4 items-center">
+                            <div class="flex gap-x-4 items-center">
                                 <label htmlFor="title" class="form-label">
                                     Course Requirements
                                 </label>

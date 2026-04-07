@@ -10,7 +10,7 @@
                 <form method="POST" action="{{ route('admin.partner.update', $partner->id) }}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
-                    <div class="flex justify-between space-x-4">
+                    <div class="flex justify-between gap-x-4">
                         <div class="w-full">
                             <label htmlFor="title" class="form-label mb-2">
                                 Partner Logo

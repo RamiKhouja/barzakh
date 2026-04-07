@@ -10,7 +10,7 @@
                 <form method="POST" action="{{ route('admin.service.update', $service->id) }}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
-                    <div class="flex justify-between space-x-4">
+                    <div class="flex justify-between gap-x-4">
                         <div class="w-full">
                             <label htmlFor="title" class="form-label mb-2">
                                 Service Image
@@ -18,7 +18,7 @@
                             <x-picture-input :image="old('picture', $service->imageLink)" :circle="false" />
                         </div>
                     </div>
-                    <div class="flex justify-between space-x-4 mt-8">
+                    <div class="flex justify-between gap-x-4 mt-8">
                         <div class="w-full">
                             <label htmlFor="title" class="form-label">
                                 Title
@@ -52,7 +52,7 @@
                         </div>
                     </div>
                     
-                    <div class="flex justify-between space-x-4 mt-8">
+                    <div class="flex justify-between gap-x-4 mt-8">
                         <div class="w-full">
                             <label htmlFor="title" class="form-label">
                                 URL
@@ -94,7 +94,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flex justify-between space-x-4 mt-12">
+                    <div class="flex justify-between gap-x-4 mt-12">
                         <div class="w-full">
                             <label htmlFor="title" class="form-label">
                                 Description

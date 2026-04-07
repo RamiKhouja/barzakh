@@ -72,7 +72,7 @@
                                     <td class="table-text">
                                         {{ $instructor->nb_courses }}
                                     </td>
-                                    <td class="relative py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0 space-x-2 flex items-center">
+                                    <td class="relative py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0 gap-x-2 flex items-center">
                                         <a href="{{ route('admin.instructor.edit', ['instructor' => $instructor->id]) }}" class="text-gray-400 hover:text-primary-500">
                                             <x-zondicon-edit-pencil class="w-4 h-4 text-primary-500 dark:text-white" />
                                         </a>

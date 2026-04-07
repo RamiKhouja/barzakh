@@ -90,10 +90,37 @@ class LessonController extends Controller
     public function showByCourse($url, $number)
     {
         $course = Course::where('url', $url)->firstOrFail();
-        if (!$course) { abort(404); }
-        
-        if (Auth::check()) {
+        $lesson = Lesson::where('course_id', $course->id)
+                    ->where('number', $number)
+                    ->firstOrFail();
+        $courseLessons = Lesson::where('course_id', $course->id)
+                    ->orderBy('number')
+                    ->get();
 
+        $lessonUser = null;
+
+        if ($course->is_free) {
+            $lessons = $courseLessons->map(function ($l) {
+                $l->lessonUser = null;
+                return $l;
+            });
+
+            if (Auth::check()) {
+                $user = auth()->user();
+                $lessonUser = LessonUser::where('lesson_id', $lesson->id)
+                                ->where('user_id', $user->id)
+                                ->first();
+
+                $lessons = $courseLessons->map(function ($l) use ($user) {
+                    $l->lessonUser = $l->users->where('id', $user->id)->first();
+                    return $l;
+                });
+            }
+
+            return view('client.courses.lessons', compact(['course', 'lessons', 'lesson', 'lessonUser']));
+        }
+
+        if (Auth::check()) {
             $user = auth()->user();
             $successfulPayment = $user->courses()
                 ->where('course_id', $course->id)
@@ -101,38 +128,22 @@ class LessonController extends Controller
                 ->first();
 
             if ($successfulPayment) {
-                $lesson = Lesson::where('course_id', $course->id)
-                            ->where('number', $number)
-                            ->firstOrFail();
-                if (!$lesson) { abort(404); }
-
-                $lessonUser = LessonUser::where('lesson_id',$lesson->id)
-                                ->where('user_id',$user->id)
+                $lessonUser = LessonUser::where('lesson_id', $lesson->id)
+                                ->where('user_id', $user->id)
                                 ->first();
 
-                $courseLessons = Lesson::where('course_id', $course->id)
-                            ->orderBy('number')
-                            ->get();
                 $lessons = $courseLessons->map(function ($l) use ($user) {
-                    $lessonUser = $l->users->where('id', $user->id)->first();
-                    // if($lessonUser) {
-                    //     $l->percent = 'w-['.round($lessonUser->pivot->time_stopped_watching * 100 / $l->duration).'%]';
-                    // } else {
-                    //     $l->percent = 'w-0';
-                    // }
-                    $l->lessonUser = $lessonUser;
+                    $l->lessonUser = $l->users->where('id', $user->id)->first();
                     return $l;
                 });
 
-                return view('client.courses.lessons', compact(['course','lessons', 'lesson', 'lessonUser']));
-            }
-            else {
-                return redirect()->route('checkout.show', ['course' => $course]);
+                return view('client.courses.lessons', compact(['course', 'lessons', 'lesson', 'lessonUser']));
             }
 
-        } else {
-            return redirect()->guest(route('login'));
+            return redirect()->route('checkout.show', ['course' => $course]);
         }
+
+        return redirect()->guest(route('login'));
     }
 
     /**

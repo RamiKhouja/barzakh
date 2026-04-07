@@ -9,7 +9,7 @@
                 </div>
                 <form method="POST" action="{{ route('admin.pack.store') }}" enctype="multipart/form-data">
                     @csrf
-                    <div class="flex justify-between space-x-4">
+                    <div class="flex justify-between gap-x-4">
                         <div class="w-full">
                             <label htmlFor="title" class="form-label">
                                 Pack Name
@@ -40,7 +40,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flex justify-between space-x-4 mt-8">
+                    <div class="flex justify-between gap-x-4 mt-8">
                         <div class="w-full">
                             <label htmlFor="title" class="form-label">
                                 Courses
@@ -52,7 +52,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="flex justify-between space-x-4">
+                    <div class="flex justify-between gap-x-4">
                         <div class="w-full">
                             <label htmlFor="title" class="form-label">
                                 Pack Domain
@@ -83,7 +83,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flex justify-between space-x-4 mt-12">
+                    <div class="flex justify-between gap-x-4 mt-12">
                         <div class="w-full">
                             <label htmlFor="title" class="form-label">
                                 Price
@@ -118,7 +118,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="flex justify-between space-x-4 mt-8">
+                    <div class="flex justify-between gap-x-4 mt-8">
                         <div class="w-full">
                             <label htmlFor="title" class="form-label mb-2">
                                 Pack Image
@@ -127,7 +127,7 @@
                         </div>
                         
                     </div>
-                    <div class="flex justify-between space-x-4 mt-12">
+                    <div class="flex justify-between gap-x-4 mt-12">
                         <div class="w-full">
                             <label htmlFor="title" class="form-label">
                                 Description

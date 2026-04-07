@@ -10,7 +10,7 @@
                 <form method="POST" action="{{ route('admin.instructor.update', $instructor->id) }}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
-                    <div class="flex justify-between space-x-4 mt-8">
+                    <div class="flex justify-between gap-x-4 mt-8">
                         <div class="w-full">
                             <label htmlFor="title" class="form-label mb-2">
                                 Profile Picture
@@ -28,7 +28,7 @@
                             <span class="ml-2">Ms.</span>
                         </label>
                     </div>
-                    <div class="flex justify-between space-x-4 mt-8">
+                    <div class="flex justify-between gap-x-4 mt-8">
                         <div class="w-full">
                             <label htmlFor="title" class="form-label">
                                 First name
@@ -60,7 +60,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flex justify-between space-x-4 mt-8">
+                    <div class="flex justify-between gap-x-4 mt-8">
                         <div class="w-full text-right">
                             <label htmlFor="title" class="form-label">
                                 الإسم (عربي)
@@ -109,7 +109,7 @@
                             />
                         </div>
                     </div>
-                    <div class="flex justify-between space-x-4 mt-8">
+                    <div class="flex justify-between gap-x-4 mt-8">
                         <div class="w-full">
                             <label htmlFor="title" class="form-label">
                                 URL
@@ -126,7 +126,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flex justify-between space-x-4 my-8">
+                    <div class="flex justify-between gap-x-4 my-8">
                         <div class="w-full">
                             <label htmlFor="title" class="form-label">
                                 Short Description
@@ -159,7 +159,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flex justify-between space-x-4 my-8">
+                    <div class="flex justify-between gap-x-4 my-8">
                         <div class="w-full">
                             <label htmlFor="title" class="form-label">
                                 Description

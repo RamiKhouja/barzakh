@@ -10,7 +10,7 @@
                 <form method="POST" action="{{ route('field.update', $field->id) }}">
                     @csrf
                     @method('PUT')
-                    <div class="flex justify-between space-x-4">
+                    <div class="flex justify-between gap-x-4">
                         <div class="w-full">
                             <label htmlFor="title" class="form-label">
                                 Title
@@ -43,7 +43,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flex justify-between space-x-4 mt-12">
+                    <div class="flex justify-between gap-x-4 mt-12">
                         <div class="w-full">
                             <label htmlFor="title" class="form-label">
                                 Subtitle
@@ -76,7 +76,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flex justify-between space-x-4 mt-12">
+                    <div class="flex justify-between gap-x-4 mt-12">
                         <div class="w-full">
                             <label htmlFor="title" class="form-label">
                                 Description

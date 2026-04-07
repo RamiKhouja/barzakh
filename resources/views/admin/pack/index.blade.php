@@ -86,7 +86,7 @@
                                         {{ substr($pack->created_at, 0, 10) }}
                                     </td>
                                     <td class="table-text">
-                                        <div class="space-x-2 flex items-center">
+                                        <div class="gap-x-2 flex items-center">
                                             <a href="{{ route('admin.pack.edit', ['pack' => $pack->id]) }}">
                                                 <x-zondicon-edit-pencil class="w-4 h-4 text-primary-500 dark:text-white" />
                                             </a>

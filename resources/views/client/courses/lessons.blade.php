@@ -142,6 +142,7 @@
     // Detect when the play button is clicked
     player.on('play', function() {
         startPlaying = true;
+        @auth
         fetch('{{ route("lesson.addview") }}', {
             method: 'POST',
             headers: {
@@ -152,6 +153,7 @@
                 lesson_id: lessonId
             })
         });
+        @endauth
 
     });
     player.on('pause', function(){
@@ -163,6 +165,7 @@
             complete = true;
         }
 
+        @auth
         fetch('{{ route("lesson.updateTime") }}', {
             method: 'POST',
             headers: {
@@ -175,6 +178,7 @@
                 complete: complete
             })
         });
+        @endauth
     });
     @endif
 </script>

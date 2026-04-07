@@ -9,7 +9,7 @@
                 </div>
                 <form method="POST" action="{{ route('admin.partner.store') }}" enctype="multipart/form-data">
                     @csrf
-                    <div class="flex justify-between space-x-4">
+                    <div class="flex justify-between gap-x-4">
                         <div class="w-full">
                             <label htmlFor="title" class="form-label mb-2">
                                 Partner Logo

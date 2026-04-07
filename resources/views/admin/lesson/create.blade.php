@@ -15,7 +15,7 @@
                 <form method="POST" action="{{ route('admin.lesson.store') }}" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="course_id" value="{{ $course->id }}"/>
-                    <div class="flex justify-between space-x-4">
+                    <div class="flex justify-between gap-x-4">
                         <div class="w-full">
                             <label htmlFor="title" class="form-label mb-2">
                                 Lesson Image
@@ -23,7 +23,7 @@
                             <x-picture-input :image=null :circle="false" />
                         </div>
                     </div>
-                    <div class="flex justify-between space-x-4 mt-8">
+                    <div class="flex justify-between gap-x-4 mt-8">
                         <div class="w-1/4">
                             <label htmlFor="title" class="form-label">
                                 Lesson Number
@@ -41,7 +41,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flex justify-between space-x-4 mt-8">
+                    <div class="flex justify-between gap-x-4 mt-8">
                         <div class="w-full">
                             <label htmlFor="title" class="form-label">
                                 Lesson Name
@@ -72,7 +72,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flex justify-between space-x-4 mt-8">
+                    <div class="flex justify-between gap-x-4 mt-8">
                         <div class="w-1/3">
                             <label htmlFor="video_type" class="form-label">
                                 Video Type
@@ -97,7 +97,7 @@
                             </div>
                         </div>
                         <div class="w-1/3">
-                            <div class="flex space-x-2 items-center">
+                            <div class="flex gap-x-2 items-center">
                                 <label htmlFor="title" class="form-label">
                                     Duration
                                 </label>
@@ -105,7 +105,7 @@
                                     ( HH : MM : SS )
                                 </label>
                             </div>
-                            <div class="flex space-x-2 items-center w-full mt-2">
+                            <div class="flex gap-x-2 items-center w-full mt-2">
                                 <input
                                     type="number"
                                     name="hours"
@@ -135,7 +135,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flex justify-between space-x-4 mt-12">
+                    <div class="flex justify-between gap-x-4 mt-12">
                         <div class="w-full">
                             <label htmlFor="title" class="form-label">
                                 Lesson Content
@@ -166,7 +166,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flex items-center space-x-4 mt-12">
+                    <div class="flex items-center gap-x-4 mt-12">
                         <label class="relative inline-flex items-center cursor-pointer">
                             <input type="checkbox" name="is_free" value="1" class="sr-only peer">
                             <div class="w-11 h-6 bg-gray-200 ring-1 ring-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary-500 dark:peer-focus:ring-primary-700 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white dark:bg-gray-400 after:border-white after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-400 peer-checked:bg-primary-500"></div>

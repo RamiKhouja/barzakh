@@ -11,71 +11,71 @@
         @endif
 
         <div class="max-w-xs sm:max-w-sm md:max-w-xl lg:max-w-5xl lg:px-12 mx-auto flex justify-center">
-            <div class="sm:flex w-full sm:space-x-12 text-center sm:text-left">
+            <div class="sm:flex w-full sm:gap-x-12 text-center sm:text-left">
                 <div class="w-full sm:w-1/2 md:w-1/3">
                     <img src="{{ asset( 'pictures/'.$course->image ) }}" alt="" class="w-full rounded-lg object-cover mr-2"/>
                 </div>
                 <div class="block mt-4 sm:mt-0">
                     <p class="text-4xl font-medium text-gray-700 dark:text-white">{{$course->title_en}}</p>
-                    <div class="md:flex md:flex-wrap md:space-x-4 mt-4 space-y-2 md:space-y-0">
-                        <div class="flex space-x-1 items-center">
+                    <div class="md:flex md:flex-wrap md:gap-x-4 mt-4 space-y-2 md:space-y-0">
+                        <div class="flex gap-x-1 items-center">
                             <x-heroicon-s-banknotes class="h-4 w-4 dark:text-white"/>
                             <p class="text-gray-400 dark:text-gray-50 text-sm font-semibold {{$course->is_discount ? ('line-through'):('')}}">${{$course->price}} USD</p>
                         </div>
                         @if($course->is_discount)
-                        <div class="flex space-x-1 items-center">
+                        <div class="flex gap-x-1 items-center">
                             <x-heroicon-s-arrow-trending-down class="h-4 w-4 dark:text-white"/>
                             <p class="text-gray-400 dark:text-gray-50 text-sm font-semibold">
                                 ${{$course->discount_price}} USD
                             </p>
                         </div>
-                        <div class="flex space-x-1 items-center">
+                        <div class="flex gap-x-1 items-center">
                             <p class="text-gray-400 dark:text-gray-50 text-sm font-semibold">
                                 DISC {{$course->discount}}%
                             </p>
                         </div>
                         @endif
                     </div>
-                    <div class="md:flex md:flex-wrap md:space-x-4 mt-2 md:mt-4 space-y-2 md:space-y-0">
-                        <div class="flex space-x-1 items-center">
+                    <div class="md:flex md:flex-wrap md:gap-x-4 mt-2 md:mt-4 space-y-2 md:space-y-0">
+                        <div class="flex gap-x-1 items-center">
                             <x-heroicon-s-chart-bar class="h-4 w-4 dark:text-white"/>
                             <p class="text-gray-400 dark:text-gray-50 text-sm font-semibold">{{ucfirst($course->level)}}</p>
                         </div>
-                        <div class="flex space-x-1 items-center">
+                        <div class="flex gap-x-1 items-center">
                             <x-heroicon-m-play-circle class="h-4 w-4 dark:text-white"/>
                             <p class="text-gray-400 dark:text-gray-50 text-sm font-semibold">
                                 {{$course->nb_lessons}} Lessons ({{ gmdate("H:i:s", $course->duration) }})
                             </p>
                         </div>
-                        <div class="flex space-x-1 items-center">
+                        <div class="flex gap-x-1 items-center">
                             <x-heroicon-s-document class="h-4 w-4 dark:text-white"/>
                             <p class="text-gray-400 dark:text-gray-50 text-sm font-semibold">
                                 {{$course->nb_files > 0 ? $course->nb_files : ('No')}} Files
                             </p>
                         </div>
                     </div>
-                    <div class="md:flex md:flex-wrap md:space-x-4 mt-2 md:mt-4 space-y-2 md:space-y-0">
-                        <div class="flex space-x-1 items-center">
+                    <div class="md:flex md:flex-wrap md:gap-x-4 mt-2 md:mt-4 space-y-2 md:space-y-0">
+                        <div class="flex gap-x-1 items-center">
                             <x-heroicon-m-users class="h-4 w-4 dark:text-white"/>
                             <p class="text-gray-400 dark:text-gray-50 text-sm font-semibold">
                                 {{$course->nb_subscription > 0 ? $course->nb_subscription : ('No')}} Students
                             </p>
                         </div>
-                        <div class="flex space-x-1 items-center">
+                        <div class="flex gap-x-1 items-center">
                             <x-heroicon-s-eye class="h-4 w-4 dark:text-white"/>
                             <p class="text-gray-400 dark:text-gray-50 text-sm font-semibold">
                                 {{$course->nb_visits > 0 ? $course->nb_visits : ('No')}} Visits
                             </p>
                         </div>
                     </div>
-                    <div class="md:flex md:flex-wrap md:space-x-4 mt-2 md:mt-4 space-y-2 md:space-y-0">
-                        <div class="flex space-x-1 items-center">
+                    <div class="md:flex md:flex-wrap md:gap-x-4 mt-2 md:mt-4 space-y-2 md:space-y-0">
+                        <div class="flex gap-x-1 items-center">
                             <x-heroicon-s-speaker-wave class="h-4 w-4 dark:text-white"/>
                             <p class="text-gray-400 dark:text-gray-50 text-sm font-semibold">
                                 {{$course->language}}
                             </p>
                         </div>
-                        <div class="flex space-x-1 items-center">
+                        <div class="flex gap-x-1 items-center">
                             <x-heroicon-s-language class="h-4 w-4 dark:text-white"/>
                             @if($course->translations != null)
                                 <?php $i = 0; ?>
@@ -162,7 +162,7 @@
                                 <td class="table-text">
                                     {{ $lesson->is_visible ? ('Yes') : ('No') }}
                                 </td>
-                                <td class="relative p-4 text-right text-sm font-medium sm:pr-0 space-x-2 flex items-center">
+                                <td class="relative p-4 text-right text-sm font-medium sm:pr-0 gap-x-2 flex items-center">
                                     <a>
                                         <x-heroicon-s-eye class="w-4 h-4 text-primary-700 dark:text-white" />
                                     </a>

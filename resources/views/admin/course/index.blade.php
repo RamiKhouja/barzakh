@@ -89,7 +89,7 @@
                                     <td class="table-text">
                                         {{ substr($course->created_at, 0, 10) }}
                                     </td>
-                                    <td class="relative p-4 text-right text-sm font-medium sm:pr-0 space-x-2 flex items-center">
+                                    <td class="relative p-4 text-right text-sm font-medium sm:pr-0 gap-x-2 flex items-center">
                                         <a href="{{ route('admin.course.show', ['course' => $course->id]) }}">
                                             <x-heroicon-s-eye class="w-4 h-4 text-primary-700 dark:text-white" />
                                         </a>

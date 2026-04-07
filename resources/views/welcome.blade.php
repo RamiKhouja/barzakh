@@ -93,7 +93,7 @@
                 <img src="{{ asset( 'pictures/global/B2.png') }}" class="hidden dark:block mx-auto mt-4" alt=""/>
             </div>
         </div>
-        <div id="courses" class="max-w-xs sm:max-w-xl md:max-w-xl lg:max-w-3xl mx-auto py-32 ">
+        <div id="courses" class="max-w-xs sm:max-w-xl md:max-w-xl lg:max-w-5xl mx-auto py-32 ">
             <div class="flex justify-center">
                 <p class="text-2xl md:text-3xl lg:text-5xl text-primary-700 dark:text-white font-black {{$lang=='ar'?('text-right mb-2'):('italic mb-4')}}">
                     {{__('welcome.our-content')}}
@@ -104,8 +104,8 @@
                     {{__('welcome.world-visions')}}
                 </p>
             </div>
-            <div class="flex justify-center">
-                <div class="xs:columns-1 md:columns-3 md:gap-4 lg:gap-8" dir="{{$lang=='ar' ? ('rtl') : ('ltr')}}">
+            <div class="flex justify-center w-full">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-8" dir="{{$lang=='ar' ? ('rtl') : ('ltr')}}">
                 @foreach($fields as $field)
                 <a href="{{ route('fields.showUrl', ['url' => $field->url]) }}" style="-webkit-tap-highlight-color: transparent;">
                     <div class="h-72 w-72 md:h-52 md:w-52 lg:h-72 lg:w-72 my-6 md:my-0 cat-circle hover:shadow-lg rounded-full">  
