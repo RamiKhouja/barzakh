@@ -71,3 +71,44 @@ body {
 .social-icon {
     @apply p-2 rounded-full hover:bg-primary-50 text-primary-700 dark:hover:bg-gray-400 hover:shadow dark:text-gray-50;
 }
+
+.wysiwyg-content {
+    @apply max-w-none;
+}
+
+.wysiwyg-content p {
+    @apply my-4;
+}
+
+.wysiwyg-content ul {
+    list-style: disc;
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+}
+
+.wysiwyg-content ol {
+    list-style: decimal;
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+}
+
+.wysiwyg-content li {
+    @apply my-2;
+}
+
+.wysiwyg-content a {
+    @apply underline;
+}
+
+.wysiwyg-content h1,
+.wysiwyg-content h2,
+.wysiwyg-content h3,
+.wysiwyg-content h4 {
+    @apply mt-6 mb-3 font-semibold;
+}
+
+.wysiwyg-content[dir="rtl"] ul,
+.wysiwyg-content[dir="rtl"] ol {
+    padding-left: 0;
+    padding-right: 1.5rem;
+}

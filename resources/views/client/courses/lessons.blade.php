@@ -33,9 +33,12 @@
                     <div class="mt-8 mb-2 lg:mt-12 mb-4 px-4 md:px-0">
                         <p class="text-xl lg:text-3xl font-semibold text-primary-700 dark:text-white">{{$lang=='ar' ? $lesson->title_ar : $lesson->title_en}}</p>
                     </div>
-                    <div class="dark:text-gray-50 px-4 md:px-0"><p>
-                    {{$lang=='ar' ? $lesson->description_ar : $lesson->description_en}}
-                    </p></div>
+                    <div
+                        dir="{{ $lang == 'ar' ? 'rtl' : 'ltr' }}"
+                        class="wysiwyg-content px-4 text-gray-700 dark:text-gray-50 md:px-0 {{ $lang == 'ar' ? 'text-right' : 'text-left' }}"
+                    >
+                        {!! $lang == 'ar' ? ($lesson->description_ar ?? '') : ($lesson->description_en ?? '') !!}
+                    </div>
                 </div>
                 <div class="px-4 md:px-4 col-span-1 mt-8 lg:mt-0" dir="{{$lang == 'ar' ? ('rtl') : ('ltr')}}">
                     <div id="lesson-list-panel" class="max-h-[60vh] lg:max-h-none lg:fixed lg:top-[136px] xl:top-[100px] h-2/3 w-full lg:max-w-xs bg-white dark:bg-gray-400 shadow-lg rounded-xl overflow-y-auto dark:scrollbar-thumb-dark">

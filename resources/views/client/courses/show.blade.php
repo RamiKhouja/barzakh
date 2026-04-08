@@ -169,9 +169,12 @@
                 </div>
             </div>
             <div class="bg-primary-200 dark:bg-gray-400 rounded-lg p-8 text-base md:text-xs lg:text-base {{$lang == 'ar' ? ('flex-row-reverse') : ('')}}">
-                <p class="{{$lang == 'ar' ? ('text-right') : ('font-medium')}} text-gray-400 dark:text-gray-50">
-                    {{$lang == 'ar' ? ($course->description_ar) : ($course->description_en)}}
-                </p>
+                <div
+                    dir="{{ $lang == 'ar' ? 'rtl' : 'ltr' }}"
+                    class="wysiwyg-content text-gray-400 dark:text-gray-50 {{ $lang == 'ar' ? 'text-right' : 'font-medium text-left' }}"
+                >
+                    {!! $lang == 'ar' ? ($course->description_ar ?? '') : ($course->description_en ?? '') !!}
+                </div>
                 <div class="mt-6 md:flex justify-between {{$lang == 'ar' ? ('flex-row-reverse') : ('')}}">
                     <div class="flex items-center {{$lang == 'ar' ? ('flex-row-reverse') : ('')}} mb-4 md:mb-0">
                         <x-heroicon-o-clock class="w-4 h-4 text-primary-700 dark:text-gray-50 {{$lang == 'ar' ? ('ml-2') : ('mr-2')}}" />
