@@ -135,7 +135,14 @@
                     <div class="flex justify-between gap-x-4 mt-8">
                         <div class="w-full">
                             <label htmlFor="title" class="form-label mb-2">{{ __('admin.course_image') }}</label>
-                            <x-picture-input :image=null :circle="false" />
+                            <x-picture-input
+                                :image="null"
+                                :circle="false"
+                                accept="image/jpeg,image/jpg,image/png,.jpeg,.jpg,.png"
+                                :max-size-mb="2"
+                                :enable-crop="true"
+                                :aspect-ratio="16 / 9"
+                            />
                         </div>
                         
                     </div>

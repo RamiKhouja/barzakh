@@ -48,7 +48,7 @@ class CourseController extends Controller
             'title_ar' => 'required|string',
             'description_en' => 'nullable',
             'description_ar' => 'nullable',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'picture' => 'nullable|image|mimes:jpeg,jpg,png|max:2048|dimensions:ratio=16/9',
             'instructor_id' => 'required',
             'price' => 'required',
             'discount_price' => 'nullable',
@@ -61,6 +61,7 @@ class CourseController extends Controller
             'discount_start' => 'nullable',
             'discount_end' => 'nullable'
         ]);
+        $fileName = null;
         if($request->hasFile('picture')) {
             $fileName = time() . '_' . $request->file('picture')->getClientOriginalName();
             $request->file('picture')->storeAs('/courses', $fileName, 'pictures');
@@ -87,7 +88,7 @@ class CourseController extends Controller
         }
         $course->featured_vid = $request->input('featured_vid');
         $course->video_type = $request->input('video_type', 'vimeo');
-        $course->image = "/courses/{$fileName}";
+        $course->image = $fileName ? "/courses/{$fileName}" : null;
         $course->url = strtolower(str_replace(' ', '-', trim($request->input('title_en'))));
         $course->level= $request->input('level');
         $requirements_en = $request->input('requirements_en', []);
@@ -203,7 +204,7 @@ class CourseController extends Controller
             'title_ar' => 'required|string',
             'description_en' => 'nullable',
             'description_ar' => 'nullable',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'picture' => 'nullable|image|mimes:jpeg,jpg,png|max:2048|dimensions:ratio=16/9',
             'instructor_id' => 'required',
             'price' => 'required',
             'discount_price' => 'nullable',
@@ -216,8 +217,6 @@ class CourseController extends Controller
         $previousInstructorId = $course->instructor_id;
 
         if ($request->hasFile('picture')) {
-            // If a new image is uploaded, replace the existing one
-            $path = $request->file('picture')->storePublicly('pictures/courses');
             $fileName = time() . '_' . $request->file('picture')->getClientOriginalName();
             $request->file('picture')->storeAs('/courses', $fileName, 'pictures'); 
             $course->image="/courses/{$fileName}";
