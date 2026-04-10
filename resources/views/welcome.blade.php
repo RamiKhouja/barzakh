@@ -107,8 +107,30 @@
             <div class="flex justify-center w-full">
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-8" dir="{{$lang=='ar' ? ('rtl') : ('ltr')}}">
                 @foreach($fields as $field)
+                @php
+                    $fieldUrl = strtolower($field->url ?? '');
+                    $circleClass = 'cat-circle-default';
+
+                    if (str_contains($fieldUrl, 'mental')) {
+                        $circleClass = 'cat-circle-mind';
+                    } elseif (
+                        str_contains($fieldUrl, 'spiritual') ||
+                        str_contains($fieldUrl, 'religious') ||
+                        str_contains($fieldUrl, 'religion') ||
+                        str_contains($fieldUrl, 'islam')
+                    ) {
+                        $circleClass = 'cat-circle-islamic';
+                    } elseif (
+                        str_contains($fieldUrl, 'aresthetic') ||
+                        str_contains($fieldUrl, 'aesthetic') ||
+                        str_contains($fieldUrl, 'artistic') ||
+                        str_contains($fieldUrl, 'art')
+                    ) {
+                        $circleClass = 'cat-circle-art';
+                    }
+                @endphp
                 <a href="{{ route('fields.showUrl', ['url' => $field->url]) }}" style="-webkit-tap-highlight-color: transparent;">
-                    <div class="h-72 w-72 md:h-52 md:w-52 lg:h-72 lg:w-72 my-6 md:my-0 cat-circle hover:shadow-lg rounded-full">  
+                    <div class="h-72 w-72 md:h-52 md:w-52 lg:h-72 lg:w-72 my-6 md:my-0 cat-circle {{ $circleClass }} hover:shadow-lg rounded-full">  
                         <div class="h-2/5 flex items-center justify-center text-center">
                             <div class="w-48">
                                 <p class="{{$lang=='ar' ? ('text-3xl lg:text-4xl') : ('text-2xl lg:text-3xl')}} font-medium  text-bordo" style="font-family:{{$lang=='ar' ? ('MehrNastaliq') : ('Great Vibes')}}">
@@ -319,12 +341,24 @@
             border-radius: 100% 0px;
             transform: rotate(45deg); 
             width: 188px;
-            height: 188px
+            height: 188px;
         }
         .cat-circle {
-            background-image: url('{{ asset( "pictures/global/cat-circle.png") }}');
             background-size: contain;
             background-position: center;
+            background-repeat: no-repeat;
+        }
+        .cat-circle-default {
+            background-image: url('{{ asset("pictures/global/cat-circle.png") }}');
+        }
+        .cat-circle-mind {
+            background-image: url('{{ asset("pictures/global/cat-circle-mind.png") }}');
+        }
+        .cat-circle-islamic {
+            background-image: url('{{ asset("pictures/global/cat-circle-islamic.png") }}');
+        }
+        .cat-circle-art {
+            background-image: url('{{ asset("pictures/global/cat-circle-art.png") }}');
         }
         /* .cat-title {
             font-family: 'IBM Plex Sans Arabic', sans-serif;
