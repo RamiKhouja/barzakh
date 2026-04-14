@@ -62,8 +62,8 @@
                 </div>
             </div>
             <div class="mx-auto">
-                <img src="{{ asset('pictures/global/logo.png') }}" class="h-10 lg:hidden dark:hidden" alt=""/>
-                <img src="{{ asset('pictures/global/logo-white.png') }}" class="hidden dark:block h-10 lg:hidden dark:lg:hidden" alt=""/>
+                <a href="/"><img src="{{ asset('pictures/global/logo.png') }}" class="h-10 lg:hidden dark:hidden" alt=""/></a>
+                <a href="/"><img src="{{ asset('pictures/global/logo-white.png') }}" class="hidden dark:block h-10 lg:hidden dark:lg:hidden" alt=""/></a>
             </div>
             <div class="nav-center lg:w-1/2 hidden lg:block">
                 @if (Request::path() == '/')
@@ -75,7 +75,7 @@
                 <div class="flex justify-center items-center my-3">
                 @auth
                     @if(Auth::user()->role == 'admin') 
-                    <div class="flex-wrap my-4 space-x-2 text-primary-700 dark:text-gray-50 font-medium text-lg">
+                    <div class="flex-wrap my-4 space-x-1 text-primary-700 dark:text-gray-50 font-medium text-lg">
                         <a href="{{ route('admin.fields') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg {{ $isAdminFields ? $navActiveClass : '' }}">{{ __('nav.Axes') }}</a>
                         <a href="{{ route('admin.categories') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg {{ $isAdminCategories ? $navActiveClass : '' }}">{{ __('nav.Categories') }}</a>
                         <a href="{{ route('admin.packs') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-0.5 rounded-lg {{ $isAdminPacks ? $navActiveClass : '' }}">{{ __('nav.Packs') }}</a>
@@ -87,14 +87,14 @@
                         <a href="{{ route('admin.partners') }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg {{ $isAdminPartners ? $navActiveClass : '' }}">{{ __('Partners') }}</a>
                     </div>
                     @else
-                    <div class="flex-wrap my-4 space-x-2 text-primary-700 dark:text-gray-50 font-medium text-lg">
+                    <div class="flex-wrap my-4 space-x-1 text-primary-700 dark:text-gray-50 font-medium text-lg">
                         <a href="{{route('home')}}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg {{ $isHome ? $navActiveClass : '' }}">{{ __('nav.Home') }}</a>
                         <a href="{{route('about')}}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg {{ $isAbout ? $navActiveClass : '' }}">{{ __('nav.About-us') }}</a>
                         @if (Request::path() == '/')
                         <a href="{{ url(route('home') . '#courses') }}" onclick="smallNav()" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg {{ $isCourses ? $navActiveClass : '' }}">{{ __('nav.Courses') }}</a>
                         @else
                         <div class="dropdown">
-                            <button class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-t-lg flex space-x-2 items-center {{ $isCourses ? $navActiveClass : '' }}">{{ __('nav.Courses') }}</button>
+                            <button class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-t-lg flex space-x-1 items-center {{ $isCourses ? $navActiveClass : '' }}">{{ __('nav.Courses') }}</button>
                             <div class="dropdown-content bg-primary-50 dark:bg-gray-400 dark:text-gray-50 {{$lang=='ar' ? ('text-right right-0'):('')}}">
                                 <a href="{{ route('fields.showUrl', ['url' => 'spiritual-view']) }}" class="hover:bg-primary-200 dark:hover:bg-gray-400 {{ request()->routeIs('fields.showUrl') && request()->route('url') === 'spiritual-view' ? $navActiveClass : '' }}">
                                     {{__('nav.religious-vision')}}
@@ -115,7 +115,7 @@
                     </div>
                     @endif
                 @else
-                    <div class="flex-wrap space-x-2 text-primary-700 dark:text-gray-50 font-medium text-lg">
+                    <div class="flex-wrap space-x-1 text-primary-700 dark:text-gray-50 font-medium text-lg">
                         <a href="{{route('home')}}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg {{ $isHome ? $navActiveClass : '' }}">{{ __('nav.Home') }}</a>
                         <a href="{{route('about')}}" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg {{ $isAbout ? $navActiveClass : '' }}">{{ __('nav.About-us') }}</a>
                         
@@ -206,7 +206,7 @@
                                 </x-slot>
                             </x-dropdown>
                         </div>
-                        <div class="flex items-center" dir="{{$lang=='ar'?('rtl'):('')}}">
+                        <div class="flex items-center gap-x-1" dir="rtl">
                             <a href="{{ route('login', ['redirect_to' => url()->full()]) }}" class="hidden lg:inline-block text-lg font-medium text-primary-700 hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 dark:text-gray-50 dark:hover:text-white rounded-lg">{{__('nav.Login')}}</a>
 
                             @if (Route::has('register'))

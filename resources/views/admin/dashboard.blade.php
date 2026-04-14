@@ -79,6 +79,32 @@
                     </div>
                     <p class="mt-6 text-4xl font-semibold text-gray-900 dark:text-white">${{ number_format((float) $stats['revenue'], 2) }}</p>
                 </div>
+
+                <div class="rounded-3xl bg-white p-6 shadow-sm dark:bg-gray-400">
+                    <div class="flex items-start justify-between gap-4">
+                        <div>
+                            <p class="text-xl font-semibold text-gray-900 dark:text-white">{{ __('admin.stats_visitors_total') }}</p>
+                            <p class="mt-2 text-sm text-gray-600 dark:text-gray-100">{{ __('admin.stats_visitors_total_desc') }}</p>
+                        </div>
+                        <div class="rounded-2xl bg-primary-100 p-3 dark:bg-stone">
+                            <x-heroicon-s-eye class="h-6 w-6 text-primary-700 dark:text-white" />
+                        </div>
+                    </div>
+                    <p class="mt-6 text-4xl font-semibold text-gray-900 dark:text-white">{{ number_format($stats['visitors_total']) }}</p>
+                </div>
+
+                <div class="rounded-3xl bg-white p-6 shadow-sm dark:bg-gray-400">
+                    <div class="flex items-start justify-between gap-4">
+                        <div>
+                            <p class="text-xl font-semibold text-gray-900 dark:text-white">{{ __('admin.stats_visitors_month') }}</p>
+                            <p class="mt-2 text-sm text-gray-600 dark:text-gray-100">{{ __('admin.stats_visitors_month_desc') }}</p>
+                        </div>
+                        <div class="rounded-2xl bg-primary-100 p-3 dark:bg-stone">
+                            <x-heroicon-s-calendar-days class="h-6 w-6 text-primary-700 dark:text-white" />
+                        </div>
+                    </div>
+                    <p class="mt-6 text-4xl font-semibold text-gray-900 dark:text-white">{{ number_format($stats['visitors_month']) }}</p>
+                </div>
             </div>
         </div>
     </div>

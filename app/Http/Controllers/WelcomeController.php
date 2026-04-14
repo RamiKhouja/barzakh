@@ -16,7 +16,10 @@ class WelcomeController extends Controller
         $fields = Field::all();
         $mostCourses = Course::orderByDesc('nb_subscriptions')->limit(10)->get();
         $chosenCourses = Course::where('is_chosen', true)->get();
-        $recentCourses = Course::orderBy('created_at', 'desc')->limit(10)->get();
+        $recentCourses = Course::withMax('lessons', 'created_at')
+            ->orderByRaw('GREATEST(courses.created_at, COALESCE(lessons_max_created_at, courses.created_at)) DESC')
+            ->limit(10)
+            ->get();
         $courses = [
             "1" =>  $chosenCourses,
             "2" =>  $mostCourses,
