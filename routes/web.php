@@ -72,6 +72,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/instructors', [InstructorController::class, 'index'])->name('admin.instructors');
     Route::get('/admin/instructor/edit/{instructor}', [InstructorController::class, 'edit'])->name('admin.instructor.edit');
     Route::put('/admin/instructor/{instructor}', [InstructorController::class, 'update'])->name('admin.instructor.update');
+    Route::post('/admin/instructors/reorder', [InstructorController::class, 'reorder'])->name('admin.instructor.reorder');
     Route::delete('/admin/instructor/{instructor}', [InstructorController::class, 'delete'])->name('admin.instructor.delete');
 
     // Admin categories routes

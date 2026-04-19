@@ -14,7 +14,7 @@ class InstructorController extends Controller
 {
     public function index() 
     {
-        $instructors = Instructor::orderBy('order')->paginate(15);
+        $instructors = Instructor::orderBy('order')->get();
         return view('admin.instructor.index', compact('instructors'));
     }
 
@@ -131,6 +131,26 @@ class InstructorController extends Controller
             DB::rollBack();
             return back()->with('error', 'Error while updating instructor: ' . $e->getMessage());
         }
+    }
+
+    public function reorder(Request $request)
+    {
+        $validated = $request->validate([
+            'instructors' => 'required|array|min:1',
+            'instructors.*' => 'required|integer|distinct|exists:instructors,id',
+        ]);
+
+        DB::transaction(function () use ($validated) {
+            foreach ($validated['instructors'] as $index => $instructorId) {
+                Instructor::where('id', $instructorId)->update([
+                    'order' => $index + 1,
+                ]);
+            }
+        });
+
+        return response()->json([
+            'message' => __('admin.instructors_reordered'),
+        ]);
     }
 
     public function showByUrl($url)
