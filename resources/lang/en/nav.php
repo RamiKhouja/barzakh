@@ -1,6 +1,7 @@
 <?php
 return [
     'Dashboard' => 'Dashboard',
+    'Reports' => 'Reports',
     'Axes' => 'Axes',
     'Categories' => 'Categories',
     'Courses' => 'Courses',

@@ -1,6 +1,7 @@
 <?php
 return [
     'Dashboard' => 'لوحة التحكم',
+    'Reports' => 'التقارير',
     'Axes' => 'المحاور',
     'Categories' => 'الفئات',
     'Courses' => 'المحتوى',

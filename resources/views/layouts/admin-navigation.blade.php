@@ -2,6 +2,7 @@
     $lang = app()->getLocale();
     $navItems = [
         ['route' => 'admin.dashboard', 'label' => __('nav.Dashboard'), 'icon' => 'heroicon-s-home', 'patterns' => ['admin.dashboard']],
+        ['route' => 'admin.reports', 'label' => __('nav.Reports'), 'icon' => 'heroicon-s-chart-bar', 'patterns' => ['admin.reports']],
         ['route' => 'admin.fields', 'label' => __('nav.Axes'), 'icon' => 'heroicon-s-squares-2x2', 'patterns' => ['admin.fields', 'field.*']],
         ['route' => 'admin.categories', 'label' => __('nav.Categories'), 'icon' => 'heroicon-s-queue-list', 'patterns' => ['admin.categories', 'admin.category.*']],
         ['route' => 'admin.courses', 'label' => __('nav.Courses'), 'icon' => 'heroicon-s-academic-cap', 'patterns' => ['admin.courses', 'admin.courses.search', 'admin.course.*']],

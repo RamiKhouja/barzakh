@@ -52,6 +52,7 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::redirect('/admin', '/admin/dashboard');
     Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+    Route::get('/admin/reports', [AdminDashboardController::class, 'reports'])->name('admin.reports');
     Route::get('/admin/profile', [ProfileController::class, 'edit'])->name('admin.profile.edit');
     Route::get('/admin/about', [AboutController::class, 'edit'])->name('admin.about.edit');
     Route::put('/admin/about/{about}', [AboutController::class, 'update'])->name('admin.about.update');
