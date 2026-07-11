@@ -168,7 +168,7 @@
                         </svg>
                     </button>
 
-                    <div x-show="mobileAccountOpen" x-transition class="mt-2 space-y-2">
+                    <div x-cloak x-show="mobileAccountOpen" x-transition class="mt-2 space-y-2">
                         <a href="{{ route('admin.profile.edit') }}" class="block rounded-xl px-4 py-3 text-sm font-medium text-primary-700 transition hover:bg-primary-200/80 dark:text-white dark:hover:bg-stone">
                             {{ __('nav.Profile') }}
                         </a>

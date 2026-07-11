@@ -72,7 +72,7 @@
                         <div class="flex gap-x-1 items-center">
                             <x-heroicon-s-speaker-wave class="h-4 w-4 dark:text-white"/>
                             <p class="text-gray-400 dark:text-gray-50 text-sm font-semibold">
-                                {{$course->language}}
+                                {{ $course->language ? __('course.' . $course->language) : __('course.no-translation') }}
                             </p>
                         </div>
                         <div class="flex gap-x-1 items-center">

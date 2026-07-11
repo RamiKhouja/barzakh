@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage; 
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Validation\Rule;
 
 class CourseController extends Controller
 {
@@ -43,23 +44,31 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
+        $languages = ['English', 'Arabic', 'French', 'Turkish', 'Urdu', 'Russian', 'Chinese'];
+
         $request->validate([
             'title_en' => 'required|string',
             'title_ar' => 'required|string',
             'description_en' => 'nullable',
             'description_ar' => 'nullable',
-            'picture' => 'nullable|image|mimes:jpeg,jpg,png|max:2048|dimensions:ratio=16/9',
-            'instructor_id' => 'required',
-            'price' => 'required',
-            'discount_price' => 'nullable',
+            'picture' => 'nullable|image|mimes:jpeg,jpg,png|max:2048',
+            'instructor_id' => 'required|exists:instructors,id',
+            'price' => 'required|numeric|min:0',
+            'discount_price' => 'nullable|numeric|min:0|lt:price|required_if:is_discount,1',
             'featured_vid' => 'nullable',
-            'categories' => 'required',
+            'categories' => 'required|array|min:1',
+            'categories.*' => 'exists:categories,id',
+            'language' => ['required', Rule::in($languages)],
+            'translations' => 'nullable|array',
+            'translations.*' => ['nullable', Rule::in($languages)],
+            'level' => ['required', Rule::in(['beginner', 'intermediate', 'advanced', 'expert'])],
+            'video_type' => ['required', Rule::in(['vimeo', 'youtube'])],
             'is_free' => 'nullable',
             'is_chosen' => 'nullable',
             'is_soon' => 'nullable',
             'is_discount' => 'nullable',
-            'discount_start' => 'nullable',
-            'discount_end' => 'nullable'
+            'discount_start' => 'nullable|required_if:is_discount,1|date',
+            'discount_end' => 'nullable|required_if:is_discount,1|date|after_or_equal:discount_start'
         ]);
         $fileName = null;
         if($request->hasFile('picture')) {
@@ -74,13 +83,14 @@ class CourseController extends Controller
         $course->description_ar = $request->input('description_ar');
         $course->instructor_id = $request->input('instructor_id');
         $course->price = $request->input('price');
+        $course->language = $request->input('language');
         $course->is_free = $request->has('is_free');
         $course->is_chosen = $request->has('is_chosen');
         $course->is_soon = $request->has('is_soon');
         $course->is_discount = $request->has('is_discount');
         if($request->has('is_discount')) {
             $course->discount_price = $request->input('discount_price');
-            if($course->discount_price != null && $course->discount_price > 0) {
+            if($course->discount_price != null && $course->discount_price > 0 && $course->price > 0) {
                 $course->discount = round((($course->price - $course->discount_price) / $course->price) * 100, 1);
                 $course->discount_start = \Carbon\Carbon::createFromFormat('Y-m-d', $request->input('discount_start'));
                 $course->discount_end = \Carbon\Carbon::createFromFormat('Y-m-d', $request->input('discount_end'));
@@ -96,7 +106,7 @@ class CourseController extends Controller
         $requirements_ar = $request->input('requirements_ar', []);
         $course->requirements_ar = json_encode($requirements_ar);
 
-        $translations = $request->input('translations', []);
+        $translations = array_values(array_filter($request->input('translations', [])));
         $course->translations = json_encode($translations);
 
         $course->save();
@@ -199,17 +209,25 @@ class CourseController extends Controller
      */
     public function update(Request $request, Course $course)
     {
+        $languages = ['English', 'Arabic', 'French', 'Turkish', 'Urdu', 'Russian', 'Chinese'];
+
         $request->validate([
             'title_en' => 'required|string',
             'title_ar' => 'required|string',
             'description_en' => 'nullable',
             'description_ar' => 'nullable',
-            'picture' => 'nullable|image|mimes:jpeg,jpg,png|max:2048|dimensions:ratio=16/9',
-            'instructor_id' => 'required',
-            'price' => 'required',
-            'discount_price' => 'nullable',
+            'picture' => 'nullable|image|mimes:jpeg,jpg,png|max:2048',
+            'instructor_id' => 'required|exists:instructors,id',
+            'price' => 'required|numeric|min:0',
+            'discount_price' => 'nullable|numeric|min:0|lt:price',
             'featured_vid' => 'nullable',
-            'categories' => 'required',
+            'categories' => 'required|array|min:1',
+            'categories.*' => 'exists:categories,id',
+            'language' => ['required', Rule::in($languages)],
+            'translations' => 'nullable|array',
+            'translations.*' => ['nullable', Rule::in($languages)],
+            'level' => ['required', Rule::in(['beginner', 'intermediate', 'advanced', 'expert'])],
+            'video_type' => ['required', Rule::in(['vimeo', 'youtube'])],
             'is_free' => 'nullable',
             'is_chosen' => 'nullable',
             'is_soon' => 'nullable'
@@ -253,7 +271,7 @@ class CourseController extends Controller
         $requirements_ar = $request->input('requirements_ar', []);
         $course->requirements_ar = json_encode($requirements_ar);
 
-        $translations = $request->input('translations', []);
+        $translations = array_values(array_filter($request->input('translations', [])));
         $course->translations = json_encode($translations);
 
         if ($previousInstructorId !== $course->instructor_id) {

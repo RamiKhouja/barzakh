@@ -6,9 +6,18 @@
                 <div class="flex justify-center">
                     <p class="text-2xl text-primary-700 font-semibold mb-12">{{ __('admin.update_course') }}</p>
                 </div>
-                <form method="POST" action="{{ route('admin.course.update', $course->id) }}" enctype="multipart/form-data">
+                <form id="myForm" method="POST" action="{{ route('admin.course.update', $course->id) }}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
+                    @if ($errors->any())
+                        <div class="mb-8 rounded-md bg-red-50 p-4 text-red-700" role="alert">
+                            <ul class="list-disc space-y-1 pl-5">
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <div class="flex justify-between gap-x-4">
                         <div class="w-full">
                             <label htmlFor="title" class="form-label">{{ __('admin.title') }}</label>
@@ -200,14 +209,11 @@
                     <div class="grid grid-cols-4 items-end gap-x-6 mt-12">
                         <div class="w-full">
                             <label htmlFor="title" class="form-label">{{ __('admin.course_language') }}</label>
-                            <input
-                                type="text"
-                                name="language"
-                                value="{{ $course->language }}"
-                                id="language"
-                                class="form-input mt-2"
-                                placeholder="e.g. English, عربي, 汉, Español, हिन्दी"
-                            />
+                            <select name="language" id="language" class="form-input mt-2 {{ $isRtl ? 'text-right pl-10 pr-3' : 'pr-10' }}" style="{{ $isRtl ? 'direction: rtl; background-position: left 0.75rem center;' : '' }}">
+                                @foreach (['English', 'Arabic', 'French', 'Turkish', 'Urdu', 'Russian', 'Chinese'] as $language)
+                                    <option value="{{ $language }}" @selected(old('language', $course->language) === $language)>{{ __('course.' . $language) }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <label class="relative inline-flex items-center cursor-pointer" dir="{{ $isRtl ? 'rtl' : 'ltr' }}">
                             <input type="checkbox" name="is_free" value="1" class="sr-only peer" {{ $course->is_free ? 'checked' : '' }}>
@@ -231,17 +237,17 @@
                             <button type="button" id="add-trans"><x-zondicon-add-solid class="w-6 h-6 text-primary-700 dark:text-white" /></button>
                         </div>
                         <div class="flex flex-wrap items-center gap-x-4" id="trans-container">
-                            @if($course->translations != null)
-                                @foreach(json_decode($course->translations) as $trans)
-                                <div class="w-28 mt-2">
-                                    <input type="text" name="translations[]" class="form-input" placeholder="Language" value="{{$trans}}">
+                            @php($selectedTranslations = old('translations', json_decode($course->translations ?? '[]', true) ?: ['']))
+                            @foreach($selectedTranslations as $trans)
+                                <div class="w-40 mt-2 translation-field">
+                                    <select name="translations[]" class="form-input">
+                                        <option value="">{{ __('course.no-translation') }}</option>
+                                        @foreach (['English', 'Arabic', 'French', 'Turkish', 'Urdu', 'Russian', 'Chinese'] as $language)
+                                            <option value="{{ $language }}" @selected($trans === $language)>{{ __('course.' . $language) }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
-                                @endforeach
-                            @else
-                                <div class="w-28 mt-2">
-                                    <input type="text" name="translations[]" class="form-input" placeholder="Language">
-                                </div>
-                            @endif
+                            @endforeach
                         </div>
                     </div>
                     <div class="flex justify-between gap-x-4 mt-8">
@@ -298,9 +304,13 @@
         </div>
     </div>
     @include('admin.partials.summernote-description-editor')
+    @push('scripts')
     <script>
         $(document).ready(function() {
-            $('.select2').select2();
+            $('.select2').select2({
+                width: '100%',
+                closeOnSelect: false
+            });
         });
         
         function clearForm() {
@@ -334,14 +344,11 @@
         const trans_container = document.getElementById("trans-container");
 
         addTrans.addEventListener("click", function () {
-            const trans_input = document.createElement("div");
-            trans_input.innerHTML = `
-            <div class="w-28 mt-2">
-                <input type="text" name="translations[]" class="form-input" placeholder="translations">
-            </div>
-            `;
-            trans_container.appendChild(trans_input);
+            const transInput = trans_container.querySelector('.translation-field').cloneNode(true);
+            transInput.querySelector('select').value = '';
+            trans_container.appendChild(transInput);
         });
     });
     </script>
+    @endpush
 </x-admin-layout>

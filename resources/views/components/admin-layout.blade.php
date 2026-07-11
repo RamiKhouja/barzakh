@@ -28,6 +28,10 @@
                 visibility: hidden;
             }
 
+            [x-cloak] {
+                display: none !important;
+            }
+
             [x-cloak="admin-mobile-drawer"] {
                 display: none !important;
             }
@@ -128,7 +132,7 @@
                                 </svg>
                             </button>
 
-                            <div x-show="userMenuOpen" x-transition @click.outside="userMenuOpen = false" class="absolute right-0 z-40 mt-3 w-56 rounded-2xl border border-primary-200 bg-white p-2 shadow-xl dark:border-gray-400 dark:bg-gray-400">
+                            <div x-cloak x-show="userMenuOpen" x-transition @click.outside="userMenuOpen = false" class="absolute right-0 z-40 mt-3 w-56 rounded-2xl border border-primary-200 bg-white p-2 shadow-xl dark:border-gray-400 dark:bg-gray-400">
                                 <a href="{{ route('admin.profile.edit') }}" class="mb-1 block rounded-xl px-4 py-3 text-sm font-medium text-primary-700 transition hover:bg-primary-100 dark:text-white dark:hover:bg-stone">
                                     {{ __('nav.Profile') }}
                                 </a>

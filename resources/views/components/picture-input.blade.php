@@ -179,7 +179,18 @@
                         return;
                     }
 
-                    const canvas = this.cropper.getCroppedCanvas();
+                    // Export fixed integer dimensions. Cropper's natural canvas can
+                    // round each side independently (for example 1279x719), which
+                    // looks like 16:9 but fails Laravel's strict ratio validation.
+                    const outputWidth = 1280;
+                    const outputHeight = Math.round(outputWidth / this.aspectRatio);
+                    const canvas = this.cropper.getCroppedCanvas({
+                        width: outputWidth,
+                        height: outputHeight,
+                        imageSmoothingEnabled: true,
+                        imageSmoothingQuality: 'high',
+                        fillColor: '#fff',
+                    });
                     if (!canvas) {
                         return;
                     }

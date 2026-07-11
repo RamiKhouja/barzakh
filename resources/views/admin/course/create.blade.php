@@ -6,8 +6,17 @@
                 <div class="flex justify-center">
                     <p class="text-2xl text-primary-700 font-semibold mb-12">{{ __('admin.create_new_course') }}</p>
                 </div>
-                <form method="POST" action="{{ route('admin.course.store') }}" enctype="multipart/form-data">
+                <form id="myForm" method="POST" action="{{ route('admin.course.store') }}" enctype="multipart/form-data">
                     @csrf
+                    @if ($errors->any())
+                        <div class="mb-8 rounded-md bg-red-50 p-4 text-red-700" role="alert">
+                            <ul class="list-disc space-y-1 pl-5">
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <div class="flex justify-between gap-x-4">
                         <div class="w-full">
                             <label htmlFor="title" class="form-label">{{ __('admin.title') }}</label>
@@ -15,6 +24,7 @@
                                 <input
                                 type="text"
                                 name="title_en"
+                                value="{{ old('title_en') }}"
                                 id="title_en"
                                 class="form-input"
                                 placeholder="{{ __('admin.course_title_placeholder') }}"
@@ -27,6 +37,7 @@
                                 <input
                                 type="text"
                                 name="title_ar"
+                                value="{{ old('title_ar') }}"
                                 id="title_ar"
                                 class="form-input placeholder:text-right text-right"
                                 style="direction: rtl;"
@@ -40,7 +51,7 @@
                             <label htmlFor="title" class="form-label">{{ __('admin.instructor') }}</label>
                             <select id="instructor_id" name="instructor_id" class="mt-2 form-input {{ $isRtl ? 'text-right pl-10 pr-3' : 'pr-10' }}" style="{{ $isRtl ? 'direction: rtl; background-position: left 0.75rem center;' : '' }}">
                                 @foreach($instructors as $instructor)
-                                <option value="{{ $instructor->id }}" class="mt-2">{{ $instructor->firstname }} {{ $instructor->lastname }}</option>
+                                <option value="{{ $instructor->id }}" class="mt-2" @selected(old('instructor_id') == $instructor->id)>{{ $instructor->firstname }} {{ $instructor->lastname }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -50,7 +61,7 @@
                             <label htmlFor="title" class="form-label">{{ __('admin.categories') }}</label>
                             <select class="select2 mt-2 form-input w-full" name="categories[]" multiple="multiple">
                                 @foreach($categories as $category)
-                                    <option value="{{ $category->id }}" class="mt-2">{{ $category->title_en }} ( {{ $category->title_ar }} )</option>
+                                    <option value="{{ $category->id }}" class="mt-2" @selected(in_array($category->id, old('categories', [])))>{{ $category->title_en }} ( {{ $category->title_ar }} )</option>
                                 @endforeach
                             </select>
                         </div>
@@ -66,6 +77,7 @@
                                     type="number"
                                     min=0
                                     name="price"
+                                    value="{{ old('price') }}"
                                     id="price"
                                     class="form-input pl-7 pr-12"
                                     placeholder="0.00"
@@ -206,13 +218,11 @@
                     <div class="flex items-end gap-x-6 mt-12">
                         <div class="w-full">
                             <label htmlFor="title" class="form-label">{{ __('admin.course_language') }}</label>
-                            <input
-                                type="text"
-                                name="language"
-                                id="language"
-                                class="form-input"
-                                placeholder="e.g. English, عربي, 汉, Español, हिन्दी"
-                            />
+                            <select name="language" id="language" class="form-input mt-2 {{ $isRtl ? 'text-right pl-10 pr-3' : 'pr-10' }}" style="{{ $isRtl ? 'direction: rtl; background-position: left 0.75rem center;' : '' }}">
+                                @foreach (['English', 'Arabic', 'French', 'Turkish', 'Urdu', 'Russian', 'Chinese'] as $language)
+                                    <option value="{{ $language }}" @selected(old('language') === $language)>{{ __('course.' . $language) }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <div class="flex items-center gap-x-6 mt-8">
@@ -238,8 +248,13 @@
                             <button type="button" id="add-trans"><x-zondicon-add-solid class="w-6 h-6 text-primary-700 dark:text-white" /></button>
                         </div>
                         <div class="flex flex-wrap items-center gap-x-4" id="trans-container">
-                            <div class="w-28 mt-2">
-                                <input type="text" name="translations[]" class="form-input" placeholder="translations">
+                            <div class="w-40 mt-2 translation-field">
+                                <select name="translations[]" class="form-input">
+                                    <option value="">{{ __('course.no-translation') }}</option>
+                                    @foreach (['English', 'Arabic', 'French', 'Turkish', 'Urdu', 'Russian', 'Chinese'] as $language)
+                                        <option value="{{ $language }}" @selected(old('translations.0') === $language)>{{ __('course.' . $language) }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -276,9 +291,13 @@
         </div>
     </div>
     @include('admin.partials.summernote-description-editor')
+    @push('scripts')
     <script>
         $(document).ready(function() {
-            $('.select2').select2();
+            $('.select2').select2({
+                width: '100%',
+                closeOnSelect: false
+            });
         });
 
         function clearForm() {
@@ -325,14 +344,11 @@
         const trans_container = document.getElementById("trans-container");
 
         addTrans.addEventListener("click", function () {
-            const trans_input = document.createElement("div");
-            trans_input.innerHTML = `
-            <div class="w-28 mt-2">
-                <input type="text" name="translations[]" class="form-input" placeholder="translations">
-            </div>
-            `;
-            trans_container.appendChild(trans_input);
+            const transInput = trans_container.querySelector('.translation-field').cloneNode(true);
+            transInput.querySelector('select').value = '';
+            trans_container.appendChild(transInput);
         });
     });
     </script>
+    @endpush
 </x-admin-layout>
