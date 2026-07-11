@@ -15,9 +15,9 @@
                     <p class="text-xl text-bordo dark:text-primary-100 mt-4">
                         ${{ number_format((float) $service->price, 2) }}
                     </p>
-                    <p class="mt-6 text-base lg:text-lg text-gray-700 dark:text-primary-100 whitespace-pre-line" dir="{{ $lang == 'ar' ? 'rtl' : 'ltr' }}">
-                        {{ $lang == 'ar' ? $service->description_ar : $service->description_en }}
-                    </p>
+                    <div class="wysiwyg-content mt-6 text-base lg:text-lg text-gray-700 dark:text-primary-100" dir="{{ $lang == 'ar' ? 'rtl' : 'ltr' }}">
+                        {!! $lang == 'ar' ? ($service->description_ar ?? '') : ($service->description_en ?? '') !!}
+                    </div>
 
                     <div class="mt-8">
                         <a href="{{ route('services') }}" class="secondary-btn">{{ __('nav.Services') }}</a>

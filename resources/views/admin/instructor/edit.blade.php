@@ -1,6 +1,6 @@
 <x-admin-layout>
     <div class="bg-primary-100 dark:bg-gray-700 py-12">
-        <div class="max-w-xs sm:max-w-sm md:max-w-xl lg:w-7xl mx-auto flex justify-center">
+        <div class="w-full max-w-7xl px-4 sm:px-6 lg:px-8 mx-auto flex justify-center">
             <div class="w-full">
                 <div class="flex justify-center">
                     <p class="text-2xl text-primary-700 font-semibold mb-12">
@@ -138,7 +138,7 @@
                                 id="short_desc_en"
                                 placeholder="Short Bio about the instructor"
                                 class="form-input"
-                            >{{$instructor->getTranslation('short_desc', 'en') }}</textarea>
+                            >{{ old('short_desc_en', $instructor->getTranslation('short_desc', 'en')) }}</textarea>
                             </div>
                         </div>
                         <div class="w-full text-right">
@@ -153,14 +153,12 @@
                                     placeholder="نبذة وجيزة عن المدرّس"
                                     class="form-input placeholder:text-right text-right"
                                     style="direction: rtl;"
-                                >
-                                {{$instructor->getTranslation('short_desc', 'ar') }}
-                                </textarea>
+                                >{{ old('short_desc_ar', $instructor->getTranslation('short_desc', 'ar')) }}</textarea>
                             </div>
                         </div>
                     </div>
-                    <div class="flex justify-between gap-x-4 my-8">
-                        <div class="w-full">
+                    
+                        <div class="w-full my-8">
                             <label htmlFor="title" class="form-label">
                                 Description
                             </label>
@@ -171,12 +169,10 @@
                                 id="description_en"
                                 placeholder="Instructor description"
                                 class="form-input"
-                            >
-                            {{$instructor->getTranslation('description', 'en') }}
-                            </textarea>
+                            >{{ old('description_en', $instructor->getTranslation('description', 'en')) }}</textarea>
                             </div>
                         </div>
-                        <div class="w-full text-right">
+                        <div class="w-full mb-8 text-right">
                             <label htmlFor="title" class="form-label">
                                 وصف المدرّس (عربي)
                             </label>
@@ -188,12 +184,9 @@
                                     placeholder="وصف المدرّس"
                                     class="form-input placeholder:text-right text-right"
                                     style="direction: rtl;"
-                                >
-                                {{$instructor->getTranslation('description', 'ar') }}
-                                </textarea>
+                                >{{ old('description_ar', $instructor->getTranslation('description', 'ar')) }}</textarea>
                             </div>
                         </div>
-                    </div>
                     <div class="w-20">
                         <label htmlFor="title" class="form-label">
                             Order
@@ -217,6 +210,7 @@
             </div>
         </div>
     </div>
+    @include('admin.partials.summernote-description-editor')
     <script>
         function clearForm() {
             document.getElementById('myForm').reset();

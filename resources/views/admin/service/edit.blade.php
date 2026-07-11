@@ -1,13 +1,13 @@
 <x-admin-layout>
     <div class="bg-primary-100 dark:bg-gray-700 py-12">
-        <div class="max-w-xs sm:max-w-sm md:max-w-xl lg:w-7xl mx-auto flex justify-center">
+        <div class="w-full max-w-7xl px-4 sm:px-6 lg:px-8 mx-auto flex justify-center">
             <div class="w-full pb-52">
                 <div class="flex justify-center">
                     <p class="text-2xl text-primary-700 font-semibold mb-12">
                         Update Service
                     </p>
                 </div>
-                <form method="POST" action="{{ route('admin.service.update', $service->id) }}" enctype="multipart/form-data">
+                <form id="myForm" method="POST" action="{{ route('admin.service.update', $service->id) }}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="flex justify-between gap-x-4">
@@ -106,7 +106,7 @@
                                 id="description_en"
                                 placeholder="Service description"
                                 class="form-input"
-                            >{{ $service->description_en }}</textarea>
+                            >{{ old('description_en', $service->description_en) }}</textarea>
                             </div>
                         </div>
                         <div class="w-full text-right">
@@ -121,7 +121,7 @@
                                     placeholder="كلمات عن الخدمة"
                                     class="form-input placeholder:text-right text-right"
                                     style="direction: rtl;"
-                                >{{ $service->description_ar }}</textarea>
+                                >{{ old('description_ar', $service->description_ar) }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -133,4 +133,5 @@
             </div>
         </div>
     </div>
+    @include('admin.partials.summernote-description-editor')
 </x-admin-layout>

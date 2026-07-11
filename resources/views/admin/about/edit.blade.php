@@ -1,6 +1,6 @@
 <x-admin-layout>
     <div class="bg-primary-100 py-12 dark:bg-gray-700">
-        <div class="mx-auto flex max-w-xs justify-center sm:max-w-sm md:max-w-3xl lg:max-w-7xl">
+        <div class="w-full max-w-7xl px-4 sm:px-6 lg:px-8 mx-auto flex justify-center">
             <div class="w-full pb-24">
                 <div class="mb-12 flex items-center justify-between gap-4">
                     <div>

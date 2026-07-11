@@ -1,13 +1,13 @@
 <x-admin-layout>
     <div class="bg-primary-100 dark:bg-gray-700 py-12">
-        <div class="max-w-xs sm:max-w-sm md:max-w-xl lg:w-7xl mx-auto flex justify-center">
+        <div class="w-full max-w-7xl px-4 sm:px-6 lg:px-8 mx-auto flex justify-center">
             <div class="w-full">
                 <div class="flex justify-center">
                     <p class="text-2xl text-primary-700 font-semibold mb-12">
                         Create New Pack
                     </p>
                 </div>
-                <form method="POST" action="{{ route('admin.pack.store') }}" enctype="multipart/form-data">
+                <form id="myForm" method="POST" action="{{ route('admin.pack.store') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="flex justify-between gap-x-4">
                         <div class="w-full">
@@ -40,19 +40,19 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flex justify-between gap-x-4 mt-8">
-                        <div class="w-full">
+                    <div class="mt-8">
+                        <div class="pack-courses-select w-full min-w-0">
                             <label htmlFor="title" class="form-label">
                                 Courses
                             </label>
-                            <select class="select2 mt-2 form-input w-full" name="courses[]" multiple="multiple">
+                            <select class="pack-course-select select2 mt-2 form-input w-full" name="courses[]" multiple="multiple">
                                 @foreach($courses as $course)
                                     <option value="{{ $course->id }}" class="mt-2">{{ $course->title_en }} {{ $course->title_ar }} ( {{ $course->price }} )</option>
                                 @endforeach
                             </select>
                         </div>
                     </div>
-                    <div class="flex justify-between gap-x-4">
+                    <div class="mt-8">
                         <div class="w-full">
                             <label htmlFor="title" class="form-label">
                                 Pack Domain
@@ -139,7 +139,7 @@
                                 id="description_en"
                                 placeholder="Course description"
                                 class="form-input"
-                            ></textarea>
+                            >{{ old('description_en') }}</textarea>
                             </div>
                         </div>
                         <div class="w-full text-right">
@@ -154,7 +154,7 @@
                                     placeholder="كلمات عن المادة"
                                     class="form-input placeholder:text-right text-right"
                                     style="direction: rtl;"
-                                ></textarea>
+                                >{{ old('description_ar') }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -166,10 +166,37 @@
             </div>
         </div>
     </div>
+    @include('admin.partials.summernote-description-editor')
+    <style>
+        .pack-courses-select,
+        .pack-courses-select .select2-container {
+            max-width: 100%;
+        }
+
+        .pack-courses-select .select2-selection {
+            overflow-x: hidden;
+        }
+
+        .pack-courses-select .select2-selection__choice {
+            max-width: 100%;
+        }
+
+        .pack-courses-select .select2-selection__choice__display {
+            display: inline-block;
+            max-width: min(72vw, 56rem);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            vertical-align: bottom;
+            white-space: nowrap;
+        }
+    </style>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('.select2').select2();
+            $('.pack-course-select').select2({
+                width: '100%',
+                closeOnSelect: false
+            });
         });
 
         function clearForm() {

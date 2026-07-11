@@ -13,9 +13,9 @@
                         <p class="text-lg md:text-xl lg:text-2xl mb-4 text-gray-700 dark:text-white font-black {{$lang=='ar' ? (''):('italic')}}">
                             {{$pack->name}}
                         </p>
-                        <p class="text-sm md:text-base text-gray-500 dark:text-primary-50 {{$lang=='ar' ? ('text-right'):('')}}" dir="{{$lang=='ar' ? ('rtl'):('ltr')}}">
-                            {{$pack->description}}
-                        </p>
+                        <div class="wysiwyg-content text-sm md:text-base text-gray-500 dark:text-primary-50 {{$lang=='ar' ? ('text-right'):('')}}" dir="{{$lang=='ar' ? ('rtl'):('ltr')}}">
+                            {!! $pack->description ?? '' !!}
+                        </div>
                         <p class="my-4 flex items-baseline gap-x-2 " dir="{{$lang=='ar' ? ('rtl'):('ltr')}}">
                             <span class="text-4xl font-bold tracking-tight text-bordo dark:text-red-500">${{$pack->price}}</span>
                             <span class="text-base leading-6 text-gray-400 dark:text-primary-150">{{__('pack.instead-of')}}</span>

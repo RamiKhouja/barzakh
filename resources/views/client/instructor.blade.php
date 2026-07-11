@@ -54,7 +54,9 @@
             </div>
             <div class="my-16" dir="{{$lang == 'ar' ? ('rtl') : ('ltr')}}">
                 <p class="text-2xl {{$lang == 'ar' ? ('font-medium') : ('font-semibold')}} text-gray-700 dark:text-white">{{__('instructor.about-instructor')}}</p>
-                <p class="text-gray-700 dark:text-gray-50 mt-6">{{$instructor->description}}</p>
+                <div class="wysiwyg-content text-gray-700 dark:text-gray-50 mt-6">
+                    {!! $instructor->description ?? '' !!}
+                </div>
             </div>
             <div class="my-16" dir="{{$lang == 'ar' ? ('rtl') : ('ltr')}}">
                 <p class="text-2xl {{$lang == 'ar' ? ('font-medium') : ('font-semibold')}} text-gray-700 dark:text-white mb-6">{{__('instructor.the-courses')}}</p>

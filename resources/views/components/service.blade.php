@@ -6,9 +6,9 @@
             <p class="mt-2 text-xl md:text-base lg:text-2xl text-stoned-900 dark:text-primary-100 font-semibold mb-4 {{$lang == 'ar' ? ('text-right') : ('')}}" title="{{$lang == 'ar' ? ($service->title_ar) : ($service->title_en)}}">
                 {{ $lang == 'ar' ? $service->title_ar : $service->title_en }}
             </p>
-            <p class="text-base text-stone dark:text-primary-200 mt-4">
-                {{ $lang == 'ar' ? $service->description_ar : $service->description_en }}
-            </p>
+            <div class="wysiwyg-content text-base text-stone dark:text-primary-200 mt-4" dir="{{ $lang == 'ar' ? 'rtl' : 'ltr' }}">
+                {!! $lang == 'ar' ? ($service->description_ar ?? '') : ($service->description_en ?? '') !!}
+            </div>
             <div class="mt-4 flex flex-row-reverse gap-3">
                 <button
                     type="button"

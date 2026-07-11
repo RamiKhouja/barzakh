@@ -54,30 +54,30 @@
                 ]
             };
 
-            $('#description_en').summernote({
-                ...sharedConfig,
-                dialogsInBody: true,
-                callbacks: {
-                    onInit: function () {
-                        applyEditorDirection('description_en', 'ltr', 'left', 'PT Serif, serif');
-                    },
-                    onFocus: function () {
-                        applyEditorDirection('description_en', 'ltr', 'left', 'PT Serif, serif');
-                    }
-                }
-            });
+            const editors = [
+                { id: 'description_en', direction: 'ltr', textAlign: 'left', fontFamily: 'PT Serif, serif' },
+                { id: 'description_ar', direction: 'rtl', textAlign: 'right', fontFamily: 'Amiri, serif' }
+            ];
 
-            $('#description_ar').summernote({
-                ...sharedConfig,
-                dialogsInBody: true,
-                callbacks: {
-                    onInit: function () {
-                        applyEditorDirection('description_ar', 'rtl', 'right', 'Amiri, serif');
-                    },
-                    onFocus: function () {
-                        applyEditorDirection('description_ar', 'rtl', 'right', 'Amiri, serif');
-                    }
+            editors.forEach(function (editor) {
+                const textarea = $('#' + editor.id);
+
+                if (!textarea.length) {
+                    return;
                 }
+
+                textarea.summernote({
+                    ...sharedConfig,
+                    dialogsInBody: true,
+                    callbacks: {
+                        onInit: function () {
+                            applyEditorDirection(editor.id, editor.direction, editor.textAlign, editor.fontFamily);
+                        },
+                        onFocus: function () {
+                            applyEditorDirection(editor.id, editor.direction, editor.textAlign, editor.fontFamily);
+                        }
+                    }
+                });
             });
         });
     </script>
