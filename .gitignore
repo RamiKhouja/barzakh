@@ -3,6 +3,7 @@
 #/public/build
 /public/hot
 /public/storage
+/storage/app/pictures/
 /storage/*.key
 #/storage/app/maxmind
 /vendor

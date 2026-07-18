@@ -74,6 +74,14 @@ body {
 
 .wysiwyg-content {
     @apply max-w-none;
+    overflow-wrap: anywhere;
+    word-break: normal;
+}
+
+.wysiwyg-content[dir="rtl"] {
+    direction: rtl;
+    text-align: right;
+    unicode-bidi: isolate;
 }
 
 .wysiwyg-content p {
@@ -98,6 +106,17 @@ body {
 
 .wysiwyg-content a {
     @apply underline;
+}
+
+.wysiwyg-content img,
+.wysiwyg-content iframe {
+    max-width: 100%;
+}
+
+.wysiwyg-content table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
 }
 
 .wysiwyg-content h1,
