@@ -188,7 +188,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="flex justify-between gap-x-4 mt-12">
+                    <div class="mt-12 space-y-8">
                         <div class="w-full">
                             <label htmlFor="title" class="form-label">{{ __('admin.description_english') }}</label>
                             <div class="mt-2">
@@ -197,7 +197,7 @@
                                 name="description_en"
                                 id="description_en"
                                 placeholder="{{ __('admin.description_english') }}"
-                                class="form-input"
+                                class="form-input w-full"
                             >{{ old('description_en') }}</textarea>
                             </div>
                         </div>
@@ -209,7 +209,7 @@
                                     name="description_ar"
                                     id="description_ar"
                                     placeholder="{{ __('admin.description_arabic') }}"
-                                    class="form-input placeholder:text-right text-right"
+                                    class="form-input w-full placeholder:text-right text-right"
                                     style="direction: rtl;"
                                 >{{ old('description_ar') }}</textarea>
                             </div>
@@ -258,7 +258,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flex justify-between gap-x-4 mt-8">
+                    <div class="mt-8 space-y-6">
                         <div class="w-full">
                             <div class="flex gap-x-4 items-center">
                                 <label htmlFor="title" class="form-label">{{ __('admin.course_requirements') }}</label>
@@ -266,7 +266,7 @@
                             </div>
                             <div id="requirements-en-container" class="mt-2">
                                 <div class="mb-2">
-                                    <input type="text" name="requirements_en[]" class="form-input " placeholder="Requirement">
+                                    <textarea rows="3" name="requirements_en[]" class="form-input w-full" placeholder="Requirement"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -276,7 +276,7 @@
                             </label>
                             <div id="requirements-ar-container" class="mt-2">
                                 <div class="mb-2">
-                                    <input type="text" name="requirements_ar[]" class="form-input placeholder:text-right text-right" placeholder="متطلب">
+                                    <textarea rows="3" name="requirements_ar[]" class="form-input w-full placeholder:text-right text-right" style="direction: rtl;" placeholder="متطلب"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -326,7 +326,7 @@
             const input = document.createElement("div");
             input.innerHTML = `
                 <div class="mb-2">
-                    <input type="text" name="requirements_en[]" class="form-input" placeholder="Requirement">
+                    <textarea rows="3" name="requirements_en[]" class="form-input w-full" placeholder="Requirement"></textarea>
                 </div>
             `;
             container_en.appendChild(input);
@@ -334,7 +334,7 @@
             const input_ar = document.createElement("div");
             input_ar.innerHTML = `
                 <div class="mb-2">
-                    <input type="text" name="requirements_ar[]" class="form-input placeholder:text-right text-right" placeholder="متطلب">
+                    <textarea rows="3" name="requirements_ar[]" class="form-input w-full placeholder:text-right text-right" style="direction: rtl;" placeholder="متطلب"></textarea>
                 </div>
             `;
             container_ar.appendChild(input_ar);
