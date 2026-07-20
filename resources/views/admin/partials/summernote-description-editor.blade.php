@@ -16,25 +16,6 @@
             padding-right: 1.5rem;
         }
 
-        .note-editor .note-editable {
-            overflow-x: hidden;
-            overflow-y: auto;
-            overflow-wrap: anywhere;
-            word-break: normal;
-        }
-
-        .note-editor .note-editable[dir="rtl"] {
-            direction: rtl;
-            text-align: right;
-            unicode-bidi: plaintext;
-        }
-
-        .note-editor .note-editable[dir="rtl"] table,
-        .note-editor .note-editable[dir="rtl"] img,
-        .note-editor .note-editable[dir="rtl"] iframe {
-            max-width: 100%;
-        }
-
         .note-modal .note-btn-primary {
             background-color: #7c2d12;
             border-color: #7c2d12;
