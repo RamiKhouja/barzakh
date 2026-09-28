@@ -31,6 +31,11 @@ class Category extends Model
         return $this->belongsToMany(Course::class, 'category_courses', 'category_id', 'course_id');
     }
 
+    public function products()
+    {
+        return $this->belongsToMany(Product::class, 'category_products', 'category_id', 'product_id');
+    }
+
     public function imageLink() : Attribute
     {
         return Attribute::make(

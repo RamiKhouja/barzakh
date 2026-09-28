@@ -4,6 +4,7 @@ return [
     'Reports' => 'التقارير',
     'Axes' => 'المحاور',
     'Categories' => 'الفئات',
+    'Products' => 'المنتجات',
     'Courses' => 'المحتوى',
     'Instructors' => 'الخبراء',
     'Home' => 'الرئيسية',

@@ -13,7 +13,7 @@
         <meta property="og:image" content="{{ $meta_image ?? asset('pictures/global/og-main.jpeg') }}">
         
         <link rel="icon" type="image/x-icon" href="{{asset('favicon.ico')}}">
-        <title>{{ config('app.name', 'Barzakh') }}</title>
+        <title>Barzakh</title>
 
         <!-- Fonts -->
         <!-- <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;600&display=swap" rel="stylesheet"> -->

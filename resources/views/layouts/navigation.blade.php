@@ -37,7 +37,7 @@
                     <div class="language-switcher">
                         <form action="{{ route('setLocale') }}" method="POST">
                             @csrf
-                            <select name="locale" onchange="this.form.submit()" class="border-0 bg-primary-200 rounded-full text-primary-700 focus:ring-primary-300 cursor-pointer dark:bg-gray-400 dark:text-white focus:outline-0 text-sm h-8 py-1" >
+                            <select name="locale" onchange="this.form.submit()" class="border-0 bg-primary-200 rounded-full text-primary-700 focus:ring-primary-300 cursor-pointer dark:bg-gray-400 dark:text-white focus:outline-0 text-sm min-h-8 py-1 overflow-y-hidden" >
                                 <option value="ar" {{ $lang == 'ar' ? 'selected' : '' }} style="font-family:'Amiri';">العربية</option>
                                 <option value="en" {{ $lang == 'en' ? 'selected' : '' }} style="font-family:'PT Serif';">English</option>
                             </select>
@@ -241,7 +241,7 @@
                     <div class="language-switcher mb-4">
                         <form action="{{ route('setLocale') }}" method="POST">
                             @csrf
-                            <select name="locale" onchange="this.form.submit()" class="border-0 py-1 h-8 bg-primary-200 text-primary-700 focus:ring-primary-300 dark:bg-gray-400 dark:text-white focus:outline-0" >
+                            <select name="locale" onchange="this.form.submit()" class="border-0 py-1 min-h-8 bg-primary-200 text-primary-700 focus:ring-primary-300 dark:bg-gray-400 dark:text-white focus:outline-0 overflow-y-hidden" >
                                 <option value="ar" {{ $lang == 'ar' ? 'selected' : '' }}>العربية</option>
                                 <option value="en" {{ $lang == 'en' ? 'selected' : '' }}>English</option>
                             </select>

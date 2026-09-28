@@ -26,6 +26,14 @@
     font-weight: normal;
 }
 
+@font-face {
+    font-family: 'BouazziMaghribi';
+    src: url('/fonts/BouazziMaghribi-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
 .form-input {
     @apply block w-full rounded-md border-0 py-1.5 text-gray-700 shadow-sm ring-1 ring-inset ring-primary-200 placeholder:text-gray-300 focus:ring-inset focus:ring-primary-500 dark:bg-gray-400 dark:text-white dark:ring-gray-400 dark:placeholder:text-gray-100 sm:text-sm sm:leading-6;
 }
@@ -43,6 +51,9 @@
 }
 .table-th {
     @apply px-3 py-3.5 text-left text-sm font-semibold text-primary-700 dark:text-white;
+}
+html[dir="rtl"] .table-th {
+    text-align: right;
 }
 .table-text {
     @apply px-3 py-4 text-sm text-gray-700 dark:text-gray-50;

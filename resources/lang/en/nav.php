@@ -4,6 +4,7 @@ return [
     'Reports' => 'Reports',
     'Axes' => 'Axes',
     'Categories' => 'Categories',
+    'Products' => 'Products',
     'Courses' => 'Courses',
     'Instructors' => 'Experts',
     'Home' => 'Home',

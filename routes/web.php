@@ -20,6 +20,8 @@ use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\Auth\SocialiteController;
 use App\Http\Controllers\StaticPageController;
 use App\Http\Controllers\ServiceRequestController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductClientController;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,6 +85,14 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/category/edit/{category}', [CategoryController::class, 'edit'])->name('admin.category.edit');
     Route::put('/admin/category/{category}', [CategoryController::class, 'update'])->name('admin.category.update');
     Route::delete('/admin/category/{category}', [CategoryController::class, 'delete'])->name('admin.category.delete');
+
+    // Admin products routes
+    Route::get('/admin/product/create', [ProductController::class, 'create'])->name('admin.product.create');
+    Route::post('/admin/product', [ProductController::class, 'store'])->name('admin.product.store');
+    Route::get('/admin/products', [ProductController::class, 'index'])->name('admin.products');
+    Route::get('/admin/product/edit/{product}', [ProductController::class, 'edit'])->name('admin.product.edit');
+    Route::put('/admin/product/{product}', [ProductController::class, 'update'])->name('admin.product.update');
+    Route::delete('/admin/product/{product}', [ProductController::class, 'delete'])->name('admin.product.delete');
 
     // Admin courses routes
     Route::get('/admin/course/create', [CourseController::class, 'create'])->name('admin.course.create');
@@ -152,6 +162,8 @@ Route::middleware(['auth', 'student'])->group(function () {
 Route::post('/service-request', [ServiceRequestController::class, 'store'])->name('service-request.store');
 
 // Guest Routes
+Route::get('/products', [ProductClientController::class, 'index'])->name('products');
+Route::get('/product/{url}', [ProductClientController::class, 'show'])->name('product.showUrl');
 Route::get('/categories/{url}', [FieldController::class, 'showByUrl'])->name('fields.showUrl');
 Route::get('/courses/{url}', [CategoryController::class, 'showByUrl'])->name('category.showUrl');
 Route::get('/course/{url}', [CourseController::class, 'showByUrl'])->name('course.showUrl');

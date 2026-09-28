@@ -21,9 +21,9 @@
         <div class="md:hidden h-20"></div>
         @if ($message = Session::get('success'))
         <div class="max-w-xs sm:max-w-sm md:max-w-xl lg:max-w-4xl mx-auto">
-            <div 
+            <div
                 dir="{{$lang == 'ar' ? ('rtl') : ('ltr')}}"
-                id="successMessage" 
+                id="successMessage"
                 class="rounded-lg bg-green-700 px-6 py-3 mb-6 shadow-lg w-fit mx-auto flex gap-x-2"
             >
                 <x-heroicon-s-check-badge class="w-6 h-6 text-white" />
@@ -32,13 +32,13 @@
         </div>
         @endif
         <input id="lang" type="hidden" value="{{$lang}}" />
-        <div class="mx-auto flex w-full justify-center" x-data="{ videoReady: false }">
+        <div class="relative mx-auto h-56 w-full overflow-hidden md:h-[30rem]" x-data="{ videoReady: false }">
             <div
                 x-show="!videoReady"
                 x-transition:leave="transition ease-out duration-500"
                 x-transition:leave-start="opacity-100"
                 x-transition:leave-end="opacity-0"
-                class="relative h-56 w-full overflow-hidden bg-[#0f0f0f] shadow-sm md:h-[30rem]"
+                class="absolute inset-0 z-10 overflow-hidden bg-[#0f0f0f] shadow-sm"
             >
                 <div class="absolute inset-0 bg-gradient-to-b from-white/[0.04] via-transparent to-black/30"></div>
                 <div class="absolute inset-0 flex items-center justify-center">
@@ -66,7 +66,7 @@
                 x-transition:enter="transition ease-out duration-700"
                 x-transition:enter-start="opacity-0"
                 x-transition:enter-end="opacity-100"
-                class="w-full object-cover md:h-[30rem]"
+                class="block h-full w-full object-cover"
                 style="display: none;"
                 muted
                 autoplay
@@ -77,16 +77,16 @@
             </video>
         </div>
         <div class="flex justify-center">
-        
+
             <div class="sm:px-6 lg:px-8 my-8 py-8 text-center max-w-xs sm:max-w-sm md:max-w-xl lg:max-w-3xl">
                 <img src="{{ asset( 'pictures/global/B3.png') }}" class="h-16 sm:h-20 dark:hidden mx-auto mb-4" alt=""/>
                 <img src="{{ asset( 'pictures/global/B1.png') }}" class="h-16 sm:h-20 hidden dark:block mx-auto mb-4" alt=""/>
-                <p class="text-2xl lg:text-3xl text-bordo tracking-wider leading-10 dark:text-primary-100" 
-                    style="font-family:{{$lang=='ar' ? ('MehrNastaliq') : ('Great Vibes')}} ; line-height: {{$lang=='ar' ? ('50px') : ('40px')}} " 
+                <p class="text-2xl lg:text-3xl xl:text-4xl text-bordo tracking-wider leading-10 dark:text-primary-100"
+                    style="font-family:{{$lang=='ar' ? ('BouazziMaghribi') : ('Great Vibes')}} ; line-height: {{$lang=='ar' ? ('50px') : ('40px')}} "
                     dir="{{$lang=='ar' ? ('rtl') : ('ltr')}}">
                     {{__('welcome.Charter-content')}}
                 </p>
-                <p class="{{$lang=='ar' ? ('text-2xl lg:text-4xl mt-5') : ('text-2xl lg:text-3xl mt-7')}} text-bordo dark:text-primary-100" style="font-family:{{$lang=='ar' ? ('MehrNastaliq') : ('Great Vibes')}}" >
+                <p class="{{$lang=='ar' ? ('text-2xl lg:text-4xl xl:text-5xl mt-5') : ('text-2xl lg:text-3xl mt-7')}} text-bordo dark:text-primary-100" style="font-family:{{$lang=='ar' ? ('BouazziMaghribi') : ('Great Vibes')}}" >
                     {{__('welcome.ibnu-arabi')}}
                 </p>
                 <img src="{{ asset( 'pictures/global/B4.png') }}" class="dark:hidden mx-auto mt-4" alt=""/>
@@ -130,7 +130,7 @@
                     }
                 @endphp
                 <a href="{{ route('fields.showUrl', ['url' => $field->url]) }}" style="-webkit-tap-highlight-color: transparent;">
-                    <div class="h-72 w-72 md:h-52 md:w-52 lg:h-72 lg:w-72 my-6 md:my-0 cat-circle {{ $circleClass }} hover:shadow-lg rounded-full">  
+                    <div class="h-72 w-72 md:h-52 md:w-52 lg:h-72 lg:w-72 my-6 md:my-0 cat-circle {{ $circleClass }} hover:shadow-lg rounded-full">
                         <div class="h-2/5 flex items-center justify-center text-center">
                             <div class="w-48">
                                 <p class="{{$lang=='ar' ? ('text-3xl lg:text-4xl') : ('text-2xl lg:text-3xl')}} font-medium  text-bordo" style="font-family:{{$lang=='ar' ? ('MehrNastaliq') : ('Great Vibes')}}">
@@ -140,7 +140,7 @@
                         </div>
                         <div class="h-3/5 p-8 text-center">
                             <p class="text-xl md:text-sm lg:text-xl font-normal text-gray-400 {{$lang=='ar'?(''):('italic')}}">{{ $field->subtitle }}</p>
-                        </div> 
+                        </div>
                     </div>
                 </a>
                 @endforeach
@@ -154,7 +154,7 @@
             </p>
             <div class="items-center container pt-8  sm:max-w-xl md:max-w-2xl lg:max-w-screen-lg xl:max-w-screen-2xl  mx-auto mt-4 flex space-x-4 justify-center">
                 <button class="myPrevBtn h-56 mb-28 bg-primary-150 text-stone dark:bg-gray-400 dark:hover:text-gray-700 dark:hover:bg-primary-200 dark:text-primary-50
-                     rounded-xl hover:bg-primary-300 shadow-md px-2 hidden sm:block 
+                     rounded-xl hover:bg-primary-300 shadow-md px-2 hidden sm:block
                      {{checkCount($myCourses)}}">
                     <x-heroicon-s-chevron-left class="w-4 h-4"/>
                 </button>
@@ -243,7 +243,7 @@
                             <div class="group-hover:visible rounded-b-2xl group-hover:translate-y-0 group-hover:opacity-100 instructor-details h-1/2 sm:h-[40%] md:h-1/2 lg:h-[40%] top-1/2 sm:top-[60%] md:top-1/2 lg:top-[60%] bg-gradient-to-t from-stone via-transparent to-transparent text-white py-4 px-3">
                                 <div class="{{$lang == 'ar' ? ('text-right') : ('')}}">
                                     <p class="{{$lang == 'ar' ? ('text-xl font-semibold') : ('text-base lg:text-lg font-semibold')}}">{{$instructor->firstname}} {{$instructor->lastname}}</p>
-                                    <p class="text-xs lg:text-sm font-medium text-gray-50" 
+                                    <p class="text-xs lg:text-sm font-medium text-gray-50"
                                         dir="{{$lang == 'ar' ? ('rtl') : ('ltr')}}"
                                         title="{{$instructor->short_desc}}"
                                     >
@@ -312,7 +312,7 @@
                     <img src="{{ asset( 'pictures/global/labs-red.png') }}" class="h-16 sm:h-36 hidden group-hover:block mr-4 md:mr-12" alt=""/>
                     <img src="{{ asset( 'pictures/global/labs-white.png') }}" class="h-16 sm:h-36 mr-4 md:mr-12 hidden dark:block group-hover:dark:hidden" alt=""/>
                 </a>
-                <a href="#" class="group">
+                <a href="/products" class="group">
                     <img src="{{ asset( 'pictures/global/store-black.png') }}" class="h-16 sm:h-36 dark:hidden group-hover:hidden ml-4 md:ml-12" alt=""/>
                     <img src="{{ asset( 'pictures/global/store-red.png') }}" class="h-16 sm:h-36 hidden group-hover:block ml-4 md:ml-12" alt=""/>
                     <img src="{{ asset( 'pictures/global/store-white.png') }}" class="h-16 sm:h-36 ml-4 md:ml-12 hidden dark:block group-hover:dark:hidden" alt=""/>
@@ -331,7 +331,7 @@
                 @endforeach
             </div>
         </div>
-        
+
     </div>
     <style>
         @tailwind base;
@@ -339,7 +339,7 @@
         @tailwind utilities;
         .eye-shape {
             border-radius: 100% 0px;
-            transform: rotate(45deg); 
+            transform: rotate(45deg);
             width: 188px;
             height: 188px;
         }
@@ -403,7 +403,7 @@
             nav: false, // Display navigation buttons
             dots: false, // Hide navigation dots
             responsive: {
-                0: { 
+                0: {
                     items: 1.5,
                     center: true
                 },
@@ -446,7 +446,7 @@
             dots: false,
             rtl: lang=='ar',
             responsive: {
-                0: { 
+                0: {
                     items: 1.5,
                     center: true
                 },
@@ -479,7 +479,7 @@
             dots: false,
             rtl: lang=='ar',
             responsive: {
-                0: { 
+                0: {
                     items: 1.5,
                     loop: true,
                     center: true
@@ -501,7 +501,7 @@
             autoplayTimeout: 3000,       // 3 seconds between each slide
             autoplayHoverPause: true,
             autoplaySpeed: 1000,         // 1 second transition animation
-            smartSpeed: 1000, 
+            smartSpeed: 1000,
             responsive: {
                 0: { items: 1, center: true },
                 640: { items: 2 },
