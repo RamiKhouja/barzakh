@@ -1,6 +1,6 @@
 <x-app-layout :meta_title="$meta_title" :meta_description="$meta_description" :meta_image="$meta_image" :meta_url="$meta_url">
     @php($lang = app()->getLocale())
-    <div class="bg-primary-100 py-16 dark:bg-gray-700" dir="{{ $lang === 'ar' ? 'rtl' : 'ltr' }}">
+    <div class="mt-8 bg-primary-100 py-16 dark:bg-gray-700 md:mt-0" dir="{{ $lang === 'ar' ? 'rtl' : 'ltr' }}">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="mb-10 text-center">
                 <h1 class="text-4xl font-semibold text-primary-700 dark:text-white">{{ __('store.title') }}</h1>

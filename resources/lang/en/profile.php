@@ -15,6 +15,8 @@ return [
     'country' => 'Country',
     'city' => 'City',
     'phone' => 'Phone',
+    'zip_code' => 'Zip code',
+    'address' => 'Address',
     'save' => 'Save',
     'saved' => 'Saved',
     'upload-picture' => 'Upload Picture',

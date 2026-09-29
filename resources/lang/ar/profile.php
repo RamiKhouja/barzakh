@@ -15,6 +15,8 @@ return [
     'country' => 'الدولة',
     'city' => 'المدينة',
     'phone' => 'الهاتف',
+    'zip_code' => 'الرمز البريدي',
+    'address' => 'العنوان',
     'save' => 'حفظ',
     'saved' => 'تم الحفظ',
     'upload-picture' => 'تحميل الصورة',

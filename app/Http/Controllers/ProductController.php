@@ -90,6 +90,8 @@ class ProductController extends Controller
             'is_active' => ['nullable'],
             'is_sold' => ['nullable'],
             'is_soon' => ['nullable'],
+            'has_qty' => ['nullable'],
+            'stock' => ['nullable', 'integer', 'min:0'],
             'pictures' => ['nullable', 'array'],
             'pictures.*' => ['image', 'mimes:jpeg,jpg,png,gif,webp', 'max:4096'],
             'video_urls' => ['nullable', 'array'],
@@ -126,6 +128,8 @@ class ProductController extends Controller
             'is_active' => $request->boolean('is_active'),
             'is_sold' => $request->boolean('is_sold'),
             'is_soon' => $request->boolean('is_soon'),
+            'has_qty' => $request->boolean('has_qty'),
+            'stock' => $validated['stock'] ?? 1,
         ]);
 
         if ($request->hasFile('main_image')) {

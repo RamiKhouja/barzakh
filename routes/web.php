@@ -22,6 +22,8 @@ use App\Http\Controllers\StaticPageController;
 use App\Http\Controllers\ServiceRequestController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductClientController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -138,6 +140,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/service-requests', [ServiceRequestController::class, 'index'])->name('admin.service-requests.index');
     Route::get('/admin/service-request/{serviceRequest}', [ServiceRequestController::class, 'show'])->name('admin.service-requests.show');
 
+    Route::get('/admin/orders', [AdminOrderController::class, 'index'])->name('admin.orders');
+    Route::get('/admin/order/{order}', [AdminOrderController::class, 'show'])->name('admin.orders.show');
+    Route::put('/admin/order/{order}/status', [AdminOrderController::class, 'updateStatus'])->name('admin.orders.status');
+
     // Admin partners routes
     Route::get('/admin/partner/create', [PartnerController::class, 'create'])->name('admin.partner.create');
     Route::post('/admin/partner', [PartnerController::class, 'store'])->name('admin.partner.store');
@@ -146,6 +152,11 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::put('/admin/partner/{partner}', [PartnerController::class, 'update'])->name('admin.partner.update');
     Route::delete('/admin/partner/{partner}', [PartnerController::class, 'destroy'])->name('admin.partner.delete');
 });
+
+Route::get('/checkout', [OrderController::class, 'checkout'])->name('orders.checkout');
+Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
+Route::get('/order/{token}', [OrderController::class, 'show'])->name('orders.show');
+Route::post('/order/{token}/save-info', [OrderController::class, 'saveGuestInfo'])->name('orders.save-info');
 
 Route::middleware(['auth', 'student'])->group(function () {
     Route::get('/checkout/{course}', [CheckoutController::class, 'show'])->name('checkout.show');
@@ -162,6 +173,7 @@ Route::middleware(['auth', 'student'])->group(function () {
 Route::post('/service-request', [ServiceRequestController::class, 'store'])->name('service-request.store');
 
 // Guest Routes
+Route::get('/cart/products', [ProductClientController::class, 'cartData'])->name('cart.products');
 Route::get('/products', [ProductClientController::class, 'index'])->name('products');
 Route::get('/product/{url}', [ProductClientController::class, 'show'])->name('product.showUrl');
 Route::get('/categories/{url}', [FieldController::class, 'showByUrl'])->name('fields.showUrl');

@@ -4,12 +4,16 @@
 @php($shortDescription = $lang === 'ar' ? $product->short_description_ar : $product->short_description_en)
 @php($hasDiscount = $product->is_discount && $product->discount_price !== null)
 @php($currentPrice = $hasDiscount ? $product->discount_price : $product->price)
+@php($isOutOfStock = $product->has_qty && $product->stock !== null && $product->stock <= 0)
+@php($isSold = (bool) $product->is_sold)
 
-<article class="group flex h-full flex-col overflow-hidden rounded-3xl bg-primary-150 shadow-md transition hover:-translate-y-1 hover:shadow-xl dark:bg-gray-400" dir="{{ $lang === 'ar' ? 'rtl' : 'ltr' }}">
+<article class="group flex h-full flex-col {{ ($isOutOfStock || $isSold) ? 'opacity-60' : '' }} overflow-hidden rounded-3xl bg-primary-150 shadow-md transition hover:-translate-y-1 hover:shadow-xl dark:bg-gray-400" dir="{{ $lang === 'ar' ? 'rtl' : 'ltr' }}">
     <a href="{{ route('product.showUrl', ['url' => $product->url]) }}" class="block">
         <div class="relative h-48 overflow-hidden">
             <img src="{{ $product->main_image ? asset('pictures'.$product->main_image) : asset('pictures/global/og-main.jpeg') }}" alt="{{ $name }}" class="h-full w-full object-cover transition duration-300 group-hover:scale-105">
             @if($product->is_new)<span class="absolute top-3 {{ $lang === 'ar' ? 'right-3' : 'left-3' }} rounded-full bg-bordo px-3 py-1 text-xs font-semibold text-white">{{ __('store.new') }}</span>@endif
+            @if($isSold)<span class="absolute bottom-3 left-3 rounded-full bg-bordo px-3 py-1 text-xs font-semibold text-white">{{ __('store.sold') }}</span>
+            @elseif($isOutOfStock)<span class="absolute bottom-3 left-3 rounded-full bg-bordo px-3 py-1 text-xs font-semibold text-white">{{ __('store.out_of_stock') }}</span>@endif
         </div>
     </a>
     <div class="flex flex-1 flex-col p-5">

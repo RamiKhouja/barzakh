@@ -69,6 +69,19 @@
             </div>
         </div>
 
+        <div class="flex gap-x-4">
+            <div>
+                <x-input-label for="zip_code" :value="__('profile.zip_code')" />
+                <x-text-input id="zip_code" name="zip_code" type="text" class="mt-1 block w-full" :value="old('zip_code', $user->zip_code)" autocomplete="postal-code" />
+                <x-input-error class="mt-2" :messages="$errors->get('zip_code')" />
+            </div>
+            <div>
+                <x-input-label for="address" :value="__('profile.address')" />
+                <x-text-input id="address" name="address" type="text" class="mt-1 block w-full" :value="old('address', $user->address)" autocomplete="street-address" />
+                <x-input-error class="mt-2" :messages="$errors->get('address')" />
+            </div>
+        </div>
+
         <div>
             <x-input-label for="phone" :value="__('profile.phone')" />
             <x-text-input id="phone" name="phone" type="text" class="mt-1 block w-1/2" :value="old('phone', $user->phone)" autofocus autocomplete="phone" />

@@ -4,11 +4,15 @@
     @php($shortDescription = $lang === 'ar' ? $product->short_description_ar : $product->short_description_en)
     @php($description = $lang === 'ar' ? $product->description_ar : $product->description_en)
     @php($hasDiscount = $product->is_discount && $product->discount_price !== null)
-    <div class="bg-primary-100 py-16 dark:bg-gray-700" dir="{{ $lang === 'ar' ? 'rtl' : 'ltr' }}">
+    @php($isOutOfStock = $product->has_qty && $product->stock !== null && $product->stock <= 0)
+    @php($isSold = (bool) $product->is_sold)
+    <div class="mt-8 bg-primary-100 py-16 dark:bg-gray-700 md:mt-0" dir="{{ $lang === 'ar' ? 'rtl' : 'ltr' }}">
         <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
             <div class="grid gap-10 lg:grid-cols-2">
                 <div>
-                    <div class="overflow-hidden rounded-3xl bg-primary-150 shadow-lg dark:bg-gray-400">
+                    <div class="relative overflow-hidden rounded-3xl bg-primary-150 shadow-lg dark:bg-gray-400">
+                        @if($isSold)<span class="absolute left-4 top-4 z-10 rounded-full bg-bordo px-3 py-1 text-sm font-semibold text-white">{{ __('store.sold') }}</span>
+                        @elseif($isOutOfStock)<span class="absolute left-4 top-4 z-10 rounded-full bg-bordo px-3 py-1 text-sm font-semibold text-white">{{ __('store.out_of_stock') }}</span>@endif
                         <img id="product-main-image" src="{{ $product->main_image ? asset('pictures'.$product->main_image) : asset('pictures/global/og-main.jpeg') }}" alt="{{ $name }}" class="h-[22rem] w-full object-cover sm:h-[30rem]">
                     </div>
                     @if($product->pictures->isNotEmpty())
@@ -25,7 +29,7 @@
                     <div class="mt-8 flex items-center gap-3 text-2xl font-semibold text-bordo dark:text-white">
                         @if($product->is_free){{ __('store.free') }}@else @if($hasDiscount)<span class="text-lg text-gray-500 line-through dark:text-gray-200">{{ rtrim(rtrim(number_format((float) $product->price, 3), '0'), '.') }} {{ __('store.tnd') }}</span>@endif{{ rtrim(rtrim(number_format((float) ($hasDiscount ? $product->discount_price : $product->price), 3), '0'), '.') }} {{ __('store.tnd') }}@endif
                     </div>
-                    <a href="#buy" class="rounded-full bg-bordo font-semibold text-white shadow-sm hover:bg-primary-700 mt-8 inline-flex w-fit items-center gap-2 px-8 py-3 text-base" aria-label="{{ __('store.get_product') }}" title="{{ __('store.get_product') }}"><x-heroicon-s-shopping-cart class="h-5 w-5" /><span>{{ __('store.get_product') }}</span></a>
+                    @include('client.partials.product-cart-controls')
                 </div>
             </div>
             @if($description)<section class="prose prose-lg mt-16 max-w-none rounded-3xl bg-primary-150 p-6 text-stone dark:text-white dark:prose-invert dark:bg-gray-400 sm:p-10" dir="{{ $lang === 'ar' ? 'rtl' : 'ltr' }}">{!! $description !!}</section>@endif

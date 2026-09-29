@@ -30,6 +30,8 @@ class User extends Authenticatable
         'city',
         'birth_date',
         'sex',
+        'zip_code',
+        'address',
         'image',
     ];
 
@@ -93,6 +95,11 @@ class User extends Authenticatable
     public function serviceRequests()
     {
         return $this->hasMany(ServiceRequest::class);
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
     }
 
     public function imageLink() : Attribute

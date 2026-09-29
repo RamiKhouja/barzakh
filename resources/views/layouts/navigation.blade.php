@@ -20,7 +20,7 @@
         $isAdminPartners = request()->routeIs('admin.partners') || request()->routeIs('admin.partner.*');
     ?>
     <div class="mx-auto px-4 sm:px-6 lg:px-8 py-4 lg:py-0 w-full bg-primary-100 dark:bg-gray-700 group dark:shadow-none" id="navbar">
-        <div class="flex justify-between {{ Request::path() == '/' ? 'items-start' : 'items-center'}} nav-content">
+        <div class="relative flex justify-between {{ Request::path() == '/' ? 'items-start' : 'items-center' }} nav-content">
             <div>
                 <button @click="open = !open" class="lg:hidden block text-gray-600 hover:text-gray-900 dark:text-gray-50 dark:hover:text-white">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
@@ -61,7 +61,7 @@
                     @endif
                 </div>
             </div>
-            <div class="mx-auto">
+            <div class="absolute left-[calc(50vw-16px)] top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 lg:static lg:transform-none">
                 <a href="/"><img src="{{ asset('pictures/global/logo.png') }}" class="h-10 lg:hidden dark:hidden" alt=""/></a>
                 <a href="/"><img src="{{ asset('pictures/global/logo-white.png') }}" class="hidden dark:block h-10 lg:hidden dark:lg:hidden" alt=""/></a>
             </div>
@@ -111,7 +111,7 @@
                         
                         <a href="{{ url(route('home') . '#instructors') }}" onclick="smallNav()" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg {{ $isInstructors ? $navActiveClass : '' }}">{{ __('nav.Instructors') }}</a>
                         <a href="{{ url(route('home') . '#plans') }}" onclick="smallNav()" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg">{{ __('nav.Plans') }}</a>
-                        <a href="{{ url(route('home') . '#partners') }}" onclick="smallNav()" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg">{{ __('nav.Partners') }}</a>
+                        <a href="{{ route('products') }}" onclick="smallNav()" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg">{{ __('nav.concept-store') }}</a>
                     </div>
                     @endif
                 @else
@@ -139,12 +139,13 @@
                         @endif
                         <a href="{{ url(route('home') . '#instructors') }}" onclick="smallNav()" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg {{ $isInstructors ? $navActiveClass : '' }}">{{ __('nav.Instructors') }}</a>
                         <a href="{{ url(route('home') . '#plans') }}" onclick="smallNav()" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg">{{ __('nav.Plans') }}</a>
-                        <a href="{{ url(route('home') . '#partners') }}" onclick="smallNav()" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg">{{ __('nav.Partners') }}</a>
+                        <a href="{{ route('products') }}" onclick="smallNav()" class="hover:bg-primary-200 dark:hover:bg-gray-400 px-2 py-1 rounded-lg">{{ __('nav.concept-store') }}</a>
                     </div>
                 @endauth
                 </div>
             </div>
-            <div id="rightNav" class="lg:w-1/4">
+            <div id="rightNav" class="flex items-center justify-end lg:w-1/4">
+                <button type="button" @click="window.dispatchEvent(new CustomEvent('open-cart'))" class="relative order-last ml-3 inline-flex rounded-full bg-primary-200 p-2 text-primary-700 dark:bg-gray-400 dark:text-white" aria-label="{{ __('store.cart') }}"><x-heroicon-s-shopping-cart class="h-5 w-5" /><span x-data="{ count: 0, init() { this.refresh(); window.addEventListener('cart-updated', () => this.refresh()); }, refresh() { this.count = barzakhCart.get().reduce((sum, item) => sum + item.quantity, 0); } }" x-text="count" x-show="count > 0" class="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-bordo text-xs text-white"></span></button>
             @if (Route::has('login'))
                 <div class="lg:p-6 text-right z-10 lg:flex-wrap lg:relative justify-end">
                     @auth
@@ -189,8 +190,8 @@
                         <div class="sm:flex sm:items-center sm:ml-6 lg:hidden">
                             <x-dropdown align="right" width="48">
                                 <x-slot name="trigger">
-                                    <button class="sm:px-3 sm:py-2 transition ease-in-out duration-150">
-                                        <x-heroicon-s-user-circle class="h-7 w-7 text-gray-500 dark:text-white" />
+                                    <button class="inline-flex items-center justify-center rounded-full bg-primary-200 p-2 text-primary-700 transition ease-in-out duration-150 dark:bg-gray-400 dark:text-white">
+                                        <x-heroicon-s-user-circle class="h-5 w-5" />
                                     </button>
                                 </x-slot>
                                 <x-slot name="content">
@@ -281,7 +282,7 @@
                             <div><a href="{{ url(route('home') . '#courses') }}" @click="open = !open" class="resp-menu-item {{ $isCourses ? $mobileNavActiveClass : '' }}">{{ __('nav.Courses') }}</a></div>
                             <div><a href="{{ url(route('home') . '#instructors') }}" @click="open = !open" class="resp-menu-item {{ $isInstructors ? $mobileNavActiveClass : '' }}">{{ __('nav.Instructors') }}</a></div>
                             <div><a href="" class="resp-menu-item">{{ __('nav.Plans') }}</a></div>
-                            <div><a href="" class="resp-menu-item">{{ __('nav.Partners') }}</a></div>
+                            <div><a href="{{ route('products') }}" class="resp-menu-item">{{ __('nav.concept-store') }}</a></div>
                         
                         @endif
                     @else
@@ -290,7 +291,7 @@
                             <div><a href="{{ url(route('home') . '#courses') }}" @click="open = !open" class="resp-menu-item {{ $isCourses ? $mobileNavActiveClass : '' }}">{{ __('nav.Courses') }}</a></div>
                             <div><a href="{{ url(route('home') . '#instructors') }}" @click="open = !open" class="resp-menu-item {{ $isInstructors ? $mobileNavActiveClass : '' }}">{{ __('nav.Instructors') }}</a></div>
                             <div><a href="" class="resp-menu-item">{{ __('nav.Plans') }}</a></div>
-                            <div><a href="" class="resp-menu-item">{{ __('nav.Partners') }}</a></div>
+                            <div><a href="{{ route('products') }}" class="resp-menu-item">{{ __('nav.concept-store') }}</a></div>
                         
                     @endauth
                     <!-- ... -->
@@ -301,6 +302,7 @@
             </div>
         </div>
     </div>
+    @include('client.partials.cart-drawer')
 </nav>
 
 <style>

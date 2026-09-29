@@ -66,6 +66,23 @@ class ProductClientController extends Controller
         return view('client.products.show', compact('product', 'relatedProducts', 'youtubeVideos', 'meta_title', 'meta_description', 'meta_image', 'meta_url'));
     }
 
+    public function cartData(Request $request)
+    {
+        $ids = collect((array) $request->input('ids'))->filter(fn ($id) => is_numeric($id))->map(fn ($id) => (int) $id)->unique();
+        $products = Product::whereIn('id', $ids)->get();
+
+        return response()->json($products->map(fn (Product $product) => [
+            'id' => $product->id,
+            'name_en' => $product->name_en,
+            'name_ar' => $product->name_ar,
+            'price' => (float) ($product->is_discount && $product->discount_price !== null ? $product->discount_price : $product->price),
+            'image' => $product->main_image ? asset('pictures'.$product->main_image) : asset('pictures/global/og-main.jpeg'),
+            'has_qty' => (bool) $product->has_qty,
+            'stock' => $product->stock === null ? null : (int) $product->stock,
+            'is_sold' => (bool) $product->is_sold,
+        ])->values());
+    }
+
     private function youtubeEmbedUrl(string $url): ?string
     {
         $parts = parse_url($url);

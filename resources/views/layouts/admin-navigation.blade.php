@@ -1,4 +1,5 @@
 @php
+    $pendingOrders = App\Models\Order::where("status", "pending")->count();
     $lang = app()->getLocale();
     $navItems = [
         ['route' => 'admin.dashboard', 'label' => __('nav.Dashboard'), 'icon' => 'heroicon-s-home', 'patterns' => ['admin.dashboard']],
@@ -6,6 +7,7 @@
         ['route' => 'admin.fields', 'label' => __('nav.Axes'), 'icon' => 'heroicon-s-squares-2x2', 'patterns' => ['admin.fields', 'field.*']],
         ['route' => 'admin.categories', 'label' => __('nav.Categories'), 'icon' => 'heroicon-s-queue-list', 'patterns' => ['admin.categories', 'admin.category.*']],
         ['route' => 'admin.products', 'label' => __('nav.Products'), 'icon' => 'heroicon-s-shopping-bag', 'patterns' => ['admin.products', 'admin.product.*']],
+        ['route' => 'admin.orders', 'label' => __('nav.Orders'), 'icon' => 'heroicon-s-shopping-cart', 'patterns' => ['admin.orders', 'admin.orders.*']],
         ['route' => 'admin.courses', 'label' => __('nav.Courses'), 'icon' => 'heroicon-s-academic-cap', 'patterns' => ['admin.courses', 'admin.courses.search', 'admin.course.*']],
         ['route' => 'admin.packs', 'label' => __('nav.Packs'), 'icon' => 'heroicon-s-archive-box', 'patterns' => ['admin.packs', 'admin.pack.*']],
         ['route' => 'admin.instructors', 'label' => __('nav.Instructors'), 'icon' => 'heroicon-s-users', 'patterns' => ['admin.instructors', 'instructor.*', 'admin.instructor.*']],
@@ -229,7 +231,7 @@
                             title="{{ $item['label'] }}"
                         >
                             <x-dynamic-component :component="$item['icon']" class="h-5 w-5 shrink-0" />
-                            <span x-show="!(sidebarCollapsed && window.innerWidth >= 1024)" x-transition.opacity class="truncate {{ app()->getLocale() === 'ar' ? 'mr-3' : 'ml-3' }}">{{ $item['label'] }}</span>
+                            <span x-show="!(sidebarCollapsed && window.innerWidth >= 1024)" x-transition.opacity class="truncate {{ app()->getLocale() === 'ar' ? 'mr-3' : 'ml-3' }}">{{ $item['label'] }} @if($item['route'] === 'admin.orders' && $pendingOrders > 0)<span class="ml-2 rounded-full bg-bordo px-2 py-0.5 text-xs text-white">{{ $pendingOrders }}</span>@endif</span>
                         </a>
                     @endif
                 @endforeach

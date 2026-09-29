@@ -15,7 +15,7 @@ class Product extends Model
         'description_en', 'description_ar', 'owner_name', 'organization_name',
         'main_image', 'price', 'discount_price', 'is_free', 'is_discount',
         'nb_visits', 'nb_buyers', 'is_featured', 'is_new', 'show', 'is_active',
-        'is_sold', 'is_soon',
+        'is_sold', 'is_soon', 'has_qty', 'stock',
     ];
 
     protected $casts = [
@@ -23,6 +23,7 @@ class Product extends Model
         'is_free' => 'boolean', 'is_discount' => 'boolean',
         'is_featured' => 'boolean', 'is_new' => 'boolean', 'show' => 'boolean',
         'is_active' => 'boolean', 'is_sold' => 'boolean', 'is_soon' => 'boolean',
+        'has_qty' => 'boolean', 'stock' => 'integer',
         'nb_visits' => 'integer', 'nb_buyers' => 'integer',
     ];
 

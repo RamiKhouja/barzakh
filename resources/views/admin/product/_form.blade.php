@@ -89,9 +89,13 @@
                             <label class="form-label">{{ __('admin.discount_price') }}</label>
                             <input type="number" step="0.001" min="0" name="discount_price" value="{{ old('discount_price', $product->discount_price ?? '') }}" class="form-input mt-2">
                         </div>
+                        <div>
+                            <label class="form-label">{{ __('admin.stock') }}</label>
+                            <input type="number" min="0" name="stock" value="{{ old('stock', $product->stock ?? 1) }}" class="form-input mt-2">
+                        </div>
                     </div>
                     <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                        @foreach(['is_free' => 'free', 'is_discount' => 'discount', 'is_featured' => 'featured', 'is_new' => 'new', 'show' => 'visible', 'is_active' => 'active', 'is_sold' => 'sold', 'is_soon' => 'coming_soon'] as $field => $label)
+                        @foreach(['is_free' => 'free', 'is_discount' => 'discount', 'is_featured' => 'featured', 'is_new' => 'new', 'show' => 'visible', 'is_active' => 'active', 'is_sold' => 'sold', 'is_soon' => 'coming_soon', 'has_qty' => 'has_quantity'] as $field => $label)
                             <label class="flex cursor-pointer items-center gap-3">
                                 <input type="checkbox" name="{{ $field }}" value="1" class="h-4 w-4 accent-primary-700" @checked(old($field, $product->{$field} ?? ($field === 'show' || $field === 'is_active')))>
                                 <span class="form-label">{{ __('admin.' . $label) }}</span>

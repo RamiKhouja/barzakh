@@ -22,6 +22,8 @@ class ProfileUpdateRequest extends FormRequest
             'country' => 'nullable',
             'city' => 'nullable',
             'phone' => 'nullable',
+            'zip_code' => 'nullable|string|max:50',
+            'address' => 'nullable|string|max:1000',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ];
     }
