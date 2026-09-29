@@ -32,11 +32,17 @@
                     @include('client.partials.product-cart-controls')
                 </div>
             </div>
-            @if($description)<section class="prose prose-lg mt-16 max-w-none rounded-3xl bg-primary-150 p-6 text-stone dark:text-white dark:prose-invert dark:bg-gray-400 sm:p-10" dir="{{ $lang === 'ar' ? 'rtl' : 'ltr' }}">{!! $description !!}</section>@endif
+            @if($description)<section class="product-description {{ $lang === 'ar' ? 'product-description-ar' : '' }} prose prose-lg mt-16 max-w-none rounded-3xl bg-primary-150 p-6 text-stone dark:text-white dark:prose-invert dark:bg-gray-400 sm:p-10" dir="{{ $lang === 'ar' ? 'rtl' : 'ltr' }}">{!! $description !!}</section>@endif
             @if($youtubeVideos->isNotEmpty())<section class="mt-16"><h2 class="mb-6 text-3xl font-semibold text-primary-700 dark:text-white">{{ __('store.videos') }}</h2><div class="grid gap-6 md:grid-cols-2">@foreach($youtubeVideos as $video)<div class="aspect-video overflow-hidden rounded-2xl shadow"><iframe src="{{ $video }}" class="h-full w-full" title="{{ $name }}" allowfullscreen></iframe></div>@endforeach</div></section>@endif
             @if($product->audios->isNotEmpty())<section class="mt-12"><h2 class="mb-6 text-3xl font-semibold text-primary-700 dark:text-white">{{ __('store.audio') }}</h2><div class="space-y-4">@foreach($product->audios as $audio)<audio controls class="w-full"><source src="{{ asset('pictures'.$audio->audio_path) }}"></audio>@endforeach</div></section>@endif
             @if($relatedProducts->isNotEmpty())<section class="mt-20"><h2 class="mb-8 text-3xl font-semibold text-primary-700 dark:text-white">{{ __('store.related') }}</h2><div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">@foreach($relatedProducts as $related)<x-product :product="$related" />@endforeach</div></section>@endif
         </div>
     </div>
+    <style>
+        .product-description-ar,
+        .product-description-ar * {
+            font-family: Amiri, serif !important;
+        }
+    </style>
     <script>function changeProductImage(image){document.getElementById('product-main-image').src=image;}</script>
 </x-app-layout>
